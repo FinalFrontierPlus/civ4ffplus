@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- Created with TC01's XML Text Editor -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_FEAT_UNITCOMBAT_RECON</Tag>
+		<English>Congratulations, you have trained your first Recon Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are good scouts and explorers, as they get better than usual results from Space Wreckage.</English>
+		<French>Congratulations, you have trained your first Recon Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are good scouts and explorers, as they get better than usual results from Space Wreckage.</French>
+		<German>Congratulations, you have trained your first Recon Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are good scouts and explorers, as they get better than usual results from Space Wreckage.</German>
+		<Italian>Congratulations, you have trained your first Recon Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are good scouts and explorers, as they get better than usual results from Space Wreckage.</Italian>
+		<Spanish>Congratulations, you have trained your first Recon Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are good scouts and explorers, as they get better than usual results from Space Wreckage.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEAT_UNITCOMBAT_LIGHT_SHIP</Tag>
+		<English>Congratulations, you have trained your first Light Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Light Ships are faster than the massive capital ships, but aren't as powerful. They are also cheaper.</English>
+		<French>Congratulations, you have trained your first Light Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Light Ships are faster than the massive capital ships, but aren't as powerful. They are also cheaper.</French>
+		<German>Congratulations, you have trained your first Light Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Light Ships are faster than the massive capital ships, but aren't as powerful. They are also cheaper.</German>
+		<Italian>Congratulations, you have trained your first Light Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Light Ships are faster than the massive capital ships, but aren't as powerful. They are also cheaper.</Italian>
+		<Spanish>Congratulations, you have trained your first Light Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Light Ships are faster than the massive capital ships, but aren't as powerful. They are also cheaper.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEAT_UNITCOMBAT_CAPITAL_SHIP</Tag>
+		<English>Congratulations, you have trained your first Capital Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These are the most powerful  combat unit in the game. While they are slow, they are very strong and easily capable of defeating light ships, carriers, and everything else.</English>
+		<French>Congratulations, you have trained your first Capital Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These are the most powerful  combat unit in the game. While they are slow, they are very strong and easily capable of defeating light ships, carriers, and everything else.</French>
+		<German>Congratulations, you have trained your first Capital Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These are the most powerful  combat unit in the game. While they are slow, they are very strong and easily capable of defeating light ships, carriers, and everything else.</German>
+		<Italian>Congratulations, you have trained your first Capital Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These are the most powerful  combat unit in the game. While they are slow, they are very strong and easily capable of defeating light ships, carriers, and everything else.</Italian>
+		<Spanish>Congratulations, you have trained your first Capital Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These are the most powerful  combat unit in the game. While they are slow, they are very strong and easily capable of defeating light ships, carriers, and everything else.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEAT_UNITCOMBAT_CARRIER_SHIP</Tag>
+		<English>Congratulations, you have trained your first Carrier Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are designed to transport Squadron units around the map. Otherwise, they are weak in actual combat.</English>
+		<French>Congratulations, you have trained your first Carrier Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are designed to transport Squadron units around the map. Otherwise, they are weak in actual combat.</French>
+		<German>Congratulations, you have trained your first Carrier Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are designed to transport Squadron units around the map. Otherwise, they are weak in actual combat.</German>
+		<Italian>Congratulations, you have trained your first Carrier Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are designed to transport Squadron units around the map. Otherwise, they are weak in actual combat.</Italian>
+		<Spanish>Congratulations, you have trained your first Carrier Ship ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! These units are designed to transport Squadron units around the map. Otherwise, they are weak in actual combat.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEAT_UNITCOMBAT_SQUADRON</Tag>
+		<English>Congratulations, you have trained your first Squadron ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Squadrons are capable of launching ranged attacks against distant plots, and are designed to be loaded into Carrier Ships.</English>
+		<French>Congratulations, you have trained your first Squadron ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Squadrons are capable of launching ranged attacks against distant plots, and are designed to be loaded into Carrier Ships.</French>
+		<German>Congratulations, you have trained your first Squadron ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Squadrons are capable of launching ranged attacks against distant plots, and are designed to be loaded into Carrier Ships.</German>
+		<Italian>Congratulations, you have trained your first Squadron ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Squadrons are capable of launching ranged attacks against distant plots, and are designed to be loaded into Carrier Ships.</Italian>
+		<Spanish>Congratulations, you have trained your first Squadron ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Squadrons are capable of launching ranged attacks against distant plots, and are designed to be loaded into Carrier Ships.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEAT_UNITCOMBAT_MISSILE</Tag>
+		<English>Congratulations, you have trained your first Missile ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Missiles can be fired at targets like other units, cities, and improvements, but are destroyed when launched.</English>
+		<French>Congratulations, you have trained your first Missile ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Missiles can be fired at targets like other units, cities, and improvements, but are destroyed when launched.</French>
+		<German>Congratulations, you have trained your first Missile ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Missiles can be fired at targets like other units, cities, and improvements, but are destroyed when launched.</German>
+		<Italian>Congratulations, you have trained your first Missile ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Missiles can be fired at targets like other units, cities, and improvements, but are destroyed when launched.</Italian>
+		<Spanish>Congratulations, you have trained your first Missile ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Missiles can be fired at targets like other units, cities, and improvements, but are destroyed when launched.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PLANET_YIELD</Tag>
+		<English>[SPACE]per planet</English>
+		<French>[SPACE]per planet</French>
+		<German>[SPACE]per planet</German>
+		<Italian>[SPACE]per planet</Italian>
+		<Spanish>[SPACE]per planet</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ERA_ISOLATION</Tag>
+		<English>Isolation</English>
+		<French>Isolation</French>
+		<German>Isolation</German>
+		<Italian>Isolation</Italian>
+		<Spanish>Isolation</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ERA_EXPANSION</Tag>
+		<English>Expansion</English>
+		<French>Expansion</French>
+		<German>Expansion</German>
+		<Italian>Expansion</Italian>
+		<Spanish>Expansion</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ERA_GALACTIC</Tag>
+		<English>Galactic</English>
+		<French>Galactic</French>
+		<German>Galactic</German>
+		<Italian>Galactic</Italian>
+		<Spanish>Galactic</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ERA_FAR_FUTURE</Tag>
+		<English>Far Future</English>
+		<French>Far Future</French>
+		<German>Far Future</German>
+		<Italian>Far Future</Italian>
+		<Spanish>Far Future</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CONSCRIPTION</Tag>
+		<English>[ICON_BULLET]Can Draft %d1_Num [NUM1:Unit:Units] per Turn</English>
+		<French>[ICON_BULLET]Can Draft %d1_Num [NUM1:Unit:Units] per Turn</French>
+		<German>[ICON_BULLET]Can Draft %d1_Num [NUM1:Unit:Units] per Turn</German>
+		<Italian>[ICON_BULLET]Can Draft %d1_Num [NUM1:Unit:Units] per Turn</Italian>
+		<Spanish>[ICON_BULLET]Can Draft %d1_Num [NUM1:Unit:Units] per Turn</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FFPLUS_PLANET_SELECTION_HELP</Tag>
+		<English>Influence Level %d1_Influence</English>
+		<French>Influence Level %d1_Influence</French>
+		<German>Influence Level %d1_Influence</German>
+		<Italian>Influence Level %d1_Influence</Italian>
+		<Spanish>Influence Level %d1_Influence</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_DELAYED_WORMHOLES</Tag>
+		<English>Delayed Wormholes</English>
+		<French>Delayed Wormholes</French>
+		<German>Delayed Wormholes</German>
+		<Italian>Delayed Wormholes</Italian>
+		<Spanish>Delayed Wormholes</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_DELAYED_WORMHOLES_HELP</Tag>
+		<English>Units won't pass through wormholes until the start of the next turn</English>
+		<French>Units won't pass through wormholes until the start of the next turn</French>
+		<German>Units won't pass through wormholes until the start of the next turn</German>
+		<Italian>Units won't pass through wormholes until the start of the next turn</Italian>
+		<Spanish>Units won't pass through wormholes until the start of the next turn</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_RELIGION_BUILDING</Tag>
+		<English>[ICON_BULLET]Required to build</English>
+		<French>[ICON_BULLET]Required to build</French>
+		<German>[ICON_BULLET]Required to build</German>
+		<Italian>[ICON_BULLET]Required to build</Italian>
+		<Spanish>[ICON_BULLET]Required to build</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_RELIGION_UNIT</Tag>
+		<English>[ICON_BULLET]Required to train [LINK=%s1]%s2[\LINK]</English>
+		<French>[ICON_BULLET]Required to train [LINK=%s1]%s2[\LINK]</French>
+		<German>[ICON_BULLET]Required to train [LINK=%s1]%s2[\LINK]</German>
+		<Italian>[ICON_BULLET]Required to train [LINK=%s1]%s2[\LINK]</Italian>
+		<Spanish>[ICON_BULLET]Required to train [LINK=%s1]%s2[\LINK]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FFPLUS_PLANET_SELECTION_BONUS</Tag>
+		<English>Provides %s1_ResourceName</English>
+		<French>Provides %s1_ResourceName</French>
+		<German>Provides %s1_ResourceName</German>
+		<Italian>Provides %s1_ResourceName</Italian>
+		<Spanish>Provides %s1_ResourceName</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_ONE_CITY_CHALLENGE</Tag>
+		<English>One-Colony Challenge</English>
+		<French>D&#233;fier une ville</French>
+		<German>Einzelstadt-Wettkampf</German>
+		<Italian>Sfida a citt&#224; singola</Italian>
+		<Spanish>Reto de una sola ciudad</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_GOODY_HUTS</Tag>
+		<English>No Space Wreckage</English>
+		<French>Pas de village tribal</French>
+		<German>Keine Stammesd&#246;rfer</German>
+		<Italian>Niente villaggi tribali</Italian>
+		<Spanish>Sin aldeas tribales</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_ALIENS</Tag>
+		<English>No Aliens</English>
+		<French>No Aliens</French>
+		<German>No Aliens</German>
+		<Italian>No Aliens</Italian>
+		<Spanish>No Aliens</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_ALIENS_HELP</Tag>
+		<English>No Inhabited Planets (goodies on solar systems) will be created</English>
+		<French>No Inhabited Planets (goodies on solar systems) will be created</French>
+		<German>No Inhabited Planets (goodies on solar systems) will be created</German>
+		<Italian>No Inhabited Planets (goodies on solar systems) will be created</Italian>
+		<Spanish>No Inhabited Planets (goodies on solar systems) will be created</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_STARBASE_MISSILES</Tag>
+		<English>No Starbase Missiles</English>
+		<French>No Starbase Missiles</French>
+		<German>No Starbase Missiles</German>
+		<Italian>No Starbase Missiles</Italian>
+		<Spanish>No Starbase Missiles</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_STARBASE_MISSILES_HELP</Tag>
+		<English>Starbases will not continuously produce missiles throughout the game</English>
+		<French>Starbases will not continuously produce missiles throughout the game</French>
+		<German>Starbases will not continuously produce missiles throughout the game</German>
+		<Italian>Starbases will not continuously produce missiles throughout the game</Italian>
+		<Spanish>Starbases will not continuously produce missiles throughout the game</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SENSOR</Tag>
+		<English>Sensor Station</English>
+		<French>Sensor Station</French>
+		<German>Sensor Station</German>
+		<Italian>Sensor Station</Italian>
+		<Spanish>Sensor Station</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SENSOR_PEDIA</Tag>
+		<English>Sensor Stations are built by civilizations to monitor regions of space for scientific or military purposes.  With the right equipment they can even detect cloaked ships.</English>
+		<French>Sensor Stations are built by civilizations to monitor regions of space for scientific or military purposes.  With the right equipment they can even detect cloaked ships.</French>
+		<German>Sensor Stations are built by civilizations to monitor regions of space for scientific or military purposes.  With the right equipment they can even detect cloaked ships.</German>
+		<Italian>Sensor Stations are built by civilizations to monitor regions of space for scientific or military purposes.  With the right equipment they can even detect cloaked ships.</Italian>
+		<Spanish>Sensor Stations are built by civilizations to monitor regions of space for scientific or military purposes.  With the right equipment they can even detect cloaked ships.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILD_SENSOR</Tag>
+		<English>Build a [COLOR_UNIT_TEXT]Sensor Station[COLOR_REVERT]</English>
+		<French>Build a [COLOR_UNIT_TEXT]Sensor Station[COLOR_REVERT]</French>
+		<German>Build a [COLOR_UNIT_TEXT]Sensor Station[COLOR_REVERT]</German>
+		<Italian>Build a [COLOR_UNIT_TEXT]Sensor Station[COLOR_REVERT]</Italian>
+		<Spanish>Build a [COLOR_UNIT_TEXT]Sensor Station[COLOR_REVERT]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISSION_SENTRY_WHILE_HEAL</Tag>
+		<English>Sentry Until Healed</English>
+		<French>Sentry Until Healed</French>
+		<German>Sentry Until Healed</German>
+		<Italian>Sentry Until Healed</Italian>
+		<Spanish>Vigilar hasta curarse</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISSION_SENTRY_WHILE_HEAL_HELP</Tag>
+		<English>The unit remains inactive until it reaches full strength or an enemy unit enters its visibility range.</English>
+		<French>L'unit&#233; reste inactive tant qu'une unit&#233; ennemie ne p&#233;n&#232;tre pas dans son champ de vision.</French>
+		<German>Die Einheit bleibt inaktiv, bis eine feindliche Einheit in Sichtweite ist.</German>
+		<Italian>L'unit&#224; rimane inattiva finch&#233; un'unit&#224; nemica non diventa visibile.</Italian>
+		<Spanish>La unidad permanecer&#225; inactiva hasta que recobre el total de su fuerza o una unidad enemiga se sit&#250;e al alcance de la visibilidad.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_CATEGORY_CONCEPT</Tag>
+		<English>Final Frontier Concepts</English>
+		<French>Final Frontier Concepts</French>
+		<German>Final Frontier Concepts</German>
+		<Italian>Final Frontier Concepts</Italian>
+		<Spanish>Final Frontier Concepts</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PEDIA_CATEGORY_CONCEPT_NEW</Tag>
+		<English>Final Frontier Plus Concepts</English>
+		<French>Final Frontier Plus Concepts</French>
+		<German>Final Frontier Plus Concepts</German>
+		<Italian>Final Frontier Plus Concepts</Italian>
+		<Spanish>Final Frontier Plus Concepts</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FF_CONCEPT_FINAL_FRONTIER_PLUS</Tag>
+		<English>Final Frontier Plus</English>
+		<French>Final Frontier Plus</French>
+		<German>Final Frontier Plus</German>
+		<Italian>Final Frontier Plus</Italian>
+		<Spanish>Final Frontier Plus</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FF_CONCEPT_FINAL_FRONTIER_PLUS_PEDIA</Tag>
+		<English>[H1]Final Frontier Plus[\H1][PARAGRAPH:2]Welcome to Final Frontier Plus![PARAGRAPH:2]This mod is designed to significantly improve Final Frontier in every possible way. This ranges from fixing bugs to improving speed to improving AI to adding new content. Final Frontier Plus runs nearly as fast as unmodded Beyond the Sword, and adds quite a bit of new content, from planetary resources and wormholes to unique units and buildings.[PARAGRAPH:2]This section of the pedia will contain concept articles specifically for Final Frontier Plus features. Concepts from Jon Shafer's original version of Final Frontier can be found in the "Final Frontier Concepts" section. It is very much a work in progress.[PARAGRAPH:2][TAB]Contributors to Final Frontier Plus:[NEWLINE][NEWLINE][TAB]Mod Team:[NEWLINE][ICON_BULLET]TC01[NEWLINE][ICON_BULLET]God-Emperor[NEWLINE][NEWLINE]Contributors (people who have helped out, given suggestions, or the creators of mods merged in):[NEWLINE][ICON_BULLET]deanej[NEWLINE][ICON_BULLET]cephalo[NEWLINE][ICON_BULLET]T-hawk[NEWLINE][ICON_BULLET]stmartin and HoTK team[NEWLINE][ICON_BULLET]Sephi[NEWLINE][ICON_BULLET]Valkrionn[NEWLINE][ICON_BULLET]phungus420[NEWLINE][ICON_BULLET]Kiwikaz[NEWLINE][ICON_BULLET]The_J[NEWLINE][ICON_BULLET]Emperor Fool[NEWLINE][ICON_BULLET]ColdFever[NEWLINE][ICON_BULLET]davidlallen[NEWLINE][ICON_BULLET]Afforess[NEWLINE][ICON_BULLET]Pep[NEWLINE][ICON_BULLET]PieceOfMind[NEWLINE][ICON_BULLET]apenpaap[NEWLINE][ICON_BULLET]JEELEN[NEWLINE][ICON_BULLET]renegadechicken[NEWLINE][NEWLINE]Other:[NEWLINE][ICON_BULLET][TAB]Jon Shafer: The creator of Final Frontier[NEWLINE][ICON_BULLET]2K Games/Firaxis Games: Producers of Civilization 4</English>
+		<French>[H1]Final Frontier Plus[\H1][PARAGRAPH:2]Welcome to Final Frontier Plus![PARAGRAPH:2]This mod is designed to significantly improve Final Frontier in every possible way. This ranges from fixing bugs to improving speed to improving AI to adding new content. Final Frontier Plus runs nearly as fast as unmodded Beyond the Sword, and adds quite a bit of new content, from planetary resources and wormholes to unique units and buildings.[PARAGRAPH:2]This section of the pedia will contain concept articles specifically for Final Frontier Plus features. Concepts from Jon Shafer's original version of Final Frontier can be found in the "Final Frontier Concepts" section. It is very much a work in progress.[PARAGRAPH:2][TAB]Contributors to Final Frontier Plus:[NEWLINE][NEWLINE][TAB]Mod Team:[NEWLINE][ICON_BULLET]TC01[NEWLINE][ICON_BULLET]God-Emperor[NEWLINE][NEWLINE]Contributors (people who have helped out, given suggestions, or the creators of mods merged in):[NEWLINE][ICON_BULLET]deanej[NEWLINE][ICON_BULLET]cephalo[NEWLINE][ICON_BULLET]T-hawk[NEWLINE][ICON_BULLET]stmartin and HoTK team[NEWLINE][ICON_BULLET]Sephi[NEWLINE][ICON_BULLET]Valkrionn[NEWLINE][ICON_BULLET]phungus420[NEWLINE][ICON_BULLET]Kiwikaz[NEWLINE][ICON_BULLET]The_J[NEWLINE][ICON_BULLET]Emperor Fool[NEWLINE][ICON_BULLET]ColdFever[NEWLINE][ICON_BULLET]davidlallen[NEWLINE][ICON_BULLET]Afforess[NEWLINE][ICON_BULLET]Pep[NEWLINE][ICON_BULLET]PieceOfMind[NEWLINE][ICON_BULLET]apenpaap[NEWLINE][ICON_BULLET]JEELEN[NEWLINE][ICON_BULLET]renegadechicken[NEWLINE][NEWLINE]Other:[NEWLINE][ICON_BULLET][TAB]Jon Shafer: The creator of Final Frontier[NEWLINE][ICON_BULLET]2K Games/Firaxis Games: Producers of Civilization 4</French>
+		<German>[H1]Final Frontier Plus[\H1][PARAGRAPH:2]Welcome to Final Frontier Plus![PARAGRAPH:2]This mod is designed to significantly improve Final Frontier in every possible way. This ranges from fixing bugs to improving speed to improving AI to adding new content. Final Frontier Plus runs nearly as fast as unmodded Beyond the Sword, and adds quite a bit of new content, from planetary resources and wormholes to unique units and buildings.[PARAGRAPH:2]This section of the pedia will contain concept articles specifically for Final Frontier Plus features. Concepts from Jon Shafer's original version of Final Frontier can be found in the "Final Frontier Concepts" section. It is very much a work in progress.[PARAGRAPH:2][TAB]Contributors to Final Frontier Plus:[NEWLINE][NEWLINE][TAB]Mod Team:[NEWLINE][ICON_BULLET]TC01[NEWLINE][ICON_BULLET]God-Emperor[NEWLINE][NEWLINE]Contributors (people who have helped out, given suggestions, or the creators of mods merged in):[NEWLINE][ICON_BULLET]deanej[NEWLINE][ICON_BULLET]cephalo[NEWLINE][ICON_BULLET]T-hawk[NEWLINE][ICON_BULLET]stmartin and HoTK team[NEWLINE][ICON_BULLET]Sephi[NEWLINE][ICON_BULLET]Valkrionn[NEWLINE][ICON_BULLET]phungus420[NEWLINE][ICON_BULLET]Kiwikaz[NEWLINE][ICON_BULLET]The_J[NEWLINE][ICON_BULLET]Emperor Fool[NEWLINE][ICON_BULLET]ColdFever[NEWLINE][ICON_BULLET]davidlallen[NEWLINE][ICON_BULLET]Afforess[NEWLINE][ICON_BULLET]Pep[NEWLINE][ICON_BULLET]PieceOfMind[NEWLINE][ICON_BULLET]apenpaap[NEWLINE][ICON_BULLET]JEELEN[NEWLINE][ICON_BULLET]renegadechicken[NEWLINE][NEWLINE]Other:[NEWLINE][ICON_BULLET][TAB]Jon Shafer: The creator of Final Frontier[NEWLINE][ICON_BULLET]2K Games/Firaxis Games: Producers of Civilization 4</German>
+		<Italian>[H1]Final Frontier Plus[\H1][PARAGRAPH:2]Welcome to Final Frontier Plus![PARAGRAPH:2]This mod is designed to significantly improve Final Frontier in every possible way. This ranges from fixing bugs to improving speed to improving AI to adding new content. Final Frontier Plus runs nearly as fast as unmodded Beyond the Sword, and adds quite a bit of new content, from planetary resources and wormholes to unique units and buildings.[PARAGRAPH:2]This section of the pedia will contain concept articles specifically for Final Frontier Plus features. Concepts from Jon Shafer's original version of Final Frontier can be found in the "Final Frontier Concepts" section. It is very much a work in progress.[PARAGRAPH:2][TAB]Contributors to Final Frontier Plus:[NEWLINE][NEWLINE][TAB]Mod Team:[NEWLINE][ICON_BULLET]TC01[NEWLINE][ICON_BULLET]God-Emperor[NEWLINE][NEWLINE]Contributors (people who have helped out, given suggestions, or the creators of mods merged in):[NEWLINE][ICON_BULLET]deanej[NEWLINE][ICON_BULLET]cephalo[NEWLINE][ICON_BULLET]T-hawk[NEWLINE][ICON_BULLET]stmartin and HoTK team[NEWLINE][ICON_BULLET]Sephi[NEWLINE][ICON_BULLET]Valkrionn[NEWLINE][ICON_BULLET]phungus420[NEWLINE][ICON_BULLET]Kiwikaz[NEWLINE][ICON_BULLET]The_J[NEWLINE][ICON_BULLET]Emperor Fool[NEWLINE][ICON_BULLET]ColdFever[NEWLINE][ICON_BULLET]davidlallen[NEWLINE][ICON_BULLET]Afforess[NEWLINE][ICON_BULLET]Pep[NEWLINE][ICON_BULLET]PieceOfMind[NEWLINE][ICON_BULLET]apenpaap[NEWLINE][ICON_BULLET]JEELEN[NEWLINE][ICON_BULLET]renegadechicken[NEWLINE][NEWLINE]Other:[NEWLINE][ICON_BULLET][TAB]Jon Shafer: The creator of Final Frontier[NEWLINE][ICON_BULLET]2K Games/Firaxis Games: Producers of Civilization 4</Italian>
+		<Spanish>[H1]Final Frontier Plus[\H1][PARAGRAPH:2]Welcome to Final Frontier Plus![PARAGRAPH:2]This mod is designed to significantly improve Final Frontier in every possible way. This ranges from fixing bugs to improving speed to improving AI to adding new content. Final Frontier Plus runs nearly as fast as unmodded Beyond the Sword, and adds quite a bit of new content, from planetary resources and wormholes to unique units and buildings.[PARAGRAPH:2]This section of the pedia will contain concept articles specifically for Final Frontier Plus features. Concepts from Jon Shafer's original version of Final Frontier can be found in the "Final Frontier Concepts" section. It is very much a work in progress.[PARAGRAPH:2][TAB]Contributors to Final Frontier Plus:[NEWLINE][NEWLINE][TAB]Mod Team:[NEWLINE][ICON_BULLET]TC01[NEWLINE][ICON_BULLET]God-Emperor[NEWLINE][NEWLINE]Contributors (people who have helped out, given suggestions, or the creators of mods merged in):[NEWLINE][ICON_BULLET]deanej[NEWLINE][ICON_BULLET]cephalo[NEWLINE][ICON_BULLET]T-hawk[NEWLINE][ICON_BULLET]stmartin and HoTK team[NEWLINE][ICON_BULLET]Sephi[NEWLINE][ICON_BULLET]Valkrionn[NEWLINE][ICON_BULLET]phungus420[NEWLINE][ICON_BULLET]Kiwikaz[NEWLINE][ICON_BULLET]The_J[NEWLINE][ICON_BULLET]Emperor Fool[NEWLINE][ICON_BULLET]ColdFever[NEWLINE][ICON_BULLET]davidlallen[NEWLINE][ICON_BULLET]Afforess[NEWLINE][ICON_BULLET]Pep[NEWLINE][ICON_BULLET]PieceOfMind[NEWLINE][ICON_BULLET]apenpaap[NEWLINE][ICON_BULLET]JEELEN[NEWLINE][ICON_BULLET]renegadechicken[NEWLINE][NEWLINE]Other:[NEWLINE][ICON_BULLET][TAB]Jon Shafer: The creator of Final Frontier[NEWLINE][ICON_BULLET]2K Games/Firaxis Games: Producers of Civilization 4</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FF_CONCEPT_PLANET_RESOURCES</Tag>
+		<English>Planetary Resources</English>
+		<French>Planetary Resources</French>
+		<German>Planetary Resources</German>
+		<Italian>Planetary Resources</Italian>
+		<Spanish>Planetary Resources</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FF_CONCEPT_PLANET_RESOURCES_PEDIA</Tag>
+		<English>[H1]Planetary Resources[\H1][PARAGRAPH:2]Planets can now provide resources. Each solar system can only have one world with a resource on it, and a planet can only have one resource. These resources are: [LINK=BONUS_WHEAT]Grain[\LINK], [LINK=BONUS_COW]Cattle[\LINK], [LINK=BONUS_FISH]Seafood[\LINK], [LINK=BONUS_SPICES]Spices[\LINK], [LINK=BONUS_WINE]Wine[\LINK], and [LINK=BONUS_COTTON]Cotton[\LINK].[PARAGRAPH:2]Each resource will provide benefits to the solar system (including health, happiness, food, and commerce, depending on the resource). A planet with one of these resources will be able to construct a special building that also provides benefits to the solar system (from an extra trade route to increasing the planet's population limit).</English>
+		<French>[H1]Planetary Resources[\H1][PARAGRAPH:2]Planets can now provide resources. Each solar system can only have one world with a resource on it, and a planet can only have one resource. These resources are: [LINK=BONUS_WHEAT]Grain[\LINK], [LINK=BONUS_COW]Cattle[\LINK], [LINK=BONUS_FISH]Seafood[\LINK], [LINK=BONUS_SPICES]Spices[\LINK], [LINK=BONUS_WINE]Wine[\LINK], and [LINK=BONUS_COTTON]Cotton[\LINK].[PARAGRAPH:2]Each resource will provide benefits to the solar system (including health, happiness, food, and commerce, depending on the resource). A planet with one of these resources will be able to construct a special building that also provides benefits to the solar system (from an extra trade route to increasing the planet's population limit).</French>
+		<German>[H1]Planetary Resources[\H1][PARAGRAPH:2]Planets can now provide resources. Each solar system can only have one world with a resource on it, and a planet can only have one resource. These resources are: [LINK=BONUS_WHEAT]Grain[\LINK], [LINK=BONUS_COW]Cattle[\LINK], [LINK=BONUS_FISH]Seafood[\LINK], [LINK=BONUS_SPICES]Spices[\LINK], [LINK=BONUS_WINE]Wine[\LINK], and [LINK=BONUS_COTTON]Cotton[\LINK].[PARAGRAPH:2]Each resource will provide benefits to the solar system (including health, happiness, food, and commerce, depending on the resource). A planet with one of these resources will be able to construct a special building that also provides benefits to the solar system (from an extra trade route to increasing the planet's population limit).</German>
+		<Italian>[H1]Planetary Resources[\H1][PARAGRAPH:2]Planets can now provide resources. Each solar system can only have one world with a resource on it, and a planet can only have one resource. These resources are: [LINK=BONUS_WHEAT]Grain[\LINK], [LINK=BONUS_COW]Cattle[\LINK], [LINK=BONUS_FISH]Seafood[\LINK], [LINK=BONUS_SPICES]Spices[\LINK], [LINK=BONUS_WINE]Wine[\LINK], and [LINK=BONUS_COTTON]Cotton[\LINK].[PARAGRAPH:2]Each resource will provide benefits to the solar system (including health, happiness, food, and commerce, depending on the resource). A planet with one of these resources will be able to construct a special building that also provides benefits to the solar system (from an extra trade route to increasing the planet's population limit).</Italian>
+		<Spanish>[H1]Planetary Resources[\H1][PARAGRAPH:2]Planets can now provide resources. Each solar system can only have one world with a resource on it, and a planet can only have one resource. These resources are: [LINK=BONUS_WHEAT]Grain[\LINK], [LINK=BONUS_COW]Cattle[\LINK], [LINK=BONUS_FISH]Seafood[\LINK], [LINK=BONUS_SPICES]Spices[\LINK], [LINK=BONUS_WINE]Wine[\LINK], and [LINK=BONUS_COTTON]Cotton[\LINK].[PARAGRAPH:2]Each resource will provide benefits to the solar system (including health, happiness, food, and commerce, depending on the resource). A planet with one of these resources will be able to construct a special building that also provides benefits to the solar system (from an extra trade route to increasing the planet's population limit).</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FF_CONCEPT_INHABITED_PLANETS</Tag>
+		<English>Inhabited Planets</English>
+		<French>Inhabited Planets</French>
+		<German>Inhabited Planets</German>
+		<Italian>Inhabited Planets</Italian>
+		<Spanish>Inhabited Planets</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FF_CONCEPT_INHABITED_PLANETS_PEDIA</Tag>
+		<English>[H1]Inhabited Planets[\H1][PARAGRAPH:2]Some solar systems, you will find, are inhabited by alien species. These aliens are primitive and don't yet have interstellar civilizations of their own.[PARAGRAPH:2]These solar systems act as space wreckage- you will get a random result depending on how your ship's contact with the aliens goes. You might end up with a new technology, a map of the region around the star system, or a new solar system (if the aliens choose to join your empire). However, if the contact goes awry, the aliens might attempt to shoot down your ship with their own primitive vessels.</English>
+		<French>[H1]Inhabited Planets[\H1][PARAGRAPH:2]Some solar systems, you will find, are inhabited by alien species. These aliens are primitive and don't yet have interstellar civilizations of their own.[PARAGRAPH:2]These solar systems act as space wreckage- you will get a random result depending on how your ship's contact with the aliens goes. You might end up with a new technology, a map of the region around the star system, or a new solar system (if the aliens choose to join your empire). However, if the contact goes awry, the aliens might attempt to shoot down your ship with their own primitive vessels.</French>
+		<German>[H1]Inhabited Planets[\H1][PARAGRAPH:2]Some solar systems, you will find, are inhabited by alien species. These aliens are primitive and don't yet have interstellar civilizations of their own.[PARAGRAPH:2]These solar systems act as space wreckage- you will get a random result depending on how your ship's contact with the aliens goes. You might end up with a new technology, a map of the region around the star system, or a new solar system (if the aliens choose to join your empire). However, if the contact goes awry, the aliens might attempt to shoot down your ship with their own primitive vessels.</German>
+		<Italian>[H1]Inhabited Planets[\H1][PARAGRAPH:2]Some solar systems, you will find, are inhabited by alien species. These aliens are primitive and don't yet have interstellar civilizations of their own.[PARAGRAPH:2]These solar systems act as space wreckage- you will get a random result depending on how your ship's contact with the aliens goes. You might end up with a new technology, a map of the region around the star system, or a new solar system (if the aliens choose to join your empire). However, if the contact goes awry, the aliens might attempt to shoot down your ship with their own primitive vessels.</Italian>
+		<Spanish>[H1]Inhabited Planets[\H1][PARAGRAPH:2]Some solar systems, you will find, are inhabited by alien species. These aliens are primitive and don't yet have interstellar civilizations of their own.[PARAGRAPH:2]These solar systems act as space wreckage- you will get a random result depending on how your ship's contact with the aliens goes. You might end up with a new technology, a map of the region around the star system, or a new solar system (if the aliens choose to join your empire). However, if the contact goes awry, the aliens might attempt to shoot down your ship with their own primitive vessels.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MOON_HELP</Tag>
+		<English>[ICON_BULLET]Can only be built on a planet with a moon</English>
+		<French>[ICON_BULLET]Can only be built on a planet with a moon</French>
+		<German>[ICON_BULLET]Can only be built on a planet with a moon</German>
+		<Italian>[ICON_BULLET]Can only be built on a planet with a moon</Italian>
+		<Spanish>[ICON_BULLET]Can only be built on a planet with a moon</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_RINGS_HELP</Tag>
+		<English>[ICON_BULLET]Can only be built on a planet with a rings</English>
+		<French>[ICON_BULLET]Can only be built on a planet with a rings</French>
+		<German>[ICON_BULLET]Can only be built on a planet with a rings</German>
+		<Italian>[ICON_BULLET]Can only be built on a planet with a rings</Italian>
+		<Spanish>[ICON_BULLET]Can only be built on a planet with a rings</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_PIRATE_HORDES</Tag>
+		<English>Challenge - Pirate Hordes</English>
+		<French>Challenge - Pirate Hordes</French>
+		<German>Challenge - Pirate Hordes</German>
+		<Italian>Challenge - Pirate Hordes</Italian>
+		<Spanish>Challenge - Pirate Hordes</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_PIRATE_HORDES_HELP</Tag>
+		<English>Use buggy code to spawn insane numbers of Pirate hordes</English>
+		<French>Use buggy code to spawn insane numbers of Pirate hordes</French>
+		<German>Use buggy code to spawn insane numbers of Pirate hordes</German>
+		<Italian>Use buggy code to spawn insane numbers of Pirate hordes</Italian>
+		<Spanish>Use buggy code to spawn insane numbers of Pirate hordes</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_PIRATE_EXP_CAP</Tag>
+		<English>No Pirate Experience Cap</English>
+		<French>No Pirate Experience Cap</French>
+		<German>No Pirate Experience Cap</German>
+		<Italian>No Pirate Experience Cap</Italian>
+		<Spanish>No Pirate Experience Cap</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_PIRATE_EXP_CAP_HELP</Tag>
+		<English>Disables the experience cap for killing Pirate units</English>
+		<French>Disables the experience cap for killing Pirate units</French>
+		<German>Disables the experience cap for killing Pirate units</German>
+		<Italian>Disables the experience cap for killing Pirate units</Italian>
+		<Spanish>Disables the experience cap  killing Pirate units</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_CALC_TRADE_ROUTES</Tag>
+		<English>Calculate Trade Route Paths</English>
+		<French>Calculate Trade Route Paths</French>
+		<German>Calculate Trade Route Paths</German>
+		<Italian>Calculate Trade Route Paths</Italian>
+		<Spanish>Calculate Trade Route Paths</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_CALC_TRADE_ROUTES_HELP</Tag>
+		<English>Use slower trade route calculations as opposed to randomized ones</English>
+		<French>Use slower trade route calculations as opposed to randomized ones</French>
+		<German>Use slower trade route calculations as opposed to randomized ones</German>
+		<Italian>Use slower trade route calculations as opposed to randomized ones</Italian>
+		<Spanish>Use slower trade route calculations as opposed to randomized ones</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_TROOP_TRANSPORTS</Tag>
+		<English>Troop Transports</English>
+		<French>Troop Transports</French>
+		<German>Troop Transports</German>
+		<Italian>Troop Transport</Italian>
+		<Spanish>Troop Transport</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_TROOP_TRANSPORTS_HELP</Tag>
+		<English>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</English>
+		<French>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</French>
+		<German>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</German>
+		<Italian>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</Italian>
+		<Spanish>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</Spanish>
+	</TEXT>
+</Civ4GameText>
