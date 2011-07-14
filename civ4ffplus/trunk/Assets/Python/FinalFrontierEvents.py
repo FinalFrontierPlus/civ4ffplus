@@ -1232,7 +1232,7 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 				# Set the planet to not have one of these
 				pPlanet.setHasBuilding(iBuildingLoop, false)
 				# Planet Production Memory Improvement - GE, March-2011; wipe out all stored production 
-				pPlanet.setBuildingProduction(iBuilding, 0)
+				pPlanet.setBuildingProduction(iBuildingLoop, 0)
 				
 		# There are now no buildings left in the system.
 		
