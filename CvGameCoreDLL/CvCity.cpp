@@ -11776,11 +11776,70 @@ void CvCity::doProduction(bool bAllowNoProduction)
 		changeProduction(getCurrentProductionDifference(false, true));
 		setOverflowProduction(0);
 		setFeatureProduction(0);
+//Multiple Production: Added by Denev 07/10/2009
+		setBuiltFoodProducedUnit(isFoodProduction());
+		clearLostProduction();
+//Multiple Production: End Add
 
-		if (getProduction() >= getProductionNeeded())
+//Multiple Production: Modified by Denev 07/02/2009
+//		if (getProduction() >= getProductionNeeded())
+//		{
+//			popOrder(0, true, true);
+//		}
+		if (!GC.getGameINLINE().isOption(GAMEOPTION_MULTIPLE_PRODUCTION))
 		{
-			popOrder(0, true, true);
+			if (getProduction() >= getProductionNeeded())
+			{
+				popOrder(0, true, true);
+			}
 		}
+		else
+		{
+			int iOverflowProductionModified = 0;
+			while (isProduction() && productionLeft() <= iOverflowProductionModified)
+			{
+				changeProduction(iOverflowProductionModified);
+				setOverflowProduction(0);
+
+				popOrder(0, true, true);
+
+				//to eliminate pre-build exploits for all Wonders and all Projects
+				if (isProductionWonder() || isProductionProject())
+				{
+					break;
+				}
+
+				//to eliminate pre-build exploits for Settlers and Workers
+				if (isFoodProduction() && !isBuiltFoodProducedUnit())
+				{
+					break;
+				}
+
+				if (isProductionProcess())
+				{
+					break;
+				}
+
+				//fix production which floods from overflow capacity to next queue item if it exists
+				if (isProduction() && m_iLostProductionBase > 0)
+				{
+					changeProduction(getExtraProductionDifference(m_iLostProductionBase));
+					clearLostProduction();
+				}
+
+				iOverflowProductionModified = getOverflowProductionDifference();
+			}
+		}
+
+		if (m_iGoldFromLostProduction > 0)
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_LOST_PROD_CONVERTED", getNameKey(), m_iLostProductionModified, m_iGoldFromLostProduction);
+			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WONDERGOLD", MESSAGE_TYPE_MINOR_EVENT, GC.getCommerceInfo(COMMERCE_GOLD).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE(), true, true);
+
+			GET_PLAYER(getOwnerINLINE()).changeGold(m_iGoldFromLostProduction);
+			clearLostProduction();
+		}
+//Multiple Production: End Modify
 	}
 	else
 	{
