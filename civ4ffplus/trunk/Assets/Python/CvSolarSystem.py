@@ -151,13 +151,15 @@ class CvSystem:
 		pPlanet = self.getPlanet(iOldBuildingPlanetRing) # pre-change planet
 		for iBuilding in range(iNumBuildingTypes):
 			pPlanet.setBuildingProduction(iBuilding, pCity.getBuildingProduction(iBuilding))
-			printd("  saved production for building: type = %d, production = %d" %(iBuilding, pCity.getBuildingProduction(iBuilding)))
+			if pCity.getBuildingProduction(iBuilding) != 0:
+				printd("  saved production for building: type = %d, production = %d" %(iBuilding, pCity.getBuildingProduction(iBuilding)))
 		
 		pPlanet = self.getPlanet(iID) # post-change planet
 		printd("  Adjusting stored production values for the city based on new build planet's data")
 		for iBuilding in range(iNumBuildingTypes):
 			pCity.setBuildingProduction(iBuilding, pPlanet.getBuildingProduction(iBuilding))
-			printd("    building type %d set to %d" %(iBuilding, pPlanet.getBuildingProduction(iBuilding)))
+			if pPlanet.getBuildingProduction(iBuilding):
+				printd("    building type %d set to %d" %(iBuilding, pPlanet.getBuildingProduction(iBuilding)))
 		
 		if (CyInterface().isCityScreenUp()):
 			CyInterface().setDirty(InterfaceDirtyBits.CitizenButtons_DIRTY_BIT, True)

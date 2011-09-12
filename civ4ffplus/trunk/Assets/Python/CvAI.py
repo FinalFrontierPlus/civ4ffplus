@@ -377,7 +377,21 @@ class CvAI:
 				if (pTeamLoop.isAlive() and not pTeamLoop.isBarbarian()):
 					if (pTeamLoop.isAtWar(iTeam)):
 						iWarCount += 1
-		
+		# AI Update, post 1.72: moved the actual bailout check here from the military weight section
+		# so it won't waste time calculating some weights if it is just going to bail out from this
+		if (iWarCount > 0):				
+			# Also a chance of just quitting, letting the game do what it will during wartime
+			iRand = CyGame().getSorenRandNum(100, "Final Frontier: Random roll to see if City AI override exits")
+						
+			if (iRand < (100 * (1.0 - (.6 ** iWarCount)))): # 40% per team we are at war with, like it was
+				return false
+		# AI Update, post 1.72 - also have some chance to bail out if we have a preparation type warplan aganst at least 1 other team.
+		if (pTeam.getWarPlanCount(WarPlanTypes.WARPLAN_PREPARING_LIMITED, True) > 0) or (pTeam.getWarPlanCount(WarPlanTypes.WARPLAN_PREPARING_TOTAL, True) > 0):
+			iRand = CyGame().getSorenRandNum(100, "Final Frontier: Random roll to see if City AI override exits - war plan perparing")
+			if iRand < 25: # trying 25% chance to leave it up to the DLL
+				printd("   doCityAIProduction: warplan preparing type bailout")
+				return False
+				
 		#######################################################################
 		# HAPPINESS WEIGHTS
 		#######################################################################
@@ -464,8 +478,21 @@ class CvAI:
 		# nothing we can do here, so drop the weight to 0.
 		if (iCount == 0):
 			aiWeights[iHealthWeightType] = 0
+		else:
+			# AI Update, post 1.72 -
+			# If we are close to or at the systems current max pop limit then unhealthyness doesn't really matter as long
+			# as we are producing some excess food, so reduce the weight
+			iPopToCap = pSystem.getPopulationLimit() - pCity.getPopulation()
+			iExcessFood = 1 # assume we have some
+			if (not pPlayer.isAnarchy()) and (not  pCity.isFoodProduction()) :
+				iExcessFood = pCity.foodDifference(true)
+			if (iPopToCap == 1) and (iExcessFood > 0): # 1 away from limit and have some excess food
+				aiWeights[iHealthWeightType] -= 50
+			elif iPopToCap == 0:
+				aiWeights[iHealthWeightType] -= 100
+			elif iPopToCap < 0: # we have at least 1 excess population point
+				aiWeights[iHealthWeightType] -= 200
 			
-		
 		#######################################################################
 		# MILITARY WEIGHTS
 		#######################################################################
@@ -497,13 +524,6 @@ class CvAI:
 		
 		# War with other players: 50 weight each
 		aiWeights[iMilitaryWeightType] += 50 * iWarCount
-
-		if (iWarCount > 0):				
-			# Also a chance of just quitting, letting the game do what it will during wartime
-			iRand = CyGame().getSorenRandNum(100, "Final Frontier: Random roll to see if City AI override exits")
-						
-			if (iRand < (100 * (1.0 - (.6 ** iWarCount)))): # 40% per team we are at war with, like it was
-				return false
 		
 		# Number of military units per city
 		# CP - count missiles as half a unit for this
@@ -533,22 +553,36 @@ class CvAI:
 		if (iPopToCap <= 0):
 			aiWeights[iPopulationWeightType] += 60
 		if (iPopToCap <= -1):
-			aiWeights[iPopulationWeightType] += 60
+			aiWeights[iPopulationWeightType] += 90 # post 1.72 update: was 60, increased to 90
 		
 		# Increase for City Size
 		aiWeights[iPopulationWeightType] += (pCity.getPopulation() * 15) # CP - this weight factor seems a tad high, changing from 20 to 15
 		
 		# Reduce for number of Habitation Systems already present
-		iNumHabitationSystems = pCity.getNumRealBuilding(iHabitationSystem)
-		if (iNumHabitationSystems > 0):
-			# CP - count only those on planets within our current cultural borders
-			# 	When a planet is captured, it can have them on planets outside our current reach
+		# Adjusted for post 1.72: use method the other weights use to do reduction and get a count of how many we can actually build
+		iCount = 0 # if this is still 0 after counting the buildings we could build then this weight will be set to 0
+		# CP - count only those on planets within our current cultural borders
+		# 	When a planet is captured, it can have them on planets outside our current reach
+		for iPlanetLoop in range(pSystem.getNumPlanets()):
+			pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
+			if (pPlanet.isPlanetWithinCulturalRange()) and pPlanet.isHasBuilding(iHabitationSystem) :
+				aiWeights[iPopulationWeightType] -= 10 # post 1.72, was -15
+			elif pPlanet.isPlanetWithinCulturalRange() :
+				iCount += 1
+		
+		# Adjusted for post 1.72: if we can't actually build any (every planet in cultueral range has one)
+		# drop this weight to 0 unless we can build the extended habitaiton system, in which case
+		# count the number of them that would could build too and then check to see if there is anything we can build.
+		if (pPlayer.canConstruct(iExtHabitationSystem, true, false, false)):
 			for iPlanetLoop in range(pSystem.getNumPlanets()):
 				pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
-				if (pPlanet.isPlanetWithinCulturalRange()) and pPlanet.isHasBuilding(iHabitationSystem) :
-					aiWeights[iPopulationWeightType] -= 15
+				if (pPlanet.isPlanetWithinCulturalRange()) and pPlanet.isHasBuilding(iExtHabitationSystem) :
+					aiWeights[iPopulationWeightType] -= 5
+				elif pPlanet.isPlanetWithinCulturalRange() :
+					iCount += 1
 		
-		
+		if iCount == 0: # nothing we can do about it, so ignore it
+			aiWeights[iPopulationWeightType] = 0
 		
 		#######################################################################
 		# FOOD WEIGHTS
@@ -563,14 +597,23 @@ class CvAI:
 		# city yield update in the log immediately prior to this is clearly 4 or more higher than the 
 		# total population. So skip this when that is flagged too.
 		if (not pPlayer.isAnarchy()) and (not  pCity.isFoodProduction()) :
-			if (pCity.foodDifference(true) <= 3):
+			iFoodDiff = pCity.foodDifference(true) # post 1.72: instead of looking this up 6 times, get it once
+			if (iFoodDiff <= 3):
 				aiWeights[iFoodWeightType] += 20 # CP - this was 40
-			if (pCity.foodDifference(true) <= 2):
+			if (iFoodDiff <= 2):
 				aiWeights[iFoodWeightType] += 40 # CP - this was 50
-			if (pCity.foodDifference(true) <= 1):
+			if (iFoodDiff <= 1):
 				aiWeights[iFoodWeightType] += 60
-			if (pCity.foodDifference(true) <= 0):
+			if (iFoodDiff <= 0):
 				aiWeights[iFoodWeightType] += 70
+			# post 1.72: add conditions for when we have a good food surplus already. Added when I saw
+			# a Red Syndicate city with population of 9 and a food surplus of 12 (7 from trade routes) get
+			# forced to build a nutrition facility - clearly not the best use of their production.
+			#	If we have at least 6 then the need is reduced, and at least 9 makes it a lot lower
+			if (iFoodDiff >= 6):
+				aiWeights[iFoodWeightType] -= 20
+			if (iFoodDiff >= 9):
+				aiWeights[iFoodWeightType] -= 50
 		
 		# Increase for City Size
 		aiWeights[iFoodWeightType] += (pCity.getPopulation() * 15)
@@ -590,7 +633,7 @@ class CvAI:
 		# or if the current population is above the systems current population limit, then zero this weight.
 		# Note: if specialists are implemented then the second condition should be removed so
 		# the following line should be just "if (iCount == 0):"
-		if ((iCount == 0) or ((pCity.getPopulation() - pSystem.getPopulationLimit()) > 0)):
+		if ((iCount == 0) or ((pCity.getPopulation() - pSystem.getPopulationLimit()) >= 0)): # Post 1.72: change from ">" to ">=", as we also don't need more food if at cap
 			aiWeights[iFoodWeightType] = 0
 
 			
@@ -612,16 +655,27 @@ class CvAI:
 		aiWeights[iProductionWeightType] += (pCity.getPopulation() * 10)
 		
 		# Decrease for number of Mining Facilities already present
-		iNumMiningFacilities = pCity.getNumRealBuilding(iMiningFacility)
-		if (iNumMiningFacilities > 0):
-			# CP - count only those on planets within our current cultural borders
-			# 	When a planet is captured, it can have them on planets outside our current reach
+		# Adjusted for post 1.72: use method the other weights use to do reduction and get a count of how many we can actually build
+		iCount = 0 # if this is still 0 after counting the buildings we could build then this weight will be set to 0
+		# CP - count only those on planets within our current cultural borders
+		# 	When a planet is captured, it can have them on planets outside our current reach
+		for iPlanetLoop in range(pSystem.getNumPlanets()):
+			pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
+			if pPlanet.isPlanetWithinCulturalRange() and pPlanet.isHasBuilding(iMiningFacility) :
+				aiWeights[iProductionWeightType] -= 10
+			elif pPlanet.isPlanetWithinCulturalRange() :
+				iCount += 1
+		# if we can build our nanoextraction upgrade class building	thencount them too
+		if (pPlayer.canConstruct(iNanoExtraction, true, false, false)):
 			for iPlanetLoop in range(pSystem.getNumPlanets()):
 				pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
-				if pPlanet.isPlanetWithinCulturalRange() and pPlanet.isHasBuilding(iMiningFacility) :
-					aiWeights[iProductionWeightType] -= 10
-		
-		
+				if pPlanet.isPlanetWithinCulturalRange() and pPlanet.isHasBuilding(iNanoExtraction) :
+					aiWeights[iProductionWeightType] -= 5
+				elif pPlanet.isPlanetWithinCulturalRange() :
+					iCount += 1
+				
+		if iCount == 0: # can't build any more, currently
+			aiWeights[iProductionWeightType] = 0
 		
 		#######################################################################
 		# COMMERCE WEIGHTS
@@ -641,17 +695,28 @@ class CvAI:
 		aiWeights[iCommerceWeightType] += (pCity.getPopulation() * 10)
 		
 		# Decrease for number of MagLev Networks already present
-		iNumMagLevNetworks = pCity.getNumRealBuilding(iMagLevNetwork)
-		if (iNumMagLevNetworks > 0):
-			# CP - count only those on planets within our current cultural borders
-			# 	When a planet is captured, it can have them on planets outside our current reach
+		# Adjusted for post 1.72: use method the other weights use to do reduction and get a count of how many we can actually build
+		iCount = 0 # if this is still 0 after counting the buildings we could build then this weight will be set to 0
+		# CP - count only those on planets within our current cultural borders
+		# 	When a planet is captured, it can have them on planets outside our current reach
+		for iPlanetLoop in range(pSystem.getNumPlanets()):
+			pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
+			if pPlanet.isPlanetWithinCulturalRange() and pPlanet.isHasBuilding(iMagLevNetwork) :
+				aiWeights[iCommerceWeightType] -= 15 # post 1.72, was -20
+			elif pPlanet.isPlanetWithinCulturalRange() :
+				iCount += 1
+		# if we can build out commercial satellite class building, count it too
+		if (pPlayer.canConstruct(iCommercialSatellites, true, false, false)):
 			for iPlanetLoop in range(pSystem.getNumPlanets()):
 				pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
-				if pPlanet.isPlanetWithinCulturalRange() and pPlanet.isHasBuilding(iMagLevNetwork) :
-					aiWeights[iCommerceWeightType] -= 20
-		
-		
-		
+				if pPlanet.isPlanetWithinCulturalRange() and pPlanet.isHasBuilding(iCommercialSatellites) :
+					aiWeights[iCommerceWeightType] -= 5
+				elif pPlanet.isPlanetWithinCulturalRange() :
+					iCount += 1
+					
+		if iCount == 0: # can't build any more, currently
+			aiWeights[iCommerceWeightType] = 0
+
 		#######################################################################
 		# Rank the weights
 		#######################################################################
@@ -850,8 +915,8 @@ class CvAI:
 						if (pCity.getNumBuilding(iSquadronFactory) == 0):
 							
 							iRand = CyGame().getSorenRandNum(100, "Finaler Frontier: Random roll to see if City AI will override for Squadron Factory")
-							if (iRand < 75):
-								# 75% chance to force one to be built
+							if (iRand < 50):
+								# 50% chance to force one to be built
 								
 								printd("      Telling System to build a Squadron Factory")
 								pCity.pushOrder(OrderTypes.ORDER_CONSTRUCT, iSquadronFactory, -1, False, False, False, True)
@@ -936,7 +1001,7 @@ class CvAI:
 								iSpaceFighterII = gc.getInfoTypeForString('UNITCLASS_SPACE_FIGHTER_II')
 								iSpaceFighterIII = gc.getInfoTypeForString('UNITCLASS_SPACE_FIGHTER_III')
 
-								iEnoughUnits = (pPlayer.getNumCities() / 2) + iNumCarriers
+								iEnoughUnits = (pPlayer.getNumCities() / 2) + iNumCarriers - 1
 								if ( bIsSquadronDoctrine ) :
 									iEnoughUnits += 2
 				
@@ -984,7 +1049,7 @@ class CvAI:
 								iSpaceBomberII = gc.getInfoTypeForString('UNITCLASS_SPACE_BOMBER_II')
 								iSpaceBomberIII = gc.getInfoTypeForString('UNITCLASS_SPACE_BOMBER_III')
 								
-								iEnoughUnits = (pPlayer.getNumCities() / 2) + ( 2 * iNumCarriers)
+								iEnoughUnits = (pPlayer.getNumCities() / 2) + ( 2 * iNumCarriers) - 1 
 								if ( bIsSquadronDoctrine ) :
 									iEnoughUnits += 2
 				
@@ -1491,13 +1556,16 @@ class CvAI:
 				if iDistanceFromCapital < 4 : # Discourage it from building sensor stations right next to the capital
 					iDistanceValueMod = -9    # it will also get a penalty down below for being close to a star system if it is within 2
 				else : # Highest distance scores in the zone from 1/6 iMaxRange to 2/3 iMaxRange, in this zone iDistanceValueMod will be iMaxRange/6
-					iDistanceValueMod =  ((2 * min( iDistanceFromCapital, iMaxRange/6)) - max( iDistanceFromCapital - (2 * iMaxRange / 3), 0)) / 2
+					# modified for post 1.72: adjust the highest scoring zone to only extend out to 1/2 iMaxRange; BTW the above should have read "iMaxRange/12" due to the "/ 2" at the end of the next line
+					iDistanceValueMod =  ((2 * min( iDistanceFromCapital, iMaxRange/6)) - max( iDistanceFromCapital - (iMaxRange / 2), 0)) / 2
 				
 				iPlotValue = 0
 				iNumNebula = 0
 				iNumAdjacentNebula = 0
 				iNumAsteroid = 0
 				iNumDamaging = 0
+				iNumOurs = 0 # post 1.72
+				iNumTheirs = 0 # post 1.72
 				for iXSearchLoop in range(pLoopPlot.getX()-2, pLoopPlot.getX()+3):
 					for iYSearchLoop in range(pLoopPlot.getY()-2, pLoopPlot.getY()+3):
 						# If the map does not wrap and the plot is not on the map give a small penalty and skip to the next.
@@ -1534,6 +1602,14 @@ class CvAI:
 								# iPlotValue = 0
 								iPlotValue -= 99
 								break
+								
+						# post 1.72 AI update: count the number of plots that are ours, and the number that are someone else's
+						iOwner = pSearchPlot.getOwner()
+						if iOwner != -1 :
+							if iOwner == iPlayer :
+								iNumOurs += 1
+							else :
+								iNumTheirs += 1
 
 				# Some nebula is a good indication of a choke point.
 				# Too much is an indication that we are in a box canyon.
@@ -1546,12 +1622,16 @@ class CvAI:
 				# rules it out before we get here).
 				# Additionally, if there are more than 4 (i.e. 5 or 6) immediately adjacent nebula plots, give a
 				# small penalty of -2.
+				# Tweak for post 1.72: change the "sweet spot" from 13-15 to 12-14,
+				#	this would give a value of +36 in this range instead of the +39 that it got in the old range
+				#	so just add 3 as well, giving 3 at 0 up to 39 at 12-14, 34@15, 29@16, 24@17, 19@18, 14@19...
+				#	but make the adjacent nebula thing give -5 instead of -2
 				if iNumAdjacentNebula > 6 :
 					iPlotValue -= 99
 				else:
-					iPlotValue += ( 3 * min( iNumNebula, 13)) - ( 5 * max( iNumNebula - 15, 0))
+					iPlotValue += ( 3 * min( iNumNebula, 12)) - ( 5 * max( iNumNebula - 14, 0)) + 3
 					if iNumAdjacentNebula > 4 :
-						iPlotValue -= 2 
+						iPlotValue -= 5 
 
 				# A few asteroids are OK, but they block the visibility (and visibility is the whole point of a sensor station)
 				# With 0 no change, then +5 for 1-3 (which is the max bonus), then -1 for each over 3.
@@ -1562,13 +1642,22 @@ class CvAI:
 				# it is probably between two black holes/supernovas (which is a good chokepoint, but bad for the visibility
 				# aspect since looking at a lot of such plots is rather pointless).
 				# Give +2 per, up to a max of +30 at 15, then -1 per damaging feature over 15
-				iPlotValue += ( 2 * min( iNumDamaging, 15)) - max( iNumDamaging - 15, 0)
+				# Tweak for post 1.72: change reduction for being over 15 from -1 to -1.5
+				iPlotValue += ( 2 * min( iNumDamaging, 15)) - (3 * max( iNumDamaging - 15, 0) / 2)
 				
 				iPlotValue += iDistanceValueMod
 
 				# Little extra bonus for being in Asteroids (defense)
 				if (pLoopPlot.getFeatureType() == iFeatAsteroid):
 					iPlotValue += 4		#How small should it be?
+					
+				# post 1.72 AI update: a few plots of ours in the area increase the value slightly and
+				# more than a few reduce the bonus, and even more give a penalty. Plots that belong to
+				# someone else each give a -1.
+				# Don't want to shift the score much so currently using +3 per ours for the first 3
+				# then -2 per ours over 5 (so the max of +9 for 3-5), and -1 per other's
+				iPlotValue += ( 3 * min( iNumOurs, 3)) - ( 2 * max( iNumOurs - 5, 0))
+				iPlotValue -= iNumTheirs
 
 				# If this plot has the most resources in range from what we've found
 				if (iPlotValue > iBestValue):

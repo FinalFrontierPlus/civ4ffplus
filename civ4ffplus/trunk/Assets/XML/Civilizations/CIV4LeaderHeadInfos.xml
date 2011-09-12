@@ -174,13 +174,13 @@
 			<iTechTradeKnownPercent>100</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>25</iMaxWarRand>
+			<iMaxWarRand>90</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>30</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>4</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>15</iLimitedWarRand>
+			<iLimitedWarRand>95</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>8</iDogpileWarRand>
+			<iDogpileWarRand>80</iDogpileWarRand>
 			<iMakePeaceRand>40</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>30</iDemandRebukedSneakProb>
@@ -557,8 +557,12 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_CITY_COUNTER</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
+				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
@@ -643,13 +647,13 @@
 			<iTechTradeKnownPercent>30</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>25</iMaxWarRand>
+			<iMaxWarRand>100</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>90</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>70</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>40</iLimitedWarRand>
+			<iLimitedWarRand>100</iLimitedWarRand>
 			<iLimitedWarPowerRatio>130</iLimitedWarPowerRatio>
-			<iDogpileWarRand>20</iDogpileWarRand>
+			<iDogpileWarRand>80</iDogpileWarRand>
 			<iMakePeaceRand>40</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>20</iDemandRebukedSneakProb>
@@ -1025,6 +1029,10 @@
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
+				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
@@ -1108,14 +1116,14 @@
 			<iTechTradeKnownPercent>20</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>10</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>13</iMaxWarRand>
+			<iMaxWarRand>200</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>60</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>3</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>10</iLimitedWarRand>
+			<iLimitedWarRand>100</iLimitedWarRand>
 			<iLimitedWarPowerRatio>80</iLimitedWarPowerRatio>
 			<iDogpileWarRand>13</iDogpileWarRand>
-			<iMakePeaceRand>10</iMakePeaceRand>
+			<iMakePeaceRand>80</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>0</iDemandRebukedSneakProb>
 			<iDemandRebukedWarProb>0</iDemandRebukedWarProb>
@@ -1455,8 +1463,12 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_WORKER</UnitAIType>
+					<UnitAIType>UNITAI_EXPLORE</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
+				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
@@ -1541,13 +1553,13 @@
 			<iTechTradeKnownPercent>80</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>25</iMaxWarRand>
+			<iMaxWarRand>50</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>110</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
 			<iLimitedWarRand>60</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>10</iDogpileWarRand>
+			<iDogpileWarRand>50</iDogpileWarRand>
 			<iMakePeaceRand>60</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>30</iDemandRebukedSneakProb>
@@ -1927,6 +1939,10 @@
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
+				</UnitAIWeightModifier>				
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
@@ -2010,13 +2026,13 @@
 			<iTechTradeKnownPercent>30</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>10</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>75</iMaxWarRand>
+			<iMaxWarRand>125</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>2</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>25</iLimitedWarRand>
+			<iLimitedWarRand>90</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>8</iDogpileWarRand>
+			<iDogpileWarRand>50</iDogpileWarRand>
 			<iMakePeaceRand>10</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>0</iDemandRebukedSneakProb>
@@ -2396,6 +2412,10 @@
 					<UnitAIType>UNITAI_COUNTER</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
+				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
@@ -2479,13 +2499,13 @@
 			<iTechTradeKnownPercent>80</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>25</iMaxWarRand>
+			<iMaxWarRand>90</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>110</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>30</iLimitedWarRand>
+			<iLimitedWarRand>100</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>15</iDogpileWarRand>
+			<iDogpileWarRand>100</iDogpileWarRand>
 			<iMakePeaceRand>60</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>30</iDemandRebukedSneakProb>
@@ -2865,6 +2885,10 @@
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>50</iWeightModifier>
+				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
@@ -2948,13 +2972,13 @@
 			<iTechTradeKnownPercent>0</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>20</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>75</iMaxWarRand>
+			<iMaxWarRand>125</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>50</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>1</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>50</iLimitedWarRand>
+			<iLimitedWarRand>95</iLimitedWarRand>
 			<iLimitedWarPowerRatio>90</iLimitedWarPowerRatio>
-			<iDogpileWarRand>20</iDogpileWarRand>
+			<iDogpileWarRand>80</iDogpileWarRand>
 			<iMakePeaceRand>20</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>10</iDemandRebukedSneakProb>
@@ -3331,8 +3355,12 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_EXPLORE</UnitAIType>
+					<UnitAIType>UNITAI_WORKER</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
+				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
@@ -3417,13 +3445,13 @@
 			<iTechTradeKnownPercent>40</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>10</iMaxWarRand>
+			<iMaxWarRand>50</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>120</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>90</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>10</iLimitedWarRand>
+			<iLimitedWarRand>50</iLimitedWarRand>
 			<iLimitedWarPowerRatio>130</iLimitedWarPowerRatio>
-			<iDogpileWarRand>8</iDogpileWarRand>
+			<iDogpileWarRand>50</iDogpileWarRand>
 			<iMakePeaceRand>80</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>10</iDemandRebukedSneakProb>
@@ -3798,6 +3826,10 @@
 				<UnitAIWeightModifier>
 					<UnitAIType>UNITAI_PILLAGE</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
+				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<iWeightModifier>25</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers/>
