@@ -736,10 +736,9 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_NO_PIRATE_EXP_CAP,
 	GAMEOPTION_CALC_TRADE_ROUTES,
 	GAMEOPTION_TROOP_TRANSPORTS,
+	GAMEOPTION_MULTIPLE_PRODUCTION,				//Multiple Production: Added by Denev 07/10/2009
+	GAMEOPTION_PRODUCTIVE_PIRATE_CITIES,
 //End of Final Frontier SDK
-//Multiple Production: Added by Denev 07/10/2009
-	GAMEOPTION_MULTIPLE_PRODUCTION,
-//Multiple Production: End Add
 
 #ifdef _USRDLL
 	NUM_GAMEOPTION_TYPES
