@@ -379,4 +379,20 @@
 		<Italian>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</Italian>
 		<Spanish>Allows only Troop Transports (that is, Invasion Ships) to capture solar systems</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_PRODUCTIVE_PIRATE_CITIES</Tag>
+		<English>Productive Pirate Systems</English>
+		<French>Productive Pirate Systems</French>
+		<German>Productive Pirate Systems</German>
+		<Italian>Productive Pirate Systems</Italian>
+		<Spanish>Productive Pirate Systems</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_PRODUCTIVE_PIRATE_CITIES_HELP</Tag>
+		<English>Improves productivity of pirate solar systems</English>
+		<French>Improves productivity of pirate solar systems</French>
+		<German>Improves productivity of pirate solar systems</German>
+		<Italian>Improves productivity of pirate solar systems</Italian>
+		<Spanish>Improves productivity of pirate solar systems</Spanish>
+	</TEXT>
 </Civ4GameText>

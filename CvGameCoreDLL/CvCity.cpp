@@ -892,12 +892,12 @@ void CvCity::doTurn()
 /*************************************************************************************************/
 /**	SPEEDTWEAK (BarbCities) Sephi                                            					**/
 /**	This function can be very slow for barbarian cities(adds 1-3sec to turn time).Reason unknown**/
-/**	If this has an influence, gameoption it (TC01)                                   			**/
+/**	Gameoptioned it -- TC01 for Final Frontier Plus                                   			**/
 /*************************************************************************************************/
 /** orig
 	doCulture();
 **/
-    if (!isBarbarian())
+    if (!isBarbarian() && !(GC.getGame().isOption(GAMEOPTION_PRODUCTIVE_PIRATE_CITIES)))
     {
         doCulture();
     }
