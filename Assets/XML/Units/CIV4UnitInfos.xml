@@ -6934,6 +6934,10 @@
 					<PromotionType>PROMOTION_REPAIR_STAFF_II</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_SENSORS_I</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
@@ -7121,6 +7125,10 @@
 					<PromotionType>PROMOTION_REPAIR_STAFF_II</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_SENSORS_I</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
 			</FreePromotions>
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
@@ -7302,6 +7310,10 @@
 				</FreePromotion>
 				<FreePromotion>
 					<PromotionType>PROMOTION_REPAIR_STAFF_II</PromotionType>
+					<bFreePromotion>1</bFreePromotion>
+				</FreePromotion>
+				<FreePromotion>
+					<PromotionType>PROMOTION_SENSORS_I</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 			</FreePromotions>
@@ -11437,7 +11449,7 @@
 			<iChanceFirstStrikes>0</iChanceFirstStrikes>
 			<iInterceptionProbability>35</iInterceptionProbability>
 			<iEvasionProbability>0</iEvasionProbability>
-			<iWithdrawalProb>0</iWithdrawalProb>
+			<iWithdrawalProb>5</iWithdrawalProb>
 			<iCollateralDamage>0</iCollateralDamage>
 			<iCollateralDamageLimit>0</iCollateralDamageLimit>
 			<iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11457,11 +11469,11 @@
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_SQUADRON</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>150</iUnitCombatMod>
 				</UnitCombatMod>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_MISSILE</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>150</iUnitCombatMod>
 				</UnitCombatMod>
 			</UnitCombatMods>
 			<UnitCombatCollateralImmunes/>
@@ -11641,7 +11653,7 @@
 			<iChanceFirstStrikes>0</iChanceFirstStrikes>
 			<iInterceptionProbability>40</iInterceptionProbability>
 			<iEvasionProbability>0</iEvasionProbability>
-			<iWithdrawalProb>0</iWithdrawalProb>
+			<iWithdrawalProb>5</iWithdrawalProb>
 			<iCollateralDamage>0</iCollateralDamage>
 			<iCollateralDamageLimit>0</iCollateralDamageLimit>
 			<iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11661,11 +11673,11 @@
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_SQUADRON</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>150</iUnitCombatMod>
 				</UnitCombatMod>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_MISSILE</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>150</iUnitCombatMod>
 				</UnitCombatMod>
 			</UnitCombatMods>
 			<UnitCombatCollateralImmunes/>
@@ -11840,7 +11852,7 @@
 			<iChanceFirstStrikes>0</iChanceFirstStrikes>
 			<iInterceptionProbability>45</iInterceptionProbability>
 			<iEvasionProbability>0</iEvasionProbability>
-			<iWithdrawalProb>0</iWithdrawalProb>
+			<iWithdrawalProb>5</iWithdrawalProb>
 			<iCollateralDamage>0</iCollateralDamage>
 			<iCollateralDamageLimit>0</iCollateralDamageLimit>
 			<iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
@@ -11860,11 +11872,11 @@
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_SQUADRON</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>150</iUnitCombatMod>
 				</UnitCombatMod>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_MISSILE</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>150</iUnitCombatMod>
 				</UnitCombatMod>
 			</UnitCombatMods>
 			<UnitCombatCollateralImmunes/>

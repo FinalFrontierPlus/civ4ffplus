@@ -287,7 +287,7 @@ class PLE:
 			for i in range(len(self.lPLEUnitList)):
 				pLoopUnit = self.getInterfacePlotUnit(i)
 
-				if (pLoopUnit):
+				if (pLoopUnit and not pLoopUnit.isNone() and not pLoopUnit.isDead()): # G-E bugfix - don't show dead units 
 					# checks if the units matches actual filters
 					if (self.checkDisplayFilter(pLoopUnit)):
 

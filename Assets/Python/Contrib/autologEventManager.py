@@ -639,6 +639,7 @@ class AutoLogEvent(AbstractAutoLogEvent):
 		if (AutologOpt.isLogTribalVillage()):
 			iPlayer, pPlot, pUnit, iGoodyType = argsList
 			if iPlayer == CyGame().getActivePlayer():
+				iInhabitedFirstKey = 12
 				GoodyTypeMap = {
 						-1: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_NOTHING"),
 						0:	BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_LITTLEGOLD"),
@@ -652,9 +653,19 @@ class AutoLogEvent(AbstractAutoLogEvent):
 						8:	BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_HEALING"),
 						9:	BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_TECH"),
 						10:	BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_WEAKHOSTILES"),
-						11: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_STRONGHOSTILES")
+						11: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_STRONGHOSTILES"),
+						12: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_TECH"),
+						13: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_MAP"),
+						14: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_LITTLEGOLD"),
+						15: BugUtil.getPlainText("TXT_KEY_AUTOLOG_VILLAGE_RESULT_LOTSOFGOLD"),
+						16: BugUtil.getPlainText("TXT_KEY_AUTOLOG_ALIEN_RESULT_GIFT_CITY"),
+						17: BugUtil.getPlainText("TXT_KEY_AUTOLOG_ALIEN_RESULT_SHOT_DOWN"),
+						18: BugUtil.getPlainText("TXT_KEY_AUTOLOG_ALIEN_RESULT_NEWCIV")
 					}
-				message = BugUtil.getText("TXT_KEY_AUTOLOG_VILLAGE_RESULT", (GoodyTypeMap[iGoodyType], ))
+				sMessage = "TXT_KEY_AUTOLOG_VILLAGE_RESULT"
+				if iGoodyType >= iInhabitedFirstKey :
+					sMessage = "TXT_KEY_AUTOLOG_ALIEN_RESULT"
+				message = BugUtil.getText(sMessage, (GoodyTypeMap[iGoodyType], ))
 				Logger.writeLog(message, vColor="Brown")
 
 	def onGreatPersonBorn(self, argsList):
