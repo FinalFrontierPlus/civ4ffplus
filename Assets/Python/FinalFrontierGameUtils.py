@@ -450,7 +450,134 @@ class FFGameUtils:
 
 	def doMeltdown(self,argsList):
 		pCity = argsList[0]
-		return False
+		pSystem = CvSolarSystem.getSystemAt(pCity.getX(), pCity.getY())
+		iMeltPlanet = -1
+		
+		# check to see if there is a meltdown
+		for iBuilding in range(gc.getNumBuildingInfos()):
+			if pCity.getNumBuilding(iBuilding) > 0 :
+				iBuildingNukeExRand = gc.getBuildingInfo(iBuilding).getNukeExplosionRand()
+				if iBuildingNukeExRand != 0 :
+					if CyGame().getSorenRandNum(iBuildingNukeExRand, "FFP: meltdown check in doMeltdown callback") == 0 :
+						# a building has had a meltdown, check planets for buildings of this type and pick one
+						lPlanets = []
+						for iPlanet in range(pSystem.getNumPlanets()):
+							pPlanet = pSystem.getPlanetByIndex(iPlanet)
+							if pPlanet.isHasBuilding(iBuilding) :
+								lPlanets.append(pPlanet)
+						
+						iMeltPlanet = CyGame().getSorenRandNum(len(lPlanets), "FPP: meltdown planet")
+						pMeltPlanet = lPlanets[iMeltPlanet]
+						
+						# for the sake of simplicity, have it so that no star system will get more than one meltdown in a turn
+						break # break out of building loop
+		
+		if iMeltPlanet == -1 :
+			# no meltdown so exit now (always return True to avoid DLL's meltdown processing)
+			return True
+		
+		pPlayer = gc.getPlayer(pCity.getOwner()) # defined now since we don't need it above
+		
+		# Meltdown effects (same as nuke effects, but applied to meltdown planet instead of best planet) 
+		# 1) set the planet to be disabled
+		# 2) remove all buildings from the now dead planet, dealing with capitol if on this planet
+		# 3) if thre was a bonus on the planet, remove it from planet and plot
+		# 4) chance of specified feature being distributed around system
+		# 5) unit damage (possibly killed)
+		# 6) population reduction
+		
+		# 1) disable
+		pMeltPlanet.setDisabled(true)
+		pMeltPlanet.setPopulation(0)
+		
+		# 2) remove buildings
+		for iBuilding in range(gc.getNumBuildingInfos()):
+			if pMeltPlanet.isHasBuilding(iBuilding) and not gc.getBuildingInfo(iBuilding).isNukeImmune():
+				if (gc.getBuildingInfo(iBuilding).isCapital()):
+					if (pPlayer.getNumCities () > 1):
+						# The following call moves the capitol building, removing it from this city's data
+						# in the DLL (which is why there is no manual setNumRealBuilding in here)
+						# and adding it to the new capital city's data in the DLL plus adding it to that system's
+						# current build planet to get it into the Python planet data.
+						printd("Meltdown: finding new capial system")
+						pPlayer.findNewCapital()
+					else:
+						# This is this civ's only system so we can't move the capitol building to a different one.
+						# Try to move it to a different planet instead.
+						printd("Meltdown: moving capitol to different planet in same system")
+						if (pSystem.getBuildingPlanetRing() == pMeltPlanet.getOrbitRing()):
+							# This system's current build ring is the planet being wiped out,
+							# change it to some other planet and set that planet to have the building
+							# select the planet as the largest planet (using production as tie breaker)
+							# that is not the planet being wiped out
+							aiPlanetList = pSystem.getSizeYieldPlanetIndexList(1) # 1 is production, arbitrarily selected
+							for iLoopPlanet in range( len(aiPlanetList)):
+								pLoopPlanet = pSystem.getPlanetByIndex(aiPlanetList[iLoopPlanet][2])	
+								if (pLoopPlanet.getOrbitRing() != pMeltPlanet.getOrbitRing()):
+									pSystem.setBuildingPlanetRing(pLoopPlanet.getOrbitRing())
+									pLoopPlanet.setHasBuilding(iBuilding, true)
+									break
+				else:
+					pCity.setNumRealBuilding(iBuilding, pCity.getNumRealBuilding(iBuilding)-1)
+						
+				pMeltPlanet.setHasBuilding(iBuilding, false)
+		
+		# 3) remove bonus
+		if (pMeltPlanet.isBonus()): # planet being melted has a bonus, remove it from the planet and the plot
+			pMeltPlanet.setBonusType(-1)
+			pPlot.setBonusType(-1)			
+		
+		# 4) feature spread
+		for iDX in range(-1, 2) :
+			for iDY in range (-1, 2) :
+				if (iDX != 0) and (iDY != 0) :
+					pPlot = plotXY( pCity.getX(), pCity.getY(), iDX, iDY)
+					if pPlot and not pPlot.isNone():
+						if not pPlot.isImpassable() and (FeatureTypes.NO_FEATURE == pPlot.getFeatureType()) :
+							if (CyGame().getSorenRandNum(100, "Meltdown Fallout") < gc.getDefineINT("NUKE_FALLOUT_PROB")) :
+								pPlot.setImprovementType(ImprovementTypes.NO_IMPROVEMENT)
+								pPlot.setFeatureType(gc.getDefineINT("NUKE_FEATURE"), 0)
+							
+		# 5) unit damage
+		lUnit = []
+		(loopUnit, iter) = pPlayer.firstUnit(false)
+		while( loopUnit ):
+			if ( not loopUnit.isDead() ): #is the unit alive and valid?
+				lUnit.append(loopUnit) #add unit instance to list
+			(loopUnit, iter) = pPlayer.nextUnit(iter, false)
+
+		for pUnit in lUnit :
+			if not pUnit.isDead() and not pUnit.isNukeImmune() :
+				iNukeDamage = gc.getDefineINT("NUKE_UNIT_DAMAGE_BASE") + CyGame().getSorenRandNum(gc.getDefineINT("NUKE_UNIT_DAMAGE_RAND_1"), "Nuke Damage 1") + CyGame().getSorenRandNum(gc.getDefineINT("NUKE_UNIT_DAMAGE_RAND_2"), "Nuke Damage 2")
+				iNukeDamage *= max(0, (pCity.getNukeModifier() + 100))
+				iNukeDamage /= 100
+				if pUnit.canFight() or (pUnit.airBaseCombatStr() > 0) :
+					pUnit.changeDamage(iNukeDamage, PlayerTypes.NO_PLAYER)
+				elif iNukeDamage >= gc.getDefineINT("NUKE_NON_COMBAT_DEATH_THRESHOLD") :
+					pUnit.kill(false, PlayerTypes.NO_PLAYER)
+					
+		# 6) population reduction
+		iNukedPopulation = (pCity.getPopulation() * (gc.getDefineINT("NUKE_POPULATION_DEATH_BASE") + CyGame().getSorenRandNum(gc.getDefineINT("NUKE_POPULATION_DEATH_RAND_1"), "Population Nuked 1") + CyGame().getSorenRandNum(gc.getDefineINT("NUKE_POPULATION_DEATH_RAND_2"), "Population Nuked 2"))) / 100
+
+		iNukedPopulation *= max(0, (pCity.getNukeModifier() + 100))
+		iNukedPopulation /= 100
+
+		pCity.changePopulation(-(min((pCity.getPopulation() - 1), iNukedPopulation)))
+				
+		# Now update the city and display
+		FinalFrontier = CvEventInterface.getEventManager().FinalFrontier
+		FinalFrontier.getAI().doCityAIUpdate(pCity)
+			
+		pSystem.updateDisplay()
+		
+		# give message that this has happened
+		szBuffer = localText.getText("TXT_KEY_MISC_MELTDOWN_CITY", (pCity.getName(),))
+		CyInterface().addMessage( pCity.getOwner(), False, gc.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, 
+				"AS2D_MELTDOWN", InterfaceMessageTypes.MESSAGE_TYPE_MINOR_EVENT,
+				CyArtFileMgr().getInterfaceArtInfo("INTERFACE_UNHEALTHY_PERSON").getPath(), gc.getInfoTypeForString("COLOR_RED"),
+				pCity.getX(), pCity.getY(), True, True)
+
+		return True
 	
 	def doReviveActivePlayer(self,argsList):
 		"allows you to perform an action after an AIAutoPlay"

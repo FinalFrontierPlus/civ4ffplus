@@ -856,7 +856,7 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 			pBestPlanet.setPopulation(0)			
 
 			for iBuilding in range(gc.getNumBuildingInfos()):
-				if pBestPlanet.isHasBuilding(iBuilding):
+				if pBestPlanet.isHasBuilding(iBuilding) and not gc.getBuildingInfo(iBuilding).isNukeImmune():
 					if (gc.getBuildingInfo(iBuilding).isCapital()):
 						pPlayer = gc.getPlayer(pCity.getOwner())
 						if (pPlayer.getNumCities () > 1):
