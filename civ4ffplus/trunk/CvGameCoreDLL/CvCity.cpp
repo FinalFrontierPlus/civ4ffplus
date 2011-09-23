@@ -897,7 +897,7 @@ void CvCity::doTurn()
 /** orig
 	doCulture();
 **/
-    if (!isBarbarian() && !(GC.getGame().isOption(GAMEOPTION_PRODUCTIVE_PIRATE_CITIES)))
+    if (!isBarbarian() || GC.getGame().isOption(GAMEOPTION_PRODUCTIVE_PIRATE_CITIES))
     {
         doCulture();
     }
