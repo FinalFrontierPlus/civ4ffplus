@@ -261,4 +261,8 @@
 		<DefineName>SOLAR_SYSTEM</DefineName>
 		<DefineTextVal>FEATURE_SOLAR_SYSTEM</DefineTextVal>
 	</Define>
+	<Define>
+		<DefineName>NUKE_BUILDING_DESTRUCTION_PROB</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
 </Civ4Defines>
