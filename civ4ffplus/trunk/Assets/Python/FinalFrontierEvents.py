@@ -857,6 +857,7 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 
 			for iBuilding in range(gc.getNumBuildingInfos()):
 				if pBestPlanet.isHasBuilding(iBuilding) and not gc.getBuildingInfo(iBuilding).isNukeImmune():
+					bRemove = True
 					if (gc.getBuildingInfo(iBuilding).isCapital()):
 						pPlayer = gc.getPlayer(pCity.getOwner())
 						if (pPlayer.getNumCities () > 1):
@@ -870,22 +871,28 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 							# This is this civ's only system so we can't move the capitol building to a different one.
 							# Try to move it to a different planet instead.
 							printd("Nuked: moving capitol to different planet in same system")
-							if (pSystem.getBuildingPlanetRing() == pBestPlanet.getOrbitRing()):
-								# This system's current build ring is the planet being wiped out,
-								# change it to some other planet and set that planet to have the building
-								# select the planet as the largest planet (using production as tie breaker)
-								# that is not the planet being wiped out
-								aiPlanetList = pSystem.getSizeYieldPlanetIndexList(1) # 1 is production, arbitrarily selected
-								for iLoopPlanet in range( len(aiPlanetList)):
-									pLoopPlanet = pSystem.getPlanetByIndex(aiPlanetList[iLoopPlanet][2])	
-									if (pLoopPlanet.getOrbitRing() != pBestPlanet.getOrbitRing()):
+							# Select the planet that is the largest population limit planet
+							#  (using production as tie breaker) that is not the planet being wiped out
+							bRemove = False
+							aiPlanetList = pSystem.getSizeYieldPlanetIndexList(1) # 1 is production, arbitrarily selected
+							for iLoopPlanet in range( len(aiPlanetList)):
+								pLoopPlanet = pSystem.getPlanetByIndex(aiPlanetList[iLoopPlanet][2])
+								if (pLoopPlanet.getOrbitRing() != pBestPlanet.getOrbitRing()):
+									pLoopPlanet.setHasBuilding(iBuilding, true)
+									printd("Nuked: moved Capitol to planet at ring %d" % pLoopPlanet.getOrbitRing())
+									bRemove = True
+									if (pSystem.getBuildingPlanetRing() == pBestPlanet.getOrbitRing()):
+										# This system's current build ring is the planet being wiped out,
+										# change it to this planet too
 										pSystem.setBuildingPlanetRing(pLoopPlanet.getOrbitRing())
-										pLoopPlanet.setHasBuilding(iBuilding, true)
-										break
+									break
 					else:
 						pCity.setNumRealBuilding(iBuilding, pCity.getNumRealBuilding(iBuilding)-1)
-						
-					pBestPlanet.setHasBuilding(iBuilding, false)
+					
+					if bRemove :
+						# The only time this is not the case is when it is the capitol and there is no other
+						# planet it can be moved to. You always need a Capitol, so it stays on the dead planet
+						pBestPlanet.setHasBuilding(iBuilding, false)
 			
 			if (pBestPlanet.isBonus()): # planet being nuked has a bonus, remove it from the planet and the plot
 				pBestPlanet.setBonusType(-1)
