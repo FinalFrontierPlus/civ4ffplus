@@ -493,6 +493,7 @@ class FFGameUtils:
 		# 2) remove buildings
 		for iBuilding in range(gc.getNumBuildingInfos()):
 			if pMeltPlanet.isHasBuilding(iBuilding) and not gc.getBuildingInfo(iBuilding).isNukeImmune():
+				bRemove = True
 				if (gc.getBuildingInfo(iBuilding).isCapital()):
 					if (pPlayer.getNumCities () > 1):
 						# The following call moves the capitol building, removing it from this city's data
@@ -505,22 +506,29 @@ class FFGameUtils:
 						# This is this civ's only system so we can't move the capitol building to a different one.
 						# Try to move it to a different planet instead.
 						printd("Meltdown: moving capitol to different planet in same system")
-						if (pSystem.getBuildingPlanetRing() == pMeltPlanet.getOrbitRing()):
-							# This system's current build ring is the planet being wiped out,
-							# change it to some other planet and set that planet to have the building
-							# select the planet as the largest planet (using production as tie breaker)
-							# that is not the planet being wiped out
-							aiPlanetList = pSystem.getSizeYieldPlanetIndexList(1) # 1 is production, arbitrarily selected
-							for iLoopPlanet in range( len(aiPlanetList)):
-								pLoopPlanet = pSystem.getPlanetByIndex(aiPlanetList[iLoopPlanet][2])	
-								if (pLoopPlanet.getOrbitRing() != pMeltPlanet.getOrbitRing()):
+						# Select the planet that is the largest population limit planet
+						#  (using production as tie breaker) that is not the planet being wiped out
+						bRemove = False
+						aiPlanetList = pSystem.getSizeYieldPlanetIndexList(1) # 1 is production, arbitrarily selected
+						for iLoopPlanet in range( len(aiPlanetList)):
+							pLoopPlanet = pSystem.getPlanetByIndex(aiPlanetList[iLoopPlanet][2])
+							if (pLoopPlanet.getOrbitRing() != pMeltPlanet.getOrbitRing()):
+								pLoopPlanet.setHasBuilding(iBuilding, true)
+								printd("Meltdown: moved Capitol to planet at ring %d" % pLoopPlanet.getOrbitRing())
+								bRemove = True
+								if (pSystem.getBuildingPlanetRing() == pMeltPlanet.getOrbitRing()):
+									# This system's current build ring is the planet being wiped out,
+									# change it to this planet too
 									pSystem.setBuildingPlanetRing(pLoopPlanet.getOrbitRing())
-									pLoopPlanet.setHasBuilding(iBuilding, true)
-									break
+								break
+
 				else:
 					pCity.setNumRealBuilding(iBuilding, pCity.getNumRealBuilding(iBuilding)-1)
-						
-				pMeltPlanet.setHasBuilding(iBuilding, false)
+
+				if bRemove :
+					# The only time this is not the case is when it is the capitol and there is no other
+					# planet it can be moved to. You always need a Capitol, so it stays on the dead planet
+					pMeltPlanet.setHasBuilding(iBuilding, false)
 		
 		# 3) remove bonus
 		if (pMeltPlanet.isBonus()): # planet being melted has a bonus, remove it from the planet and the plot
