@@ -229,6 +229,10 @@ class FFGameUtils:
 				# the planet has a bonus, but it is the wrong one - since there can be only one bonus in a system
 				# and we know it has the wrong one, theis building can not be built anywhere in this system
 				return True
+					
+		# On a disabled planet we can only build nuke immune buildings
+		if (not pBuildingInfo.isNukeImmune()) and pPlanet.isDisabled():
+			bNotHere = True
 		
 		# Prereqs are required for the Planet
 		for iNeededBuildingClassLoop in range(gc.getNumBuildingClassInfos()):
@@ -236,8 +240,8 @@ class FFGameUtils:
 				iNeededBuildingLoop = pCivilization.getCivilizationBuildings(iNeededBuildingClassLoop )
 				if (not pPlanet.isHasBuilding(iNeededBuildingLoop)):
 					bNotHere = True
-					break 
-					
+					break
+		
 		# CP - now for the "if we can't build it here, try it on some other planet in the system" upgrade.
 		#      This is the core functionality of the improvement, and is all new.
 		#      Skip if this if this is for a player, not an AI.
@@ -270,6 +274,9 @@ class FFGameUtils:
 							# the planet has a bonus, but it is the wrong one - since there can be only one bonus in a system
 							# and we know it has the wrong one, this building can not be built anywhere in this system
 							return True
+					
+					if (not pBuildingInfo.isNukeImmune()) and pLoopPlanet.isDisabled():
+						continue
 							
 					hasPrereq = True
 					for iNeededBuildingClassLoop in range(gc.getNumBuildingClassInfos()):
@@ -477,6 +484,7 @@ class FFGameUtils:
 			return True
 		
 		pPlayer = gc.getPlayer(pCity.getOwner()) # defined now since we don't need it above
+		pCityPlot = pCity.plot()
 		
 		# Meltdown effects (same as nuke effects, but applied to meltdown planet instead of best planet) 
 		# 1) set the planet to be disabled
@@ -516,10 +524,6 @@ class FFGameUtils:
 								pLoopPlanet.setHasBuilding(iBuilding, true)
 								printd("Meltdown: moved Capitol to planet at ring %d" % pLoopPlanet.getOrbitRing())
 								bRemove = True
-								if (pSystem.getBuildingPlanetRing() == pMeltPlanet.getOrbitRing()):
-									# This system's current build ring is the planet being wiped out,
-									# change it to this planet too
-									pSystem.setBuildingPlanetRing(pLoopPlanet.getOrbitRing())
 								break
 
 				else:
@@ -529,11 +533,20 @@ class FFGameUtils:
 					# The only time this is not the case is when it is the capitol and there is no other
 					# planet it can be moved to. You always need a Capitol, so it stays on the dead planet
 					pMeltPlanet.setHasBuilding(iBuilding, false)
-		
+
+		# 2.5) unlisted above, but here anyway
+		if (pSystem.getBuildingPlanetRing() == pMeltPlanet.getOrbitRing()):
+			# This system's current build planet is the planet being wiped out,
+			# change it to some other planet, like the new "best" planet.
+			# There is an issue if every planet in the current infuence range is dead -
+			# in such a case there is no planet that should be having things built on it.
+			# With any luck, this will never come up.
+			pSystem.setBuildingPlanetRing(pSystem.getPlanetByIndex(CvSolarSystem.getBestPlanetInSystem(pSystem)).getOrbitRing())
+					
 		# 3) remove bonus
 		if (pMeltPlanet.isBonus()): # planet being melted has a bonus, remove it from the planet and the plot
 			pMeltPlanet.setBonusType(-1)
-			pPlot.setBonusType(-1)			
+			pCityPlot.setBonusType(-1)			
 		
 		# 4) feature spread
 		for iDX in range(-1, 2) :
@@ -546,13 +559,12 @@ class FFGameUtils:
 								pPlot.setImprovementType(ImprovementTypes.NO_IMPROVEMENT)
 								pPlot.setFeatureType(gc.getDefineINT("NUKE_FEATURE"), 0)
 							
-		# 5) unit damage
+		# 5) unit damage - only check units on this plot!
 		lUnit = []
-		(loopUnit, iter) = pPlayer.firstUnit(false)
-		while( loopUnit ):
-			if ( not loopUnit.isDead() ): #is the unit alive and valid?
-				lUnit.append(loopUnit) #add unit instance to list
-			(loopUnit, iter) = pPlayer.nextUnit(iter, false)
+		for i in range(pCityPlot.getNumUnits()):
+			pLoopUnit = pCityPlot.getUnit(i)
+			if ( not pLoopUnit.isDead()): #is the unit alive?
+				lUnit.append(pLoopUnit) #add unit instance to list
 
 		for pUnit in lUnit :
 			if not pUnit.isDead() and not pUnit.isNukeImmune() :
@@ -560,8 +572,10 @@ class FFGameUtils:
 				iNukeDamage *= max(0, (pCity.getNukeModifier() + 100))
 				iNukeDamage /= 100
 				if pUnit.canFight() or (pUnit.airBaseCombatStr() > 0) :
+					printd("Meltdown: unit %s damaged for %d" % (pUnit.getName().encode('unicode_escape'), iNukeDamage))
 					pUnit.changeDamage(iNukeDamage, PlayerTypes.NO_PLAYER)
 				elif iNukeDamage >= gc.getDefineINT("NUKE_NON_COMBAT_DEATH_THRESHOLD") :
+					printd("Meltdown: non-combat unit %s killed from damage over threshold" % (pUnit.getName().encode('unicode_escape'),))
 					pUnit.kill(false, PlayerTypes.NO_PLAYER)
 					
 		# 6) population reduction

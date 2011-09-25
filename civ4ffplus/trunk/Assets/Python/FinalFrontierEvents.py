@@ -881,10 +881,6 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 									pLoopPlanet.setHasBuilding(iBuilding, true)
 									printd("Nuked: moved Capitol to planet at ring %d" % pLoopPlanet.getOrbitRing())
 									bRemove = True
-									if (pSystem.getBuildingPlanetRing() == pBestPlanet.getOrbitRing()):
-										# This system's current build ring is the planet being wiped out,
-										# change it to this planet too
-										pSystem.setBuildingPlanetRing(pLoopPlanet.getOrbitRing())
 									break
 					else:
 						pCity.setNumRealBuilding(iBuilding, pCity.getNumRealBuilding(iBuilding)-1)
@@ -893,7 +889,15 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 						# The only time this is not the case is when it is the capitol and there is no other
 						# planet it can be moved to. You always need a Capitol, so it stays on the dead planet
 						pBestPlanet.setHasBuilding(iBuilding, false)
-			
+						
+			if (pSystem.getBuildingPlanetRing() == pBestPlanet.getOrbitRing()):
+				# This system's current build planet is the planet being wiped out,
+				# change it to some other planet, like the new "best" planet.
+				# There is an issue if every planet in the current infuence range is dead -
+				# in such a case there is no planet that should be having things built on it.
+				# With any luck, this will never come up.
+				pSystem.setBuildingPlanetRing(pSystem.getPlanetByIndex(getBestPlanetInSystem(pSystem)).getOrbitRing())			
+				
 			if (pBestPlanet.isBonus()): # planet being nuked has a bonus, remove it from the planet and the plot
 				pBestPlanet.setBonusType(-1)
 				pPlot.setBonusType(-1)			
