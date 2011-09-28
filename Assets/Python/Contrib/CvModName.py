@@ -1,8 +1,8 @@
 #CvModName.py
 
-modName = "Final Frontier Plus BUG"
-displayName = "Final Frontier Plus BUG Mod"
-modVersion = "1.651"
+modName = "Final Frontier Plus"
+displayName = "Final Frontier Plus Mod"
+modVersion = "1.73"
 
 civName = "BtS"
 civVersion = "3.19"
