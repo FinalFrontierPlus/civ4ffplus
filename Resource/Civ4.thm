@@ -1,0 +1,9 @@
+
+// *** Control Bitmap Theme file
+
+// Set the resource 
+resource_path	"Mods/Final Frontier Plus/Resource";
+
+// Setup common properties
+include			"Mods/Final Frontier Plus/Resource/Themes/Civ4/Civ4Theme.thm";
+
