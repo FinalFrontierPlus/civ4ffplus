@@ -2045,7 +2045,11 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_UNIT_MOD", iModifier, GC.getFeatureInfo(pPlot->getFeatureType()).getTextKeyWide()));
 				}
 			}
-			else
+// FFP terrain defense modifier change start
+//	change: always apply both feature and terrain defense modifiers
+// original code:
+//			else
+// FFP terrain defense modifier change end
 			{
 				iModifier = pDefender->terrainDefenseModifier(pPlot->getTerrainType());
 
