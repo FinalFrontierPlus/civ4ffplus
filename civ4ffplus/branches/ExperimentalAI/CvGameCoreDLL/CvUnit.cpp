@@ -8046,7 +8046,11 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				pCombatDetails->iFeatureDefenseModifier = iExtraModifier;
 			}
 		}
-		else
+// FFP terrain defense modifier change start
+//	change: always apply both feature and terrain defense modifiers
+// original code:
+//		else
+// FFP terrain defense modifier change end
 		{
 			iExtraModifier = terrainDefenseModifier(pPlot->getTerrainType());
 			iModifier += iExtraModifier;
