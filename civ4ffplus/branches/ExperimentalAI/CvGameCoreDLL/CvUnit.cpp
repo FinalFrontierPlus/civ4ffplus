@@ -6659,7 +6659,7 @@ bool CvUnit::build(BuildTypes eBuild)
 				eUnit = ((UnitTypes)(GC.getUnitClassInfo(eUnitClass).getDefaultUnitIndex()));
 				if (eUnit != NO_UNIT)
 				{
-					CvUnit * pNewUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
+					CvUnit * pNewUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE()); // FFP AImod : removed unit AI specification so it will use default from unitinfo XML
 					iCultureRange = (GC.getUnitInfo(eUnit).getCultureRange());
 					for (iCultureX = -iCultureRange; iCultureX <= iCultureRange; iCultureX++)
 					{
