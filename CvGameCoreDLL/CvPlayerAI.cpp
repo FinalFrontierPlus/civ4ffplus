@@ -7988,6 +7988,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		}
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 100);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage()) / 400);
+		iValue += GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits(); // FFP AImod : added this line
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves() * iFastMoverMultiplier) / 4);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 100);
 		if (!AI_isDoStrategy(AI_STRATEGY_AIR_BLITZ))
@@ -8023,7 +8024,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage()) / 50);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves()) / 4);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 25);
-		iValue -= ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 100);
+		iValue -= ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 125); // FFP AImod : changed divisor from 100 to 125
 		break;
 
 	case UNITAI_PILLAGE:
