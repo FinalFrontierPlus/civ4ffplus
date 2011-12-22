@@ -2166,7 +2166,33 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 		aiUnitAIVal[UNITAI_DEFENSE_AIR] += (GET_PLAYER(getOwnerINLINE()).getNumCities() + 1);
 		aiUnitAIVal[UNITAI_CARRIER_AIR] += GET_PLAYER(getOwnerINLINE()).AI_countCargoSpace(UNITAI_CARRIER_SEA);
 		aiUnitAIVal[UNITAI_MISSILE_AIR] += GET_PLAYER(getOwnerINLINE()).AI_countCargoSpace(UNITAI_MISSILE_CARRIER_SEA);
-
+/** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - start
+ **	Try adding half the number of cargo spaces currently available for squadrons or missiles on
+ ** the units with the other unit AI types.
+ ** This is made a tad more complicated by the fact that there are no enums for the relevant
+ ** special unit types since they are defined in the XML...
+ ** The SPECIALUNIT_FIGHTER specifies a CarrierUnitAI of UNITAI_CARRIER_SEA.
+ ** The SPECIALUNIT_MISSILE specifies a CarrierUnitAI of UNITAI_MISSILE_CARRIER_SEA. **/
+		CvUnit* pLoopUnit;
+		int iLoop;
+		for(pLoopUnit = GET_PLAYER(getOwnerINLINE()).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(getOwnerINLINE()).nextUnit(&iLoop))
+		{
+			if ((pLoopUnit->AI_getUnitAIType() != UNITAI_CARRIER_SEA) && 
+				(pLoopUnit->AI_getUnitAIType() != UNITAI_MISSILE_CARRIER_SEA) &&
+				(pLoopUnit->specialCargo() != NO_SPECIALUNIT) &&
+				(pLoopUnit->domainCargo() == DOMAIN_AIR))
+			{
+				if (GC.getSpecialUnitInfo((SpecialUnitTypes)pLoopUnit->specialCargo()).isCarrierUnitAIType(UNITAI_CARRIER_SEA))
+				{
+					aiUnitAIVal[UNITAI_CARRIER_AIR] += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR) / 2;
+				}
+				else if (GC.getSpecialUnitInfo((SpecialUnitTypes)pLoopUnit->specialCargo()).isCarrierUnitAIType(UNITAI_MISSILE_CARRIER_SEA))
+				{
+					aiUnitAIVal[UNITAI_MISSILE_AIR] += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR) / 2;
+				}
+			}
+		}
+/** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - end **/
 		if (bPrimaryArea)
 		{
 			aiUnitAIVal[UNITAI_ICBM] += std::max((GET_PLAYER(getOwnerINLINE()).getTotalPopulation() / 25), ((GC.getGameINLINE().countCivPlayersAlive() + GC.getGameINLINE().countTotalNukeUnits()) / (GC.getGameINLINE().countCivPlayersAlive() + 1)));
@@ -2223,6 +2249,12 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 				}
 			}
 		}
+/** FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - start (1)
+ ** This is the base amount. More is added just below if there could be a war.
+ ** Exactly how much to add? Don't know. Going with this simple guess: **/ 
+		aiUnitAIVal[UNITAI_CARRIER_SEA] += iNumCitiesInArea / 3;
+		aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += iNumCitiesInArea / 3;
+/**  FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - end (1) **/
 
 		if ((iHasMetCount > 0) && bWarPossible)
 		{
@@ -2246,6 +2278,14 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 						aiUnitAIVal[UNITAI_RESERVE_SEA] += std::min((pWaterArea->getNumTiles() / 150), ((((iCoastalCities * 2) + (iMilitaryWeight / 11)) / 8) + ((bPrimaryArea) ? 1 : 0)));
 					}
 				}
+/** FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - start (2)
+ ** This is the extra if there is a war actually going on.
+ ** Exactly how much to add? Don't know. Since starbases are using UNITAI_CARRIER_SEA this one
+ ** needs to be a little higher to counteract all those units.
+ ** Going with this simple set which should not add very much: **/ 
+				aiUnitAIVal[UNITAI_CARRIER_SEA] += (iMilitaryWeight / ((bLandWar) ? 14 : 18)) + 1;
+				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += iMilitaryWeight / ((bLandWar) ? 15 : 20);
+/**  FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - end (2) **/
 			}
 		}
 	}
