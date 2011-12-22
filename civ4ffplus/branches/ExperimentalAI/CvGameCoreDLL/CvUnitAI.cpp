@@ -5715,8 +5715,24 @@ void CvUnitAI::AI_missileAirMove()
 			return;
 		}
 
-		getGroup()->pushMission(MISSION_SKIP);
-		return;
+/** FFP AI mod: rebase missiles off starbases sometimes - start 
+ **		starbases are now using UNITAI_CARRIER_SEA, so that is how we know
+ **		that it is on a starbase **/
+		if (getTransportUnit()->AI_getUnitAIType() == UNITAI_CARRIER_SEA)
+		{ 
+			iRand = GC.getGameINLINE().getSorenRandNum(5, "AI Air Missile move off starbases");
+			if (iRand != 0)
+			{
+				getGroup()->pushMission(MISSION_SKIP);
+				return;
+			}
+		}
+		else
+		{
+			getGroup()->pushMission(MISSION_SKIP);
+			return;
+		}
+/** FFP AI mod: rebase missiles off starbases sometimes - end **/
 	}
 
 	if (AI_airStrike())
@@ -5738,6 +5754,30 @@ void CvUnitAI::AI_missileAirMove()
 	{
 		return;
 	}
+
+/** FFP AImod - start
+/**		load missiles onto units with more unit AI types	
+/** new code: **/
+	if (AI_missileLoad(UNITAI_ATTACK_CITY)) // as many as it can hold
+	{
+		return;
+	}
+
+	if (AI_missileLoad(UNITAI_ATTACK, 1))
+	{
+		return;
+	}
+
+	if (AI_missileLoad(UNITAI_COLLATERAL, 1))
+	{
+		return;
+	}
+
+	if (AI_missileLoad(UNITAI_PILLAGE, 1))
+	{
+		return;
+	}
+/** FFP AImod - end **/
 
 	if (AI_airBombDefenses())
 	{
@@ -6745,6 +6785,35 @@ bool CvUnitAI::AI_group(UnitAITypes eUnitAI, int iMaxGroup, int iMaxOwnUnitAI, i
 	{
 		return false;
 	}
+/** FFP AImod : don't let units that can't move due to terrain issues join groups - start
+ **		This is mostly for the B5 mod's planetary defense troops which are prevented from
+ **		wandering around space by making the unit unable to move onto the space terrain
+ **		via a TerrainImpassable of TERRAIN_TUNDRA. The AI loves to group these troops,
+ **		with their city defense unit AI type, with settlers... Oops.
+ **	Note that there are some standard checks that are bsing skipped due to the nature of the FFP map
+ ** (it is all one land area).
+ **/
+	int iI;
+	CvPlot* pLoopPlot;
+	bool bContinue = false;
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
+	{
+		pLoopPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pLoopPlot != NULL)
+		{
+			if (canMoveInto(pLoopPlot))
+			{	// Just one adjacent plot we can enter is good enough to pass this test.
+				bContinue = true;
+				break;
+			}
+		}
+	}
+	if (!bContinue)
+	{
+		return false;
+	}
+/** FFP AImod : don't let units that can't move due to terrain issues join groups - end **/
 
 	iBestValue = MAX_INT;
 	pBestUnit = NULL;
@@ -8376,7 +8445,13 @@ bool CvUnitAI::AI_heal(int iDamagePercent, int iMaxPath)
 	{
 	    if (getDamage() > 0)
         {
-
+/** FFP AImod: let the poor lone units heal (sometimes) - start
+ **	The original code only allows a lone unit to heal if it is in a city or can heal in 1 turn
+ **	this is why all those dumb explorering units wander through damaging features and then never
+ ** stop to heal once they are out.
+ ** Ideally the new code would take into account nearby danger and check the surrounding plots for
+ ** defensive bonuses to pick a spot to heal, but it doesn't.
+ ** original code:
             if (plot()->isCity() || (healTurns(plot()) == 1))
             {
                 if (!(isAlwaysHeal()))
@@ -8385,9 +8460,37 @@ bool CvUnitAI::AI_heal(int iDamagePercent, int iMaxPath)
                     return true;
                 }
             }
+ ** end original code, start new code **/
+			if (!isAlwaysHeal())
+            {
+				if (plot()->isCity())
+                { // if we are in a city already: heal
+                    getGroup()->pushMission(MISSION_HEAL);
+                    return true;
+				}
+				else if (healTurns(plot()) > 1)
+				{
+					if (AI_moveIntoCity(1))
+					{ // if we are very near a friendly city: move there (done in the above call) - next turn(ish) we will be in a city and therefore heal				
+						return true;
+					}
+					else if (GC.getGameINLINE().getSorenRandNum(4, "AI lone unit heal") == 0)
+					{ // 1 in 4 chance regardless of how long it will take: heal
+						getGroup()->pushMission(MISSION_HEAL);
+						return true;
+					}
+				}
+				else
+				{ // not in a city and not more than 1 turn to heal (therefore 1 turn to heal)
+                    getGroup()->pushMission(MISSION_HEAL);
+                    return true;
+				}
+			}
+/** FFP AImod: let the poor lone units heal (sometimes) - end **/
         }
         return false;
 	}
+
 
 	iMaxPath = std::min(iMaxPath, 2);
 
@@ -15333,7 +15436,18 @@ bool CvUnitAI::AI_airStrike()
 
 	iSearchRange = airRange();
 
+/** FFP AImod - start
+/**		The missiles are pretty weak in FFP so the AI rarely uses them.
+/**		- Adjust the minimum target value down:
+/**			slightly if the free missiles from starabses option is off
+/**			slignifcanly ifthat option is on as some of them are free
+/** original code:
 	iBestValue = (isSuicide() && m_pUnitInfo->getProductionCost() > 0) ? (5 * m_pUnitInfo->getProductionCost()) / 6 : 0;
+/** new code: **/
+	iValue = GC.getGameINLINE().isOption(GAMEOPTION_NO_STARBASE_MISSILES) ? 7 : 10; // using iValue for my own purposes here
+	iBestValue = (isSuicide() && m_pUnitInfo->getProductionCost() > 0) ? (5 * m_pUnitInfo->getProductionCost()) / iValue : 0;
+/** FFP AImod - end **/
+
 	pBestPlot = NULL;
 
 	for (iDX = -(iSearchRange); iDX <= iSearchRange; iDX++)

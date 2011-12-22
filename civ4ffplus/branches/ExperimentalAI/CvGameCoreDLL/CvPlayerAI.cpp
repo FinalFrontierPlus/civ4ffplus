@@ -1449,7 +1449,7 @@ DomainTypes CvPlayerAI::AI_unitAIDomainType(UnitAITypes eUnitAI) const
 	case UNITAI_CARRIER_SEA:
 	case UNITAI_MISSILE_CARRIER_SEA:
 	case UNITAI_PIRATE_SEA:
-		return DOMAIN_SEA;
+		return DOMAIN_LAND; // FFP AImod : was DOMAIN_SEA - there is no DOMAIN_SEA in FFP
 		break;
 
 	case UNITAI_ATTACK_AIR:
@@ -7856,14 +7856,16 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			{
 				if (GC.getUnitInfo(eUnit).getSpecialCargo() != NO_SPECIALUNIT)
 				{
-					for (int i = 0; i < NUM_UNITAI_TYPES; ++i)
-					{
+/** FFP AImod: bugfix, actually
+ ** This loop is pointless. The loop variable is never used. **/
+//	FFP				for (int i = 0; i < NUM_UNITAI_TYPES; ++i)
+//	FFP				{
 						if (GC.getSpecialUnitInfo((SpecialUnitTypes)GC.getUnitInfo(eUnit).getSpecialCargo()).isCarrierUnitAIType(eUnitAI))
 						{
 							bValid = true;
 							break;
 						}
-					}
+//	FFP				}
 				}
 			}
 			break;
