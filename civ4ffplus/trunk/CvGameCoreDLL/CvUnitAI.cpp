@@ -6745,6 +6745,35 @@ bool CvUnitAI::AI_group(UnitAITypes eUnitAI, int iMaxGroup, int iMaxOwnUnitAI, i
 	{
 		return false;
 	}
+/** FFP AImod : don't let units that can't move due to terrain issues join groups - start
+ **		This is mostly for the B5 mod's planetary defense troops which are prevented from
+ **		wandering around space by making the unit unable to move onto the space terrain
+ **		via a TerrainImpassable of TERRAIN_TUNDRA. The AI loves to group these troops,
+ **		with their city defense unit AI type, with settlers... Oops.
+ **	Note that there are some standard checks that are bsing skipped due to the nature of the FFP map
+ ** (it is all one land area).
+ **/
+	int iI;
+	CvPlot* pLoopPlot;
+	bool bContinue = false;
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
+	{
+		pLoopPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pLoopPlot != NULL)
+		{
+			if (canMoveInto(pLoopPlot))
+			{	// Just one adjacent plot we can enter is good enough to pass this test.
+				bContinue = true;
+				break;
+			}
+		}
+	}
+	if (!bContinue)
+	{
+		return false;
+	}
+/** FFP AImod : don't let units that can't move due to terrain issues join groups - end **/
 
 	iBestValue = MAX_INT;
 	pBestUnit = NULL;

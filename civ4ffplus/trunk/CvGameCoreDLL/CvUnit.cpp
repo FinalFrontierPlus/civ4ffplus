@@ -6659,7 +6659,7 @@ bool CvUnit::build(BuildTypes eBuild)
 				eUnit = ((UnitTypes)(GC.getUnitClassInfo(eUnitClass).getDefaultUnitIndex()));
 				if (eUnit != NO_UNIT)
 				{
-					CvUnit * pNewUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE(), UNITAI_ATTACK);
+					CvUnit * pNewUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eUnit, getX_INLINE(), getY_INLINE()); // FFP AImod : removed unit AI specification so it will use default from unitinfo XML
 					iCultureRange = (GC.getUnitInfo(eUnit).getCultureRange());
 					for (iCultureX = -iCultureRange; iCultureX <= iCultureRange; iCultureX++)
 					{
@@ -8141,18 +8141,24 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 			}
 
 			// < Unit Combat Attack Defense Mod Start >
-			iExtraModifier = unitCombatDefenseModifier(pAttacker->getUnitCombatType());
-			iTempModifier += iExtraModifier;
-			if (pCombatDetails != NULL)
+			if (pAttacker->getUnitCombatType() != NO_UNITCOMBAT) // Bugfix
 			{
-				pCombatDetails->iCombatDefenseModifier = iExtraModifier;
+				iExtraModifier = unitCombatDefenseModifier(pAttacker->getUnitCombatType());
+				iTempModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iCombatDefenseModifier = iExtraModifier;
+				}
 			}
 
-			iExtraModifier = -pAttacker->unitCombatAttackModifier(getUnitCombatType());
-			iTempModifier += iExtraModifier;
-			if (pCombatDetails != NULL)
+			if (getUnitCombatType() != NO_UNITCOMBAT) // Bugfix
 			{
-				pCombatDetails->iCombatAttackModifier = iExtraModifier;
+				iExtraModifier = -pAttacker->unitCombatAttackModifier(getUnitCombatType());
+				iTempModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iCombatAttackModifier = iExtraModifier;
+				}
 			}
 			// < Unit Combat Attack Defense Mod End   >
 
