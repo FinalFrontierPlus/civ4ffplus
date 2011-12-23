@@ -6762,7 +6762,7 @@
 			<Capture>NONE</Capture>
 			<Combat>UNITCOMBAT_STARBASE</Combat>
 			<Domain>DOMAIN_IMMOBILE</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_CARRIER_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
 			<Description>TXT_KEY_UNIT_STARBASE_I_NEW</Description>
@@ -6819,7 +6819,7 @@
 			<FlankingStrikes/>
 			<UnitAIs>
 				<UnitAI>
-					<UnitAIType>UNITAI_CARRIER_SEA</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
@@ -6953,7 +6953,7 @@
 			<Capture>NONE</Capture>
 			<Combat>UNITCOMBAT_STARBASE</Combat>
 			<Domain>DOMAIN_IMMOBILE</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_CARRIER_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
 			<Description>TXT_KEY_UNIT_STARBASE_II_NEW</Description>
@@ -7010,7 +7010,7 @@
 			<FlankingStrikes/>
 			<UnitAIs>
 				<UnitAI>
-					<UnitAIType>UNITAI_CARRIER_SEA</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
@@ -7145,7 +7145,7 @@
 			<Capture>NONE</Capture>
 			<Combat>UNITCOMBAT_STARBASE</Combat>
 			<Domain>DOMAIN_IMMOBILE</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_CARRIER_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
 			<Description>TXT_KEY_UNIT_STARBASE_III</Description>
@@ -7197,7 +7197,7 @@
 			<FlankingStrikes/>
 			<UnitAIs>
 				<UnitAI>
-					<UnitAIType>UNITAI_CARRIER_SEA</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<bUnitAI>1</bUnitAI>
 				</UnitAI>
 			</UnitAIs>
@@ -7331,7 +7331,7 @@
 			<Capture>UNITCLASS_SENSOR</Capture>
 			<Combat>UNITCOMBAT_STARBASE</Combat>
 			<Domain>DOMAIN_IMMOBILE</Domain>
-			<DefaultUnitAI>UNITAI_ATTACK</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_SPY_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>INVISIBLE_STEALTH</SeeInvisible>
 			<Description>TXT_KEY_UNIT_SENSOR</Description>
