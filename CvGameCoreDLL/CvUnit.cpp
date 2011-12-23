@@ -8141,18 +8141,24 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 			}
 
 			// < Unit Combat Attack Defense Mod Start >
-			iExtraModifier = unitCombatDefenseModifier(pAttacker->getUnitCombatType());
-			iTempModifier += iExtraModifier;
-			if (pCombatDetails != NULL)
+			if (pAttacker->getUnitCombatType() != NO_UNITCOMBAT) // Bugfix
 			{
-				pCombatDetails->iCombatDefenseModifier = iExtraModifier;
+				iExtraModifier = unitCombatDefenseModifier(pAttacker->getUnitCombatType());
+				iTempModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iCombatDefenseModifier = iExtraModifier;
+				}
 			}
 
-			iExtraModifier = -pAttacker->unitCombatAttackModifier(getUnitCombatType());
-			iTempModifier += iExtraModifier;
-			if (pCombatDetails != NULL)
+			if (getUnitCombatType() != NO_UNITCOMBAT) // Bugfix
 			{
-				pCombatDetails->iCombatAttackModifier = iExtraModifier;
+				iExtraModifier = -pAttacker->unitCombatAttackModifier(getUnitCombatType());
+				iTempModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iCombatAttackModifier = iExtraModifier;
+				}
 			}
 			// < Unit Combat Attack Defense Mod End   >
 
