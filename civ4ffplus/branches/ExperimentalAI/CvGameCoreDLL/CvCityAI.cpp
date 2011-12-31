@@ -2167,14 +2167,16 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 		aiUnitAIVal[UNITAI_CARRIER_AIR] += GET_PLAYER(getOwnerINLINE()).AI_countCargoSpace(UNITAI_CARRIER_SEA);
 		aiUnitAIVal[UNITAI_MISSILE_AIR] += GET_PLAYER(getOwnerINLINE()).AI_countCargoSpace(UNITAI_MISSILE_CARRIER_SEA);
 /** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - start
- **	Try adding half the number of cargo spaces currently available for squadrons or missiles on
- ** the units with the other unit AI types.
+ **	Try adding half the number of cargo spaces currently available for squadrons or missiles on the units
+ ** with the other unit AI types (cut in half after adding the capacities so the 1 space units add up).
  ** This is made a tad more complicated by the fact that there are no enums for the relevant
  ** special unit types since they are defined in the XML...
  ** The SPECIALUNIT_FIGHTER specifies a CarrierUnitAI of UNITAI_CARRIER_SEA.
  ** The SPECIALUNIT_MISSILE specifies a CarrierUnitAI of UNITAI_MISSILE_CARRIER_SEA. **/
 		CvUnit* pLoopUnit;
 		int iLoop;
+		int tmpCarrierAir = 0;
+		int tmpMissileAir = 0;
 		for(pLoopUnit = GET_PLAYER(getOwnerINLINE()).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(getOwnerINLINE()).nextUnit(&iLoop))
 		{
 			if ((pLoopUnit->AI_getUnitAIType() != UNITAI_CARRIER_SEA) && 
@@ -2184,13 +2186,15 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 			{
 				if (GC.getSpecialUnitInfo((SpecialUnitTypes)pLoopUnit->specialCargo()).isCarrierUnitAIType(UNITAI_CARRIER_SEA))
 				{
-					aiUnitAIVal[UNITAI_CARRIER_AIR] += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR) / 2;
+					 tmpCarrierAir += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR);
 				}
 				else if (GC.getSpecialUnitInfo((SpecialUnitTypes)pLoopUnit->specialCargo()).isCarrierUnitAIType(UNITAI_MISSILE_CARRIER_SEA))
 				{
-					aiUnitAIVal[UNITAI_MISSILE_AIR] += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR) / 2;
+					 tmpMissileAir += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR);
 				}
 			}
+			aiUnitAIVal[UNITAI_CARRIER_AIR] += tmpCarrierAir / 2;
+			aiUnitAIVal[UNITAI_MISSILE_AIR] += tmpMissileAir / 2;
 		}
 /** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - end **/
 		if (bPrimaryArea)
