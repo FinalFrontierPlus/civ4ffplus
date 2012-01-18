@@ -121,7 +121,7 @@ def unitBuiltFeats(pCity, pUnit):
 				popupInfo.setButtonPopupType(ButtonPopupTypes.BUTTONPOPUP_PYTHON)
 				popupInfo.setData1(FeatTypes.FEAT_UNITCOMBAT_SIEGE)
 				popupInfo.setData2(pCity.getID())
-				popupInfo.setText(localText.getText("TXT_KEY_FEAT_CAPITAL_SHIP", (pUnit.getNameKey(), pCity.getNameKey(), )))
+				popupInfo.setText(localText.getText("TXT_KEY_FEAT_UNITCOMBAT_CAPITAL_SHIP", (pUnit.getNameKey(), pCity.getNameKey(), )))
 				popupInfo.setOnClickedPythonCallback("featAccomplishedOnClickedCallback")
 				popupInfo.setOnFocusPythonCallback("featAccomplishedOnFocusCallback")
 				popupInfo.addPythonButton(localText.getText("TXT_KEY_FEAT_ACCOMPLISHED_OK", ()), "")
