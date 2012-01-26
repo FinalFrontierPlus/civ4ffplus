@@ -395,4 +395,20 @@
 		<Italian>Improves productivity of pirate solar systems</Italian>
 		<Spanish>Improves productivity of pirate solar systems</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_REDUCED_PIRATES</Tag>
+		<English>Reduced Pirates</English>
+		<French>Reduced Pirates</French>
+		<German>Reduced Pirates</German>
+		<Italian>Reduced Pirates</Italian>
+		<Spanish>Reduced Pirates</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_REDUCED_PIRATES_HELP</Tag>
+		<English>Reduces the number of pirates by half</English>
+		<French>Reduces the number of pirates by half</French>
+		<German>Reduces the number of pirates by half</German>
+		<Italian>Reduces the number of pirates by half</Italian>
+		<Spanish>Reduces the number of pirates by half</Spanish>
+	</TEXT>
 </Civ4GameText>

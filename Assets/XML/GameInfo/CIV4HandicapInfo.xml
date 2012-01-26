@@ -62,7 +62,7 @@
 			<iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>100</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>40</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>35</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>50</iAIUnitUpgradePercent>
 			<iAIInflationPercent>80</iAIInflationPercent>
 			<iAIWarWearinessPercent>80</iAIWarWearinessPercent>
 			<iAIPerEraModifier>0</iAIPerEraModifier>
@@ -129,7 +129,7 @@
 			<iNoTechTradeModifier>70</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>50</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>360</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>400</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>2000</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>130</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>35</iBarbarianCreationTurnsElapsed>
@@ -159,7 +159,7 @@
 			<iAICivicUpkeepPercent>100</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>100</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>35</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>30</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>45</iAIUnitUpgradePercent>
 			<iAIInflationPercent>70</iAIInflationPercent>
 			<iAIWarWearinessPercent>70</iAIWarWearinessPercent>
 			<iAIPerEraModifier>0</iAIPerEraModifier>
@@ -226,7 +226,7 @@
 			<iNoTechTradeModifier>60</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>40</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>300</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>330</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>1800</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>120</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>35</iBarbarianCreationTurnsElapsed>
@@ -256,7 +256,7 @@
 			<iAICivicUpkeepPercent>95</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>95</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>30</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>25</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>45</iAIUnitUpgradePercent>
 			<iAIInflationPercent>60</iAIInflationPercent>
 			<iAIWarWearinessPercent>60</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-1</iAIPerEraModifier>
@@ -323,7 +323,7 @@
 			<iNoTechTradeModifier>50</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>35</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>240</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>280</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>1600</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>110</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>30</iBarbarianCreationTurnsElapsed>
@@ -353,7 +353,7 @@
 			<iAICivicUpkeepPercent>90</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>90</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>25</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>20</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>40</iAIUnitUpgradePercent>
 			<iAIInflationPercent>50</iAIInflationPercent>
 			<iAIWarWearinessPercent>50</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-2</iAIPerEraModifier>
@@ -420,7 +420,7 @@
 			<iNoTechTradeModifier>40</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>30</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>200</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>240</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>1400</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>100</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>25</iBarbarianCreationTurnsElapsed>
@@ -450,7 +450,7 @@
 			<iAICivicUpkeepPercent>85</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>85</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>20</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>15</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>40</iAIUnitUpgradePercent>
 			<iAIInflationPercent>40</iAIInflationPercent>
 			<iAIWarWearinessPercent>40</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-3</iAIPerEraModifier>
@@ -517,7 +517,7 @@
 			<iNoTechTradeModifier>30</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>25</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>160</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>200</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>1200</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>90</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>20</iBarbarianCreationTurnsElapsed>
@@ -547,7 +547,7 @@
 			<iAICivicUpkeepPercent>80</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>80</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>15</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>10</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>35</iAIUnitUpgradePercent>
 			<iAIInflationPercent>30</iAIInflationPercent>
 			<iAIWarWearinessPercent>30</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-4</iAIPerEraModifier>
@@ -614,7 +614,7 @@
 			<iNoTechTradeModifier>20</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>20</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>130</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>160</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>1000</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>80</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>20</iBarbarianCreationTurnsElapsed>
@@ -644,7 +644,7 @@
 			<iAICivicUpkeepPercent>60</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>60</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>10</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>5</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>30</iAIUnitUpgradePercent>
 			<iAIInflationPercent>20</iAIInflationPercent>
 			<iAIWarWearinessPercent>20</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-5</iAIPerEraModifier>
@@ -711,7 +711,7 @@
 			<iNoTechTradeModifier>15</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>15</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>120</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>145</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>900</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>75</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>20</iBarbarianCreationTurnsElapsed>
@@ -741,7 +741,7 @@
 			<iAICivicUpkeepPercent>55</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>55</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>10</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>5</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>25</iAIUnitUpgradePercent>
 			<iAIInflationPercent>15</iAIInflationPercent>
 			<iAIWarWearinessPercent>15</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-6</iAIPerEraModifier>
@@ -808,7 +808,7 @@
 			<iNoTechTradeModifier>10</iNoTechTradeModifier>
 			<iTechTradeKnownModifier>0</iTechTradeKnownModifier>
 			<iUnownedTilesPerGameAnimal>10</iUnownedTilesPerGameAnimal>
-			<iUnownedTilesPerBarbarianUnit>110</iUnownedTilesPerBarbarianUnit>
+			<iUnownedTilesPerBarbarianUnit>130</iUnownedTilesPerBarbarianUnit>
 			<iUnownedWaterTilesPerBarbarianUnit>800</iUnownedWaterTilesPerBarbarianUnit>
 			<iUnownedTilesPerBarbarianCity>70</iUnownedTilesPerBarbarianCity>
 			<iBarbarianCreationTurnsElapsed>20</iBarbarianCreationTurnsElapsed>
@@ -838,7 +838,7 @@
 			<iAICivicUpkeepPercent>50</iAICivicUpkeepPercent>
 			<iAIUnitCostPercent>50</iAIUnitCostPercent>
 			<iAIUnitSupplyPercent>5</iAIUnitSupplyPercent>
-			<iAIUnitUpgradePercent>5</iAIUnitUpgradePercent>
+			<iAIUnitUpgradePercent>20</iAIUnitUpgradePercent>
 			<iAIInflationPercent>10</iAIInflationPercent>
 			<iAIWarWearinessPercent>10</iAIWarWearinessPercent>
 			<iAIPerEraModifier>-7</iAIPerEraModifier>

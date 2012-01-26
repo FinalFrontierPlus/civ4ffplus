@@ -326,7 +326,7 @@ def getFavoriteCivic(playerOrID):
 			elif len(favorites) == 1:
 				return favorites[0]
 			else:
-				randCivic = gc.getSorenRandNum(len(favorites) - 1, "Random Civic MFC")
+				randCivic = CyGame().getSorenRandNum(len(favorites), "Random Civic MFC")
 				return favorites[randCivic]
 			#End of TC01's Dirty Hack for Final Frontier Plus
 	return CivicTypes.NO_CIVIC
