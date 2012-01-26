@@ -761,14 +761,7 @@ class FFGameUtils:
 	def getWidgetHelp(self, argsList):
 		eWidgetType, iData1, iData2, bOption = argsList
 		
-		printd("eWidgetType")
-		printd(eWidgetType)
-		printd("iData1")
-		printd(iData1)
-		printd("iData2")
-		printd(iData2)
-		printd("bOption")
-		printd(bOption)
+		printd("eWidgetType %d, iData1 %d, iData2 %d, bOption %d" % (eWidgetType, iData1, iData2, bOption))
 		
 		szHelpText = u""
 		

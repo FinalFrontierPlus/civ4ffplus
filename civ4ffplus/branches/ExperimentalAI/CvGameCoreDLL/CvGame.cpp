@@ -6340,7 +6340,11 @@ void CvGame::createBarbarianUnits()
 			{
 				iDivisor = std::max(1, (iDivisor / 2));
 			}
-
+			// FFP : GAMEOPTION_REDUCED_PIRATES added for v1.8
+			if (GC.getGame().isOption(GAMEOPTION_REDUCED_PIRATES))
+			{
+				iDivisor *= 2; // Divide by twice the value to get half as many
+			}
 			if (iDivisor > 0)
 			{
 /************************************************************************/

@@ -467,12 +467,12 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 			
 			apUnitList = pyPlayer.getUnitList()
 			for pUnitLoop in apUnitList:
-				# FFP - Starbase & Station UnitAI adjustment
-				if pUnitLoop.isStarbase() or pUnitLoop.isOtherStation():
-					printd("Base UnitAI check: Starbase = %d, OtherStation = %d, UnitAI = %d" % (pUnitLoop.isStarbase(), pUnitLoop.isOtherStation(), pUnitLoop.getUnitAIType()))
-					if pUnitLoop.getUnitAIType() != UnitAITypes.UNITAI_CARRIER_SEA :
-						pUnitLoop.setUnitAIType(UnitAITypes.UNITAI_CARRIER_SEA)
-						printd(" --- set unit's UnitAI type to UNITAI_CARRIER_SEA")
+				# # FFP - Starbase & Station UnitAI adjustment
+				# if pUnitLoop.isStarbase() or pUnitLoop.isOtherStation():
+					# printd("Base UnitAI check: Starbase = %d, OtherStation = %d, UnitAI = %d" % (pUnitLoop.isStarbase(), pUnitLoop.isOtherStation(), pUnitLoop.getUnitAIType()))
+					# if pUnitLoop.getUnitAIType() != UnitAITypes.UNITAI_CARRIER_SEA :
+						# pUnitLoop.setUnitAIType(UnitAITypes.UNITAI_CARRIER_SEA)
+						# printd(" --- set unit's UnitAI type to UNITAI_CARRIER_SEA")
 				if (pUnitLoop.isStarbase() and (not pUnitLoop.isOtherStation())):
 					aaiStarbaseList.append([pUnitLoop.getGameTurnCreated(), iPlayerLoop, pUnitLoop.getX(), pUnitLoop.getY()])
 
@@ -1134,50 +1134,50 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 		if (pPlayer.hasTrait(iTrait)):
 			pUnit.changeExperience(4, 100, false, false, false)
 
-		# FFP - Missile carrying unit UnitAI adjustment
-		# Since the unit was just created it should have no cargo on it
-		# so the cargoSpaceAvailable function shuold return the maximum
-		# it can carry.
-		# The chance to swtich unit AI to one of the sea types is
-		# the number it can carry out of that number + 2.
-		# So 1 in 3 if can carry 1, 2 in 4 if can carry 2, etc.
-		# This should reduce the impact on the AI of swapping unit AIs (compared
-		# to always switching them).
-		# Unit AI types that missiels will load onto:
-		#  UNITAI_MISSILE_CARRIER_SEA, UNITAI_RESERVE_SEA, UNITAI_ATTACK_SEA.
-		# chance for slecting each type is 50% for ATTACK_SEA and 25% for the other two
-		# Notes:
-		# - UNITAI_MISSILE_CARRIER_SEA will load as many as it can carry,
-		# the other two will apparently get a maximum of 2; this unit AI does not appear
-		# to ever attack any other unit directly unless it is in a city (via the
-		# AI_seaRetreatFromCityDanger, which seems to be misnamed as it appears
-		# to be more about attacking enemies approaching a city than running away);
-		# it also has additional logic for where to move to fire missiles at things
-		# and will force an AI update for its cargo (which causes them to do their
-		# launch logic if they havn't already) when it gets to its selected location
-		# but with the other two unit AI types the carried missiles do their logic
-		# whenever it gets to them in the normal order
-		# - UNITAI_RESERVE_SEA will tend to protect high value resources:
-		# I think this will protect the +2 happy/healthy resources and maybe the Uranium
-		# once you can build Doomesday Missiles, but probably not any of the others
-		# unless maybe the Industrial Complex is built (maybe not even then);
-		# it can also "patrol" which ought to do anti-pirate work; its odds of
-		# attacking nearby units are lower than the ATTACK version (it requires the
-		# chance of winning to be higher) but it will do so; it can join an attack
-		# group and go with it if it isn't doing anything else
-		iMissiles = pUnit.cargoSpaceAvailable( 2, DomainTypes.DOMAIN_AIR) # Special unit type 2 is SPECIALUNIT_MISSILE
-		if iMissiles > 0 :
-			if iMissiles > CyGame().getSorenRandNum(iMissiles + 2, "Change missile carrying unit UNITAI type?") :
-				iType = CyGame().getSorenRandNum(4, "Select new unit AI type")
-				if iType == 0: # 25%
-					pUnit.setUnitAIType(UnitAITypes.UNITAI_MISSILE_CARRIER_SEA)
-					printd("onUnitBuilt: changed unit AI to UNITAI_MISSILE_CARRIER_SEA for %s (%s)" % (gc.getUnitInfo(pUnit.getUnitType()).getDescription().encode('unicode_escape'), pPlayer.getName()))
-				elif iType == 1: # 25%
-					pUnit.setUnitAIType(UnitAITypes.UNITAI_RESERVE_SEA)
-					printd("onUnitBuilt: changed unit AI to UNITAI_RESERVE_SEA for %s (%s)" % (gc.getUnitInfo(pUnit.getUnitType()).getDescription().encode('unicode_escape'), pPlayer.getName()))
-				else: # 50%
-					pUnit.setUnitAIType(UnitAITypes.UNITAI_ATTACK_SEA)
-					printd("onUnitBuilt: changed unit AI to UNITAI_ATTACK_SEA for %s (%s)" % (gc.getUnitInfo(pUnit.getUnitType()).getDescription().encode('unicode_escape'), pPlayer.getName()))
+		# # FFP - Missile carrying unit UnitAI adjustment
+		# # Since the unit was just created it should have no cargo on it
+		# # so the cargoSpaceAvailable function shuold return the maximum
+		# # it can carry.
+		# # The chance to swtich unit AI to one of the sea types is
+		# # the number it can carry out of that number + 2.
+		# # So 1 in 3 if can carry 1, 2 in 4 if can carry 2, etc.
+		# # This should reduce the impact on the AI of swapping unit AIs (compared
+		# # to always switching them).
+		# # Unit AI types that missiels will load onto:
+		# #  UNITAI_MISSILE_CARRIER_SEA, UNITAI_RESERVE_SEA, UNITAI_ATTACK_SEA.
+		# # chance for slecting each type is 50% for ATTACK_SEA and 25% for the other two
+		# # Notes:
+		# # - UNITAI_MISSILE_CARRIER_SEA will load as many as it can carry,
+		# # the other two will apparently get a maximum of 2; this unit AI does not appear
+		# # to ever attack any other unit directly unless it is in a city (via the
+		# # AI_seaRetreatFromCityDanger, which seems to be misnamed as it appears
+		# # to be more about attacking enemies approaching a city than running away);
+		# # it also has additional logic for where to move to fire missiles at things
+		# # and will force an AI update for its cargo (which causes them to do their
+		# # launch logic if they havn't already) when it gets to its selected location
+		# # but with the other two unit AI types the carried missiles do their logic
+		# # whenever it gets to them in the normal order
+		# # - UNITAI_RESERVE_SEA will tend to protect high value resources:
+		# # I think this will protect the +2 happy/healthy resources and maybe the Uranium
+		# # once you can build Doomesday Missiles, but probably not any of the others
+		# # unless maybe the Industrial Complex is built (maybe not even then);
+		# # it can also "patrol" which ought to do anti-pirate work; its odds of
+		# # attacking nearby units are lower than the ATTACK version (it requires the
+		# # chance of winning to be higher) but it will do so; it can join an attack
+		# # group and go with it if it isn't doing anything else
+		# iMissiles = pUnit.cargoSpaceAvailable( 2, DomainTypes.DOMAIN_AIR) # Special unit type 2 is SPECIALUNIT_MISSILE
+		# if iMissiles > 0 :
+			# if iMissiles > CyGame().getSorenRandNum(iMissiles + 2, "Change missile carrying unit UNITAI type?") :
+				# iType = CyGame().getSorenRandNum(4, "Select new unit AI type")
+				# if iType == 0: # 25%
+					# pUnit.setUnitAIType(UnitAITypes.UNITAI_MISSILE_CARRIER_SEA)
+					# printd("onUnitBuilt: changed unit AI to UNITAI_MISSILE_CARRIER_SEA for %s (%s)" % (gc.getUnitInfo(pUnit.getUnitType()).getDescription().encode('unicode_escape'), pPlayer.getName()))
+				# elif iType == 1: # 25%
+					# pUnit.setUnitAIType(UnitAITypes.UNITAI_RESERVE_SEA)
+					# printd("onUnitBuilt: changed unit AI to UNITAI_RESERVE_SEA for %s (%s)" % (gc.getUnitInfo(pUnit.getUnitType()).getDescription().encode('unicode_escape'), pPlayer.getName()))
+				# else: # 50%
+					# pUnit.setUnitAIType(UnitAITypes.UNITAI_ATTACK_SEA)
+					# printd("onUnitBuilt: changed unit AI to UNITAI_ATTACK_SEA for %s (%s)" % (gc.getUnitInfo(pUnit.getUnitType()).getDescription().encode('unicode_escape'), pPlayer.getName()))
 
 	def onCityAcquired(self, argsList):
 		'City Acquired'

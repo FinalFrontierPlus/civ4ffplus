@@ -237,5 +237,12 @@
 			<bDefault>0</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
+		<GameOptionInfo>
+			<Type>GAMEOPTION_REDUCED_PIRATES</Type>
+			<Description>TXT_KEY_GAME_OPTION_REDUCED_PIRATES</Description>
+			<Help>TXT_KEY_GAME_OPTION_REDUCED_PIRATES_HELP</Help>
+			<bDefault>0</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
 	</GameOptionInfos>
 </Civ4GameOptionInfos>
