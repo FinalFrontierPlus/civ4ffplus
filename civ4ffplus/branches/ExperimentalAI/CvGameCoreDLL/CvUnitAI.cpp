@@ -1964,7 +1964,11 @@ void CvUnitAI::AI_attackMove()
 			{
 				if (area()->getNumUnrevealedTiles(getTeam()) > 0)
 				{
-					if (GET_PLAYER(getOwnerINLINE()).AI_areaMissionAIs(area(), MISSIONAI_EXPLORE, getGroup()) < (GET_PLAYER(getOwnerINLINE()).AI_neededExplorers(area()) + 1))
+/** FFP AI mod : too many attack units out exploring - start
+ **		This was pushing the number up to 1 more than the AI_neededExplorers function said was needed
+ **		so remove the "+ 1" **/
+					if (GET_PLAYER(getOwnerINLINE()).AI_areaMissionAIs(area(), MISSIONAI_EXPLORE, getGroup()) < (GET_PLAYER(getOwnerINLINE()).AI_neededExplorers(area())/* + 1*/))
+/** FFP AI mod : too many attack units out exploring - end **/
 					{
 						if (AI_exploreRange(3))
 						{
@@ -2000,6 +2004,13 @@ void CvUnitAI::AI_attackMove()
 			return;
 		}
 
+/** FFP AImod : group with carrier if nothing else going on - start **/
+		if (AI_group(UNITAI_CARRIER_SEA, /*iMaxGroup*/ 4, /*iMaxOwnUnitAI*/ 2, -1, true, false, false, /*iMaxPath*/ 5))
+		{
+			return;
+		}
+/** FFP AImod : group with carrier if nothing else going on - end **/
+
 		if (AI_patrol())
 		{
 			return;
@@ -2014,6 +2025,7 @@ void CvUnitAI::AI_attackMove()
 		{
 			return;
 		}
+
 	}
 
 	getGroup()->pushMission(MISSION_SKIP);
@@ -2921,6 +2933,13 @@ void CvUnitAI::AI_counterMove()
 	{
 		return;
 	}
+
+/** FFP AImod : group with carrier if nothing else going on - start **/
+	if (AI_group(UNITAI_CARRIER_SEA, /*iMaxGroup*/ 4, /*iMaxOwnUnitAI*/ 2, -1, true, false, false, /*iMaxPath*/ 5))
+	{
+		return;
+	}
+/** FFP AImod : group with carrier if nothing else going on - end **/
 
 	if (AI_retreatToCity())
 	{
@@ -5274,8 +5293,12 @@ void CvUnitAI::AI_carrierSeaMove()
 	{
 		return;
 	}
-
+/** FFP AI mod : change carrier group composition check - start
+ **	original code:
 	if (getGroup()->countNumUnitAIType(UNITAI_ATTACK_SEA) + getGroup()->countNumUnitAIType(UNITAI_ESCORT_SEA) == 0)
+ ** new code: **/
+	if (getGroup()->countNumUnitAIType(UNITAI_ATTACK) + getGroup()->countNumUnitAIType(UNITAI_COUNTER) == 0)
+/** FFP AI mod : change carrier group composition check - end **/
 	{
 		if (plot()->isCity() && plot()->getOwnerINLINE() == getOwnerINLINE())
 		{
@@ -5294,11 +5317,15 @@ void CvUnitAI::AI_carrierSeaMove()
 		{
 			return;
 		}
-
+/** FFP AI mod : skip carrier blockade check - start
+ **		(currently) a blockade is a sea type thing that is irrelevant to FFP
+ **		therefore don't spend all taht time looping over all plots and such...
+ **		snip: 
 		if (AI_blockade())
 		{
 			return;
 		}
+ ** FFP AI mod : skip carrier blockade check - end **/
 
 		if (AI_shadow(UNITAI_ASSAULT_SEA))
 		{
@@ -5715,7 +5742,7 @@ void CvUnitAI::AI_missileAirMove()
 			return;
 		}
 
-/** FFP AI mod: rebase missiles off starbases sometimes - start 
+/** FFP AImod: rebase missiles off starbases sometimes - start 
  **		starbases are now using UNITAI_CARRIER_SEA, so that is how we know
  **		that it is on a starbase **/
 		if (getTransportUnit()->AI_getUnitAIType() == UNITAI_CARRIER_SEA)
@@ -5732,7 +5759,7 @@ void CvUnitAI::AI_missileAirMove()
 			getGroup()->pushMission(MISSION_SKIP);
 			return;
 		}
-/** FFP AI mod: rebase missiles off starbases sometimes - end **/
+/** FFP AImod: rebase missiles off starbases sometimes - end **/
 	}
 
 	if (AI_airStrike())
@@ -5774,6 +5801,21 @@ void CvUnitAI::AI_missileAirMove()
 	}
 
 	if (AI_missileLoad(UNITAI_PILLAGE, 1))
+	{
+		return;
+	}
+
+	if (AI_missileLoad(UNITAI_COUNTER, 1))
+	{
+		return;
+	}
+	
+	if (AI_missileLoad(UNITAI_EXPLORE, 1))
+	{
+		return;
+	}
+	
+	if (AI_missileLoad(UNITAI_RESERVE, 1))
 	{
 		return;
 	}
@@ -15440,7 +15482,7 @@ bool CvUnitAI::AI_airStrike()
 /**		The missiles are pretty weak in FFP so the AI rarely uses them.
 /**		- Adjust the minimum target value down:
 /**			slightly if the free missiles from starabses option is off
-/**			slignifcanly ifthat option is on as some of them are free
+/**			signifcantly if that option is on as some of them are free
 /** original code:
 	iBestValue = (isSuicide() && m_pUnitInfo->getProductionCost() > 0) ? (5 * m_pUnitInfo->getProductionCost()) / 6 : 0;
 /** new code: **/
@@ -17533,6 +17575,14 @@ bool CvUnitAI::AI_allowGroup(const CvUnit* pUnit, UnitAITypes eUnitAI) const
 	{
 		return false;
 	}
+
+/** FFP AImod : do not allow units to group with a unit that is DOMAIN_IMMOBILE - start **/
+	if (pUnit->getDomainType() == DOMAIN_IMMOBILE)
+	{
+		return false;
+	}
+/** FFP AImod : do not allow units to group with a unit that is DOMAIN_IMMOBILE - end **/
+
 
 	if (!pUnit->isGroupHead())
 	{

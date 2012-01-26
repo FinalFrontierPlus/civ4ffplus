@@ -1630,8 +1630,75 @@ void CvCityAI::AI_chooseProduction()
 				}
 			}
 		}
-	}
+/** FFP AImod : former water only unit AI adjustment - start
+ **		A section of the code from the block above that was only run if on the water.
+ **		Added here to deal with UNITAI_CARRIER_SEA and UNITAI_MISSILE_CARRIER_SEA
+ **		and the things they can carry. 
+ **		Note: in here it can try to build a unit with UNITAI_CARRIER_SEA, as well
+ **		as UNITAI_CARRIER_AIR (squadrons to be carried) and UNITAI_MISSILE_AIR (missiels to be carried)
+ **		but not UNITAI_MISSILE_CARRIER_SEA.
+ **/
+		int iCarriers = kPlayer.AI_totalUnitAIs(UNITAI_CARRIER_SEA);
 
+		if (iCarriers > 0)
+		{
+			UnitTypes eBestCarrierUnit = NO_UNIT;
+			kPlayer.AI_bestCityUnitAIValue(UNITAI_CARRIER_SEA, this, &eBestCarrierUnit);
+			if (eBestCarrierUnit != NO_UNIT)
+			{
+				FAssert(GC.getUnitInfo(eBestCarrierUnit).getDomainCargo() == DOMAIN_AIR);
+
+				int iCarrierAirNeeded = iCarriers * GC.getUnitInfo(eBestCarrierUnit).getCargoSpace();
+// FFP: reduce the number the above line gives to 2/3 what that says
+				iCarrierAirNeeded *= 2;
+				iCarrierAirNeeded /= 3;
+				if (kPlayer.AI_totalUnitAIs(UNITAI_CARRIER_AIR) < iCarrierAirNeeded)
+				{
+					if (AI_chooseUnit(UNITAI_CARRIER_AIR))
+					{
+						return;
+					}
+				}
+			}
+		}
+/** FFP: change unit build condition - start
+**		remember that starabses are UNITAI_CARRIER_AIR so there will some created from that too
+**	old version:
+		if (iCarriers < (kPlayer.AI_totalUnitAIs(UNITAI_ASSAULT_SEA) / 4))
+**	new version: **/
+		if (iCarriers < ((kPlayer.AI_totalUnitAIs(UNITAI_ATTACK_CITY) + (kPlayer.AI_totalUnitAIs(UNITAI_ATTACK) / 4)) / 3)
+			&& (GC.getGame().getSorenRandNum(3, "AI train UNITAI_CARRIER_AIR") == 0))
+/** FFP: change unit build condition - end **/
+		{
+			if (AI_chooseUnit(UNITAI_CARRIER_SEA))
+			{
+				return;
+			}
+		}
+
+		int iMissileCarriers = kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_CARRIER_SEA);
+
+		if (iMissileCarriers > 0)
+		{
+			UnitTypes eBestMissileCarrierUnit = NO_UNIT;
+			kPlayer.AI_bestCityUnitAIValue(UNITAI_MISSILE_CARRIER_SEA, this, &eBestMissileCarrierUnit);
+			if (eBestMissileCarrierUnit != NO_UNIT)
+			{
+				FAssert(GC.getUnitInfo(eBestMissileCarrierUnit).getDomainCargo() == DOMAIN_AIR);
+					int iMissileCarrierAirNeeded = iMissileCarriers * GC.getUnitInfo(eBestMissileCarrierUnit).getCargoSpace();
+				// FFP : for out purposes, this value is pretty iffy, and low, since more units with other unit AI types can carry the missiles
+				if ((kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_AIR) < iMissileCarrierAirNeeded) ||
+					(bPrimaryArea && (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_MISSILE_CARRIER_SEA) * GC.getUnitInfo(eBestMissileCarrierUnit).getCargoSpace() < kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_MISSILE_AIR))))
+				{
+					if (AI_chooseUnit(UNITAI_MISSILE_AIR))
+					{
+						return;
+					}
+				}
+			}
+		}
+/** FFP AImod : former water only unit AI adjustment - end **/	
+	}
 	UnitTypeWeightArray airUnitTypes;
 
     int iAircraftNeed = 0;
@@ -2193,8 +2260,8 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 					 tmpMissileAir += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR);
 				}
 			}
-			aiUnitAIVal[UNITAI_CARRIER_AIR] += tmpCarrierAir / 2;
-			aiUnitAIVal[UNITAI_MISSILE_AIR] += tmpMissileAir / 2;
+			aiUnitAIVal[UNITAI_CARRIER_AIR] += (tmpCarrierAir + 1)/ 2; // Round up
+			aiUnitAIVal[UNITAI_MISSILE_AIR] += (tmpMissileAir + 1)/ 2; // Round up
 		}
 /** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - end **/
 		if (bPrimaryArea)
@@ -2285,10 +2352,12 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 /** FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - start (2)
  ** This is the extra if there is a war actually going on.
  ** Exactly how much to add? Don't know. Since starbases are using UNITAI_CARRIER_SEA this one
- ** needs to be a little higher to counteract all those units.
+ ** needs to be a little higher to counteract all those units. If we are getting free missiles
+ ** from starbases, increase the UNITAI_MISSILE_CARRIER_SEA value slightly.
  ** Going with this simple set which should not add very much: **/ 
 				aiUnitAIVal[UNITAI_CARRIER_SEA] += (iMilitaryWeight / ((bLandWar) ? 14 : 18)) + 1;
-				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += iMilitaryWeight / ((bLandWar) ? 15 : 20);
+				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += iMilitaryWeight / ((bLandWar) ? 14 : 20);
+				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += (GC.getGameINLINE().isOption(GAMEOPTION_NO_STARBASE_MISSILES) ? 0 : 2);
 /**  FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - end (2) **/
 			}
 		}
@@ -3375,6 +3444,11 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 
 				iValue += (kBuilding.getGlobalPopulationChange() * iNumCities * 4);
 
+/** FFP AI mod : give value to iPlanetPopCapIncrease - start 
+ **		This value is just a guess. Anything should help, though. **/
+				iValue += (kBuilding.getPlanetPopCapIncrease() * (iAngryPopulation > 0 ? 3 : 12));
+/** FFP AI mod : give value to iPlanetPopCapIncrease - end **/
+
 				iValue += (kBuilding.getFreeTechs() * 80);
 
 				iValue += kBuilding.getEnemyWarWearinessModifier() / 2;
@@ -3558,6 +3632,17 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 						}
 					}
 
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - start 
+ **		These specific values are just a guess. Anything should help, though. **/
+					iTempValue += (kBuilding.getPlanetYieldChanges(iI) * 8);
+					for (iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+					{
+						if (hasTrait((TraitTypes)iJ))
+						{
+							iTempValue += (kBuilding.getTraitPlanetYieldChange(iJ, iI) * 8);
+						}
+					}
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - end **/
 					if (iTempValue != 0)
 					{
 						if (bFinancialTrouble && iI == YIELD_COMMERCE)
@@ -4492,7 +4577,14 @@ int CvCityAI::AI_minDefenders()
 	{
 		iDefenders++;
 	}
+/**  FFP AImod: min defender adjustment - start
+ **		remove (buggy?) era code (why divide the start era by 2?)
+ **		remove coastal requirement
+ ** original code
 	if (((iEra - GC.getGame().getStartEra() / 2) >= GC.getNumEraInfos() / 2) && isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+ ** new code **/
+	if (iEra >= (GC.getNumEraInfos() / 2))
+/**  FFP AImod: min defender adjustment - end **/
 	{
 		iDefenders++;
 	}
@@ -4577,8 +4669,10 @@ int CvCityAI::AI_neededAirDefenders()
 
 
 bool CvCityAI::AI_isDanger()
-{
-	return GET_PLAYER(getOwnerINLINE()).AI_getPlotDanger(plot(), 2, false);
+{	
+	/** FFP AImod : bumped range up from 2 to 3
+	 **		this probably slows the game down slightly... **/
+	return GET_PLAYER(getOwnerINLINE()).AI_getPlotDanger(plot(), 3, false);
 }
 
 
