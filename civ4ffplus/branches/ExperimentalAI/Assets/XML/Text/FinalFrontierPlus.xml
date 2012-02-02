@@ -411,4 +411,12 @@
 		<Italian>Reduces the number of pirates by half</Italian>
 		<Spanish>Reduces the number of pirates by half</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_TRADE_YIELD_MODIFIERS</Tag>
+		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield from [ICON_TRADE]</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield avec : [ICON_TRADE]</French>
+		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield durch [ICON_TRADE]</German>
+		<Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield da [ICON_TRADE]</Italian>
+		<Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield por [ICON_TRADE]</Spanish>
+	</TEXT>
 </Civ4GameText>
