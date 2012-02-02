@@ -4088,22 +4088,21 @@ TechTypes CvPlayerAI::AI_bestTech(int iMaxPathLength, bool bIgnoreCost, bool bAs
  **		These specific values are just a guess. Anything should help, though. **/
 											for (iK = 0; iK < NUM_YIELD_TYPES; iK++)
 											{
-												iTempValue = (kLoopBuilding.getPlanetYieldChanges(iK) * 8);
+												iTempValue = (kLoopBuilding.getPlanetYieldChanges(iK) * 20);
 												for (iL = 0; iL < GC.getNumTraitInfos(); iL++)
 												{
 													if (hasTrait((TraitTypes)iL))
 													{
-														iTempValue += (kLoopBuilding.getTraitPlanetYieldChange(iL, iK) * 8);
+														iTempValue += (kLoopBuilding.getTraitPlanetYieldChange(iL, iK) * 20);
 													}
 												}
 												if (bFinancialTrouble && (iK == YIELD_COMMERCE))
 												{
-													iTempValue *= 3;
-													iTempValue /= 2;
+													iTempValue *= 2;
 												}
 												iBuildingValue += iTempValue;
 											}
-											iBuildingValue += (kLoopBuilding.getPlanetPopCapIncrease() * 10);
+											iBuildingValue += (kLoopBuilding.getPlanetPopCapIncrease() * 50);
 /** FFP AI mod : give value to PlanetYieldChanges, TraitPlanetYieldChanges, and iPlanetPopCapIncrease - end **/
 
 											// if this is a religious building, its not as useful
