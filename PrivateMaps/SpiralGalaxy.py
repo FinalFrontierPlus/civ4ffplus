@@ -419,6 +419,12 @@ class FeaturePlacer :
             if self.shouldPlaceFeature(x,y,self.featureRadiation):
                 mmap.plot(x,y).setFeatureType(self.featureRadiation,0)
         
+        #Remove placeholder Flood Plains - why didn't the author add this in the first place!?
+        for iPlotLoop in range(CyMap().numPlots()):
+            pPlot = CyMap().plotByIndex(iPlotLoop)
+            if (pPlot.getFeatureType() == self.featurePlaceHolder):
+                pPlot.setFeatureType(-1, -1)
+        
     def shouldPlaceFeature(self,x,y,featureType):
         gc = CyGlobalContext()
         mmap = gc.getMap()
