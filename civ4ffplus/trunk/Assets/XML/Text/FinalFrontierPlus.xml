@@ -395,4 +395,84 @@
 		<Italian>Improves productivity of pirate solar systems</Italian>
 		<Spanish>Improves productivity of pirate solar systems</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_REDUCED_PIRATES</Tag>
+		<English>Reduced Pirates</English>
+		<French>Reduced Pirates</French>
+		<German>Reduced Pirates</German>
+		<Italian>Reduced Pirates</Italian>
+		<Spanish>Reduced Pirates</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_REDUCED_PIRATES_HELP</Tag>
+		<English>Reduces the number of pirates by half</English>
+		<French>Reduces the number of pirates by half</French>
+		<German>Reduces the number of pirates by half</German>
+		<Italian>Reduces the number of pirates by half</Italian>
+		<Spanish>Reduces the number of pirates by half</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_TRADE_YIELD_MODIFIERS</Tag>
+		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield from [ICON_TRADE]</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield avec : [ICON_TRADE]</French>
+		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield durch [ICON_TRADE]</German>
+		<Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield da [ICON_TRADE]</Italian>
+		<Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield por [ICON_TRADE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRAIT_TRADE_YIELD_MODIFIERS</Tag>
+		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield from [ICON_TRADE]</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield avec : [ICON_TRADE]</French>
+		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield durch [ICON_TRADE]</German>
+		<Italian>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield da [ICON_TRADE]</Italian>
+		<Spanish>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% %F2_yield por [ICON_TRADE]</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_PREDICTIVE ALGORITHMS</Tag>
+		<English>Predictive Algorithms</English>
+		<French>Predictive Algorithms</French>
+		<German>
+			<Text>Predictive Algorithms</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</German>
+		<Italian>Predictive Algorithms</Italian>
+		<Spanish>Predictive Algorithms</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_IMPROVED_TRACKING_SYSTEM</Tag>
+		<English>Improved Tracking System</English>
+		<French>Improved Tracking System</French>
+		<German>
+			<Text>Improved Tracking System</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</German>
+		<Italian>Improved Tracking System</Italian>
+		<Spanish>Improved Tracking System</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_ADVANCED_TRACKING_SYSTEM</Tag>
+		<English>Advanced Tracking System</English>
+		<French>Advanced Tracking System</French>
+		<German>
+			<Text>Advanced Tracking System</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</German>
+		<Italian>Advanced Tracking System</Italian>
+		<Spanish>Advanced Tracking System</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_WARP_PM</Tag>
+		<English>Warp Phase Modulator</English>
+		<French>Warp Phase Modulator</French>
+		<German>
+			<Text>Warp Phase Modulator</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</German>
+		<Italian>Warp Phase Modulator</Italian>
+		<Spanish>Warp Phase Modulator</Spanish>
+	</TEXT>
 </Civ4GameText>
