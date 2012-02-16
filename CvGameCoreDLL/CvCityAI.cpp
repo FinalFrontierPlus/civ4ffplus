@@ -2523,6 +2523,16 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 		}
 	}
 
+/** FFP : AI mod - early bailout when there is nothign to build - start 
+ **		If the iBestOriginalValue is still 0, then nothing can happen below
+ **		that will actually pick a unit, so save the time and effort and bail out now.
+ **/
+	if (iBestOriginalValue == 0)
+	{
+		return NO_UNIT;
+	}
+/** FFP : AI mod - early bailout when there is nothign to build - end **/
+
 	iBestValue = 0;
 	eBestUnit = NO_UNIT;
 
@@ -2543,7 +2553,7 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 						{
 							iValue = GET_PLAYER(getOwnerINLINE()).AI_unitValue(eLoopUnit, eUnitAI, area());
 
-							if ((iValue >= ((iBestOriginalValue * 2) / 3)) && ((eUnitAI != UNITAI_EXPLORE) || (iValue >= iBestOriginalValue)))// FFP AI mod : changed first comparison from ">" to ">="
+							if ((iValue > ((iBestOriginalValue * 3) / 5)) && ((eUnitAI != UNITAI_EXPLORE) || (iValue >= iBestOriginalValue)))// FFP AI mod : changed first comparison > 2/3 to > 3/5
 							{
 								iValue *= (getProductionExperience(eLoopUnit) + 10);
 								iValue /= 10;
