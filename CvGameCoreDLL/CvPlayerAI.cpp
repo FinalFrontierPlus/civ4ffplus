@@ -8216,28 +8216,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		{
 			iValue += 100;
 		}
-/** FFP AI mod : Spy Unit AI value adjustment - start 
- **		Note: currently UNITAI_SPY doesn't pillage. This is just included to
- **		make it more likely that a ship other than a construction ship or colony ship
- **		or (especially) a rapid construction ship is selected.
- **		I'm not sure why the plain isInvsible() check was not already in here.
- **		It is probably also important to note that currently none of the above 3 original
- **		factors is ever true since there are currently no actual spy type units,
- **		i.e. units that can spend espionage points, in FFP.
- **/
-		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE)
-		{
-			iValue += 50;
-		}
-		if (GC.getUnitInfo(eUnit).isInvisible())
-		{
-			iValue += 100;
-		}
-		if (GC.getUnitInfo(eUnit).isPillage())
-		{
-			iValue += 50;
-		}
-/** FFP AI mod : Spy Unit AI value adjustment - end **/
 		break;
 
 	case UNITAI_ICBM:
