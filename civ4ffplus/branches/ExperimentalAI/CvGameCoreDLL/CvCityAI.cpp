@@ -2239,7 +2239,12 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
  ** This is made a tad more complicated by the fact that there are no enums for the relevant
  ** special unit types since they are defined in the XML...
  ** The SPECIALUNIT_FIGHTER specifies a CarrierUnitAI of UNITAI_CARRIER_SEA.
- ** The SPECIALUNIT_MISSILE specifies a CarrierUnitAI of UNITAI_MISSILE_CARRIER_SEA. **/
+ ** The SPECIALUNIT_MISSILE specifies a CarrierUnitAI of UNITAI_MISSILE_CARRIER_SEA.
+ **
+ ** Adjustment 2: As long as we are here looping over all the units, check for units with
+ ** a unit AI type of UNITAI_CARRIER_SEA that are DOMAIN_IMMOBILE and increment aiUnitAIVal[UNITAI_CARRIER_SEA]
+ ** for each in order to compensate for the starbases, so it may build some carriers otehr than them.
+ **/
 		CvUnit* pLoopUnit;
 		int iLoop;
 		int tmpCarrierAir = 0;
@@ -2259,6 +2264,11 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 				{
 					 tmpMissileAir += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR);
 				}
+			}
+			else if ((pLoopUnit->AI_getUnitAIType() == UNITAI_CARRIER_SEA) &&
+					 (pLoopUnit->getDomainType() == DOMAIN_IMMOBILE))
+			{
+				aiUnitAIVal[UNITAI_CARRIER_SEA]++;
 			}
 			aiUnitAIVal[UNITAI_CARRIER_AIR] += (tmpCarrierAir + 1)/ 2; // Round up
 			aiUnitAIVal[UNITAI_MISSILE_AIR] += (tmpMissileAir + 1)/ 2; // Round up
@@ -2350,12 +2360,12 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 					}
 				}
 /** FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - start (2)
- ** This is the extra if there is a war actually going on.
- ** Exactly how much to add? Don't know. Since starbases are using UNITAI_CARRIER_SEA this one
- ** needs to be a little higher to counteract all those units. If we are getting free missiles
- ** from starbases, increase the UNITAI_MISSILE_CARRIER_SEA value slightly.
+ ** This is the extra if there could be a war and we are not in financial trouble (or are still
+ ** below the free unit lmit), or if we are actually in a war.
+ ** Exactly how much to add? Don't know.
+ ** If we are getting free missiles from starbases, increase the UNITAI_MISSILE_CARRIER_SEA value slightly.
  ** Going with this simple set which should not add very much: **/ 
-				aiUnitAIVal[UNITAI_CARRIER_SEA] += (iMilitaryWeight / ((bLandWar) ? 14 : 18)) + 1;
+				aiUnitAIVal[UNITAI_CARRIER_SEA] += (iMilitaryWeight / ((bLandWar) ? 14 : 18));
 				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += iMilitaryWeight / ((bLandWar) ? 14 : 20);
 				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += (GC.getGameINLINE().isOption(GAMEOPTION_NO_STARBASE_MISSILES) ? 0 : 2);
 /**  FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - end (2) **/
