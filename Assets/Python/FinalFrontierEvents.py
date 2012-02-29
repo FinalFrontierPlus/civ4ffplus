@@ -247,7 +247,7 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 		iGameTurn, iPlayer = argsList
 
 		self.theCurrentPlayer = iPlayer
-		printd("!!! set self.theCurrentPlayer = %d" % (self.theCurrentPlayer))
+		printd("!!! set self.theCurrentPlayer = %d (financial trouble = %s)" % (self.theCurrentPlayer ,gc.getPlayer(iPlayer).AI_isFinancialTrouble()))
 		if (gc.getPlayer(iPlayer).isAlive()):
 			
 			self.doBeginTurnAI(iPlayer)

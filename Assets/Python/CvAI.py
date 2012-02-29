@@ -1001,7 +1001,13 @@ class CvAI:
 								iSpaceFighterII = gc.getInfoTypeForString('UNITCLASS_SPACE_FIGHTER_II')
 								iSpaceFighterIII = gc.getInfoTypeForString('UNITCLASS_SPACE_FIGHTER_III')
 
-								iEnoughUnits = (pPlayer.getNumCities() / 2) + iNumCarriers - 1
+								
+								# FFP AI mod: these are all going to be UNITAI_DEFENSE_AIR, which do not get put onto carriers
+								# therefore, the number should not increase for carriers.
+								# old code:
+								#iEnoughUnits = (pPlayer.getNumCities() / 2) + iNumCarriers - 1
+								# new code:
+								iEnoughUnits = pPlayer.getNumCities() / 2
 								if ( bIsSquadronDoctrine ) :
 									iEnoughUnits += 2
 				
@@ -1049,7 +1055,12 @@ class CvAI:
 								iSpaceBomberII = gc.getInfoTypeForString('UNITCLASS_SPACE_BOMBER_II')
 								iSpaceBomberIII = gc.getInfoTypeForString('UNITCLASS_SPACE_BOMBER_III')
 								
-								iEnoughUnits = (pPlayer.getNumCities() / 2) + ( 2 * iNumCarriers) - 1 
+								# FFP AI mod: these are all going to be UNITAI_ATTACK_AIR, which do not get put onto carriers
+								# therefore, the number should not increase for carriers.
+								# old code:
+								#iEnoughUnits = (pPlayer.getNumCities() / 2) + ( 2 * iNumCarriers) - 1
+								# new code:
+								iEnoughUnits = (pPlayer.getNumCities() - 1) / 2
 								if ( bIsSquadronDoctrine ) :
 									iEnoughUnits += 2
 				

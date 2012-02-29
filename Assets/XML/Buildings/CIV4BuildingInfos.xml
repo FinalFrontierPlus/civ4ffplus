@@ -6788,7 +6788,7 @@
 			<Strategy>TXT_KEY_BUILDING_SURVIVAL_SHRINE_STRATEGY</Strategy>
 			<Help/>
 			<Advisor>ADVISOR_RELIGION</Advisor>
-			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE</ArtDefineTag>
+			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE_SURVIVAL</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
 			<HolyCity>VALUE_SURVIVAL</HolyCity>
 			<ReligionType>VALUE_SURVIVAL</ReligionType>
@@ -6977,7 +6977,7 @@
 			<Strategy>TXT_KEY_BUILDING_KNOWLEDGE_SHRINE_STRATEGY</Strategy>
 			<Help/>
 			<Advisor>ADVISOR_RELIGION</Advisor>
-			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE</ArtDefineTag>
+			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE_KNOWLEDGE</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
 			<HolyCity>VALUE_KNOWLEDGE</HolyCity>
 			<ReligionType>VALUE_KNOWLEDGE</ReligionType>
@@ -7169,7 +7169,7 @@
 			<Strategy>TXT_KEY_BUILDING_WEALTH_SHRINE_STRATEGY</Strategy>
 			<Help/>
 			<Advisor>ADVISOR_RELIGION</Advisor>
-			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE</ArtDefineTag>
+			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE_WEALTH</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
 			<HolyCity>VALUE_WEALTH</HolyCity>
 			<ReligionType>VALUE_WEALTH</ReligionType>
@@ -7360,7 +7360,7 @@
 			<Strategy>TXT_KEY_BUILDING_POWER_SHRINE_STRATEGY</Strategy>
 			<Help/>
 			<Advisor>ADVISOR_RELIGION</Advisor>
-			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE</ArtDefineTag>
+			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE_POWER</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
 			<HolyCity>VALUE_POWER</HolyCity>
 			<ReligionType>VALUE_POWER</ReligionType>
@@ -7554,7 +7554,7 @@
 			<Strategy>TXT_KEY_BUILDING_RELIGION_SHRINE_STRATEGY</Strategy>
 			<Help/>
 			<Advisor>ADVISOR_RELIGION</Advisor>
-			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE</ArtDefineTag>
+			<ArtDefineTag>ART_DEF_BUILDING_FF_SHRINE_RELIGION</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
 			<HolyCity>VALUE_RELIGION</HolyCity>
 			<ReligionType>VALUE_RELIGION</ReligionType>

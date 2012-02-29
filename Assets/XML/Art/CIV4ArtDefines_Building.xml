@@ -677,5 +677,55 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/CottonMill.dds</Button>
 		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_FF_SHRINE_KNOWLEDGE</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Empty.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/shrine_knowledge.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_FF_SHRINE_POWER</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Empty.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/shrine_power.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_FF_SHRINE_RELIGION</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Empty.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/shrine_religion.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_FF_SHRINE_SURVIVAL</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Empty.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/shrine_survival.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_FF_SHRINE_WEALTH</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Empty.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/shrine_wealth.dds</Button>
+		</BuildingArtInfo>
 	</BuildingArtInfos>
 </Civ4ArtDefines>
