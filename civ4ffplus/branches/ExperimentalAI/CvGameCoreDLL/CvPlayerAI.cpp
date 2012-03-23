@@ -7997,7 +7997,18 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	case UNITAI_ATTACK_CITY:
 		iFastMoverMultiplier = AI_isDoStrategy(AI_STRATEGY_FASTMOVERS) ? 4 : 1;
 
+/** FFP AImod: adjust the city attack AI type unit valuation (again) - start
+ **		Adjust the equation to reduce the contribution of the squared combat strenth.
+ **		This is acomplished both by increasing the divisor (from 75 to 80) and by taking advantage
+ **		of the integer math. Instead of dividing after the squaring, divide the combat value
+ **		for each of the two parts...
+ **		Also, adjust the non-squared part to round up (affects Omeaga invasion Ship, but not really
+ **		anythign else that matters for this unit AI type in FFP)
+ **	Original:
 		iTempValue = ((iCombatValue * iCombatValue) / 75) + (iCombatValue / 2);
+ **	New: **/
+		iTempValue = ((iCombatValue / 8) * (iCombatValue / 10)) + ((iCombatValue + 1)/ 2);
+/** FFP AImod:  adjust the city attack AI type unit valuation (again) - end **/
 		iValue += iTempValue;
 		if (GC.getUnitInfo(eUnit).isNoDefensiveBonus())
 		{
@@ -8011,7 +8022,11 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		{
 			iValue += (iTempValue * 8) / 100;
 		}
-		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 100);
+/** FFP AImod: city attack unit AI city attack modifier modfied - start
+ **		If a unit has this modifer, it should be picked even more that the formerly
+ **		more directly priopotional adjustment: changed from "/ 100" **/
+		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 80);
+/** FFP AImod: city attack unit AI city attack modifier modfied - end **/
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage()) / 400);
 		iValue += GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits(); // FFP AImod : added this line
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves() * iFastMoverMultiplier) / 4);
@@ -8028,8 +8043,8 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 				//Total Bombard == 300: 50%
 				//Total Bombard == 400:
 				int iTotalBombardRate = AI_calculateTotalBombard(DOMAIN_LAND);
-					if (iTotalBombardRate < 100)
-					{
+				if (iTotalBombardRate < 100)
+				{
 					iBombardValue *= 4 * (200 - iTotalBombardRate);
 					iBombardValue /= 100;
 				}
@@ -8450,7 +8465,11 @@ int CvPlayerAI::AI_neededExplorers(CvArea* pArea) const
 	}
 	else
 	{
-		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 150), std::min(3, ((getNumCities() / 3) + 2)));
+/** FFP AI mod : reduce needed explorers slightly
+ **		The following used to use "(pArea->getNumUnrevealedTiles(getTeam()) / 150)".
+ **		The old 150 is now 200 in the hopes of accounting for possible large impassable areas of nebula.
+ **/
+		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 200), std::min(3, ((getNumCities() / 3) + 2)));
 	}
 
 	if (0 == iNeeded)
