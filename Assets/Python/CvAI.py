@@ -270,7 +270,7 @@ class CvAI:
 		
 		# Small chance of randomly letting the AI do whatever it wants... sometimes the weights can go overboard :)
 		iRand = CyGame().getSorenRandNum(100, "Final Frontier: Random roll to see if City AI override exits")
-		if (iRand < 15):
+		if (iRand < 20): # FFP AI mod (for 1.8): changed from 15% to 20%
 			return false
 		
 		iHabitationSystem = pCivilization.getCivilizationBuildings(gc.getInfoTypeForString('BUILDINGCLASS_HABITATION_SYSTEM')) # this civ's habitation system
@@ -554,6 +554,11 @@ class CvAI:
 			aiWeights[iPopulationWeightType] += 60
 		if (iPopToCap <= -1):
 			aiWeights[iPopulationWeightType] += 90 # post 1.72 update: was 60, increased to 90
+ # FFP AImod for 1.8: added these next two since I have seen The Forge at -6 and worse but still ranking this below Military
+		if (iPopToCap <= -2):
+			aiWeights[iPopulationWeightType] += 120
+		if (iPopToCap <= -3):
+			aiWeights[iPopulationWeightType] += 150
 		
 		# Increase for City Size
 		aiWeights[iPopulationWeightType] += (pCity.getPopulation() * 15) # CP - this weight factor seems a tad high, changing from 20 to 15
@@ -1514,6 +1519,19 @@ class CvAI:
 					bUnitExists = true
 				
 			if (iMakerID == -1 or not bUnitExists):
+				# FFP AI mod (for 1.8): give the AI a break from constantly sending its construction ships off to be converted to bases
+				# 	The chance to not do anythign here is N+1 out of X where 
+				#		N is the number of bases of this type already built
+				#		X is 10 + (2 * map size) [map size: duel = 0, tiny = 1, small = 2, standard = 3, large = 4, huge = 5]
+				# Note that this places a hard upper limit on the number of bases it will ever have at any time for each type of X-1,
+				# so 9 to 19 depending on map size. This should not be a problem.
+				iUnitClass = gc.getImprovementInfo(gc.getBuildInfo(iBuild).getImprovement()).getUnitClassBuilt()
+				iNumStations = pPlayer.getUnitClassCount(iUnitClass)
+				iRandVal = 10 + (2 * CyMap().getWorldSize())
+				if CyGame().getSorenRandNum(iRandVal, "FFP: construction ship station builder bailout") <= iNumStations :
+					printd("  * bailout: unit could try to build station of this type but is not (iNumStations = %d)" % (iNumStations))
+					break
+					
 				pPlayerAIInfo.setUnitIDStationConstructor(iBuild, pUnit.getID()) # Fixed a bug - the arguments were reversed
 			
 			if (pPlayerAIInfo.getUnitIDStationConstructor(iBuild) == pUnit.getID()): # Fixed a bug - "Constructor" was missing its "s"
