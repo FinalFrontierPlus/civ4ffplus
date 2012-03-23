@@ -2025,6 +2025,20 @@ void CvUnitAI::AI_attackMove()
 		{
 			return;
 		}
+/** FFP AImod: units doing nothing should return to a city - start
+ **		Attack units are sometimes left sitting outside their borders for no good reason.
+ **		These are typically units that were hijacked into the explore mission AI who have reached
+ **		their destination. So this code has been added to eventually have them return to a city
+ **		if they are not doing anything. **/
+
+		if ((plot()->getOwnerINLINE() != getOwnerINLINE()) && (GC.getGameINLINE().getSorenRandNum(5, "FFP units go home") == 0))
+		{
+			if (AI_guardCity(false, true, 33))
+			{
+				return;
+			}
+		}
+/** FFP AImod: units doing nothing should return to a city - end **/
 
 	}
 

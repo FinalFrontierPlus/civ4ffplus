@@ -6691,6 +6691,15 @@ bool CvUnit::build(BuildTypes eBuild)
 							}
 						}
 					}
+					/** FFP AImod: readust target gold accumulation - start 
+					 **		In the Python starbase building code when the time comes to build a starbase
+					 **		it will set the extraGoldTarget to a flat 250 if the AI currently does not
+					 **		have enough money on hand to do the build. It never adjusts it to anything else.
+					 **		This might be a tad excessive and slightly harmful to the AI's economy. 
+					 **		Therefore, adjust it down to 80% of whatever it currently is every time we finish
+					 **		building somethign like this. **/
+					GET_PLAYER(getOwnerINLINE()).AI_setExtraGoldTarget((GET_PLAYER(getOwnerINLINE()).AI_getExtraGoldTarget() * 80) / 100);
+					/** FFP AImod: readust target gold accumulation - end **/
 				}
 			}
 		}

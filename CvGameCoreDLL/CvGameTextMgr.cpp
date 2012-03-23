@@ -1379,7 +1379,7 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 					for (uint i = 0; i < aCargoUnits.size(); ++i)
 					{
 						CvUnit* pCargoUnit = aCargoUnits[i];
-						if (!pCargoUnit->isInvisible(GC.getGameINLINE().getActiveTeam(), GC.getGameINLINE().isDebugMode(), false)) // FFP AI mod: show cargo by adding 3rd argumnet of "false"
+						if (!pCargoUnit->isInvisible(GC.getGameINLINE().getActiveTeam(), GC.getGameINLINE().isDebugMode(), false)) // FFP AI mod: show cargo by adding 3rd argument of "false"
 						{
 							// name and unitai
 							szString.append(CvWString::format(SETCOLR L"\n %s" ENDCOLR, TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), pCargoUnit->getName().GetCString()));
@@ -1432,7 +1432,7 @@ void CvGameTextMgr::setPlotListHelp(CvWStringBuffer &szString, CvPlot* pPlot, bo
 							for (uint i = 0; i < aLoopCargoUnits.size(); ++i)
 							{
 								CvUnit* pCargoUnit = aLoopCargoUnits[i];
-								if (!pCargoUnit->isInvisible(GC.getGameINLINE().getActiveTeam(), GC.getGameINLINE().isDebugMode()))
+								if (!pCargoUnit->isInvisible(GC.getGameINLINE().getActiveTeam(), GC.getGameINLINE().isDebugMode(), false)) // FFP AI mod: show cargo by adding 3rd argument of "false"
 								{
 									// name and unitai
 									szString.append(CvWString::format(SETCOLR L"\n %s" ENDCOLR, TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), pCargoUnit->getName().GetCString()));
