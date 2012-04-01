@@ -1449,7 +1449,7 @@ DomainTypes CvPlayerAI::AI_unitAIDomainType(UnitAITypes eUnitAI) const
 	case UNITAI_CARRIER_SEA:
 	case UNITAI_MISSILE_CARRIER_SEA:
 	case UNITAI_PIRATE_SEA:
-		return DOMAIN_SEA;
+		return DOMAIN_LAND; // FFP AImod : was DOMAIN_SEA - there is no DOMAIN_SEA in FFP
 		break;
 
 	case UNITAI_ATTACK_AIR:
@@ -4053,6 +4053,9 @@ TechTypes CvPlayerAI::AI_bestTech(int iMaxPathLength, bool bIgnoreCost, bool bAs
 												iTempValue /= std::max(1, iCount);
 												iTempValue *= -kLoopBuilding.getMaintenanceModifier();
 												iTempValue /= 10 * 100;
+/** FFP bugfix - apply this value that was just calculated - start **/
+												iBuildingValue += iTempValue;
+/** FFP bugfix - apply this value that was just calculated - end **/
 											}
 
 											iBuildingValue += 100;
@@ -4077,10 +4080,30 @@ TechTypes CvPlayerAI::AI_bestTech(int iMaxPathLength, bool bIgnoreCost, bool bAs
 
 											if (bFinancialTrouble)
 											{
-												iBuildingValue += kLoopBuilding.getMaintenanceModifier() * 15;
+												iBuildingValue -= kLoopBuilding.getMaintenanceModifier() * 15; // FFP bugfix : good maintenance modifiers are negative so subtract
 												iBuildingValue += kLoopBuilding.getYieldModifier(YIELD_COMMERCE) * 8;
 												iBuildingValue += kLoopBuilding.getCommerceModifier(COMMERCE_GOLD) * 15;
 											}
+/** FFP AI mod : give value to PlanetYieldChanges, TraitPlanetYieldChanges, and iPlanetPopCapIncrease - start 
+ **		These specific values are just a guess. Anything should help, though. **/
+											for (iK = 0; iK < NUM_YIELD_TYPES; iK++)
+											{
+												iTempValue = (kLoopBuilding.getPlanetYieldChanges(iK) * 20);
+												for (iL = 0; iL < GC.getNumTraitInfos(); iL++)
+												{
+													if (hasTrait((TraitTypes)iL))
+													{
+														iTempValue += (kLoopBuilding.getTraitPlanetYieldChange(iL, iK) * 20);
+													}
+												}
+												if (bFinancialTrouble && (iK == YIELD_COMMERCE))
+												{
+													iTempValue *= 2;
+												}
+												iBuildingValue += iTempValue;
+											}
+											iBuildingValue += (kLoopBuilding.getPlanetPopCapIncrease() * 50);
+/** FFP AI mod : give value to PlanetYieldChanges, TraitPlanetYieldChanges, and iPlanetPopCapIncrease - end **/
 
 											// if this is a religious building, its not as useful
 											ReligionTypes eReligion = (ReligionTypes) kLoopBuilding.getReligionType();
@@ -7856,14 +7879,16 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			{
 				if (GC.getUnitInfo(eUnit).getSpecialCargo() != NO_SPECIALUNIT)
 				{
-					for (int i = 0; i < NUM_UNITAI_TYPES; ++i)
-					{
+/** FFP AImod: bugfix, actually
+ ** This loop is pointless. The loop variable is never used. **/
+//	FFP				for (int i = 0; i < NUM_UNITAI_TYPES; ++i)
+//	FFP				{
 						if (GC.getSpecialUnitInfo((SpecialUnitTypes)GC.getUnitInfo(eUnit).getSpecialCargo()).isCarrierUnitAIType(eUnitAI))
 						{
 							bValid = true;
 							break;
 						}
-					}
+//	FFP				}
 				}
 			}
 			break;
@@ -7972,11 +7997,22 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	case UNITAI_ATTACK_CITY:
 		iFastMoverMultiplier = AI_isDoStrategy(AI_STRATEGY_FASTMOVERS) ? 4 : 1;
 
+/** FFP AImod: adjust the city attack AI type unit valuation (again) - start
+ **		Adjust the equation to reduce the contribution of the squared combat strenth.
+ **		This is acomplished both by increasing the divisor (from 75 to 80) and by taking advantage
+ **		of the integer math. Instead of dividing after the squaring, divide the combat value
+ **		for each of the two parts...
+ **		Also, adjust the non-squared part to round up (affects Omeaga invasion Ship, but not really
+ **		anythign else that matters for this unit AI type in FFP)
+ **	Original:
 		iTempValue = ((iCombatValue * iCombatValue) / 75) + (iCombatValue / 2);
+ **	New: **/
+		iTempValue = ((iCombatValue / 8) * (iCombatValue / 10)) + ((iCombatValue + 1)/ 2);
+/** FFP AImod:  adjust the city attack AI type unit valuation (again) - end **/
 		iValue += iTempValue;
 		if (GC.getUnitInfo(eUnit).isNoDefensiveBonus())
 		{
-			iValue -= iTempValue / 2;
+			iValue -= iTempValue / 3;	// FFP AImod : changed from "/ 2"
 		}
 		if (GC.getUnitInfo(eUnit).getDropRange() > 0)
 		{
@@ -7986,8 +8022,13 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		{
 			iValue += (iTempValue * 8) / 100;
 		}
-		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 100);
+/** FFP AImod: city attack unit AI city attack modifier modfied - start
+ **		If a unit has this modifer, it should be picked even more that the formerly
+ **		more directly priopotional adjustment: changed from "/ 100" **/
+		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 80);
+/** FFP AImod: city attack unit AI city attack modifier modfied - end **/
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage()) / 400);
+		iValue += GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits(); // FFP AImod : added this line
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves() * iFastMoverMultiplier) / 4);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 100);
 		if (!AI_isDoStrategy(AI_STRATEGY_AIR_BLITZ))
@@ -8002,8 +8043,8 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 				//Total Bombard == 300: 50%
 				//Total Bombard == 400:
 				int iTotalBombardRate = AI_calculateTotalBombard(DOMAIN_LAND);
-					if (iTotalBombardRate < 100)
-					{
+				if (iTotalBombardRate < 100)
+				{
 					iBombardValue *= 4 * (200 - iTotalBombardRate);
 					iBombardValue /= 100;
 				}
@@ -8023,7 +8064,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage()) / 50);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves()) / 4);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 25);
-		iValue -= ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 100);
+		iValue -= ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 125); // FFP AImod : changed divisor from 100 to 125
 		break;
 
 	case UNITAI_PILLAGE:
@@ -8424,7 +8465,11 @@ int CvPlayerAI::AI_neededExplorers(CvArea* pArea) const
 	}
 	else
 	{
-		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 150), std::min(3, ((getNumCities() / 3) + 2)));
+/** FFP AI mod : reduce needed explorers slightly
+ **		The following used to use "(pArea->getNumUnrevealedTiles(getTeam()) / 150)".
+ **		The old 150 is now 200 in the hopes of accounting for possible large impassable areas of nebula.
+ **/
+		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 200), std::min(3, ((getNumCities() / 3) + 2)));
 	}
 
 	if (0 == iNeeded)
@@ -9549,6 +9594,59 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic) const
 		}
 	}
 //End of Final Frontier SDK
+
+/** FFP AImod: add value for increasing planet population caps - start
+ ** 	Issue: there is no way for us to know how many planets a system has, or what the current limits are
+ ** 	For now we will just assume about 2 pop per planet with no consideration of number of planets,
+ **		which gives +50% population with no building increases, or +25% with both +1 buildings (this
+ **		should probably be dynamic, checking for total possible increases from buildings, so as to
+ **		be compatible with mod-mods...) for each +1of  pop cap increase
+ **		Going with the +25% potential useful population figure per point increase, that is the equivalent of
+ **		both a +25% production and a +25% commerce modifier (ignoring the food).
+ **		A +25% production modifier gives a value of (25 * number of cities / 2)  * ((AI_avoidScience()) ? 6 : 2)
+ **		A +25% commerce modifier gives a value of (25 * number of cities / 2)  * ((AI_avoidScience()) ? 1 : 2)
+ **		Currently this does not take possible happy cap issues into account. In theory, the percentage
+ **		bonus should be reduced from 25% if there are cities at or near their happy cap.
+ **		I am checking the happy cap in the capital only and giving the full bonus
+ **		only if it has enough happiness to use the estimated amount of useful population after the increase
+ **		(the original capital cities always have 6 planets so a +1 population increase would give +6
+ **		population on top of an assumed 25ish without the increase).
+ **/
+	if (kCivic.getPlanetPopCapIncrease() > 0)
+	{
+		iTempValue = ((25 * getNumCities()) / 2) * ((AI_avoidScience()) ? 6 : 2); // For +25% production
+		iTempValue += ((25 * getNumCities()) / 2) * ((AI_avoidScience()) ? 1 : 2); // For +25% commerce
+		iTempValue *= kCivic.getPlanetPopCapIncrease();
+
+		CvCity* pCapital = getCapitalCity();
+		if (pCapital)
+		{
+			int iMaxUsefulPop = pCapital->happyLevel() - pCapital->unhappyLevel(0) + pCapital->getPopulation();
+			int iNewPopCap = 25 + 6 * kCivic.getPlanetPopCapIncrease(); // the 25 is 6 planets * (2 average + 2 from buildings) pop per planet +1 for a moonbase
+
+			// If they built the wonder that eliminates unhappiness in the Capital we are not going to
+			// be able to do this calculation, just give the full bonus.
+			// Also skip the adjsutment if the civ is in anarchy or city is on occupation timer
+			// (not likely for the capital) or, for some reason, iMaxUsefulPop is < 1.
+			// If any of these conditions happens, just use 1/4 the calculated modifier.
+			// And finally, if the usful population is over the new pop cap just skip this modification too.
+			if (!pCapital->isNoUnhappiness()
+				&& !pCapital->isDisorder()
+				&& (iMaxUsefulPop > 0)
+				&& (iMaxUsefulPop < iNewPopCap))
+			{
+				iTempValue *= iMaxUsefulPop;
+				iTempValue /= iNewPopCap;
+			}
+			else if (!pCapital->isNoUnhappiness() && (iMaxUsefulPop < iNewPopCap))
+			{
+				iTempValue /= 4;
+			}
+		}
+		
+		iValue += iTempValue;
+	}
+/** FFP AImod: add value for increasing planet population caps - end **/
 
 	if (AI_isDoStrategy(AI_STRATEGY_CULTURE2) && (GC.getCivicInfo(eCivic).isNoNonStateReligionSpread()))
 	{
@@ -13886,7 +13984,7 @@ int CvPlayerAI::AI_getStrategyHash() const
     		{
     			if (!GET_TEAM(GET_PLAYER((PlayerTypes)iI).getTeam()).isAVassal())
     			{
-					int iCloseness = AI_playerCloseness((PlayerTypes)iI, 5 + iCurrentEra);
+					int iCloseness = AI_playerCloseness((PlayerTypes)iI, 6 + iCurrentEra); // FFP AI mod : increased iMaxDistance from 5 + iCurrentERa
 					if (iCloseness > 0)
 					{
 						int iWarMemory = GET_PLAYER((PlayerTypes)iI).AI_getMemoryAttitude(getID(), MEMORY_DECLARED_WAR);
@@ -15139,7 +15237,7 @@ int CvPlayerAI::AI_getTotalFloatingDefendersNeeded(CvArea* pArea) const
 	int iCurrentEra = getCurrentEra();
 	int iAreaCities = pArea->getCitiesPerPlayer(getID());
 
-	iCurrentEra = std::max(0, iCurrentEra - GC.getGame().getStartEra() / 2);
+	iCurrentEra = std::max(0, (iCurrentEra - GC.getGame().getStartEra() + 1)/ 2); // FFP AImod : round up (new +1 before /2)
 
 	iDefenders = 1 + ((iCurrentEra + ((GC.getGameINLINE().getMaxCityElimination() > 0) ? 3 : 2)) * iAreaCities);
 	iDefenders /= 3;
