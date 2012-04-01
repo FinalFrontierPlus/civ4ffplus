@@ -1422,7 +1422,52 @@ void CvCityAI::AI_chooseProduction()
         }
     }
 
+/** FFP AI mod: fixed thresholds are bad - start
+ **		This original call explains the large number of granaries that can be found in earlier
+ **		versions of FFP. This would almost certainly ahve always suceeded until it ran out of
+ **		planets to put them on (or the escalating cost pushed the build time over 60 turns).
+ **		With the planet food yield increasing buildigns now having value for this focus too
+ **		they could ahve the same problem. Therefore, the theshold value needs to be increased
+ **		for each building that stores food or increases yeild.
+ **		While I'm at it, I'm reducing the maximum allowed build time from 60 turns to 50 turns.
+ **		Notes: In FFP, the relevant buildings (as of version 1.73) are:
+ **			Cryogenic Granary (stores 10% food on growth => focus related value of 10)
+ **			Nutrition Facility (+1 food/population for planet where built => focus related value of 9)
+ ** original code:
 	if (AI_chooseBuilding(BUILDINGFOCUS_FOOD, 60, 10))
+ ** new code: **/
+	int iFoodFocusBuildings = 0; // Count of buildings that store food or increase planet food yield
+	BuildingTypes eLoopBuilding;
+
+	for (int iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
+	{
+		eLoopBuilding = ((BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(iI)));
+
+		if (NO_BUILDING != eLoopBuilding)
+		{
+			CvBuildingInfo& kBuilding = GC.getBuildingInfo(eLoopBuilding);
+			bool bTraitYieldChange = false;
+
+			for (int iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+			{
+				if (hasTrait((TraitTypes)iJ))
+				{
+					if (kBuilding.getTraitPlanetYieldChange(iJ, YIELD_FOOD) > 0)
+					{
+						bTraitYieldChange = true;
+					}
+				}
+			}
+			if ((kBuilding.getFoodKept() > 0) ||
+				(kBuilding.getPlanetYieldChanges(YIELD_FOOD) > 0) ||
+				(bTraitYieldChange))
+			{
+				iFoodFocusBuildings += getNumBuilding(eLoopBuilding);
+			}
+		}
+	}
+	if (AI_chooseBuilding(BUILDINGFOCUS_FOOD, 50, 10 + (iFoodFocusBuildings * 2))) // Bump up threshold by 2 per building
+/** FFP AI mod: fixed thresholds are bad - end **/
 	{
 		return;
 	}
@@ -1630,8 +1675,75 @@ void CvCityAI::AI_chooseProduction()
 				}
 			}
 		}
-	}
+/** FFP AImod : former water only unit AI adjustment - start
+ **		A section of the code from the block above that was only run if on the water.
+ **		Added here to deal with UNITAI_CARRIER_SEA and UNITAI_MISSILE_CARRIER_SEA
+ **		and the things they can carry. 
+ **		Note: in here it can try to build a unit with UNITAI_CARRIER_SEA, as well
+ **		as UNITAI_CARRIER_AIR (squadrons to be carried) and UNITAI_MISSILE_AIR (missiels to be carried)
+ **		but not UNITAI_MISSILE_CARRIER_SEA.
+ **/
+		int iCarriers = kPlayer.AI_totalUnitAIs(UNITAI_CARRIER_SEA);
 
+		if (iCarriers > 0)
+		{
+			UnitTypes eBestCarrierUnit = NO_UNIT;
+			kPlayer.AI_bestCityUnitAIValue(UNITAI_CARRIER_SEA, this, &eBestCarrierUnit);
+			if (eBestCarrierUnit != NO_UNIT)
+			{
+				FAssert(GC.getUnitInfo(eBestCarrierUnit).getDomainCargo() == DOMAIN_AIR);
+
+				int iCarrierAirNeeded = iCarriers * GC.getUnitInfo(eBestCarrierUnit).getCargoSpace();
+// FFP: reduce the number the above line gives to 2/3 what that says
+				iCarrierAirNeeded *= 2;
+				iCarrierAirNeeded /= 3;
+				if (kPlayer.AI_totalUnitAIs(UNITAI_CARRIER_AIR) < iCarrierAirNeeded)
+				{
+					if (AI_chooseUnit(UNITAI_CARRIER_AIR))
+					{
+						return;
+					}
+				}
+			}
+		}
+/** FFP: change unit build condition - start
+**		remember that starabses are UNITAI_CARRIER_AIR so there will some created from that too
+**	old version:
+		if (iCarriers < (kPlayer.AI_totalUnitAIs(UNITAI_ASSAULT_SEA) / 4))
+**	new version: **/
+		if (iCarriers < ((kPlayer.AI_totalUnitAIs(UNITAI_ATTACK_CITY) + (kPlayer.AI_totalUnitAIs(UNITAI_ATTACK) / 4)) / 3)
+			&& (GC.getGame().getSorenRandNum(3, "AI train UNITAI_CARRIER_AIR") == 0))
+/** FFP: change unit build condition - end **/
+		{
+			if (AI_chooseUnit(UNITAI_CARRIER_SEA))
+			{
+				return;
+			}
+		}
+
+		int iMissileCarriers = kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_CARRIER_SEA);
+
+		if (iMissileCarriers > 0)
+		{
+			UnitTypes eBestMissileCarrierUnit = NO_UNIT;
+			kPlayer.AI_bestCityUnitAIValue(UNITAI_MISSILE_CARRIER_SEA, this, &eBestMissileCarrierUnit);
+			if (eBestMissileCarrierUnit != NO_UNIT)
+			{
+				FAssert(GC.getUnitInfo(eBestMissileCarrierUnit).getDomainCargo() == DOMAIN_AIR);
+					int iMissileCarrierAirNeeded = iMissileCarriers * GC.getUnitInfo(eBestMissileCarrierUnit).getCargoSpace();
+				// FFP : for out purposes, this value is pretty iffy, and low, since more units with other unit AI types can carry the missiles
+				if ((kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_AIR) < iMissileCarrierAirNeeded) ||
+					(bPrimaryArea && (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_MISSILE_CARRIER_SEA) * GC.getUnitInfo(eBestMissileCarrierUnit).getCargoSpace() < kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_MISSILE_AIR))))
+				{
+					if (AI_chooseUnit(UNITAI_MISSILE_AIR))
+					{
+						return;
+					}
+				}
+			}
+		}
+/** FFP AImod : former water only unit AI adjustment - end **/	
+	}
 	UnitTypeWeightArray airUnitTypes;
 
     int iAircraftNeed = 0;
@@ -2166,7 +2278,47 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 		aiUnitAIVal[UNITAI_DEFENSE_AIR] += (GET_PLAYER(getOwnerINLINE()).getNumCities() + 1);
 		aiUnitAIVal[UNITAI_CARRIER_AIR] += GET_PLAYER(getOwnerINLINE()).AI_countCargoSpace(UNITAI_CARRIER_SEA);
 		aiUnitAIVal[UNITAI_MISSILE_AIR] += GET_PLAYER(getOwnerINLINE()).AI_countCargoSpace(UNITAI_MISSILE_CARRIER_SEA);
-
+/** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - start
+ **	Try adding half the number of cargo spaces currently available for squadrons or missiles on the units
+ ** with the other unit AI types (cut in half after adding the capacities so the 1 space units add up).
+ ** This is made a tad more complicated by the fact that there are no enums for the relevant
+ ** special unit types since they are defined in the XML...
+ ** The SPECIALUNIT_FIGHTER specifies a CarrierUnitAI of UNITAI_CARRIER_SEA.
+ ** The SPECIALUNIT_MISSILE specifies a CarrierUnitAI of UNITAI_MISSILE_CARRIER_SEA.
+ **
+ ** Adjustment 2: As long as we are here looping over all the units, check for units with
+ ** a unit AI type of UNITAI_CARRIER_SEA that are DOMAIN_IMMOBILE and increment aiUnitAIVal[UNITAI_CARRIER_SEA]
+ ** for each in order to compensate for the starbases, so it may build some carriers other than them.
+ **/
+		CvUnit* pLoopUnit;
+		int iLoop;
+		int tmpCarrierAir = 0;
+		int tmpMissileAir = 0;
+		for(pLoopUnit = GET_PLAYER(getOwnerINLINE()).firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = GET_PLAYER(getOwnerINLINE()).nextUnit(&iLoop))
+		{
+			if ((pLoopUnit->AI_getUnitAIType() != UNITAI_CARRIER_SEA) && 
+				(pLoopUnit->AI_getUnitAIType() != UNITAI_MISSILE_CARRIER_SEA) &&
+				(pLoopUnit->specialCargo() != NO_SPECIALUNIT) &&
+				(pLoopUnit->domainCargo() == DOMAIN_AIR))
+			{
+				if (GC.getSpecialUnitInfo((SpecialUnitTypes)pLoopUnit->specialCargo()).isCarrierUnitAIType(UNITAI_CARRIER_SEA))
+				{
+					 tmpCarrierAir += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR);
+				}
+				else if (GC.getSpecialUnitInfo((SpecialUnitTypes)pLoopUnit->specialCargo()).isCarrierUnitAIType(UNITAI_MISSILE_CARRIER_SEA))
+				{
+					 tmpMissileAir += pLoopUnit->cargoSpaceAvailable(pLoopUnit->specialCargo(), DOMAIN_AIR);
+				}
+			}
+			else if ((pLoopUnit->AI_getUnitAIType() == UNITAI_CARRIER_SEA) &&
+					 (pLoopUnit->getDomainType() == DOMAIN_IMMOBILE))
+			{
+				aiUnitAIVal[UNITAI_CARRIER_SEA]++;
+			}
+		}
+		aiUnitAIVal[UNITAI_CARRIER_AIR] += (tmpCarrierAir + 1)/ 2; // Round up
+		aiUnitAIVal[UNITAI_MISSILE_AIR] += (tmpMissileAir + 1)/ 2; // Round up
+/** FFP AImod : adjustment for carrier types that don't use the sea based unit AI types - end **/
 		if (bPrimaryArea)
 		{
 			aiUnitAIVal[UNITAI_ICBM] += std::max((GET_PLAYER(getOwnerINLINE()).getTotalPopulation() / 25), ((GC.getGameINLINE().countCivPlayersAlive() + GC.getGameINLINE().countTotalNukeUnits()) / (GC.getGameINLINE().countCivPlayersAlive() + 1)));
@@ -2223,6 +2375,12 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 				}
 			}
 		}
+/** FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - start (1)
+ ** This is the base amount. More is added just below if there could be a war.
+ ** Exactly how much to add? Don't know. Going with this simple guess: **/ 
+		aiUnitAIVal[UNITAI_CARRIER_SEA] += iNumCitiesInArea / 3;
+		aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] +=  iNumCitiesInArea / 3;
+/**  FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - end (1) **/
 
 		if ((iHasMetCount > 0) && bWarPossible)
 		{
@@ -2246,6 +2404,16 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 						aiUnitAIVal[UNITAI_RESERVE_SEA] += std::min((pWaterArea->getNumTiles() / 150), ((((iCoastalCities * 2) + (iMilitaryWeight / 11)) / 8) + ((bPrimaryArea) ? 1 : 0)));
 					}
 				}
+/** FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - start (2)
+ ** This is the extra if there could be a war and we are not in financial trouble (or are still
+ ** below the free unit lmit), or if we are actually in a war.
+ ** Exactly how much to add? Don't know.
+ ** If we are getting free missiles from starbases, increase the UNITAI_MISSILE_CARRIER_SEA value slightly.
+ ** Going with this simple set which should not add very much: **/ 
+				aiUnitAIVal[UNITAI_CARRIER_SEA] += (iMilitaryWeight / ((bLandWar) ? 12 : 17)) + 1;
+				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += iMilitaryWeight / ((bLandWar) ? 12 : 19) + 1;
+				aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] += (GC.getGameINLINE().isOption(GAMEOPTION_NO_STARBASE_MISSILES) ? 0 : 3);
+/**  FFP AImod : adjustment for (formerly) sea unit AI types when we have no sea - end (2) **/
 			}
 		}
 	}
@@ -2410,6 +2578,16 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 		}
 	}
 
+/** FFP : AI mod - early bailout when there is nothing to build - start 
+ **		If the iBestOriginalValue is still 0, then nothing can happen below
+ **		that will actually pick a unit, so save the time and effort and bail out now.
+ **/
+	if (iBestOriginalValue == 0)
+	{
+		return NO_UNIT;
+	}
+/** FFP : AI mod - early bailout when there is nothing to build - end **/
+
 	iBestValue = 0;
 	eBestUnit = NO_UNIT;
 
@@ -2430,7 +2608,7 @@ UnitTypes CvCityAI::AI_bestUnitAI(UnitAITypes eUnitAI, bool bAsync, AdvisorTypes
 						{
 							iValue = GET_PLAYER(getOwnerINLINE()).AI_unitValue(eLoopUnit, eUnitAI, area());
 
-							if ((iValue > ((iBestOriginalValue * 2) / 3)) && ((eUnitAI != UNITAI_EXPLORE) || (iValue >= iBestOriginalValue)))
+							if ((iValue > ((iBestOriginalValue * 3) / 5)) && ((eUnitAI != UNITAI_EXPLORE) || (iValue >= iBestOriginalValue)))// FFP AI mod : changed first comparison > 2/3 to > 3/5
 							{
 								iValue *= (getProductionExperience(eLoopUnit) + 10);
 								iValue /= 10;
@@ -2778,7 +2956,7 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 	{
 		iHappyModifier = 1;
 	}
-	if (iHealthModifier >= 8)
+	if (iHealthLevel >= 8)/** FFP AI mod: bug fix - clearly this should be iHealthLevel not iHealthModifier **/
 	{
 		iHealthModifier = 0;
 	}
@@ -3331,6 +3509,11 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 
 				iValue += (kBuilding.getGlobalPopulationChange() * iNumCities * 4);
 
+/** FFP AI mod : give value to iPlanetPopCapIncrease - start 
+ **		This value is just a guess. Anything should help, though. **/
+				iValue += (kBuilding.getPlanetPopCapIncrease() * (iAngryPopulation > 0 ? 4 : 15));
+/** FFP AI mod : give value to iPlanetPopCapIncrease - end **/
+
 				iValue += (kBuilding.getFreeTechs() * 80);
 
 				iValue += kBuilding.getEnemyWarWearinessModifier() / 2;
@@ -3514,6 +3697,20 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 						}
 					}
 
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - start 
+ **		These specific values are just a guess. Anything should help, though.
+		For food use a multiplier of 1 + (9 - the amount of excess food being produced) if it is > 0, otherwise 0
+		For others use a multiplier of 8.
+		For the food, perhaps we should also take into account whether or not we are at or over the happy cap too? **/
+					iTempValue += (kBuilding.getPlanetYieldChanges(iI) * (iI == YIELD_FOOD ? 1 + std::max(0, 9 - iFoodDifference) : 8));
+					for (iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+					{
+						if (hasTrait((TraitTypes)iJ))
+						{
+							iTempValue += (kBuilding.getTraitPlanetYieldChange(iJ, iI) * (iI == YIELD_FOOD ? 1 + std::max(0, 9 - iFoodDifference) : 8));
+						}
+					}
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - end **/
 					if (iTempValue != 0)
 					{
 						if (bFinancialTrouble && iI == YIELD_COMMERCE)
@@ -3565,6 +3762,21 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 					{
 						iValue += (kBuilding.getRiverPlotYieldChange(YIELD_FOOD) * countNumRiverPlots() * 4);
 					}
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - start 2
+ **		These specific values are just a guess. Anything should help, though. 
+ **		Note, the value of 9 is specifically selected because there are theshold values for selecting
+ **		BUILDINGFOCUS_FOOD buildings set to 10 that happen failry early in AI_chooseProduction(). If we are over
+ **		that threshold for the basic Nutrition Facility it will almost certainly try to build way more
+ **		of these than it should. (It would hit that every time until the build time goes over 60 turns!) **/
+					iValue += kBuilding.getPlanetYieldChanges(YIELD_FOOD) * 9;
+					for (iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+					{
+						if (hasTrait((TraitTypes)iJ))
+						{
+							iValue += kBuilding.getTraitPlanetYieldChange(iJ, YIELD_FOOD) * 9;
+						}
+					}
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - end 2 **/
 				}
 
 				if (iFocusFlags & BUILDINGFOCUS_PRODUCTION)
@@ -3596,6 +3808,18 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 					}
 
 					iValue += iTempValue;
+
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - start 3
+ **		These specific values are just a guess. Anything should help, though. **/
+					iValue += kBuilding.getPlanetYieldChanges(YIELD_PRODUCTION) * 10;
+					for (iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+					{
+						if (hasTrait((TraitTypes)iJ))
+						{
+							iValue += kBuilding.getTraitPlanetYieldChange(iJ, YIELD_PRODUCTION) * 10;
+						}
+					}
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - end 3 **/
 				}
 
 				if (iFocusFlags & BUILDINGFOCUS_GOLD)
@@ -3623,6 +3847,24 @@ int CvCityAI::AI_buildingValueThreshold(BuildingTypes eBuilding, int iFocusFlags
 					}
 
 					iValue += iTempValue;
+
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - start 4
+ **		These specific values are just a guess. Anything should help, though. **/
+					iTempValue = kBuilding.getPlanetYieldChanges(YIELD_COMMERCE) * 12 * kOwner.getCommercePercent(COMMERCE_GOLD) / 100;
+					for (iJ = 0; iJ < GC.getNumTraitInfos(); iJ++)
+					{
+						if (hasTrait((TraitTypes)iJ))
+						{
+							iTempValue += kBuilding.getTraitPlanetYieldChange(iJ, YIELD_COMMERCE) * 12  * kOwner.getCommercePercent(COMMERCE_GOLD) / 100;
+						}
+					}
+					if (bFinancialTrouble)
+					{
+						iTempValue *= 2;
+					}
+					
+					iValue += iTempValue;
+/** FFP AI mod : give value to PlanetYieldChanges and TraitPlanetYieldChanges - end 4 **/
 				}
 			}
 
@@ -4448,7 +4690,14 @@ int CvCityAI::AI_minDefenders()
 	{
 		iDefenders++;
 	}
+/**  FFP AImod: min defender adjustment - start
+ **		remove (buggy?) era code (why divide the start era by 2?)
+ **		remove coastal requirement
+ ** original code
 	if (((iEra - GC.getGame().getStartEra() / 2) >= GC.getNumEraInfos() / 2) && isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+ ** new code **/
+	if (iEra >= (GC.getNumEraInfos() / 2))
+/**  FFP AImod: min defender adjustment - end **/
 	{
 		iDefenders++;
 	}
@@ -4533,8 +4782,10 @@ int CvCityAI::AI_neededAirDefenders()
 
 
 bool CvCityAI::AI_isDanger()
-{
-	return GET_PLAYER(getOwnerINLINE()).AI_getPlotDanger(plot(), 2, false);
+{	
+	/** FFP AImod : bumped range up from 2 to 3
+	 **		this probably slows the game down slightly... **/
+	return GET_PLAYER(getOwnerINLINE()).AI_getPlotDanger(plot(), 3, false);
 }
 
 

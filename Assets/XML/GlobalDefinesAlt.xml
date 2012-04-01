@@ -234,6 +234,10 @@
 		<iDefineIntVal>15</iDefineIntVal>
 	</Define>
 	<Define>
+		<DefineName>UNIT_UPGRADE_COST_PER_PRODUCTION</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
+	</Define>
+	<Define>
 		<DefineName>BARBARIAN_MAX_XP_VALUE</DefineName>
 		<iDefineIntVal>50</iDefineIntVal>
 	</Define>

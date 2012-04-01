@@ -738,6 +738,7 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_TROOP_TRANSPORTS,
 	GAMEOPTION_MULTIPLE_PRODUCTION,				//Multiple Production: Added by Denev 07/10/2009
 	GAMEOPTION_PRODUCTIVE_PIRATE_CITIES,
+	GAMEOPTION_REDUCED_PIRATES,			// FFP for v1.8
 //End of Final Frontier SDK
 
 #ifdef _USRDLL

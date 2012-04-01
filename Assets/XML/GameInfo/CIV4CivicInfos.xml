@@ -595,7 +595,7 @@
 			<iDomesticGreatGeneralRateModifier>0</iDomesticGreatGeneralRateModifier>
 			<iStateReligionGreatPeopleRateModifier>0</iStateReligionGreatPeopleRateModifier>
 			<iDistanceMaintenanceModifier>0</iDistanceMaintenanceModifier>
-			<iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
+			<iNumCitiesMaintenanceModifier>-15</iNumCitiesMaintenanceModifier> <!-- ExAI test -->
 			<iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
 			<iExtraHealth>0</iExtraHealth>
 			<iFreeExperience>0</iFreeExperience>
@@ -642,7 +642,12 @@
 			</CommerceModifiers>
 			<CapitalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
-			<Hurrys/>
+			<Hurrys>
+				<Hurry>
+					<HurryType>HURRY_GOLD</HurryType>
+					<bHurry>1</bHurry> <!-- ExAI test -->
+				</Hurry>
+			</Hurrys>
 			<SpecialBuildingNotRequireds/>
 			<SpecialistValids/>
 			<BuildingHappinessChanges/>
@@ -675,7 +680,7 @@
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
 			<iMilitaryProductionModifier>10</iMilitaryProductionModifier>
-			<iBaseFreeUnits>0</iBaseFreeUnits>
+			<iBaseFreeUnits>5</iBaseFreeUnits><!-- FFP AI mod -->
 			<iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
 			<iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
 			<iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
@@ -683,7 +688,7 @@
 			<iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
 			<iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
 			<bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-			<iMaxConscript>0</iMaxConscript>
+			<iMaxConscript>1</iMaxConscript><!-- FFP AI mod -->
 			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
 			<iExpInBorderModifier>0</iExpInBorderModifier>
 			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
@@ -1266,7 +1271,7 @@
 			</YieldModifiers>
 			<CapitalYieldModifiers>
 				<iYield>0</iYield>
-				<iYield>10</iYield>
+				<iYield>15</iYield> <!-- ExAI test -->
 				<iYield>10</iYield>
 			</CapitalYieldModifiers>
 			<TradeYieldModifiers/>
