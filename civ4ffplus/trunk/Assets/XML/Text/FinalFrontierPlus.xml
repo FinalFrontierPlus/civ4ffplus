@@ -475,4 +475,28 @@
 		<Italian>Warp Phase Modulator</Italian>
 		<Spanish>Warp Phase Modulator</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PRECISION_INSTRUMENTS</Tag>
+		<English>Precision Instruments Maker</English>
+		<French>Precision Instruments Maker</French>
+		<German>Precision Instruments Maker</German>
+		<Italian>Precision Instruments Maker</Italian>
+		<Spanish>Precision Instruments Maker</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PRECISION_INSTRUMENTS_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Precision Instruments Maker[COLOR_REVERT] is an inexpensive building that gives a small increase in [ICON_PRODUCTION], [ICON_CULTURE], and [ICON_COMMERCE]. Only one can be built in each star system.</English>
+		<French>The [COLOR_BUILDING_TEXT]Precision Instruments Maker[COLOR_REVERT] is an inexpensive building that gives a small increase in [ICON_PRODUCTION], [ICON_CULTURE], and [ICON_COMMERCE]. Only one can be built in each star system.</French>
+		<German>The [COLOR_BUILDING_TEXT]Precision Instruments Maker[COLOR_REVERT] is an inexpensive building that gives a small increase in [ICON_PRODUCTION], [ICON_CULTURE], and [ICON_COMMERCE]. Only one can be built in each star system.</German>
+		<Italian>The [COLOR_BUILDING_TEXT]Precision Instruments Maker[COLOR_REVERT] is an inexpensive building that gives a small increase in [ICON_PRODUCTION], [ICON_CULTURE], and [ICON_COMMERCE]. Only one can be built in each star system.</Italian>
+		<Spanish>The [COLOR_BUILDING_TEXT]Precision Instruments Maker[COLOR_REVERT] is an inexpensive building that gives a small increase in [ICON_PRODUCTION], [ICON_CULTURE], and [ICON_COMMERCE]. Only one can be built in each star system.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PRECISION_INSTRUMENTS_PEDIA</Tag>
+		<English>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.</English>
+		<French>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.</French>
+		<German>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.</German>
+		<Italian>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.r</Italian>
+		<Spanish>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.</Spanish>
+	</TEXT>
 </Civ4GameText>

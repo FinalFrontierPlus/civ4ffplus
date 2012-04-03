@@ -727,5 +727,15 @@
 			<KFM/>
 			<Button>Art/Interface/Buttons/Buildings/shrine_wealth.dds</Button>
 		</BuildingArtInfo>
+		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_PRECISION_INSTRUMENTS</Type>
+			<LSystem>LSYSTEM_2x2</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.0</fScale>
+			<fInterfaceScale>1.0</fInterfaceScale>
+			<NIF>Art/Empty.nif</NIF>
+			<KFM/>
+			<Button>Art/Interface/Buttons/Buildings/architec1.dds</Button>
+		</BuildingArtInfo>
 	</BuildingArtInfos>
 </Civ4ArtDefines>
