@@ -476,6 +476,18 @@
 		<Spanish>Warp Phase Modulator</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_REPAIR_FACILITIES_II</Tag>
+		<English>Improved Repair Facilities</English>
+		<French>Improved Repair Facilities</French>
+		<German>
+			<Text>Improved Repair Facilities</Text>
+			<Gender>Male</Gender>
+			<Plural>0</Plural>
+		</German>
+		<Italian>Improved Repair Facilities</Italian>
+		<Spanish>Improved Repair Facilities</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_PRECISION_INSTRUMENTS</Tag>
 		<English>Precision Instruments Maker</English>
 		<French>Precision Instruments Maker</French>
