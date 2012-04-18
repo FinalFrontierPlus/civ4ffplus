@@ -160,7 +160,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_GRASSLAND_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 		<TerrainInfo>
 			<Type>TERRAIN_PLAINS</Type>
@@ -316,7 +316,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_PLAINS_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 		<TerrainInfo>
 			<Type>TERRAIN_DESERT</Type>
@@ -468,7 +468,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_DESERT_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 		<TerrainInfo>
 			<Type>TERRAIN_TUNDRA</Type>
@@ -773,7 +773,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_TUNDRA_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 		<TerrainInfo>
 			<Type>TERRAIN_COAST</Type>
@@ -925,7 +925,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_COAST_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 		<TerrainInfo>
 			<Type>TERRAIN_OCEAN</Type>
@@ -1077,7 +1077,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_OCEAN_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 		<TerrainInfo>
 			<Type>TERRAIN_PEAK</Type>
@@ -1527,7 +1527,7 @@
 				</FootstepSound>
 			</FootstepSounds>
 			<WorldSoundscapeAudioScript>ASSS_DESERT_SELECT_AMB</WorldSoundscapeAudioScript>
-			<bGraphicalOnly>0</bGraphicalOnly>
+			<bGraphicalOnly>1</bGraphicalOnly>
 		</TerrainInfo>
 	</TerrainInfos>
 </Civ4TerrainInfos>

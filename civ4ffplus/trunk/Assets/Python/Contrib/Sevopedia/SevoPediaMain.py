@@ -597,6 +597,8 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 					return u"%c %s" % (TraitUtil.getIcon(self.eTrait), self.traitInfo.getDescription())
 				def getButton(self):
 					return self.traitInfo.getButton()
+				def isGraphicalOnly(self):	# FFP : do not show items with bGraphicalOnly set to 1
+					return self.traitInfo.isGraphicalOnly()
 			
 			return TraitInfo(info)
 		return None
@@ -888,7 +890,7 @@ class SevoPediaMain(CvPediaScreen.CvPediaScreen):
 		list = []
 		for i in range(numInfos):
 			item = getInfo(i)
-			if item:
+			if item and not item.isGraphicalOnly(): # FFP : do not show items with bGraphicalOnly set to 1
 				list.append((item.getDescription(), i))
 		if self.isSortLists() and not noSort:
 			list.sort()
