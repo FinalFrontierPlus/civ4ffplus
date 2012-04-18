@@ -6931,7 +6931,7 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 				<FreePromotion>
-					<PromotionType>PROMOTION_REPAIR_STAFF_II</PromotionType>
+					<PromotionType>PROMOTION_REPAIR_FACILITIES</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 				<FreePromotion>
@@ -7122,7 +7122,7 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 				<FreePromotion>
-					<PromotionType>PROMOTION_REPAIR_STAFF_II</PromotionType>
+					<PromotionType>PROMOTION_REPAIR_FACILITIES</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 				<FreePromotion>
@@ -7309,7 +7309,7 @@
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 				<FreePromotion>
-					<PromotionType>PROMOTION_REPAIR_STAFF_II</PromotionType>
+					<PromotionType>PROMOTION_REPAIR_FACILITIES</PromotionType>
 					<bFreePromotion>1</bFreePromotion>
 				</FreePromotion>
 				<FreePromotion>
