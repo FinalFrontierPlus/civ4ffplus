@@ -13468,6 +13468,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<MovementSound>AS3D_UN_INVASION_RUN</MovementSound>
+			<bTroopTransport>1</bTroopTransport>
 		</UnitInfo>
 		<UnitInfo>
 			<Class>UNITCLASS_INVASION_SHIP_II</Class>
@@ -13659,6 +13660,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<MovementSound>AS3D_UN_INVASION_RUN</MovementSound>
+			<bTroopTransport>1</bTroopTransport>
 		</UnitInfo>
 		<UnitInfo>
 			<Class>UNITCLASS_INVASION_SHIP_III</Class>
@@ -13845,6 +13847,7 @@
 			<LeaderPromotion>NONE</LeaderPromotion>
 			<iLeaderExperience>0</iLeaderExperience>
 			<MovementSound>AS3D_UN_INVASION_RUN</MovementSound>
+			<bTroopTransport>1</bTroopTransport>
 		</UnitInfo>
 		<UnitInfo>
 			<Class>UNITCLASS_PLANETARY_DEFENSE_I</Class>
