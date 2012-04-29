@@ -6603,6 +6603,7 @@
 		<Italian>Campo di gravit&#224;</Italian>
 		<Spanish>Campo de gravedad</Spanish>
 	</TEXT>
+<!-- Redundant entry
 	<TEXT>
 		<Tag>TXT_KEY_FEATURE_SUPERNOVA_AREA</Tag>
 		<English>Damage Zone</English>
@@ -6610,7 +6611,7 @@
 		<German>Zerst&#246;rungsbereich</German>
 		<Italian>Area danni</Italian>
 		<Spanish>Zona da&#241;ina</Spanish>
-	</TEXT>
+	</TEXT> -->
 	<TEXT>
 		<Tag>TXT_KEY_DOMAIN_LAND</Tag>
 		<English>Starships</English>
@@ -6829,11 +6830,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_FEATURE_SUPERNOVA_AREA</Tag>
-		<English>Damage Zone</English>
-		<French>Zone de d&#233;g&#226;ts</French>
-		<German>Zerst&#246;rungsbereich</German>
-		<Italian>Area del danno</Italian>
-		<Spanish>Zona da&#241;ina</Spanish>
+		<English>Supernova Damage Zone</English>
+		<French>Supernova Damage Zone</French>
+		<German>Supernova Damage Zone</German>
+		<Italian>Supernova Damage Zone</Italian>
+		<Spanish>Supernova Damage Zone</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_DOMAIN_LAND</Tag>

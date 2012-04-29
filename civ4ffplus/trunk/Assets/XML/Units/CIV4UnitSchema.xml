@@ -538,6 +538,14 @@
 	<ElementType name="MovementSound" content="textOnly"/>
 	<ElementType name="bMissile" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bTroopTransport" content="textOnly" dt:type="boolean"/>
+	<ElementType name="iFeatureDamageModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="FeatureDamageModifier" content="eltOnly">
+		<element type="FeatureType"/>
+		<element type="iFeatureDamageModifier"/>
+	</ElementType>
+	<ElementType name="FeatureDamageModifiers" content="eltOnly">
+		<element type="FeatureDamageModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="UnitInfo" content="eltOnly">
 		<element type="Class"/>
 		<element type="Type"/>
@@ -708,6 +716,7 @@
 		<element type="bTroopTransport" minOccurs="0"/>
 		<element type="UnitCombatAttackMods" minOccurs="0"/>
 		<element type="UnitCombatDefenseMods" minOccurs="0"/>
+		<element type="FeatureDamageModifiers" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="UnitInfos" content="eltOnly">
 		<element type="UnitInfo" maxOccurs="*"/>
@@ -889,6 +898,7 @@
 		<element type="bAlwaysHeal"/>
 		<element type="bHillsDoubleMove"/>
 		<element type="bImmuneToFirstStrikes"/>
+		<element type="bCanMoveImpassable" minOccurs="0"/>
 		<element type="iVisibilityChange"/>
 		<element type="iMovesChange"/>
 		<element type="iMoveDiscountChange"/>
@@ -923,6 +933,7 @@
 		<element type="FeatureDefenses"/>
 		<element type="UnitCombatMods"/>
 		<element type="DomainMods"/>
+		<element type="FeatureDamageModifiers" minOccurs="0"/>
 		<element type="TerrainDoubleMoves"/>
 		<element type="FeatureDoubleMoves"/>
 		<element type="UnitCombats"/>

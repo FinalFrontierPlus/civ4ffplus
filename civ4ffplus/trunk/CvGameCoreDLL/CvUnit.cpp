@@ -42,6 +42,7 @@ CvUnit::CvUnit()
 	m_paiExtraTerrainDefensePercent = NULL;
 	m_paiExtraFeatureAttackPercent = NULL;
 	m_paiExtraFeatureDefensePercent = NULL;
+	m_paiExtraFeatureDamagePercent = NULL;	// FFP - Feature damage modifier
 	m_paiExtraUnitCombatModifier = NULL;
 
 	CvDLLEntity::createUnitEntity(this);		// create and attach entity to unit
@@ -262,6 +263,7 @@ void CvUnit::uninit()
 	SAFE_DELETE_ARRAY(m_paiExtraTerrainDefensePercent);
 	SAFE_DELETE_ARRAY(m_paiExtraFeatureAttackPercent);
 	SAFE_DELETE_ARRAY(m_paiExtraFeatureDefensePercent);
+	SAFE_DELETE_ARRAY(m_paiExtraFeatureDamagePercent);	// FFP - Feature damage modifier
 	SAFE_DELETE_ARRAY(m_paiExtraUnitCombatModifier);
 }
 
@@ -302,6 +304,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iAlwaysHealCount = 0;
 	m_iHillsDoubleMoveCount = 0;
 	m_iImmuneToFirstStrikesCount = 0;
+	m_iCanMoveImpassableCount = 0; 	// FFP - Move on impassable
 	m_iExtraVisibilityRange = 0;
 	m_iExtraMoves = 0;
 	m_iExtraMoveDiscount = 0;
@@ -384,11 +387,13 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 		m_paiFeatureDoubleMoveCount = new int[GC.getNumFeatureInfos()];
 		m_paiExtraFeatureDefensePercent = new int[GC.getNumFeatureInfos()];
 		m_paiExtraFeatureAttackPercent = new int[GC.getNumFeatureInfos()];
+		m_paiExtraFeatureDamagePercent = new int[GC.getNumFeatureInfos()];	// FFP - Feature damage modifier
 		for (iI = 0; iI < GC.getNumFeatureInfos(); iI++)
 		{
 			m_paiFeatureDoubleMoveCount[iI] = 0;
 			m_paiExtraFeatureAttackPercent[iI] = 0;
 			m_paiExtraFeatureDefensePercent[iI] = 0;
+			m_paiExtraFeatureDamagePercent[iI] = 0;	// FFP - Feature damage modifier
 		}
 
 		FAssertMsg((0 < GC.getNumUnitCombatInfos()), "GC.getNumUnitCombatInfos() is not greater than zero but an array is being allocated in CvUnit::reset");
@@ -722,7 +727,7 @@ void CvUnit::doTurn()
 		if (NO_FEATURE != eFeature)
 		{
 //Start: FeatureEffects - Kaspar
-			if (0 != GC.getFeatureInfo(eFeature).getTurnDamage())
+			if (0 != std::max(0, GC.getFeatureInfo(eFeature).getTurnDamage() + featureDamageModifier(eFeature)))
 			{
 				doFeatureDamage();
 			}
@@ -8057,7 +8062,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 		}
 // FFP terrain defense modifier change start
 //	change: always apply both feature and terrain defense modifiers
-// original code:
+// original code removed:
 //		else
 // FFP terrain defense modifier change end
 		{
@@ -8870,7 +8875,7 @@ bool CvUnit::ignoreBuildingDefense() const
 
 bool CvUnit::canMoveImpassable() const
 {
-	return m_pUnitInfo->isCanMoveImpassable();
+	return (m_pUnitInfo->isCanMoveImpassable() || (getCanMoveImpassableCount() > 0));	// FFP - Move on impassable
 }
 
 bool CvUnit::canMoveAllTerrain() const
@@ -9046,6 +9051,15 @@ int CvUnit::featureDefenseModifier(FeatureTypes eFeature) const
 	FAssertMsg(eFeature < GC.getNumFeatureInfos(), "eFeature is expected to be within maximum bounds (invalid Index)");
 	return (m_pUnitInfo->getFeatureDefenseModifier(eFeature) + getExtraFeatureDefensePercent(eFeature));
 }
+
+// FFP - Feature damage modifier - start
+int CvUnit::featureDamageModifier(FeatureTypes eFeature) const
+{
+	FAssertMsg(eFeature >= 0, "eFeature is expected to be non-negative (invalid Index)");
+	FAssertMsg(eFeature < GC.getNumFeatureInfos(), "eFeature is expected to be within maximum bounds (invalid Index)");
+	return (m_pUnitInfo->getFeatureDamageModifier(eFeature) + getExtraFeatureDamagePercent(eFeature));
+}
+// FFP - Feature damage modifier - end
 
 int CvUnit::unitClassAttackModifier(UnitClassTypes eUnitClass) const
 {
@@ -10493,6 +10507,18 @@ void CvUnit::changeImmuneToFirstStrikesCount(int iChange)
 	FAssert(getImmuneToFirstStrikesCount() >= 0);
 }
 
+// FFP - Move on impassable - start
+int CvUnit::getCanMoveImpassableCount() const
+{
+	return m_iCanMoveImpassableCount;
+}
+
+void CvUnit::changeCanMoveImpassableCount(int iChange)
+{
+	m_iCanMoveImpassableCount += iChange;
+	FAssert(getCanMoveImpassableCount() >= 0);
+}
+// FFP - Move on impassable - end
 
 int CvUnit::getExtraVisibilityRange() const
 {
@@ -11534,6 +11560,29 @@ void CvUnit::changeExtraFeatureDefensePercent(FeatureTypes eIndex, int iChange)
 	}
 }
 
+// FFP - Feature damage modifier  - start
+int CvUnit::getExtraFeatureDamagePercent(FeatureTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumFeatureInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiExtraFeatureDamagePercent[eIndex];
+}
+
+
+void CvUnit::changeExtraFeatureDamagePercent(FeatureTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumFeatureInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_paiExtraFeatureDamagePercent[eIndex] += iChange;
+
+		setInfoBarDirty(true);
+	}
+}
+// FFP - Feature damage modifier - end
+
 int CvUnit::getExtraUnitCombatModifier(UnitCombatTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -11673,6 +11722,7 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeAlwaysHealCount((GC.getPromotionInfo(eIndex).isAlwaysHeal()) ? iChange : 0);
 		changeHillsDoubleMoveCount((GC.getPromotionInfo(eIndex).isHillsDoubleMove()) ? iChange : 0);
 		changeImmuneToFirstStrikesCount((GC.getPromotionInfo(eIndex).isImmuneToFirstStrikes()) ? iChange : 0);
+		changeCanMoveImpassableCount((GC.getPromotionInfo(eIndex).isCanMoveImpassable()) ? iChange : 0);	// FFP - Move on impassable
 
 		changeExtraVisibilityRange(GC.getPromotionInfo(eIndex).getVisibilityChange() * iChange);
 		changeExtraMoves(GC.getPromotionInfo(eIndex).getMovesChange() * iChange);
@@ -11715,6 +11765,7 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 			changeExtraFeatureAttackPercent(((FeatureTypes)iI), (GC.getPromotionInfo(eIndex).getFeatureAttackPercent(iI) * iChange));
 			changeExtraFeatureDefensePercent(((FeatureTypes)iI), (GC.getPromotionInfo(eIndex).getFeatureDefensePercent(iI) * iChange));
 			changeFeatureDoubleMoveCount(((FeatureTypes)iI), ((GC.getPromotionInfo(eIndex).getFeatureDoubleMove(iI)) ? iChange : 0));
+			changeExtraFeatureDamagePercent(((FeatureTypes)iI), (GC.getPromotionInfo(eIndex).getFeatureDamageModifierPercent(iI) * iChange)); // FFP - Feature damage modifier
 		}
 
 		for (iI = 0; iI < GC.getNumUnitCombatInfos(); iI++)
@@ -11826,6 +11877,8 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iAlwaysHealCount);
 	pStream->Read(&m_iHillsDoubleMoveCount);
 	pStream->Read(&m_iImmuneToFirstStrikesCount);
+	pStream->Read(&m_iCanMoveImpassableCount); 	// FFP - Move on impassable
+
 	pStream->Read(&m_iExtraVisibilityRange);
 	pStream->Read(&m_iExtraMoves);
 	pStream->Read(&m_iExtraMoveDiscount);
@@ -11894,6 +11947,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumTerrainInfos(), m_paiExtraTerrainDefensePercent);
 	pStream->Read(GC.getNumFeatureInfos(), m_paiExtraFeatureAttackPercent);
 	pStream->Read(GC.getNumFeatureInfos(), m_paiExtraFeatureDefensePercent);
+	pStream->Read(GC.getNumFeatureInfos(), m_paiExtraFeatureDamagePercent);	// FFP - Feature damage modifier
 	pStream->Read(GC.getNumUnitCombatInfos(), m_paiExtraUnitCombatModifier);
 }
 
@@ -11930,6 +11984,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iAlwaysHealCount);
 	pStream->Write(m_iHillsDoubleMoveCount);
 	pStream->Write(m_iImmuneToFirstStrikesCount);
+	pStream->Write(m_iCanMoveImpassableCount);	// FFP - Move on impassable
 	pStream->Write(m_iExtraVisibilityRange);
 	pStream->Write(m_iExtraMoves);
 	pStream->Write(m_iExtraMoveDiscount);
@@ -11993,6 +12048,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumTerrainInfos(), m_paiExtraTerrainDefensePercent);
 	pStream->Write(GC.getNumFeatureInfos(), m_paiExtraFeatureAttackPercent);
 	pStream->Write(GC.getNumFeatureInfos(), m_paiExtraFeatureDefensePercent);
+	pStream->Write(GC.getNumFeatureInfos(), m_paiExtraFeatureDamagePercent);	// FFP - Feature damage modifier
 	pStream->Write(GC.getNumUnitCombatInfos(), m_paiExtraUnitCombatModifier);
 }
 
@@ -13422,7 +13478,17 @@ void CvUnit::doWormhole()
 void CvUnit::doFeatureDamage()
 {
 	FeatureTypes eFeature = plot()->getFeatureType();
+/* FFP - Feature damage modifier - start
+**	Adjust damage for unit's feature damage modifier. Currently this is not allowed to heal a unit.
+** original: 
 	changeDamage(GC.getFeatureInfo(eFeature).getTurnDamage(), NO_PLAYER);
+/* new: */
+	int iDamage = 0;
+
+	iDamage = std::max(0, GC.getFeatureInfo(eFeature).getTurnDamage() + featureDamageModifier(eFeature));
+
+	changeDamage(iDamage, NO_PLAYER);
+// FFP - Feature damage modifier - end
 
 	CvWString szText = gDLL->getText("TXT_KEY_FF_TERRAIN_UNIT_DAMAGED",getName().GetCString(),GC.getFeatureInfo(eFeature).getText());
 	if(isDead())

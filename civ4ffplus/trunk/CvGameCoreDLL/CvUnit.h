@@ -409,6 +409,7 @@ public:
 	int terrainDefenseModifier(TerrainTypes eTerrain) const;								// Exposed to Python
 	int featureAttackModifier(FeatureTypes eFeature) const;								// Exposed to Python
 	int featureDefenseModifier(FeatureTypes eFeature) const;								// Exposed to Python
+	int featureDamageModifier(FeatureTypes eFeature) const;	// FFP - Feature damage modifier ; Exposed to Python
 	int unitClassAttackModifier(UnitClassTypes eUnitClass) const;						// Exposed to Python
 	int unitClassDefenseModifier(UnitClassTypes eUnitClass) const;					// Exposed to Python
 	// < Unit Combat Attack Defense Mod Start >
@@ -539,10 +540,15 @@ public:
 	int getHillsDoubleMoveCount() const;																											
 	bool isHillsDoubleMove() const;																									// Exposed to Python					
 	void changeHillsDoubleMoveCount(int iChange);																							
-																																														
+
 	int getImmuneToFirstStrikesCount() const;																									
 	void changeImmuneToFirstStrikesCount(int iChange);																				
-																																														
+
+// FFP - Move on impassable - start
+	int getCanMoveImpassableCount() const;
+	void changeCanMoveImpassableCount(int iChange);																				
+// FFP - Move on impassable - end
+
 	int getExtraVisibilityRange() const;																						// Exposed to Python					
 	void changeExtraVisibilityRange(int iChange);
 
@@ -711,7 +717,10 @@ public:
 	void changeExtraFeatureAttackPercent(FeatureTypes eIndex, int iChange);
 	int getExtraFeatureDefensePercent(FeatureTypes eIndex) const;														// Exposed to Python
 	void changeExtraFeatureDefensePercent(FeatureTypes eIndex, int iChange);
-
+// FFP - Feature damage modifier - start
+	int getExtraFeatureDamagePercent(FeatureTypes eIndex) const;														// FFP; Exposed to Python
+	void changeExtraFeatureDamagePercent(FeatureTypes eIndex, int iChange);
+// FFP - Feature damage modifier - end
 	int getExtraUnitCombatModifier(UnitCombatTypes eIndex) const;														// Exposed to Python
 	void changeExtraUnitCombatModifier(UnitCombatTypes eIndex, int iChange);
 
@@ -825,6 +834,7 @@ protected:
 	int m_iAlwaysHealCount;
 	int m_iHillsDoubleMoveCount;
 	int m_iImmuneToFirstStrikesCount;
+	int m_iCanMoveImpassableCount;	// FFP - Move on impassable
 	int m_iExtraVisibilityRange;
 	int m_iExtraMoves;
 	int m_iExtraMoveDiscount;
@@ -887,6 +897,7 @@ protected:
 	int* m_paiExtraTerrainDefensePercent;
 	int* m_paiExtraFeatureAttackPercent;
 	int* m_paiExtraFeatureDefensePercent;
+	int* m_paiExtraFeatureDamagePercent;	// FFP - Feature damage modifier
 	int* m_paiExtraUnitCombatModifier;
 
 	bool canAdvance(const CvPlot* pPlot, int iThreshold) const;

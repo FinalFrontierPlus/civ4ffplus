@@ -147,7 +147,9 @@ void CyInfoPythonInterface1()
 		.def("isAlwaysHeal", &CvPromotionInfo::isAlwaysHeal, "bool ()")
 		.def("isHillsDoubleMove", &CvPromotionInfo::isHillsDoubleMove, "bool ()")
 		.def("isImmuneToFirstStrikes", &CvPromotionInfo::isImmuneToFirstStrikes, "bool ()")
-
+// FFP - Move on impassable - start
+		.def("isCanMoveImpassable", &CvPromotionInfo::isCanMoveImpassable, "bool ()")
+// FFP - Move on impassable - end
 		.def("getSound", &CvPromotionInfo::getSound, "string ()")
 
 		// Arrays
@@ -158,7 +160,9 @@ void CyInfoPythonInterface1()
 		.def("getFeatureDefensePercent", &CvPromotionInfo::getFeatureDefensePercent, "int (int i)")
 		.def("getUnitCombatModifierPercent", &CvPromotionInfo::getUnitCombatModifierPercent, "int (int i)")
 		.def("getDomainModifierPercent", &CvPromotionInfo::getDomainModifierPercent, "int (int i)")
-
+// FFP - Feature damage modifier - start
+		.def("getFeatureDamageModifierPercent", &CvPromotionInfo::getFeatureDamageModifierPercent, "int (int i)")
+// FFP - Feature damage modifier - end
 		.def("getTerrainDoubleMove", &CvPromotionInfo::getTerrainDoubleMove, "bool (int i)")
 		.def("getFeatureDoubleMove", &CvPromotionInfo::getFeatureDoubleMove, "bool (int i)")
 		.def("getUnitCombat", &CvPromotionInfo::getUnitCombat, "bool (int i)")
@@ -333,6 +337,9 @@ void CyInfoPythonInterface1()
 		.def("getTerrainDefenseModifier", &CvUnitInfo::getTerrainDefenseModifier, "int (int i)")
 		.def("getFeatureAttackModifier", &CvUnitInfo::getFeatureAttackModifier, "int (int i)")
 		.def("getFeatureDefenseModifier", &CvUnitInfo::getFeatureDefenseModifier, "int (int i)")
+// FFP - Feature damage modifier - start		
+		.def("getFeatureDamageModifier", &CvUnitInfo::getFeatureDamageModifier, "int (int i)")
+// FFP - Feature damage modifier - end
 		.def("getUnitClassAttackModifier", &CvUnitInfo::getUnitClassAttackModifier, "int (int i)")
 		.def("getUnitClassDefenseModifier", &CvUnitInfo::getUnitClassDefenseModifier, "int (int i)")
 
