@@ -1098,6 +1098,10 @@
 					<FeatureType>FEATURE_SUPERNOVA_AREA</FeatureType>
 					<iFeatureDamageModifier>-10</iFeatureDamageModifier>
 				</FeatureDamageModifier>
+				<FeatureDamageModifier>
+					<FeatureType>FEATURE_ICE</FeatureType>
+					<iFeatureDamageModifier>-5</iFeatureDamageModifier>
+				</FeatureDamageModifier>
 			</FeatureDamageModifiers>
 			<TerrainDoubleMoves/>
 			<FeatureDoubleMoves/>
