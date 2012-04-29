@@ -1616,12 +1616,14 @@ m_bEnemyRoute(false),
 m_bAlwaysHeal(false),
 m_bHillsDoubleMove(false),
 m_bImmuneToFirstStrikes(false),
+m_bCanMoveImpassable(false),	// FFP - Move on impassable
 m_piTerrainAttackPercent(NULL),
 m_piTerrainDefensePercent(NULL),
 m_piFeatureAttackPercent(NULL),
 m_piFeatureDefensePercent(NULL),
 m_piUnitCombatModifierPercent(NULL),
 m_piDomainModifierPercent(NULL),
+m_piFeatureDamageModifierPercent(NULL),	// FFP - Feature damage modifier
 m_pbTerrainDoubleMove(NULL),
 m_pbFeatureDoubleMove(NULL),
 m_pbUnitCombat(NULL)
@@ -1643,6 +1645,7 @@ CvPromotionInfo::~CvPromotionInfo()
 	SAFE_DELETE_ARRAY(m_piFeatureDefensePercent);
 	SAFE_DELETE_ARRAY(m_piUnitCombatModifierPercent);
 	SAFE_DELETE_ARRAY(m_piDomainModifierPercent);
+	SAFE_DELETE_ARRAY(m_piFeatureDamageModifierPercent);
 	SAFE_DELETE_ARRAY(m_pbTerrainDoubleMove);
 	SAFE_DELETE_ARRAY(m_pbFeatureDoubleMove);
 	SAFE_DELETE_ARRAY(m_pbUnitCombat);
@@ -1883,6 +1886,13 @@ bool CvPromotionInfo::isImmuneToFirstStrikes() const
 	return m_bImmuneToFirstStrikes;
 }
 
+// FFP - Move on impassable - start
+bool CvPromotionInfo::isCanMoveImpassable() const
+{
+	return m_bCanMoveImpassable;
+}
+// FFP - Move on impassable - end
+
 const TCHAR* CvPromotionInfo::getSound() const										
 {
 	return m_szSound;
@@ -1936,6 +1946,15 @@ int CvPromotionInfo::getDomainModifierPercent(int i) const
 	FAssertMsg(i > -1, "Index out of bounds");
 	return m_piDomainModifierPercent ? m_piDomainModifierPercent[i] : -1;
 }
+
+// FFP - Feature damage modifier - start
+int CvPromotionInfo::getFeatureDamageModifierPercent(int i) const
+{
+	FAssertMsg(i < GC.getNumFeatureInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piFeatureDamageModifierPercent ? m_piFeatureDamageModifierPercent[i] : -1;
+}
+// FFP - Feature damage modifier - end
 
 bool CvPromotionInfo::getTerrainDoubleMove(int i) const
 {
@@ -2009,7 +2028,8 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bEnemyRoute);
 	stream->Read(&m_bAlwaysHeal);
 	stream->Read(&m_bHillsDoubleMove);
-	stream->Read(&m_bImmuneToFirstStrikes);				
+	stream->Read(&m_bImmuneToFirstStrikes);
+	stream->Read(&m_bCanMoveImpassable);	// FFP - Move on impassable
 
 	stream->ReadString(m_szSound);
 
@@ -2038,6 +2058,12 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piDomainModifierPercent);
 	m_piDomainModifierPercent = new int[NUM_DOMAIN_TYPES];
 	stream->Read(NUM_DOMAIN_TYPES, m_piDomainModifierPercent);
+
+	// FFP - Feature damage modifier - start
+	SAFE_DELETE_ARRAY(m_piFeatureDamageModifierPercent);
+	m_piFeatureDamageModifierPercent = new int[GC.getNumFeatureInfos()];
+	stream->Read(GC.getNumFeatureInfos(), m_piFeatureDamageModifierPercent);
+	// FFP - Feature damage modifier - end
 
 	SAFE_DELETE_ARRAY(m_pbTerrainDoubleMove);
 	m_pbTerrainDoubleMove = new bool[GC.getNumTerrainInfos()];
@@ -2104,6 +2130,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bAlwaysHeal);
 	stream->Write(m_bHillsDoubleMove);
 	stream->Write(m_bImmuneToFirstStrikes);
+	stream->Write(m_bCanMoveImpassable);	// FFP - Move on impassable
 
 	stream->WriteString(m_szSound);
 
@@ -2115,6 +2142,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumFeatureInfos(), m_piFeatureDefensePercent);
 	stream->Write(GC.getNumUnitCombatInfos(), m_piUnitCombatModifierPercent);
 	stream->Write(NUM_DOMAIN_TYPES, m_piDomainModifierPercent);
+	stream->Write(GC.getNumFeatureInfos(), m_piFeatureDamageModifierPercent);
 	stream->Write(GC.getNumTerrainInfos(), m_pbTerrainDoubleMove);
 	stream->Write(GC.getNumFeatureInfos(), m_pbFeatureDoubleMove);
 	stream->Write(GC.getNumUnitCombatInfos(), m_pbUnitCombat);
@@ -2152,6 +2180,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAlwaysHeal, "bAlwaysHeal");
 	pXML->GetChildXmlValByName(&m_bHillsDoubleMove, "bHillsDoubleMove");
 	pXML->GetChildXmlValByName(&m_bImmuneToFirstStrikes, "bImmuneToFirstStrikes");
+	pXML->GetChildXmlValByName(&m_bCanMoveImpassable, "bCanMoveImpassable");	// FFP - Move on impassable
 	pXML->GetChildXmlValByName(&m_iVisibilityChange, "iVisibilityChange");
 	pXML->GetChildXmlValByName(&m_iMovesChange, "iMovesChange");
 	pXML->GetChildXmlValByName(&m_iMoveDiscountChange, "iMoveDiscountChange");
@@ -2187,6 +2216,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piFeatureDefensePercent, "FeatureDefenses", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
 	pXML->SetVariableListTagPair(&m_piUnitCombatModifierPercent, "UnitCombatMods", sizeof(GC.getUnitCombatInfo((UnitCombatTypes)0)), GC.getNumUnitCombatInfos());
 	pXML->SetVariableListTagPair(&m_piDomainModifierPercent, "DomainMods", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
+	pXML->SetVariableListTagPair(&m_piFeatureDamageModifierPercent, "FeatureDamageModifiers", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos()); // FFP - Feature damage modifier
 
 	pXML->SetVariableListTagPair(&m_pbTerrainDoubleMove, "TerrainDoubleMoves", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
 	pXML->SetVariableListTagPair(&m_pbFeatureDoubleMove, "FeatureDoubleMoves", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
@@ -3127,6 +3157,7 @@ m_piTerrainAttackModifier(NULL),
 m_piTerrainDefenseModifier(NULL),
 m_piFeatureAttackModifier(NULL),
 m_piFeatureDefenseModifier(NULL),
+m_piFeatureDamageModifier(NULL), // FFP - Feature damage modifier
 m_piUnitClassAttackModifier(NULL),
 m_piUnitClassDefenseModifier(NULL),
 // < Unit Combat Attack Defense Mod Start >
@@ -3183,6 +3214,7 @@ CvUnitInfo::~CvUnitInfo()
 	SAFE_DELETE_ARRAY(m_piTerrainDefenseModifier);
 	SAFE_DELETE_ARRAY(m_piFeatureAttackModifier);
 	SAFE_DELETE_ARRAY(m_piFeatureDefenseModifier);
+	SAFE_DELETE_ARRAY(m_piFeatureDamageModifier); // FFP - Feature damage modifier
 	SAFE_DELETE_ARRAY(m_piUnitClassAttackModifier);
 	SAFE_DELETE_ARRAY(m_piUnitClassDefenseModifier);
 	// < Unit Combat Attack Defense Mod Start >
@@ -3908,6 +3940,15 @@ int CvUnitInfo::getFeatureDefenseModifier(int i) const
 	return m_piFeatureDefenseModifier ? m_piFeatureDefenseModifier[i] : -1;
 }
 
+// FFP - Feature damage modifier - start
+int CvUnitInfo::getFeatureDamageModifier(int i) const			
+{
+	FAssertMsg(i < GC.getNumFeatureInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piFeatureDamageModifier ? m_piFeatureDamageModifier[i] : -1;
+}
+// FFP - Feature damage modifier - end
+
 int CvUnitInfo::getUnitClassAttackModifier(int i) const		
 {
 	FAssertMsg(i < GC.getNumUnitClassInfos(), "Index out of bounds");
@@ -4480,7 +4521,11 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piFeatureDefenseModifier);
 	m_piFeatureDefenseModifier = new int[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_piFeatureDefenseModifier);
-
+// FFP - Feature damage modifier - start
+	SAFE_DELETE_ARRAY(m_piFeatureDamageModifier);
+	m_piFeatureDamageModifier = new int[GC.getNumFeatureInfos()];
+	stream->Read(GC.getNumFeatureInfos(), m_piFeatureDamageModifier);
+// FFP - Feature damage modifier - end
 	SAFE_DELETE_ARRAY(m_piUnitClassAttackModifier);
 	m_piUnitClassAttackModifier = new int[GC.getNumUnitClassInfos()];
 	stream->Read(GC.getNumUnitClassInfos(), m_piUnitClassAttackModifier);
@@ -4788,6 +4833,9 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumTerrainInfos(), m_piTerrainDefenseModifier);
 	stream->Write(GC.getNumFeatureInfos(), m_piFeatureAttackModifier);
 	stream->Write(GC.getNumFeatureInfos(), m_piFeatureDefenseModifier);
+// FFP - Feature damage modifier - start
+	stream->Write(GC.getNumFeatureInfos(), m_piFeatureDamageModifier);
+// FFP - Feature damage modifier - end
 	stream->Write(GC.getNumUnitClassInfos(), m_piUnitClassAttackModifier);
 	stream->Write(GC.getNumUnitClassInfos(), m_piUnitClassDefenseModifier);
 
@@ -5118,7 +5166,9 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piTerrainDefenseModifier, "TerrainDefenses", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
 	pXML->SetVariableListTagPair(&m_piFeatureAttackModifier, "FeatureAttacks", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
 	pXML->SetVariableListTagPair(&m_piFeatureDefenseModifier, "FeatureDefenses", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
-
+// FFP - Feature damage modifier - start
+	pXML->SetVariableListTagPair(&m_piFeatureDamageModifier, "FeatureDamageModifiers", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
+// FFP - Feature damage modifier - end
 	pXML->SetVariableListTagPair(&m_piUnitClassAttackModifier, "UnitClassAttackMods", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
 	pXML->SetVariableListTagPair(&m_piUnitClassDefenseModifier, "UnitClassDefenseMods", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
 

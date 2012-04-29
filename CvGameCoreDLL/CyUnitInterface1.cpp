@@ -235,6 +235,9 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		.def("terrainDefenseModifier", &CyUnit::terrainDefenseModifier, "int (int /*TerrainTypes*/ eTerrain)")
 		.def("featureAttackModifier", &CyUnit::featureAttackModifier, "int (int /*FeatureTypes*/ eFeature)")
 		.def("featureDefenseModifier", &CyUnit::featureDefenseModifier, "int (int /*FeatureTypes*/ eFeature)")
+		// FFP - Feature damage modifier - start
+		.def("featureDamageModifier", &CyUnit::featureDamageModifier, "int (int /*FeatureTypes*/ eFeature)")
+		// FFP - Feature damage modifier - end
 		.def("unitClassAttackModifier", &CyUnit::unitClassAttackModifier, "int (int /*UnitClassTypes*/ eUnitClass)")
 		.def("unitClassDefenseModifier", &CyUnit::unitClassDefenseModifier, "int (int /*UnitClassTypes*/ eUnitClass)")
 
@@ -378,6 +381,9 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		.def("getExtraTerrainDefensePercent", &CyUnit::getExtraTerrainDefensePercent, "int ()")
 		.def("getExtraFeatureAttackPercent", &CyUnit::getExtraFeatureAttackPercent, "int ()")
 		.def("getExtraFeatureDefensePercent", &CyUnit::getExtraFeatureDefensePercent, "int ()")
+		// FFP - Feature damage modifier - start
+		.def("getExtraFeatureDamagePercent", &CyUnit::getExtraFeatureDamagePercent, "int (int /*FeatureTypes*/ eFeature)")
+		// FFP - Feature damage modifier - end
 		.def("getExtraUnitCombatModifier", &CyUnit::getExtraUnitCombatModifier, "int ()")
 
 		.def("canAcquirePromotion", &CyUnit::canAcquirePromotion, "bool (int /*PromotionTypes*/ ePromotion)")

@@ -982,7 +982,16 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				}
 			}
 		}
-
+// FFP - Feature damage modifier - start
+		for (iI = 0; iI < GC.getNumFeatureInfos(); ++iI)
+		{
+			if (pUnit->featureDamageModifier((FeatureTypes)iI) != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_PROMOTION_FEATURE_DAMAGE_TEXT", pUnit->featureDamageModifier((FeatureTypes)iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
+			}
+		}
+// FFP - Feature damage modifier - end
 		for (iI = 0; iI < GC.getNumUnitClassInfos(); ++iI)
 		{
 			if (pUnit->getUnitInfo().getUnitClassAttackModifier(iI) == GC.getUnitInfo(pUnit->getUnitType()).getUnitClassDefenseModifier(iI))
@@ -4028,6 +4037,15 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_IMMUNE_FIRST_STRIKES_TEXT"));
 	}
 
+// FFP - Move on impassable - start
+// the  _PROMOTION_ and _UNIT_ versions of these sorts of messages are the same, so I didn't make a new one
+	if (GC.getPromotionInfo(ePromotion).isCanMoveImpassable())
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAN_MOVE_IMPASSABLE"));
+	}
+// FFP - Move on impassable - end
+
 	for (iI = 0; iI < GC.getNumTerrainInfos(); ++iI)
 	{
 		if (GC.getPromotionInfo(ePromotion).getTerrainDoubleMove(iI))
@@ -4267,6 +4285,17 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_DEFENSE_TEXT", GC.getPromotionInfo(ePromotion).getFeatureDefensePercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
 		}
 	}
+
+// FFP - Feature damage modifier - start
+	for (iI = 0; iI < GC.getNumFeatureInfos(); ++iI)
+	{
+		if (GC.getPromotionInfo(ePromotion).getFeatureDamageModifierPercent(iI) != 0)	// FFP
+		{
+			szBuffer.append(pcNewline);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FEATURE_DAMAGE_TEXT", GC.getPromotionInfo(ePromotion).getFeatureDamageModifierPercent(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
+		}
+	}
+// FFP - Feature damage modifier - end
 
 	for (iI = 0; iI < GC.getNumUnitCombatInfos(); ++iI)
 	{
@@ -5792,7 +5821,16 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ATTACK", GC.getUnitInfo(eUnit).getFeatureAttackModifier(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
 		}
 	}
-
+// FFP - Feature damage modifier - start
+	for (iI = 0; iI < GC.getNumFeatureInfos(); ++iI)
+	{
+		if (GC.getUnitInfo(eUnit).getFeatureDamageModifier(iI)!= 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FEATURE_DAMAGE_TEXT", GC.getUnitInfo(eUnit).getFeatureDamageModifier(iI), GC.getFeatureInfo((FeatureTypes) iI).getTextKeyWide()));
+		}
+	}
+// FFP - Feature damage modifier - end
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); ++iI)
 	{
 		if (GC.getUnitInfo(eUnit).getUnitClassAttackModifier(iI) == GC.getUnitInfo(eUnit).getUnitClassDefenseModifier(iI))

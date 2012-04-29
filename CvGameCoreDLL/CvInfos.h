@@ -490,6 +490,7 @@ public:
 	bool isAlwaysHeal() const;				// Exposed to Python
 	bool isHillsDoubleMove() const;				// Exposed to Python
 	bool isImmuneToFirstStrikes() const;				// Exposed to Python
+	bool isCanMoveImpassable() const;	// FFP - Move on impassable	; Exposed to Python
 
 	const TCHAR* getSound() const;				// Exposed to Python
 	void setSound(const TCHAR* szVal);
@@ -502,6 +503,7 @@ public:
 	int getFeatureDefensePercent(int i) const;				// Exposed to Python
 	int getUnitCombatModifierPercent(int i) const;				// Exposed to Python
 	int getDomainModifierPercent(int i) const;				// Exposed to Python
+	int getFeatureDamageModifierPercent(int i) const;	// FFP - Feature damage modifier ; Exposed to Python
 
 	bool getTerrainDoubleMove(int i) const;				// Exposed to Python
 	bool getFeatureDoubleMove(int i) const;				// Exposed to Python
@@ -561,7 +563,8 @@ protected:
 	bool m_bEnemyRoute;						
 	bool m_bAlwaysHeal;						
 	bool m_bHillsDoubleMove;				
-	bool m_bImmuneToFirstStrikes;				
+	bool m_bImmuneToFirstStrikes;
+	bool m_bCanMoveImpassable;	// FFP - Move on impassable
 
 	CvString m_szSound;
 
@@ -573,6 +576,7 @@ protected:
 	int* m_piFeatureDefensePercent;
 	int* m_piUnitCombatModifierPercent;
 	int* m_piDomainModifierPercent;
+	int* m_piFeatureDamageModifierPercent;	// FFP - Feature damage modifier
 
 	bool* m_pbTerrainDoubleMove;
 	bool* m_pbFeatureDoubleMove;
@@ -948,6 +952,7 @@ public:
 	int getTerrainDefenseModifier(int i) const;				// Exposed to Python
 	int getFeatureAttackModifier(int i) const;				// Exposed to Python
 	int getFeatureDefenseModifier(int i) const;				// Exposed to Python
+	int getFeatureDamageModifier(int i) const;	// FFP - Feature damage modifier ; exposed to Python
 	int getUnitClassAttackModifier(int i) const;				// Exposed to Python
 	int getUnitClassDefenseModifier(int i) const;				// Exposed to Python
 	
@@ -1161,6 +1166,7 @@ protected:
 	int* m_piTerrainDefenseModifier;
 	int* m_piFeatureAttackModifier;
 	int* m_piFeatureDefenseModifier;
+	int* m_piFeatureDamageModifier; // FFP - Feature damage modifier
 	int* m_piUnitClassAttackModifier;
 	int* m_piUnitClassDefenseModifier;
 

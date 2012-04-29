@@ -511,4 +511,152 @@
 		<Italian>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.r</Italian>
 		<Spanish>A precision instruments maker produces tools, scientific instruments, and other devices which require a high degree of precision. These can include measuring devices, from calibrated calipers to scales, and tools used to produce other things.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_FEATURE_DAMAGE_TEXT</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% damage from %s2_TerrFeat</English>
+		<French>[ICON_BULLET]%D1_Bonus%% damage from %s2_TerrFeat</French>
+		<German>[ICON_BULLET]%D1_Bonus%% damage from %s2_TerrFeat</German>
+		<Italian>[ICON_BULLET]%D1_Bonus%% damage from %s2_TerrFeat</Italian>
+		<Spanish>[ICON_BULLET]%D1_Bonus%% damage from %s2_TerrFeat</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_SHIELDS_H</Tag>
+		<English>Hardened Shields</English>
+		<French>Hardened Shields</French>
+		<German>Hardened Shields</German>
+		<Italian>Hardened Shields</Italian>
+		<Spanish>Hardened Shields</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MISC_1</Tag>
+		<English>Advanced Shielding</English>
+		<French>Advanced Shielding</French>
+		<German>Advanced Shielding</German>
+		<Italian>Advanced Shielding</Italian>
+		<Spanish>Advanced Shielding</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MISC_1_STRATEGY</Tag>
+		<English>[COLOR_TECH_TEXT]Advanced Shielding[COLOR_REVERT] enables the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrades. It also allows the production of the [COLOR_UNIT_TEXT]Construction Ship 2[COLOR_REVERT] and the [COLOR_UNIT_TEXT]Colony Ship 2[COLOR_REVERT] which can move through radiation clouds.</English>
+		<French>[COLOR_TECH_TEXT]Advanced Shielding[COLOR_REVERT] enables the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrades. It also allows the production of the [COLOR_UNIT_TEXT]Construction Ship 2[COLOR_REVERT] and the [COLOR_UNIT_TEXT]Colony Ship 2[COLOR_REVERT] which can move through radiation clouds.</French>
+		<German>[COLOR_TECH_TEXT]Advanced Shielding[COLOR_REVERT] enables the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrades. It also allows the production of the [COLOR_UNIT_TEXT]Construction Ship 2[COLOR_REVERT] and the [COLOR_UNIT_TEXT]Colony Ship 2[COLOR_REVERT] which can move through radiation clouds.</German>
+		<Italian>[COLOR_TECH_TEXT]Advanced Shielding[COLOR_REVERT] enables the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrades. It also allows the production of the [COLOR_UNIT_TEXT]Construction Ship 2[COLOR_REVERT] and the [COLOR_UNIT_TEXT]Colony Ship 2[COLOR_REVERT] which can move through radiation clouds.</Italian>
+		<Spanish>[COLOR_TECH_TEXT]Advanced Shielding[COLOR_REVERT] enables the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrades. It also allows the production of the [COLOR_UNIT_TEXT]Construction Ship 2[COLOR_REVERT] and the [COLOR_UNIT_TEXT]Colony Ship 2[COLOR_REVERT] which can move through radiation clouds.</Spanish>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MISC_1_PEDIA</Tag>
+		<English>Advancing technology allows significant improvements to ship shields in two ways. First, by simply doing more of what they already do, as seen in the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] part upgrade. Second, by expanding function to cover additional things which leads to taking reduced damage from various forms of radiation, seen primarily in the [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrade but also, to a lesser degree, in the Advanced Shields.</English>
+		<French>Advancing technology allows significant improvements to ship shields in two ways. First, by simply doing more of what they already do, as seen in the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] part upgrade. Second, by expanding function to cover additional things which leads to taking reduced damage from various forms of radiation, seen primarily in the [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrade but also, to a lesser degree, in the Advanced Shields.</French>
+		<German>Advancing technology allows significant improvements to ship shields in two ways. First, by simply doing more of what they already do, as seen in the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] part upgrade. Second, by expanding function to cover additional things which leads to taking reduced damage from various forms of radiation, seen primarily in the [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrade but also, to a lesser degree, in the Advanced Shields.</German>
+		<Italian>Advancing technology allows significant improvements to ship shields in two ways. First, by simply doing more of what they already do, as seen in the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] part upgrade. Second, by expanding function to cover additional things which leads to taking reduced damage from various forms of radiation, seen primarily in the [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrade but also, to a lesser degree, in the Advanced Shields.</Italian>
+		<Spanish>Advancing technology allows significant improvements to ship shields in two ways. First, by simply doing more of what they already do, as seen in the [COLOR_HIGHLIGHT_TEXT]Advanced Shields[COLOR_REVERT] part upgrade. Second, by expanding function to cover additional things which leads to taking reduced damage from various forms of radiation, seen primarily in the [COLOR_HIGHLIGHT_TEXT]Hardened Shields[COLOR_REVERT] part upgrade but also, to a lesser degree, in the Advanced Shields.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_COLONY_SHIP_II</Tag>
+		<English>
+			<TEXT>[ICON_GREATPEOPLE] Colony Ship:[ICON_GREATPEOPLE] Colony Ships</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</English>
+		<French>
+			<Text>Vaisseau colon [ICON_GREATPEOPLE]:Vaisseaux colons [ICON_GREATPEOPLE]</Text>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</French>
+		<German>
+			<Text>[ICON_GREATPEOPLE]-Kolonieschiff:[ICON_GREATPEOPLE]-Kolonieschiffe</Text>
+			<Gender>Neuter</Gender>
+			<Plural>0:1</Plural>
+		</German>
+		<Italian>
+			<Text>Nave colonia [ICON_GREATPEOPLE]:Navi colonia [ICON_GREATPEOPLE]</Text>
+			<Gender>Female</Gender>
+			<Plural>0:1</Plural>
+		</Italian>
+		<Spanish>
+			<Text>Nave colonia [ICON_GREATPEOPLE]:Naves colonia [ICON_GREATPEOPLE]</Text>
+			<Gender>Female</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_COLONY_SHIP_STRATEGY_II</Tag>
+		<English>Unable to attack or defend, [ICON_GREATPEOPLE] Colony Ships are the units which Colonize Star Systems after Advanced Shielding has been researched. Unlike the older Colony Ships, these can move across Radiation Clouds and even regions covered with Nebula.</English>
+		<French>Unable to attack or defend, [ICON_GREATPEOPLE] Colony Ships are the units which Colonize Star Systems after Advanced Shielding has been researched. Unlike the older Colony Ships, these can move across Radiation Clouds and even regions covered with Nebula.</French>
+		<German>Unable to attack or defend, [ICON_GREATPEOPLE] Colony Ships are the units which Colonize Star Systems after Advanced Shielding has been researched. Unlike the older Colony Ships, these can move across Radiation Clouds and even regions covered with Nebula.</German>
+		<Italian>Unable to attack or defend, [ICON_GREATPEOPLE] Colony Ships are the units which Colonize Star Systems after Advanced Shielding has been researched. Unlike the older Colony Ships, these can move across Radiation Clouds and even regions covered with Nebula.</Italian>
+		<Spanish>Unable to attack or defend, [ICON_GREATPEOPLE] Colony Ships are the units which Colonize Star Systems after Advanced Shielding has been researched. Unlike the older Colony Ships, these can move across Radiation Clouds and even regions covered with Nebula.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CONSTRUCT_SHIP_II</Tag>
+		<English>
+			<TEXT>[ICON_GREATPEOPLE] Construction Ship:[ICON_GREATPEOPLE] Construction Ships</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</English>
+		<French>
+			<Text>Vaisseau de construction [ICON_GREATPEOPLE]:Vaisseaux de construction [ICON_GREATPEOPLE]</Text>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</French>
+		<German>
+			<Text>[ICON_GREATPEOPLE]-Konstruktionsschiff:[ICON_GREATPEOPLE]-Konstruktionsschiffe</Text>
+			<Gender>Neuter</Gender>
+			<Plural>0:1</Plural>
+		</German>
+		<Italian>
+			<Text>Nave da costruzione [ICON_GREATPEOPLE]:Navi da costruzione [ICON_GREATPEOPLE]</Text>
+			<Gender>Female</Gender>
+			<Plural>0:1</Plural>
+		</Italian>
+		<Spanish>
+			<Text>Nave de construcci&#243;n [ICON_GREATPEOPLE]:Naves de construcci&#243;n [ICON_GREATPEOPLE]</Text>
+			<Gender>Female</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CONSTRUCT_SHIP_STRATEGY_II</Tag>
+		<English>The [ICON_GREATPEOPLE] Construction Ship is used to build Warp and Jump Lanes to speed movement and the Extraction Facility to harvest resources. It is also necessary in order to create the powerful Starbase unit. Unlike the earlier Construction Ship, it can enter Radiation Clouds and areas of Nebula. It also works slightly faster.</English>
+		<French>The [ICON_GREATPEOPLE] Construction Ship is used to build Warp and Jump Lanes to speed movement and the Extraction Facility to harvest resources. It is also necessary in order to create the powerful Starbase unit. Unlike the earlier Construction Ship, it can enter Radiation Clouds and areas of Nebula. It also works slightly faster.</French>
+		<German>The [ICON_GREATPEOPLE] Construction Ship is used to build Warp and Jump Lanes to speed movement and the Extraction Facility to harvest resources. It is also necessary in order to create the powerful Starbase unit. Unlike the earlier Construction Ship, it can enter Radiation Clouds and areas of Nebula. It also works slightly faster.</German>
+		<Italian>The [ICON_GREATPEOPLE] Construction Ship is used to build Warp and Jump Lanes to speed movement and the Extraction Facility to harvest resources. It is also necessary in order to create the powerful Starbase unit. Unlike the earlier Construction Ship, it can enter Radiation Clouds and areas of Nebula. It also works slightly faster.</Italian>
+		<Spanish>The [ICON_GREATPEOPLE] Construction Ship is used to build Warp and Jump Lanes to speed movement and the Extraction Facility to harvest resources. It is also necessary in order to create the powerful Starbase unit. Unlike the earlier Construction Ship, it can enter Radiation Clouds and areas of Nebula. It also works slightly faster.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_RAPID_CONSTRUCT_SHIP_II</Tag><!-- Highly questionable translations -->
+		<English>
+			<TEXT>[ICON_GREATPEOPLE] Rapid Construction Ship:[ICON_GREATPEOPLE] Rapid Construction Ships</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</English>
+		<French>
+			<Text>Vaisseau de construction rapide [ICON_GREATPEOPLE]:Vaisseaux de construction rapide [ICON_GREATPEOPLE]</Text>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</French>
+		<German>
+			<Text>[ICON_GREATPEOPLE]-Schnellkonstruktionsschiff:[ICON_GREATPEOPLE]-Schnellkonstruktionsschiffe</Text>
+			<Gender>Neuter</Gender>
+			<Plural>0:1</Plural>
+		</German>
+		<Italian>
+			<Text>Nave da costruzione rapida [ICON_GREATPEOPLE]:Navi da costruzione rapida [ICON_GREATPEOPLE]</Text>
+			<Gender>Female</Gender>
+			<Plural>0:1</Plural>
+		</Italian>
+		<Spanish>
+			<Text>Nave de construcci&#243;n r&#225;pida [ICON_GREATPEOPLE]:Naves de construcci&#243;n r#225;pida [ICON_GREATPEOPLE]</Text>
+			<Gender>Female</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_RAPID_CONSTRUCT_SHIP_STRATEGY_II</Tag>
+		<English>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</English>
+		<French>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</French>
+		<German>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</German>
+		<Italian>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</Italian>
+		<Spanish>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</Spanish>
+	</TEXT>
 </Civ4GameText>

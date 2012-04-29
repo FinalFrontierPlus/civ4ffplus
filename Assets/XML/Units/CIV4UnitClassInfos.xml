@@ -16,6 +16,15 @@
 			<DefaultUnit>UNIT_COLONY_SHIP</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
+			<Type>UNITCLASS_COLONY_SHIP_II</Type>
+			<Description>TXT_KEY_UNIT_COLONY_SHIP_II</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_COLONY_SHIP_II</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
 			<Type>UNITCLASS_CONSTRUCT_SHIP</Type>
 			<Description>TXT_KEY_UNIT_CONSTRUCT_SHIP</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
@@ -23,6 +32,15 @@
 			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_CONSTRUCT_SHIP</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>UNITCLASS_CONSTRUCT_SHIP_II</Type>
+			<Description>TXT_KEY_UNIT_CONSTRUCT_SHIP_II</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_CONSTRUCT_SHIP_II</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
 			<Type>UNITCLASS_PLANETARY_DEFENSE_I</Type>

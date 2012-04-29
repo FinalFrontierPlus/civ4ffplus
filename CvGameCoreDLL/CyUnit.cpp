@@ -980,6 +980,13 @@ int CyUnit::featureDefenseModifier(int /*FeatureTypes*/ eFeature)
 	return m_pUnit ? m_pUnit->featureDefenseModifier((FeatureTypes) eFeature) : -1;
 }
 
+// FFP - Feature damage modifier - start
+int CyUnit::featureDamageModifier(int /*FeatureTypes*/ eFeature)
+{
+	return m_pUnit ? m_pUnit->featureDamageModifier((FeatureTypes) eFeature) : -1;
+}
+// FFP - Feature damage modifier - end
+
 int CyUnit::unitClassAttackModifier(int /*UnitClassTypes*/ eUnitClass)
 {
 	return m_pUnit ? m_pUnit->unitClassAttackModifier((UnitClassTypes) eUnitClass) : -1;
@@ -1614,6 +1621,13 @@ int CyUnit::getExtraFeatureDefensePercent(int /*FeatureTypes*/ eIndex)
 {
 	return m_pUnit ? m_pUnit->getExtraFeatureDefensePercent((FeatureTypes) eIndex) : -1;
 }
+
+// FFP - Feature damage modifier - start
+int CyUnit::getExtraFeatureDamagePercent(int /*FeatureTypes*/ eIndex)
+{
+	return m_pUnit ? m_pUnit->getExtraFeatureDamagePercent((FeatureTypes) eIndex) : -1;
+}
+// FFP - Feature damage modifier - end
 
 int CyUnit::getExtraUnitCombatModifier(int /*UnitCombatTypes*/ eIndex)
 {

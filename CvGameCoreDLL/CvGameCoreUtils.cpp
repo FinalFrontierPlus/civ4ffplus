@@ -1443,7 +1443,7 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 					{
 						if (pToPlot->getFeatureType() != NO_FEATURE)
 						{
-							iCost += (GC.getPATH_DAMAGE_WEIGHT() * std::max(0, GC.getFeatureInfo(pToPlot->getFeatureType()).getTurnDamage())) / GC.getMAX_HIT_POINTS();
+							iCost += (GC.getPATH_DAMAGE_WEIGHT() * std::max(0, GC.getFeatureInfo(pToPlot->getFeatureType()).getTurnDamage() + pLoopUnit->featureDamageModifier(pToPlot->getFeatureType()))) / GC.getMAX_HIT_POINTS(); // FFP - Feature damage modifier
 						}
 
 						if (pToPlot->getExtraMovePathCost() > 0)

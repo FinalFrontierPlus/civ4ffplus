@@ -250,6 +250,7 @@ public:
 	int terrainDefenseModifier(int /*TerrainTypes*/ eTerrain);
 	int featureAttackModifier(int /*FeatureTypes*/ eFeature);
 	int featureDefenseModifier(int /*FeatureTypes*/ eFeature);
+	int featureDamageModifier(int /*FeatureTypes*/ eFeature);
 	int unitClassAttackModifier(int /*UnitClassTypes*/ eUnitClass);
 	int unitClassDefenseModifier(int /*UnitClassTypes*/ eUnitClass);
 
@@ -393,6 +394,7 @@ public:
 	int getExtraTerrainDefensePercent(int /*TerrainTypes*/ eIndex);
 	int getExtraFeatureAttackPercent(int /*FeatureTypes*/ eIndex);
 	int getExtraFeatureDefensePercent(int /*FeatureTypes*/ eIndex);
+	int getExtraFeatureDamagePercent(int /*FeatureTypes*/ eIndex);
 	int getExtraUnitCombatModifier(int /*UnitCombatTypes*/ eIndex);
 
 	bool canAcquirePromotion(int /*PromotionTypes*/ ePromotion);

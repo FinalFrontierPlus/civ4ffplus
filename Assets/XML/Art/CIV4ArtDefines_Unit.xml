@@ -1713,5 +1713,64 @@
 			<SelectionSound>AS3D_UN_SPACESHIP_FORTIFY</SelectionSound>
 			<ActionSound>AS3D_UN_SPACESHIP_FORTIFY</ActionSound>
 		</UnitArtInfo>
+		<UnitArtInfo>
+			<Type>ART_DEF_UNIT_COLONY_SHIP_II</Type>
+			<Button>Art/Interface/Buttons/Units/ColonyShip2.dds</Button>
+			<fScale>0.72</fScale>
+			<fInterfaceScale>.56</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>1</bActAsAir>
+			<NIF>Art/Units/FinalFrontier_ColonyShip/ColonyShip.nif</NIF>
+			<KFM>Art/Units/FinalFrontier_ColonyShip/ColonyShip.kfm</KFM>
+			<SHADERNIF>Art/Units/FinalFrontier_ColonyShip/ColonyShip_FX.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/TransportShadow.nif</ShadowNIF>
+				<ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+				<fShadowScale>0</fShadowScale>
+			</ShadowDef>
+			<iDamageStates>4</iDamageStates>
+			<fBattleDistance>0.35</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bSmoothMove>1</bSmoothMove>
+			<fAngleInterpRate>720.0</fAngleInterpRate>
+			<fBankRate>0.2</fBankRate>
+			<bActAsRanged>1</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+			<AudioRunSounds>
+				<AudioRunTypeLoop/>
+				<AudioRunTypeEnd/>
+			</AudioRunSounds>
+			<SelectionSound>AS3D_UN_SPACESHIP_FORTIFY</SelectionSound>
+			<ActionSound>AS3D_UN_SPACESHIP_FORTIFY</ActionSound>
+		</UnitArtInfo>
+		<UnitArtInfo>
+			<Type>ART_DEF_UNIT_CONSTRUCT_SHIP_II</Type>
+			<Button>Art/Interface/Buttons/Units/ConShip2.dds</Button>
+			<fScale>0.55</fScale>
+			<fInterfaceScale>.77</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>1</bActAsAir>
+			<NIF>Art/Units/FinalFrontier_ConstructionShip/ConstructionShip.nif</NIF>
+			<KFM>Art/Units/FinalFrontier_ConstructionShip/ConstructionShip.kfm</KFM>
+			<SHADERNIF>Art/Units/FinalFrontier_ConstructionShip/ConstructionShip_FX.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/WorkboatShadow.nif</ShadowNIF>
+				<ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+				<fShadowScale>0</fShadowScale>
+			</ShadowDef>
+			<fBattleDistance>0.35</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bSmoothMove>1</bSmoothMove>
+			<fAngleInterpRate>720.0</fAngleInterpRate>
+			<fBankRate>0.2</fBankRate>
+			<bActAsRanged>1</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+			<AudioRunSounds>
+				<AudioRunTypeLoop/>
+				<AudioRunTypeEnd/>
+			</AudioRunSounds>
+			<SelectionSound>AS3D_UN_SPACESHIP_FORTIFY</SelectionSound>
+			<ActionSound>AS3D_UN_SPACESHIP_FORTIFY</ActionSound>
+		</UnitArtInfo>
 	</UnitArtInfos>
 </Civ4ArtDefines>
