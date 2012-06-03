@@ -526,6 +526,10 @@
 					<UnitClassType>UNITCLASS_CONSTRUCT_SHIP</UnitClassType>
 					<UnitType>UNIT_RAPID_CONSTRUCT_SHIP</UnitType>
 				</Unit>
+				<Unit>
+					<UnitClassType>UNITCLASS_CONSTRUCT_SHIP_II</UnitClassType>
+					<UnitType>UNIT_RAPID_CONSTRUCT_SHIP_II</UnitType>
+				</Unit>
 			</Units>
 			<FreeUnitClasses>
 				<FreeUnitClass>
