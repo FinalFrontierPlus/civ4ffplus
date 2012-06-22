@@ -147,7 +147,7 @@
 			<Description>TXT_KEY_CIVIC_LIGHT_SHIP_DOCTRINE</Description>
 			<Civilopedia>TXT_KEY_CIVIC_LIGHT_SHIP_DOCTRINE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_LIGHT_SHIP_DOCTRINE_STRATEGY</Strategy>
-			<Help>TXT_KEY_CIVIC_LIGHT_SHIP_DOCTRINE_HELP</Help>
+			<Help/>
 			<Button>,Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,1,5</Button>
 			<TechPrereq>TECH_MILITARY_3</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
@@ -219,7 +219,7 @@
 			<Description>TXT_KEY_CIVIC_CAPITAL_SHIP_DOCTRINE</Description>
 			<Civilopedia>TXT_KEY_CIVIC_CAPITAL_SHIP_DOCTRINE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_CAPITAL_SHIP_DOCTRINE_STRATEGY</Strategy>
-			<Help>TXT_KEY_CIVIC_CAPITAL_SHIP_DOCTRINE_HELP</Help>
+			<Help/>
 			<Button>,Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,2,5</Button>
 			<TechPrereq>TECH_MILITARY_5</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
@@ -296,7 +296,7 @@
 			<Description>TXT_KEY_CIVIC_SQUADRON_DOCTRINE</Description>
 			<Civilopedia>TXT_KEY_CIVIC_SQUADRON_DOCTRINE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_SQUADRON_DOCTRINE_STRATEGY</Strategy>
-			<Help>TXT_KEY_CIVIC_SQUADRON_DOCTRINE_HELP</Help>
+			<Help/>
 			<Button>,Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,3,5</Button>
 			<TechPrereq>TECH_MILITARY_6</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
