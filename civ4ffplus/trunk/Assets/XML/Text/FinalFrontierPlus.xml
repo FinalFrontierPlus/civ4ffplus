@@ -659,4 +659,12 @@
 		<Italian>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</Italian>
 		<Spanish>The [ICON_GREATPEOPLE] Rapid Construction Ship is not only extraordinarily fast when moving from place to place (big engines, little ship), but it also builds things even faster than a standard [ICON_GREATPEOPLE] construction ship.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_UNITCOMBAT_COST_MOD</Tag>
+		<English>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</English>
+		<French>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</French>
+		<German>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</German>
+		<Italian>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</Italian>
+		<Spanish>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</Spanish>
+	</TEXT>
 </Civ4GameText>

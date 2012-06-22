@@ -4769,11 +4769,24 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	setYieldChangeHelp(szHelpText, L"", L"", gDLL->getText("TXT_KEY_CIVIC_PLANET_YIELD").GetCString(), GC.getCivicInfo(eCivic).getPlanetYieldChangesArray());
 //End of Final Frontier
 
+// Added for FFP 1.8.1 : start
+	// Unit Combat production cost modifiers
+	for (iI = 0; iI < GC.getNumUnitCombatInfos(); ++iI)
+	{
+		if (GC.getCivicInfo(eCivic).getUnitCombatCostMods(iI) != 0)
+		{
+			szHelpText.append(NEWLINE);
+			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_UNITCOMBAT_COST_MOD", GC.getCivicInfo(eCivic).getUnitCombatCostMods(iI), GC.getUnitCombatInfo((UnitCombatTypes)iI).getTextKeyWide()));
+		}
+	}
+// End for FFP 1.8.1
+
 	//	Largest City Happiness
 	if (GC.getCivicInfo(eCivic).getLargestCityHappiness() != 0)
 	{
 		szHelpText.append(NEWLINE);
-		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_LARGEST_CITIES_HAPPINESS", GC.getCivicInfo(eCivic).getLargestCityHappiness(), ((GC.getCivicInfo(eCivic).getLargestCityHappiness() > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR)), GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities()));
+		// FFP bugfix for 1.8.1 : when unhappy show as positive unhappy faces, not negative
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_LARGEST_CITIES_HAPPINESS", abs(GC.getCivicInfo(eCivic).getLargestCityHappiness()), ((GC.getCivicInfo(eCivic).getLargestCityHappiness() > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR)), GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities()));
 	}
 
 	//	Improvement Yields
