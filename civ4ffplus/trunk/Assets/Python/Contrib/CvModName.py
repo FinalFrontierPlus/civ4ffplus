@@ -2,7 +2,7 @@
 
 modName = "Final Frontier Plus"
 displayName = "Final Frontier Plus Mod"
-modVersion = "1.8"
+modVersion = "1.81"
 
 civName = "BtS"
 civVersion = "3.19"
