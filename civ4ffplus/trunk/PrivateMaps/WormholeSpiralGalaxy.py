@@ -7,6 +7,8 @@
 ## use with the Final Frontier mod for Civilization 4
 ##############################################################################
 ## Version History
+# V1.x - various modifications including all thigns relating to wormholes
+# V2 - added star system density option (currently Normal and Dense), by God-Emperor
 
 ##############################################################################
 # Tunable variables
@@ -22,7 +24,7 @@
 UsePythonRandom = True
 
 #How many of the large features to place per plot
-SolarSystemsPerPlot = 0.0042
+SolarSystemsPerPlot = 0.0045
 BlackHolesPerPlot = 0.00032
 SupernovasPerPlot = 0.00042
 
@@ -410,7 +412,13 @@ class FeaturePlacer :
                     
         #Decide how many of the big features to place
         numPlots = mapSize.MapWidth * mapSize.MapHeight
-        numSolarSystems = int(float(numPlots) * SolarSystemsPerPlot)
+        # GE - new option for more star systems, start
+        if mmap.getCustomMapOption(2) == 0:
+            fStarsModifier = 1.2 # the Dense setting gets 20% more star systems
+        else:
+            fStarsModifier = 1.0
+        numSolarSystems = int(float(numPlots) * SolarSystemsPerPlot * fStarsModifier)
+		# GE - new option for more star systems, end
         numBlackHoles = int(float(numPlots) * BlackHolesPerPlot)
         numSupernovas = int(float(numPlots) * SupernovasPerPlot)
         numWormholes = 2
@@ -1038,13 +1046,14 @@ def isSeaLevelMap():
 	return 0
 
 def getNumCustomMapOptions():
-	return 2
+	return 3 # GE - new option for more star systems, add 3rd option 
 	
 def getCustomMapOptionName(argsList):
 	[iOption] = argsList
 	option_names = {
 		0:	"Label Wormholes",
-		1:	"Order of Wormholes"
+		1:	"Order of Wormholes",
+		2:	"TXT_KEY_FF_MAP_NUM_STAR_SYSTEMS"	# GE - new option for more star systems, add 3rd option 
 		}
 	translated_text = unicode(CyTranslator().getText(option_names[iOption], ()))
 	return translated_text
@@ -1053,7 +1062,8 @@ def getNumCustomMapOptionValues(argsList):
 	[iOption] = argsList
 	option_values = {
 		0:	2,
-		1:	6
+		1:	6,
+		2:	2	# GE - new option for more star systems, add 3rd option 
 		}
 	return option_values[iOption]
 	
@@ -1071,7 +1081,11 @@ def getCustomMapOptionDescAt(argsList):
 			3:	"Red - Purple - Blue",
 			4:	"Purple - Blue - Red",
 			5:	"Purple - Red - Blue"
-			}
+			},# GE - new option for more star systems, start
+		2:	{
+			0: "TXT_KEY_FF_MAP_NUM_MANY",
+			1: "TXT_KEY_FF_MAP_NUM_NORMAL"
+			}# GE - new option for more star systems, end
 		}
 	translated_text = unicode(CyTranslator().getText(selection_names[iOption][iSelection], ()))
 	return translated_text
@@ -1080,7 +1094,8 @@ def getCustomMapOptionDefault(argsList):
 	[iOption] = argsList
 	option_defaults = {
 		0:	1,
-		1:	0
+		1:	0,
+		2:	1	# GE - new option for more star systems
 		}
 	return option_defaults[iOption]
 	
