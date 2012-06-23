@@ -8,6 +8,7 @@
 ##############################################################################
 ## Version History
 ## 1.01 - Fixed a multiplayer bug
+# V2 - added star system density option (currently Normal and Dense), by God-Emperor
 
 ##############################################################################
 # Tunable variables
@@ -348,7 +349,13 @@ class FeaturePlacer :
                     
         #Decide how many of the big features to place
         numPlots = mapSize.MapWidth * mapSize.MapHeight
-        numSolarSystems = int(float(numPlots) * SolarSystemsPerPlot)
+        # GE - new option for more star systems, start
+        if mmap.getCustomMapOption(2) == 0:
+            fStarsModifier = 1.2 # the Dense setting gets 20% more star systems
+        else:
+            fStarsModifier = 1.0
+        numSolarSystems = int(float(numPlots) * SolarSystemsPerPlot * fStarsModifier)
+		# GE - new option for more star systems, end
         numBlackHoles = int(float(numPlots) * BlackHolesPerPlot)
         numSupernovas = int(float(numPlots) * SupernovasPerPlot)
 
@@ -870,6 +877,45 @@ def isSeaLevelMap():
 	Uses the Sea Level options
 	"""
 	return 0
+
+# GE - new option for more star systems, start
+def getNumCustomMapOptions():
+	return 1
+	
+def getCustomMapOptionName(argsList):
+	[iOption] = argsList
+	option_names = {
+		0:	"TXT_KEY_FF_MAP_NUM_STAR_SYSTEMS"
+		}
+	translated_text = unicode(CyTranslator().getText(option_names[iOption], ()))
+	return translated_text
+	
+def getNumCustomMapOptionValues(argsList):
+	[iOption] = argsList
+	option_values = {
+		0:	2
+		}
+	return option_values[iOption]
+	
+def getCustomMapOptionDescAt(argsList):
+	[iOption, iSelection] = argsList
+	selection_names = {
+		0:	{
+			0: "TXT_KEY_FF_MAP_NUM_MANY",
+			1: "TXT_KEY_FF_MAP_NUM_NORMAL"
+			}
+		}
+	translated_text = unicode(CyTranslator().getText(selection_names[iOption][iSelection], ()))
+	return translated_text
+	
+def getCustomMapOptionDefault(argsList):
+	[iOption] = argsList
+	option_defaults = {
+		0:	1
+		}
+	return option_defaults[iOption]
+ # GE - new option for more star systems, end
+ 
 def getGridSize(argsList):
 	"Adjust grid sizes for optimum results"
 	grid_sizes = {
