@@ -1357,6 +1357,8 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 			
 		if (iUnassigned > 0):
 			AI.doCityAIUpdate(pCity, iUnassigned)
+		elif (iUnassigned < 0): # for 1.81 - if the system has "gone negative", do a full reassignment
+			AI.doCityAIUpdate(pCity)
 		
 #############################################################################################
 #		Selecting Planets
