@@ -7999,20 +7999,19 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 
 /** FFP AImod: adjust the city attack AI type unit valuation (again) - start
  **		Adjust the equation to reduce the contribution of the squared combat strenth.
- **		This is acomplished both by increasing the divisor (from 75 to 80) and by taking advantage
- **		of the integer math. Instead of dividing after the squaring, divide the combat value
- **		for each of the two parts...
  **		Also, adjust the non-squared part to round up (affects Omeaga invasion Ship, but not really
  **		anythign else that matters for this unit AI type in FFP)
  **	Original:
 		iTempValue = ((iCombatValue * iCombatValue) / 75) + (iCombatValue / 2);
- **	New: **/
+ **	New:
 		iTempValue = ((iCombatValue / 8) * (iCombatValue / 10)) + ((iCombatValue + 1)/ 2);
+ **	Newer: post v1.81, even less value for the squared part, more for the linear part **/
+		iTempValue = ((iCombatValue / 8) * (iCombatValue / 9)) / 2 + iCombatValue;
 /** FFP AImod:  adjust the city attack AI type unit valuation (again) - end **/
 		iValue += iTempValue;
 		if (GC.getUnitInfo(eUnit).isNoDefensiveBonus())
 		{
-			iValue -= iTempValue / 3;	// FFP AImod : changed from "/ 2"
+			iValue -= iTempValue / 4;	// FFP AImod : changed from "/ 2", then from "/ 3" post v1.81
 		}
 		if (GC.getUnitInfo(eUnit).getDropRange() > 0)
 		{
@@ -8038,7 +8037,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCityAttackModifier()) / 80);
 /** FFP AImod: city attack unit AI city attack modifier modfied - end **/
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage()) / 400);
-		iValue += GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits(); // FFP AImod : added this line
+		iValue += (iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits()) / 12; // FFP AImod : added this line; adjusted post v1.81
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves() * iFastMoverMultiplier) / 4);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 100);
 /** FFP AImod: no capture and Troop Transport adjustment 2 - start
