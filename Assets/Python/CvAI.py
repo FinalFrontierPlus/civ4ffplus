@@ -198,7 +198,8 @@ class CvAI:
 				iYieldNeededMost = 1
 			
 			#If avoid growth is on, prioritize commerce or production -- TC01
-			if (pCity.AI_avoidGrowth()):
+			# Unless it has a negative iSurplusFood -- GE, post v1.81
+			if (pCity.AI_avoidGrowth() and iSurplusFood >= 0):
 				iYieldNeededMost = gc.getGame().getSorenRandNum(2, "AI Population Assignment Logic") + 1
 				
 #			printd("   iYieldNeededMost")
