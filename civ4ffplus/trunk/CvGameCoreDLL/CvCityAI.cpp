@@ -6075,13 +6075,24 @@ void CvCityAI::AI_doHurry(bool bForce)
 					hurry((HurryTypes)iI);
 					break;
 				}
+/** FFP: post 1.81 - reduce whipping - start
+	old:
 				if (AI_countGoodTiles((healthRate(0) == 0), false, 100) <= (getPopulation() - iHurryPopulation))
+	new: don't do it if it would drop the population below 3/4 its max ever level, rounded up **/
+				if ((getPopulation() - iHurryPopulation) > (getHighestPopulation()*3+3)/4)
+/**	FFP: post 1.81 - reduce whipping - end **/
 				{
 					hurry((HurryTypes)iI);
 					break;
 				}
 			}
+/** FFP: post 1.81 - reduce whipping - start
+	old:
 			if (AI_countGoodTiles((healthRate(0) == 0), false, 100) <= (getPopulation() - iHurryPopulation))
+	new: don't check it if it would drop the population below 3, there is already a check for this
+		 in there so it isn't much of a change, unless the build is flagged as "essential" **/
+			if (((getPopulation() - iHurryPopulation) > 3) || bEssential)
+/**	FFP: post 1.81 - reduce whipping - end **/
 			{
 				if (getProductionTurnsLeft() > iMinTurns)
 				{
@@ -6123,6 +6134,8 @@ void CvCityAI::AI_doHurry(bool bForce)
 							if (!bWait && !bEssential)
 							{
 								int iFoodSurplus = 0;
+/** FFP: post 1.81 - reduce whipping - start
+	old: in FFP plots are all 0 food so this would never end up greater than 0, let alone greater than 3
 								CvPlot * pLoopPlot;
 
 								for (iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
@@ -6140,7 +6153,9 @@ void CvCityAI::AI_doHurry(bool bForce)
 										}
 									}
 								}
-
+	new: much easier, just use the function that generally subtracts food used from food yield **/
+								iFoodSurplus = foodDifference(false);
+/**	FFP: post 1.81 - reduce whipping - end **/
 								if (iFoodSurplus < 3)
 								{
 									bWait = true;
