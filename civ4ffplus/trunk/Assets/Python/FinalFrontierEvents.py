@@ -642,7 +642,11 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 					printd("  Planet at Ring ID %d" %(pPlanet.getOrbitRing()))
 					for iYieldLoop in range(3):					
 						if ((iYieldLoop == 0) and pPlanet.isHasBuilding(iLunarBase)): # CP - 0 == food; lunar base adjustment
-							iPop = min((pPlanet.getPopulationLimit(iOwner) - 1), pPlanet.getPopulation())
+							# post v1.81 - bugfix: when capturing a star system, if a planet which is outside the current
+							# cultural infuence has a lunar base then the original equation here (just the min() stuff without
+							# the max() part) would return a population of -1. This gave the star system less food than it should
+							# have, reported as a negative number in the printd() stuff for this planet.
+							iPop = max(0, min((pPlanet.getPopulationLimit(iOwner) - 1), pPlanet.getPopulation()))
 						else:
 							iPop = pPlanet.getPopulation()
 						iValue = (pPlanet.getTotalYield(iOwner, iYieldLoop) * iPop)
@@ -1359,7 +1363,15 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 			AI.doCityAIUpdate(pCity, iUnassigned)
 		elif (iUnassigned < 0): # for 1.81 - if the system has "gone negative", do a full reassignment
 			AI.doCityAIUpdate(pCity)
-		
+		elif (not pCity.isDisorder()): # post v1.81 - try to avoid starvation:
+			# If the city is not in disorder, check to see if the food produced is less than the food consumed.
+			# note: If the city has serious happiness or health issues it may do this every turn to no avail.
+			#		Especially if it is The Forge with its -1 food per city. Oh well.
+			iSurplusFood = pCity.getYieldRate(0) - (pCity.getPopulation() * gc.getDefineINT("FOOD_CONSUMPTION_PER_POPULATION"))
+			if (iSurplusFood < 0):
+				printd("updateHumanCityTurn: detected starvation in %s, net food = %d" % (pCity.getName(), iSurplusFood))
+				AI.doCityAIUpdate(pCity)
+
 #############################################################################################
 #		Selecting Planets
 #############################################################################################
