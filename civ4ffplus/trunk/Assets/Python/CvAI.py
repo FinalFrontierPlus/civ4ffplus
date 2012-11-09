@@ -1728,7 +1728,13 @@ class CvAI:
 			iPlotOwner = pLoopPlot.getOwner()
 			if ((iPlotOwner != -1) and (iPlotOwner != iPlayer)):
 				continue
-			
+		
+			# Post v1.81: moved this check to here - why loop over nearbby pltos if this one is bad?
+			#	Instead of zeroing out the value, just skip the check.
+			# Don't build anywhere except in empty space & asteroids
+			if (pLoopPlot.getFeatureType() != -1 and pLoopPlot.getFeatureType() != gc.getInfoTypeForString('FEATURE_FOREST')):
+				continue
+					
 			iDistanceFromCapital = CyMap().getGridWidth()
 			
 			if (pPlayer.getCapitalCity()):
@@ -1782,10 +1788,6 @@ class CvAI:
 					iBonusValueMod = ((1280 / 3) * iNumBonuses)
 					iPlotValue += iDistanceValueMod + iBonusValueMod
 					printd("      Plot value for (%d, %d) is %d: Distance: %d, Bonus: %d" %(pLoopPlot.getX(), pLoopPlot.getY(), iPlotValue, iDistanceValueMod, iBonusValueMod))
-				
-				# Don't build anywhere except in empty space & asteroids
-				if (pLoopPlot.getFeatureType() != -1 and pLoopPlot.getFeatureType() != gc.getInfoTypeForString('FEATURE_FOREST')):
-					iPlotValue = 0
 					
 				# Little extra bonus for being in Asteroids (defense)
 				if (pLoopPlot.getFeatureType() == gc.getInfoTypeForString('FEATURE_FOREST')):
