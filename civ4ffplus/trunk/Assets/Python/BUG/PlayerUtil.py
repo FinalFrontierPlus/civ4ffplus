@@ -60,6 +60,7 @@ import TradeUtil
 import GameUtil
 
 gc = CyGlobalContext()
+g_rand = None # Post v1.81
 
 ## Players and Teams - Getting IDs and Cy objects 
 
@@ -313,6 +314,7 @@ def getFavoriteCivic(playerOrID):
 	
 	This works even when the Random Personalities option is enabled.
 	"""
+	global g_rand # Post v1.81
 	eLeaderType = getPlayer(playerOrID).getPersonalityType()
 	if eLeaderType != -1:
 		leader = gc.getLeaderHeadInfo(eLeaderType)
@@ -326,7 +328,13 @@ def getFavoriteCivic(playerOrID):
 			elif len(favorites) == 1:
 				return favorites[0]
 			else:
-				randCivic = CyGame().getSorenRandNum(len(favorites), "Random Civic MFC")
+				# Post v1.81 : do not use synchronized RNG for this, it is called just to show thigns to a human player
+				# used to be: randCivic = CyGame().getSorenRandNum(len(favorites), "Random Civic MFC") 
+				if g_rand == None:
+					g_rand = gc.getASyncRand()
+					
+				randCivic = g_rand.get(len(favorites), "Random Civic MFC")
+				
 				return favorites[randCivic]
 			#End of TC01's Dirty Hack for Final Frontier Plus
 	return CivicTypes.NO_CIVIC
