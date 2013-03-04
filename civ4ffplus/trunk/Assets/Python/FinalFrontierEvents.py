@@ -423,11 +423,12 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 #		Starbase Stuff
 #############################################################################################
 		
-	def updateStarbaseCulture(self, iPlayer, iX, iY):
+	def updateStarbaseCulture(self, iPlayer, iX, iY, iRange):
 		
 		# Create culture around unit
-		for iXLoop in range(iX-2, iX+3):
-			for iYLoop in range(iY-2, iY+3):
+		# FFP post 1.81 - allow variable range for culture
+		for iXLoop in range(iX-iRange, iX+iRange+1):
+			for iYLoop in range(iY-iRange, iY+iRange+1):
 				iActiveX = iXLoop
 				iActiveY = iYLoop
 				if CyMap().isWrapX():
@@ -474,7 +475,8 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 						# pUnitLoop.setUnitAIType(UnitAITypes.UNITAI_CARRIER_SEA)
 						# printd(" --- set unit's UnitAI type to UNITAI_CARRIER_SEA")
 				if (pUnitLoop.isStarbase() and (not pUnitLoop.isOtherStation())):
-					aaiStarbaseList.append([pUnitLoop.getGameTurnCreated(), iPlayerLoop, pUnitLoop.getX(), pUnitLoop.getY()])
+					pUnitInfo = gc.getUnitInfo(pUnitLoop.getUnitType())
+					aaiStarbaseList.append([pUnitLoop.getGameTurnCreated(), iPlayerLoop, pUnitLoop.getX(), pUnitLoop.getY(), pUnitInfo.getCultureRange()])
 
 					# Need appropriate tech to create Missile
 					if (iUnitToCreate != -1):
@@ -500,7 +502,7 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 			aaiStarbaseList.sort()
 			
 			for iStarbaseLoop in range(len(aaiStarbaseList)):
-				self.updateStarbaseCulture(aaiStarbaseList[iStarbaseLoop][1], aaiStarbaseList[iStarbaseLoop][2], aaiStarbaseList[iStarbaseLoop][3])
+				self.updateStarbaseCulture(aaiStarbaseList[iStarbaseLoop][1], aaiStarbaseList[iStarbaseLoop][2], aaiStarbaseList[iStarbaseLoop][3], aaiStarbaseList[iStarbaseLoop][4])
 
 		
 	def getPossibleUnitList(self):

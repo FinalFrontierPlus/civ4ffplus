@@ -765,46 +765,48 @@ class FFGameUtils:
 		
 		szHelpText = u""
 		
-		# Only show tool tip help when players have the tutorial on
-		if (not CyUserProfile().getPlayerOption(PlayerOptionTypes.PLAYEROPTION_MODDER_1)):
-			
-			# Selected Planet
-			if (iData1 == 666):
-				szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_SELECTED_PLANET_HELP", ())
-				
-			# Planet Population
-			elif (iData1 == 667):
-				szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_PLANET_POPULATION_HELP", ())
-
-			# Planet Yield
-			elif (iData1 == 668):
-				szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_PRODUCES_HELP", ())
-				
-			# Planet Assign Building
-			elif (iData1 == 669):
-				szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_PLANET_BUILDINGS_HELP", ())
-			
-		# Planet Widgets in Lower-Right
-		if (iData1 >= 671 and iData1 <= 678):
-			
-			pHeadSelectedCity = CyInterface().getHeadSelectedCity()
-#			FinalFrontier = CvEventInterface.getEventManager().FinalFrontier #FFPBUG
-			pSystem = CvSolarSystem.getSystemAt(pHeadSelectedCity.getX(), pHeadSelectedCity.getY()) #FFPBUG
-			
-			iPlanetRing = iData1 - 670
-			pPlanet = pSystem.getPlanet(iPlanetRing)
-			iFood = pPlanet.getTotalYield(pHeadSelectedCity.getOwner(), 0)
-			iProduction = pPlanet.getTotalYield(pHeadSelectedCity.getOwner(), 1)
-			iCommerce = pPlanet.getTotalYield(pHeadSelectedCity.getOwner(), 2)
-			
-			iCultureLevel = pPlanet.getPlanetCulturalRange()
-
-			if pPlanet.isBonus():
-				szHelpText = pPlanet.getName() + "\n" + localText.getText("TXT_KEY_FF_INTERFACE_PLANET_SELECTION_HELP_0", (iFood, iProduction, iCommerce)) + "\n" + localText.getText("TXT_KEY_FFPLUS_PLANET_SELECTION_HELP", (iCultureLevel,)) + "\n" + u"%c " % gc.getBonusInfo(pPlanet.getBonusType()).getChar() + localText.getText("TXT_KEY_FFPLUS_PLANET_SELECTION_BONUS", (gc.getBonusInfo(pPlanet.getBonusType()).getDescription(),)) # Planetary Resource Indicator
-			else:
-				szHelpText = pPlanet.getName() + "\n" + localText.getText("TXT_KEY_FF_INTERFACE_PLANET_SELECTION_HELP_0", (iFood, iProduction, iCommerce)) + "\n" + localText.getText("TXT_KEY_FFPLUS_PLANET_SELECTION_HELP", (iCultureLevel,))
+		# All the FF specific widget help is for widgets with a type of WidgetTypes.WIDGET_GENERAL (FFP post 1.81, for B5, by G-E)
+		if (eWidgetType == WidgetTypes.WIDGET_GENERAL):
+		
+			# Only show tool tip help when players have the tutorial on
 			if (not CyUserProfile().getPlayerOption(PlayerOptionTypes.PLAYEROPTION_MODDER_1)):
-				szHelpText += "\n" + localText.getText("TXT_KEY_FF_INTERFACE_PLANET_SELECTION_HELP", ())
+				
+				# Selected Planet
+				if (iData1 == 666):
+					szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_SELECTED_PLANET_HELP", ())
+					
+				# Planet Population
+				elif (iData1 == 667):
+					szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_PLANET_POPULATION_HELP", ())
+
+				# Planet Yield
+				elif (iData1 == 668):
+					szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_PRODUCES_HELP", ())
+					
+				# Planet Assign Building
+				elif (iData1 == 669):
+					szHelpText = localText.getText("TXT_KEY_FF_INTERFACE_PLANET_BUILDINGS_HELP", ())
+				
+			# Planet Widgets in Lower-Right
+			if (iData1 >= 671 and iData1 <= 678):
+				
+				pHeadSelectedCity = CyInterface().getHeadSelectedCity()
+				pSystem = CvSolarSystem.getSystemAt(pHeadSelectedCity.getX(), pHeadSelectedCity.getY()) #FFPBUG
+				
+				iPlanetRing = iData1 - 670
+				pPlanet = pSystem.getPlanet(iPlanetRing)
+				iFood = pPlanet.getTotalYield(pHeadSelectedCity.getOwner(), 0)
+				iProduction = pPlanet.getTotalYield(pHeadSelectedCity.getOwner(), 1)
+				iCommerce = pPlanet.getTotalYield(pHeadSelectedCity.getOwner(), 2)
+				
+				iCultureLevel = pPlanet.getPlanetCulturalRange()
+
+				if pPlanet.isBonus():
+					szHelpText = pPlanet.getName() + "\n" + localText.getText("TXT_KEY_FF_INTERFACE_PLANET_SELECTION_HELP_0", (iFood, iProduction, iCommerce)) + "\n" + localText.getText("TXT_KEY_FFPLUS_PLANET_SELECTION_HELP", (iCultureLevel,)) + "\n" + u"%c " % gc.getBonusInfo(pPlanet.getBonusType()).getChar() + localText.getText("TXT_KEY_FFPLUS_PLANET_SELECTION_BONUS", (gc.getBonusInfo(pPlanet.getBonusType()).getDescription(),)) # Planetary Resource Indicator
+				else:
+					szHelpText = pPlanet.getName() + "\n" + localText.getText("TXT_KEY_FF_INTERFACE_PLANET_SELECTION_HELP_0", (iFood, iProduction, iCommerce)) + "\n" + localText.getText("TXT_KEY_FFPLUS_PLANET_SELECTION_HELP", (iCultureLevel,))
+				if (not CyUserProfile().getPlayerOption(PlayerOptionTypes.PLAYEROPTION_MODDER_1)):
+					szHelpText += "\n" + localText.getText("TXT_KEY_FF_INTERFACE_PLANET_SELECTION_HELP", ())
 			
 		return szHelpText
 		
