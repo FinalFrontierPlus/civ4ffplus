@@ -12335,6 +12335,11 @@ void CvCity::read(FDataStreamBase* pStream)
 		pStream->Read(&iChange);
 		m_aBuildingHealthChange.push_back(std::make_pair((BuildingClassTypes)iBuildingClass, iChange));
 	}
+	
+	// FFP for 1.82 - load the yield override values from the save
+	pStream->Read(&m_iFoodOverride);
+	pStream->Read(&m_iProductionOverride);
+	pStream->Read(&m_iGoldOverride);
 }
 
 void CvCity::write(FDataStreamBase* pStream)
@@ -12556,6 +12561,13 @@ void CvCity::write(FDataStreamBase* pStream)
 		pStream->Write((*it).first);
 		pStream->Write((*it).second);
 	}
+
+	// FFP for 1.82 - store the yield override values in the save so they are not all 0 on the
+	//	first turn after loading a save, which causes lost yield if you move population between
+	//	planets that first turn after loading (which is every turn in a PBEM game).
+	pStream->Write(m_iFoodOverride);
+	pStream->Write(m_iProductionOverride);
+	pStream->Write(m_iGoldOverride);
 }
 
 
