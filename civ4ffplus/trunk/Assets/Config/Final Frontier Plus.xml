@@ -3,7 +3,7 @@
 	Final Frontier Plus
 -->
 <mod id="FinalFrontierPlus" 
-	 version="1.81">
+	 version="1.83">
 	 
 	<events module="FinalFrontierEvents" class="FinalFrontierEvents"/>
 	<gameutils module="FinalFrontierGameUtils" class="FFGameUtils" override="True"/>
