@@ -52,6 +52,14 @@
 		<Spanish>Congratulations, you have trained your first Missile ([COLOR_UNIT_TEXT]%s1Unit_Name[COLOR_REVERT]) in %s2City_Name! Missiles can be fired at targets like other units, cities, and improvements, but are destroyed when launched.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_FEAT_IRON_CONNECTED</Tag>
+		<English>Congratulations! You have gained access to [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT], an important strategic resource! Star systems with access to [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT] can build Cruisers and Invasion Ships 20%% quicker.</English>
+		<French>F&#233;licitations ! Vous venez de trouver du [COLOR_HIGHLIGHT_TEXT]fer[COLOR_REVERT], une ressource strat&#233;gique essentielle ! Star systems with access to [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT] can build Cruisers and Invasion Ships 20%% quicker.</French>
+		<German>Herzlichen Gl&#252;ckwunsch! Ihr verf&#252;gt nun &#252;ber die wichtige strategische Ressource [COLOR_HIGHLIGHT_TEXT]Eisen[COLOR_REVERT]! Star systems with access to [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT] can build Cruisers and Invasion Ships 20%% quicker.</German>
+		<Italian>Congratulazioni, hai ottenuto l'accesso alla risorsa [COLOR_HIGHLIGHT_TEXT]ferro[COLOR_REVERT], un'importante risorsa strategica! Star systems with access to [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT] can build Cruisers and Invasion Ships 20%% quicker.</Italian>
+		<Spanish>&#161;Felicidades! Hab&#233;is conseguido acceder al [COLOR_HIGHLIGHT_TEXT]Hierro[COLOR_REVERT], un importante recurso estrat&#233;gico. Star systems with access to [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT] can build Cruisers and Invasion Ships 20%% quicker.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PLANET_YIELD</Tag>
 		<English>[SPACE]per planet</English>
 		<French>[SPACE]per planet</French>
