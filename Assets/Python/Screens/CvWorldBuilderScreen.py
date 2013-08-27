@@ -884,11 +884,13 @@ class CvWorldBuilderScreen:
 #Added in Final Frontier Worldbuilder: TC01
 #			FinalFrontier = CvEventInterface.getEventManager() #FFPBUG
 			pSystem = getSystemAt(self.m_pCurrentPlot.getX(), self.m_pCurrentPlot.getY()) #FFPBUG
-			for iPlanet in range(pSystem.getNumPlanets()):
-				pPlanet = pSystem.getPlanetByIndex(iPlanet)
-				pPlanet.setBonusType(-1)
-			pBuildingPlanet = pSystem.getPlanet(pSystem.getBuildingPlanetRing())
-			pBuildingPlanet.setBonusType(iBonusType)
+			# This was simpler than checking if the plot had a solar system...
+			if not pSystem is None:
+				for iPlanet in range(pSystem.getNumPlanets()):
+					pPlanet = pSystem.getPlanetByIndex(iPlanet)
+					pPlanet.setBonusType(-1)
+				pBuildingPlanet = pSystem.getPlanet(pSystem.getBuildingPlanetRing())
+				pBuildingPlanet.setBonusType(iBonusType)
 #End of Final Frontier Worldbuilder
 		elif ((self.m_bNormalMap) and (self.m_normalMapTabCtrl.getActiveTab() == self.m_iTerrainTabID)):
 			if (self.m_iNormalMapCurrentList[self.m_normalMapTabCtrl.getActiveTab()] == self.m_iTerrainListID):
