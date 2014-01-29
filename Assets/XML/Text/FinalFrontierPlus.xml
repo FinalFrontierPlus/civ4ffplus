@@ -675,4 +675,20 @@
 		<Italian>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</Italian>
 		<Spanish>[ICON_BULLET]%D1_prod%% [ICON_PRODUCTION] cost for %s2_units</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DEMO_SCREEN_LAND_AREA_MEASURE</Tag>
+		<English> Cubic lightyears</English>
+		<French> Cubic lightyears</French>
+		<German> Cubic lightyears</German>
+		<Italian> Cubic lightyears</Italian>
+		<Spanish> Cubic lightyears</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DEMO_SCREEN_LAND_AREA</Tag>
+		<English>Space Controlled (Volume)</English>
+		<French>Space Controlled (Volume)</French>
+		<German>Space Controlled (Volume)</German>
+		<Italian>Space Controlled (Volume)</Italian>
+		<Spanish>Space Controlled (Volume)</Spanish>
+	</TEXT>
 </Civ4GameText>
