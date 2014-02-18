@@ -442,7 +442,8 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 				# Don't override culture that's already here
 				if not pLoopPlot.isNone():
 					if (pLoopPlot.getOwner() == -1):
-						pLoopPlot.setOwnerNoUnitCheck(iPlayer)
+						#pLoopPlot.setOwnerNoUnitCheck(iPlayer)
+						pLoopPlot.setOwner(iPlayer)
 		
 	def updateAllStarbases(self):
 		
