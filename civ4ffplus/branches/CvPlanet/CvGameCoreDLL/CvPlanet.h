@@ -7,6 +7,10 @@
 #ifndef CIV4_PLANETS_H
 #define CIV4_PLANETS_H
 
+// Should these go in one of the other headers? I forget how to DLL.
+#define PLANET_RANGE_2 4
+#define PLANET_RANGE_3 6
+
 class CvPlanet
 {
 
@@ -16,7 +20,7 @@ public:
 	virtual ~CvPlanet();
 
 	void init(int iX, int iY, int iPlanetType = 0, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false);
-	void reset(int iX = -1, int iY = -1, int iPlanetType = 0, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false);
+	void reset(int iX = -1, int iY = -1, int iPlanetType = 0, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false, bool bConstructorCall = false);
 	void uninit();
 
 	int getX();
@@ -25,17 +29,32 @@ public:
 	int getPlanetType();
 	int getPlanetSize();
 	int getOrbitRing();
+	int getPopulation();
+
+	BonusTypes getBonusType();
 
 	bool isMoon();
 	bool isRings();
+	bool isDisabled();
+	bool isBonus();
+	bool isHasBonus(BonusTypes eBonusType);
+
+	bool isPlanetWithinCulturalRange();
+	int getPlanetCulturalRange();
 
 	// These setters don't exist in Python, but then again, Python is actually sane.
 	void setPlanetType(int iPlanetType);
 	void setPlanetSize(int iPlanetSize);
 	void setOrbitRing(int iOrbitRing);
 
+	void setPopulation(int iValue);
+	void changePopulation(int iChange);
+
+	void setBonusType(BonusTypes eNewBonus);
+
 	void setMoon(bool bMoon);
 	void setRings(bool bRings);
+	void setDisabled(bool bDisabled);
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
@@ -48,10 +67,17 @@ protected:
 	int m_iPlanetType;
 	int m_iPlanetSize;
 	int m_iOrbitRing;
+	int m_iPopulation;
 
 	bool m_bMoon;
 	bool m_bRings;
+	bool m_bDisabled;
 
+	// I hate Hungarian notation. "pai"?
+	int* m_paiBuildings;
+	int* m_paiBuildingProduction;
+
+	short /*BonusTypes*/ m_eBonusType;
 };
 
 #endif
