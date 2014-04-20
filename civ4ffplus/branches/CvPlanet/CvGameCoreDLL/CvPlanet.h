@@ -37,10 +37,17 @@ public:
 	bool isRings();
 	bool isDisabled();
 	bool isBonus();
+
 	bool isHasBonus(BonusTypes eBonusType);
+	bool isHasBuilding(BuildingTypes eBuildingType);
 
 	bool isPlanetWithinCulturalRange();
 	int getPlanetCulturalRange();
+
+	int getPopulationLimit(PlayerTypes eOwner);
+	int getBaseYield(YieldTypes eYield);
+	int getExtraYield(PlayerTypes eOwner, YieldTypes eYield);
+	int getTotalYield(PlayerTypes eOwner, YieldTypes eYield);
 
 	// These setters don't exist in Python, but then again, Python is actually sane.
 	void setPlanetType(int iPlanetType);
@@ -51,6 +58,7 @@ public:
 	void changePopulation(int iChange);
 
 	void setBonusType(BonusTypes eNewBonus);
+	void setHasBuilding(BuildingTypes eBuildingType, bool bValue);
 
 	void setMoon(bool bMoon);
 	void setRings(bool bRings);
@@ -74,7 +82,8 @@ protected:
 	bool m_bDisabled;
 
 	// I hate Hungarian notation. "pai"?
-	int* m_paiBuildings;
+	// The building array is a boolean array in Python.
+	int* m_pabBuildings;
 	int* m_paiBuildingProduction;
 
 	short /*BonusTypes*/ m_eBonusType;

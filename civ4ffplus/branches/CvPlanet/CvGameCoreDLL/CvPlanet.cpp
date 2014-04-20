@@ -32,7 +32,7 @@ void CvPlanet::init(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbit
 	// Init other game data
 
 	// Initialize this to null.
-	m_paiBuildings = NULL;
+	m_pabBuildings = NULL;
 	m_paiBuildingProduction = NULL;
 }
 
@@ -55,12 +55,12 @@ void CvPlanet::reset(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbi
 	// Stole this from CvCity.cpp.
 	if (!bConstructorCall)
 	{
-		m_paiBuildings = new int[GC.getNumBuildingInfos()];
+		m_pabBuildings = new int[GC.getNumBuildingInfos()];
 		for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 		{
 			//m_ppBuildings[iI] = NULL;
 			m_paiBuildingProduction[iI] = 0;
-			m_paiBuildings[iI] = 0;
+			m_pabBuildings[iI] = false;
 		}
 	}
 }
@@ -68,7 +68,7 @@ void CvPlanet::reset(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbi
 void CvPlanet::uninit()
 {
 	// Destruct the arrays.
-	SAFE_DELETE_ARRAY(m_paiBuildings);
+	SAFE_DELETE_ARRAY(m_pabBuildings);
 	SAFE_DELETE_ARRAY(m_paiBuildingProduction);
 }
 
@@ -91,7 +91,7 @@ void CvPlanet::write(FDataStreamBase* pStream)
 	pStream->Write(m_bRings);
 	pStream->Write(m_bDisabled);
 
-	pStream->Write(GC.getNumBuildingInfos(), m_paiBuildings);
+	pStream->Write(GC.getNumBuildingInfos(), m_pabBuildings);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiBuildingProduction);
 }
 
@@ -114,7 +114,7 @@ void CvPlanet::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bRings);
 	pStream->Read(&m_bDisabled);
 
-	pStream->Read(GC.getNumBuildingInfos(), m_paiBuildings);
+	pStream->Read(GC.getNumBuildingInfos(), m_pabBuildings);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiBuildingProduction);
 }
 
@@ -187,6 +187,15 @@ bool CvPlanet::isHasBonus(BonusTypes eBonusType)
 	return false;
 }
 
+bool CvPlanet::isHasBuilding(BuildingTypes eBuildingType)
+{
+	if (eBuildingType != NO_BUILDING)
+	{
+		return m_pabBuildings[eBuildingType];
+	}
+	return false;
+}
+
 // And setters (and changers).
 void CvPlanet::setPlanetType(int iPlanetType)
 {
@@ -211,6 +220,14 @@ void CvPlanet::setPopulation(int iValue)
 void CvPlanet::setBonusType(BonusTypes eNewBonus)
 {
 	m_eBonusType = eNewBonus;
+}
+
+void CvPlanet::setHasBuilding(BuildingTypes eBuildingType, bool bValue)
+{
+	if (eBuildingType != NO_BUILDING)
+	{
+		m_pabBuildings[eBuildingType] = bValue;
+	}
 }
 
 void CvPlanet::changePopulation(int iChange)
@@ -275,3 +292,128 @@ int CvPlanet::getPlanetCulturalRange()
 	return 0;
 }
 
+// Returns the current maximum population limit for the planet.
+int CvPlanet::getPopulationLimit(PlayerTypes eOwner)
+{
+	int iMaxPop;
+	int iBuildingLoop;
+	int iCivicOptionLoop;
+	int iCivicLoop;
+	int iPopCapIncrease;
+
+	if (isDisabled())
+	{
+		return 0;
+	}
+
+	if (!isPlanetWithinCulturalRange())
+	{
+		return 0;
+	}
+
+	// Hardcoding this for now. Fix with enums / arrays / defines / ... / ...
+	iMaxPop = getPlanetSize() + 1;
+
+	// Population cap increases from buildings
+	for (iBuildingLoop = 0; iBuildingLoop < GC.getNumBuildingInfos(); iBuildingLoop++)
+	{
+		if (isHasBuilding((BuildingTypes)iBuildingLoop))
+		{
+			iPopCapIncrease = GC.getBuildingInfo((BuildingTypes)iBuildingLoop).getPlanetPopCapIncrease();
+			iMaxPop += iPopCapIncrease;
+		}
+	}
+
+	// Population cap increases from a player's civics.
+	if (eOwner != NO_PLAYER)
+	{
+		CvPlayer& pPlayer = GET_PLAYER(eOwner);
+		for (iCivicOptionLoop = 0; iCivicOptionLoop < GC.getNumCivicOptionInfos(); iCivicOptionLoop++)
+		{
+			for (iCivicLoop = 0; iCivicLoop < GC.getNumCivicInfos(); iCivicLoop++)
+			{
+				if (pPlayer.getCivics((CivicOptionTypes)iCivicOptionLoop) == (CivicTypes)iCivicLoop)
+				{
+					iPopCapIncrease = GC.getCivicInfo((CivicTypes)iCivicLoop).getPlanetPopCapIncrease();
+					iMaxPop += iPopCapIncrease;
+				}
+			}
+		}
+
+	}
+
+	return iMaxPop;
+}
+
+// Get the total and base yields of the planet.
+int CvPlanet::getTotalYield(PlayerTypes eOwner, YieldTypes eYield)
+{
+	return getBaseYield(eYield) + getExtraYield(eOwner, eYield);
+}
+
+// Get the base yield; this is a table sitting in a Python file, sadly.
+int CvPlanet::getBaseYield(YieldTypes eYield)
+{
+	// ???
+	// We avoided the hardcoding issue in getPopulationLimit() barely, but can't do it for getBaseYield.
+	// We need to move the yield data into the DLL somehow...
+	// ...or add CvPlanetInfo (CIV4PlanetInfos.xml).
+	// I think we need to do that.
+
+	return 0;
+}
+
+// Get the extra yield using civics and buildings.
+int CvPlanet::getExtraYield(PlayerTypes eOwner, YieldTypes eYield)
+{
+	int iExtraYield = 0;
+	int iYieldChange;
+	int iBuildingLoop;
+	int iTraitLoop;
+	int iCivicOption;
+	int iCivic;
+
+	CvPlayer& pPlayer = GET_PLAYER((PlayerTypes)eOwner);
+
+	// Compute yields from buildings.
+	for (iBuildingLoop = 0; iBuildingLoop < GC.getNumBuildingInfos(); iBuildingLoop++)
+	{
+		if (isHasBuilding((BuildingTypes)iBuildingLoop))
+		{
+			iYieldChange = GC.getBuildingInfo((BuildingTypes)iBuildingLoop).getPlanetYieldChanges(eYield);
+			// Yields from buildings that require a trait
+			for (iTraitLoop = 0; iTraitLoop < GC.getNumTraitInfos(); iTraitLoop++)
+			{
+				if (pPlayer.hasTrait((TraitTypes)iTraitLoop))
+				{
+					iYieldChange += GC.getBuildingInfo((BuildingTypes)iBuildingLoop).getTraitPlanetYieldChange(iTraitLoop, eYield);
+				}
+			}
+			iExtraYield += iYieldChange;
+		}
+	}
+
+	// Compute yields from civics.
+	for (iCivicOption = 0; iCivicOption < GC.getNumCivicOptionInfos(); iCivicOption++)
+	{
+		for (iCivic = 0; iCivic < GC.getNumCivicInfos(); iCivic++)
+		{
+			if (pPlayer.getCivics((CivicOptionTypes)iCivicOption) == (CivicTypes)iCivic)
+			{
+				iYieldChange = GC.getCivicInfo((CivicTypes)iCivic).getPlanetYieldChanges(eYield);
+				iExtraYield += iYieldChange;
+			}
+		}
+	}
+
+	// CP - add golden age effect, thanks for the idea of doing it here go to TC01
+	if (pPlayer.isGoldenAge())
+	{
+		if ((getBaseYield(eYield) + iExtraYield) >= GC.getYieldInfo(eYield).getGoldenAgeYieldThreshold())
+		{
+			iExtraYield += GC.getYieldInfo(eYield).getGoldenAgeYield();
+		}
+	}
+
+	return iExtraYield;
+}
