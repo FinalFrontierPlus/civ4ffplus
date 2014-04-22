@@ -352,15 +352,28 @@ int CvPlanet::getTotalYield(PlayerTypes eOwner, YieldTypes eYield)
 }
 
 // Get the base yield; this is a table sitting in a Python file, sadly.
+// Not anymore it isn't!
 int CvPlanet::getBaseYield(YieldTypes eYield)
 {
-	// ???
-	// We avoided the hardcoding issue in getPopulationLimit() barely, but can't do it for getBaseYield.
-	// We need to move the yield data into the DLL somehow...
-	// ...or add CvPlanetInfo (CIV4PlanetInfos.xml).
-	// I think we need to do that.
+	int iYield;
 
-	return 0;
+	// TODO: have getPlanetType() return, well, a PlanetType internally.
+	iYield = GC.getPlanetInfo((PlanetTypes)getPlanetType()).getYield(eYield);
+
+	if (isBonus())
+	{
+		// These yields are hardcoded; this should *probably* be changed.
+		// Think about how to best represent that information in XML.
+		if ((GC.getBonusInfo(getBonusType()).getHappiness() > 0) && eYield == YIELD_COMMERCE)
+		{
+			iYield += 1;
+		}
+		else if ((GC.getBonusInfo(getBonusType()).getHealth() > 0) && eYield == YIELD_FOOD)
+		{
+			iYield += 1;
+		}
+	}
+	return iYield;
 }
 
 // Get the extra yield using civics and buildings.
