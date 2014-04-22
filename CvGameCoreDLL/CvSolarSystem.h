@@ -7,6 +7,9 @@
 #ifndef CIV4_SOLAR_SYSTEMS_H
 #define CIV4_SOLAR_SYSTEMS_H
 
+// Maybe this doesn't belong here.
+#define MAX_PLANETS 8
+
 class CvSolarSystem
 {
 
@@ -16,7 +19,7 @@ public:
 	virtual ~CvSolarSystem();
 
 	void init(int iX, int iY);
-	void reset(int iX = -1, int iY = -1);
+	void reset(int iX = -1, int iY = -1, bool bConstructorCall = false);
 	void uninit();
 
 	int getNumPlanets();
@@ -42,6 +45,7 @@ protected:
 
 	bool m_bNeedsUpdate;
 
+	CvPlanet* m_apPlanets;
 };
 
 #endif

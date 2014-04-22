@@ -41,6 +41,8 @@ public:
 	bool isHasBonus(BonusTypes eBonusType);
 	bool isHasBuilding(BuildingTypes eBuildingType);
 
+	int getBuildingProduction(BuildingTypes eBuildingType);
+
 	bool isPlanetWithinCulturalRange();
 	int getPlanetCulturalRange();
 
@@ -59,6 +61,7 @@ public:
 
 	void setBonusType(BonusTypes eNewBonus);
 	void setHasBuilding(BuildingTypes eBuildingType, bool bValue);
+	void setBuildingProduction(BuildingTypes eBuildingType, int iValue);
 
 	void setMoon(bool bMoon);
 	void setRings(bool bRings);

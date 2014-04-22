@@ -24,15 +24,18 @@ CvSolarSystem::~CvSolarSystem()
 void CvSolarSystem::init(int iX, int iY)
 {
 	// Init saved data
-	reset(iX, iY);
+	reset(iX, iY, true);
 
 	// Init non-saved data
 
 	// Init other game data
+	m_apPlanets = NULL;
 }
 
-void CvSolarSystem::reset(int iX, int iY)
+void CvSolarSystem::reset(int iX, int iY, bool bConstructorCall)
 {
+	int i;
+
 	uninit();
 
 	m_iX = iX;
@@ -44,15 +47,25 @@ void CvSolarSystem::reset(int iX, int iY)
 	m_iBuildingPlanetRing = 0;
 
 	m_bNeedsUpdate = false;
+
+	if (!bConstructorCall)
+	{
+		for (i = 0; i < MAX_PLANETS; i++)
+		{
+			m_apPlanets[i] = CvPlanet();
+		}
+	}
 }
 
 void CvSolarSystem::uninit()
 {
-	// ???
+	SAFE_DELETE_ARRAY(m_apPlanets);
 }
 
 void CvSolarSystem::write(FDataStreamBase* pStream)
 {
+	int i;
+
 	uint uiFlag=0;
 	pStream->Write(uiFlag);		// flag for expansion
 
@@ -63,10 +76,19 @@ void CvSolarSystem::write(FDataStreamBase* pStream)
 	pStream->Write(m_iSelectedPlanet);
 	pStream->Write(m_iBuildingPlanetRing);
 	pStream->Write(m_bNeedsUpdate);
+
+	// This code will almost certainly not do the right thing. (nor will read code).
+	// Fix later!
+	for (i = 0; i < MAX_PLANETS; i++)
+	{
+		m_apPlanets[i].write(pStream);
+	}
 }
 
 void CvSolarSystem::read(FDataStreamBase* pStream)
 {
+	int i;
+
 	uint uiFlag=0;
 	pStream->Read(&uiFlag);	// flags for expansion
 
@@ -77,6 +99,11 @@ void CvSolarSystem::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iSelectedPlanet);
 	pStream->Read(&m_iBuildingPlanetRing);
 	pStream->Read(&m_bNeedsUpdate);
+
+	for (i = 0; i < MAX_PLANETS; i++)
+	{
+		m_apPlanets[i].read(pStream);
+	}
 }
 
 int CvSolarSystem::getNumPlanets()
