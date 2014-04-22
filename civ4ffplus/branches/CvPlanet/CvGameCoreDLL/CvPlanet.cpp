@@ -149,6 +149,15 @@ int CvPlanet::getOrbitRing()
 	return m_iOrbitRing;
 }
 
+int CvPlanet::getBuildingProduction(BuildingTypes eBuildingType)
+{
+	if (eBuildingType != NO_BUILDING)
+	{
+		return m_paiBuildingProduction[eBuildingType];
+	}
+	return 0;
+}
+
 BonusTypes CvPlanet::getBonusType()
 {
 	return (BonusTypes)m_eBonusType;
@@ -227,6 +236,14 @@ void CvPlanet::setHasBuilding(BuildingTypes eBuildingType, bool bValue)
 	if (eBuildingType != NO_BUILDING)
 	{
 		m_pabBuildings[eBuildingType] = bValue;
+	}
+}
+
+void CvPlanet::setBuildingProduction(BuildingTypes eBuildingType, int iValue)
+{
+	if (eBuildingType != NO_BUILDING)
+	{
+		m_paiBuildingProduction[eBuildingType] = iValue;
 	}
 }
 
