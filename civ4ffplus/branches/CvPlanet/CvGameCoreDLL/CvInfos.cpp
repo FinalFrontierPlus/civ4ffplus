@@ -23805,12 +23805,12 @@ CvPlanetInfo::~CvPlanetInfo()
 	SAFE_DELETE_ARRAY(m_piYields);
 }
 
-CvString CvPlanetInfo::getFeatureTag() const
+const TCHAR* CvPlanetInfo::getFeatureTag() const
 {
 	return m_szFeatureTag;
 }
 
-void CvPlanetInfo::setFeatureTag(CvString szNewTag)
+void CvPlanetInfo::setFeatureTag(const TCHAR* szNewTag)
 {
 	m_szFeatureTag = szNewTag;
 }

@@ -6560,8 +6560,8 @@ public:
 	CvPlanetInfo();
 	virtual ~CvPlanetInfo();
 
-	CvString getFeatureTag() const;
-	void setFeatureTag(CvString szNewTag);
+	const TCHAR* getFeatureTag() const;
+	void setFeatureTag(const TCHAR* szNewTag);
 
 	int getYield(int i) const;
 

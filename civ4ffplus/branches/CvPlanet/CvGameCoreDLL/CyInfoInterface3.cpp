@@ -789,7 +789,7 @@ void CyInfoPythonInterface3()
 
 	// Since apparently I *can* now actually add XML files!
 	// Expose the CvPlanetInfo stuff to Python.
-	python::class_<CvVoteInfo, python::bases<CvInfoBase> >("CvPlanetInfo")
+	python::class_<CvPlanetInfo, python::bases<CvInfoBase> >("CvPlanetInfo")
 		.def("getFeatureTag", &CvPlanetInfo::getFeatureTag, "string ()")
 		.def("getYield", &CvPlanetInfo::getYield, "int (int)")
 		;
