@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- It's sloppy astrophysics to call this SunInfos instead of StarInfos, but that's the term FF uses :) -->
+<!-- SunTypes -->
+<Civ4SunInfos xmlns="x-schema:CIV4TerrainSchema.xml">
+	<SunInfos>
+		<SunInfo>
+			<Type>YELLOW_STAR</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_SUN_YELLOW</FeatureTag>
+		</SunInfo>
+		<SunInfo>
+			<Type>ORANGE_STAR</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_SUN_ORANGE</FeatureTag>
+		</SunInfo>
+		<SunInfo>
+			<Type>WHITE_STAR</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_SUN_WHITE</FeatureTag>
+		</SunInfo>
+		<SunInfo>
+			<Type>RED_STAR</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_SUN_RED</FeatureTag>
+		</SunInfo>
+		<SunInfo>
+			<Type>BLUE_STAR</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_SUN_BLUE</FeatureTag>
+		</SunInfo>
+	</SunInfos>
+</Civ4SunInfos>

@@ -42,9 +42,11 @@ void CyGlobalContextPythonInterface1(python::class_<CyGlobalContext>& x)
 		.def("getNumFeatureInfos", &CyGlobalContext::getNumFeatureInfos, "() - Total Feature Infos XML\\Terrain\\CIV4FeatureInfos.xml")
 		.def("getFeatureInfo", &CyGlobalContext::getFeatureInfo, python::return_value_policy<python::reference_existing_object>(), "(FeatureID) - CvInfo for FeatureID")
 
-		// Added in FF+: expose getNum and get for planet infos.
+		// Added in FF+: expose getNum and get for planet and sun infos.
 		.def("getNumPlanetInfos", &CyGlobalContext::getNumPlanetInfos, "() - Total Planet Infos XML\\Terrain\\CIV4PlanetInfos.xml")
 		.def("getPlanetInfo", &CyGlobalContext::getPlanetInfo, python::return_value_policy<python::reference_existing_object>(), "(PlanetID) - CvInfo for PlanetID")
+		.def("getNumSunInfos", &CyGlobalContext::getNumSunInfos, "() - Total Sun Infos XML\\Terrain\\CIV4SunInfos.xml")
+		.def("getSunInfo", &CyGlobalContext::getSunInfo, python::return_value_policy<python::reference_existing_object>(), "(SunID) - CvInfo for SunID")
 
 		.def("getNumUpkeepInfos", &CyGlobalContext::getNumUpkeepInfos, "int () - Number of upkeep infos")
 		.def("getUpkeepInfo", &CyGlobalContext::getUpkeepInfo, python::return_value_policy<python::reference_existing_object>(), "(UpkeepInfoID) - CvInfo for upkeep info")

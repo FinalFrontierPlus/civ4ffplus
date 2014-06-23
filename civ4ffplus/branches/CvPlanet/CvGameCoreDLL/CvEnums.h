@@ -877,6 +877,11 @@ enum PlanetTypes					// Exposed to Python
 	NO_PLANET = -1,
 };
 
+enum SunTypes					// Exposed to Python
+{
+	NO_SUN = -1,
+};
+
 enum BonusTypes						// Exposed to Python
 {
 	NO_BONUS = -1,

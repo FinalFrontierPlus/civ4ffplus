@@ -6579,4 +6579,35 @@ private:
 
 };
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvSunInfo
+//  ADDED BY TC01: Final Frontier Plus
+//  DESC:   A class for sun types
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvSunInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvSunInfo();
+	virtual ~CvSunInfo();
+
+	const TCHAR* getFeatureTag() const;
+	void setFeatureTag(const TCHAR* szNewTag);
+
+	bool read(CvXMLLoadUtility* pXML);
+	//bool readPass2(CvXMLLoadUtility* pXML);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+protected:
+
+	CvString m_szFeatureTag;
+
+private:
+
+};
+
 #endif

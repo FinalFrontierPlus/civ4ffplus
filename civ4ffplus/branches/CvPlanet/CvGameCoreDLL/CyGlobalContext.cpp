@@ -131,11 +131,17 @@ CvFeatureInfo* CyGlobalContext::getFeatureInfo(int i) const
 	return (i>=0 && i<GC.getNumFeatureInfos()) ? &GC.getFeatureInfo((FeatureTypes) i) : NULL;
 }
 
-// Added in FF+ by TC01: get the number of planet infos.
+// Added in FF+ by TC01: get the number of planet and sun infos.
 CvPlanetInfo* CyGlobalContext::getPlanetInfo(int i) const
 {
 	return (i>=0 && i<GC.getNumPlanetInfos()) ? &GC.getPlanetInfo((PlanetTypes) i) : NULL;
 }
+
+CvSunInfo* CyGlobalContext::getSunInfo(int i) const
+{
+	return (i>=0 && i<GC.getNumSunInfos()) ? &GC.getSunInfo((SunTypes) i) : NULL;
+}
+// End FF+ new infos.
 
 CvCivilizationInfo* CyGlobalContext::getCivilizationInfo(int i) const
 {

@@ -130,6 +130,7 @@ class CvVoteSourceInfo;
 class CvMainMenuInfo;
 // Apparently we need to add this here!
 class CvPlanetInfo;
+class CvSunInfo;
 class CvPlanet;
 class CvSolarSystem;
 
@@ -333,6 +334,11 @@ public:
 	DllExport int getNumPlanetInfos();
 	std::vector<CvPlanetInfo*>& getPlanetInfo();
 	DllExport CvPlanetInfo& getPlanetInfo(PlanetTypes eFeatureNum);
+
+	// Sun infos. -- TC01 (FF+)
+	DllExport int getNumSunInfos();
+	std::vector<CvSunInfo*>& getSunInfo();
+	DllExport CvSunInfo& getSunInfo(SunTypes eFeatureNum);
 
 	DllExport int& getNumPlayableCivilizationInfos();
 	DllExport int& getNumAIPlayableCivilizationInfos();
@@ -977,6 +983,7 @@ protected:
 	std::vector<CvRouteInfo*> m_paRouteInfo;
 	std::vector<CvFeatureInfo*> m_paFeatureInfo;
 	std::vector<CvPlanetInfo*> m_paPlanetInfo;			// Define this here.
+	std::vector<CvSunInfo*> m_paSunInfo;			// And here.
 	std::vector<CvBonusClassInfo*> m_paBonusClassInfo;
 	std::vector<CvBonusInfo*> m_paBonusInfo;
 	std::vector<CvImprovementInfo*> m_paImprovementInfo;

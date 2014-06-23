@@ -8,6 +8,7 @@
 #define CIV4_SOLAR_SYSTEMS_H
 
 // Maybe this doesn't belong here.
+// Well, it probably belongs as a global define, if that can be done.
 #define MAX_PLANETS 8
 
 class CvSolarSystem
