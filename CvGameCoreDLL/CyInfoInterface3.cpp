@@ -793,4 +793,10 @@ void CyInfoPythonInterface3()
 		.def("getFeatureTag", &CvPlanetInfo::getFeatureTag, "string ()")
 		.def("getYield", &CvPlanetInfo::getYield, "int (int)")
 		;
+
+	// Expose the CvSunInfo stuff to Python.
+	python::class_<CvSunInfo, python::bases<CvInfoBase> >("CvSunInfo")
+		.def("getFeatureTag", &CvSunInfo::getFeatureTag, "string ()")
+		;
+
 }

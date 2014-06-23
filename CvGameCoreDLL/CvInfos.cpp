@@ -23845,3 +23845,55 @@ bool CvPlanetInfo::read(CvXMLLoadUtility* pXML)
 
 	return true;
 }
+
+//======================================================================================================
+//					CvSunInfo
+//======================================================================================================
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   CvSunInfo()
+//
+//  PURPOSE :   Default constructor
+//
+//------------------------------------------------------------------------------------------------------
+CvSunInfo::CvSunInfo() :
+m_szFeatureTag("")
+{
+}
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   ~CvSunInfo()
+//
+//  PURPOSE :   Default destructor
+//
+//------------------------------------------------------------------------------------------------------
+CvSunInfo::~CvSunInfo()
+{
+
+}
+
+const TCHAR* CvSunInfo::getFeatureTag() const
+{
+	return m_szFeatureTag;
+}
+
+void CvSunInfo::setFeatureTag(const TCHAR* szNewTag)
+{
+	m_szFeatureTag = szNewTag;
+}
+
+bool CvSunInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	pXML->GetChildXmlValByName(szTextVal, "FeatureTag");
+	setFeatureTag(szTextVal);
+
+	return true;
+}

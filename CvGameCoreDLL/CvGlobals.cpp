@@ -1165,7 +1165,7 @@ CvFeatureInfo& CvGlobals::getFeatureInfo(FeatureTypes eFeatureNum)
 	return *(m_paFeatureInfo[eFeatureNum]);
 }
 
-/* Add planet info functions, for Final Frontier Plus.
+/* Add planet and sun info functions, for Final Frontier Plus.
  *  --TC01
  */
 int CvGlobals::getNumPlanetInfos()
@@ -1183,6 +1183,23 @@ CvPlanetInfo& CvGlobals::getPlanetInfo(PlanetTypes ePlanetNum)
 	FAssert(ePlanetNum > -1);
 	FAssert(ePlanetNum < GC.getNumPlanetInfos());
 	return *(m_paPlanetInfo[ePlanetNum]);
+}
+
+int CvGlobals::getNumSunInfos()
+{
+	return (int)m_paSunInfo.size();
+}
+
+std::vector<CvSunInfo*>& CvGlobals::getSunInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paSunInfo;
+}
+
+CvSunInfo& CvGlobals::getSunInfo(SunTypes eSunNum)
+{
+	FAssert(eSunNum > -1);
+	FAssert(eSunNum < GC.getNumSunInfos());
+	return *(m_paSunInfo[eSunNum]);
 }
 
 // End changes.
@@ -3491,6 +3508,7 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paTerrainInfo);
 	deleteInfoArray(m_paFeatureInfo);
 	deleteInfoArray(m_paPlanetInfo);		// Delete this here. -- TC01
+	deleteInfoArray(m_paSunInfo);		// Delete this here. -- TC01
 	deleteInfoArray(m_paBonusClassInfo);
 	deleteInfoArray(m_paBonusInfo);
 	deleteInfoArray(m_paLandscapeInfo);

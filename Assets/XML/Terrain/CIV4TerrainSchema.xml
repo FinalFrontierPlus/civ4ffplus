@@ -527,4 +527,16 @@
 		<element type="PlanetInfos" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	
+	<!-- CIV4SunInfos.xml: define sun types. -->
+	<ElementType name="SunInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="FeatureTag"/>
+	</ElementType>
+	<ElementType name="SunInfos" content="eltOnly">
+		<element type="SunInfo" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="Civ4SunInfos" content="eltOnly">
+		<element type="SunInfos" minOccurs="0" maxOccurs="*"/>
+	</ElementType>	
+	
 </Schema>
