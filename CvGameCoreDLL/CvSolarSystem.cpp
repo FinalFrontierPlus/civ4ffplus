@@ -95,7 +95,7 @@ void CvSolarSystem::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iX);
 	pStream->Read(&m_iY);
 
-	pStream->Read(&m_iSunType);
+	pStream->Read(&m_eSunType);
 	pStream->Read(&m_iSelectedPlanet);
 	pStream->Read(&m_iBuildingPlanetRing);
 	pStream->Read(&m_bNeedsUpdate);
@@ -111,9 +111,14 @@ int CvSolarSystem::getNumPlanets()
 	return m_iNumPlanets;
 }
 
-int CvSolarSystem::getSunType()
+SunTypes CvSolarSystem::getSunType()
 {
-	return m_iSunType;
+	return (SunTypes)m_eSunType;
+}
+
+void CvSolarSystem::setSunType(SunTypes eNewValue)
+{
+	m_eSunType = eNewValue;
 }
 
 int CvSolarSystem::getSelectedPlanet()
@@ -124,6 +129,112 @@ int CvSolarSystem::getSelectedPlanet()
 int CvSolarSystem::getBuildingPlanetRing()
 {
 	return m_iBuildingPlanetRing;
+}
+
+int CvSolarSystem::getX()
+{
+	return m_iX;
+}
+
+int CvSolarSystem::getY()
+{
+	return m_iY;
+}
+
+CvPlanet* CvSolarSystem::getPlanetByIndex(int iPlanet)
+{
+	if (iPlanet > MAX_PLANETS || iPlanet < 0)
+	{
+		return NULL;
+	}
+	return &m_apPlanets[iPlanet];
+}
+
+CvPlanet* CvSolarSystem::getPlanet(int iRingID)
+{
+	// The Python implementation doesn't guarantee index = ring ID - 1.
+	// We do, because C++ (yay)
+	CvPlanet* pPlanet = getPlanetByIndex(iRingID - 1);
+	if (pPlanet == NULL)
+	{
+		// Throw an error message? But I don't understand how to do FAssertMsg, so.
+	}
+	return pPlanet;
+}
+
+int CvSolarSystem::getOwner()
+{
+	CvCity* pCity;
+
+	pCity = getCity();
+	if (pCity != NULL)
+	{
+		return pCity->getOwner();
+	}
+	return NO_PLAYER;
+}
+
+CvCity* CvSolarSystem::getCity()
+{
+	CvCity* pCity;
+	CvPlot* pPlot;
+
+	pPlot = GC.getMap().plot(getX(), getY());
+	if (pPlot->isCity())
+	{
+		pCity = pPlot->getPlotCity();
+	}
+	return pCity;
+}
+
+int CvSolarSystem::getPopulation()
+{
+	int iPopulation = 0;
+	int iPlanet;
+	CvPlanet* pPlanet;
+
+	for (iPlanet = 0; iPlanet < MAX_PLANETS; i++)
+	{
+		pPlanet = getPlanetByIndex(iPlanet);
+		if (pPlanet != NULL)
+		{
+			iPopulation += pPlanet->getPopulation();
+		}
+	}
+
+	return iPopulation;
+}
+
+int CvSolarSystem::getPopulationLimit(bool bFactorHappiness)
+{
+	int iPlanetPopLimit = 0;
+	int iHappyPopLimit = 0;
+	int iPlanetLoop;
+	CvCity* pCity = getCity();
+	CvPlanet* pPlanet;
+
+	// Loop through all planets and get the sum of their pop limits
+	for (iPlanetLoop = 0; iPlanetLoop < MAX_PLANETS; i++)
+	{
+		pPlanet = getPlanetByIndex(iPlanetLoop);
+		if (pPlanet != NULL)
+		{
+			iPlanetPopLimit += pPlanet->getPopulationLimit((PlayerTypes)getOwner());
+		}
+	}
+
+	if (pCity != NULL)
+	{
+		iHappyPopLimit = pCity->getPopulation();
+		if (bFactorHappiness)
+		{
+			iHappyPopLimit -= pCity->angryPopulation(0);
+		} else {
+			iHappyPopLimit = iPlanetPopLimit;
+		}
+	}
+
+	return std::min(iPlanetPopLimit, iHappyPopLimit);
 }
 
 bool CvSolarSystem::isNeedsUpdate()
