@@ -11,6 +11,9 @@
 // Well, it probably belongs as a global define, if that can be done.
 #define MAX_PLANETS 8
 
+// Ints here and in CvSolarSystem should probably be the enum'd types, but I'm not a huge fan of those.
+// So this can be filed as a "fix later".
+
 class CvSolarSystem
 {
 
@@ -24,12 +27,28 @@ public:
 	void uninit();
 
 	int getNumPlanets();
-	int getSunType();
+	SunTypes getSunType();
 	int getSelectedPlanet();
 	int getBuildingPlanetRing();
+	int getPopulationLimit(bool bFactorHappiness = false);
+
+	int getX();
+	int getY();
+
+	int getOwner();
+	CvCity* getCity();
+	int getPopulation();
+
+	// The Python implementation has both because addPlanet() just adds to the end of the planets array
+	// However, we're in C++ and it's more convenient to have a fixed-length planets array anyway
+	// So we'll have both functions, but one will just call the other.
+	CvPlanet* getPlanetByIndex(int iPlanet);
+	CvPlanet* getPlanet(int iPlanet);
 
 	bool isNeedsUpdate();
 	void setNeedsUpdate(bool bValue);
+
+	void setSunType(SunTypes eNewValue);
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
@@ -40,7 +59,7 @@ protected:
 	int m_iY;
 
 	int m_iNumPlanets;
-	int m_iSunType;
+	short /* SunTypes */ m_eSunType;
 	int m_iSelectedPlanet;
 	int m_iBuildingPlanetRing;
 
