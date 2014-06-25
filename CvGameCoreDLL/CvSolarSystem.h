@@ -48,6 +48,9 @@ public:
 	bool isNeedsUpdate();
 	void setNeedsUpdate(bool bValue);
 
+	void addPlanet(PlanetTypes ePlanetType = NO_PLANET, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false);
+	void setBuildingPlanetRing(int iID);
+
 	void setSunType(SunTypes eNewValue);
 
 	void read(FDataStreamBase* pStream);

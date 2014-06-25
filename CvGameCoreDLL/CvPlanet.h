@@ -19,14 +19,14 @@ public:
 	CvPlanet();
 	virtual ~CvPlanet();
 
-	void init(int iX, int iY, int iPlanetType = 0, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false);
-	void reset(int iX = -1, int iY = -1, int iPlanetType = 0, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false, bool bConstructorCall = false);
+	void init(int iX, int iY, PlanetTypes ePlanetType = NO_PLANET, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false);
+	void reset(int iX = -1, int iY = -1, PlanetTypes ePlanetType = NO_PLANET, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false, bool bConstructorCall = false);
 	void uninit();
 
 	int getX();
 	int getY();
 
-	int getPlanetType();
+	PlanetTypes getPlanetType();
 	int getPlanetSize();
 	int getOrbitRing();
 	int getPopulation();
@@ -52,7 +52,7 @@ public:
 	int getTotalYield(PlayerTypes eOwner, YieldTypes eYield);
 
 	// These setters don't exist in Python, but then again, Python is actually sane.
-	void setPlanetType(int iPlanetType);
+	void setPlanetType(PlanetTypes ePlanetType);
 	void setPlanetSize(int iPlanetSize);
 	void setOrbitRing(int iOrbitRing);
 
@@ -75,7 +75,7 @@ protected:
 	int m_iX;
 	int m_iY;
 
-	int m_iPlanetType;
+	short /* PlanetTypes */ m_ePlanetType;
 	int m_iPlanetSize;
 	int m_iOrbitRing;
 	int m_iPopulation;

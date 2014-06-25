@@ -22,10 +22,10 @@ CvPlanet::~CvPlanet()
 // TODO: add more information to init() and reset() ?
 // Slash: figure out how init and reset (and uninit, etc.) actually work...
 
-void CvPlanet::init(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbitRing, bool bMoon, bool bRings)
+void CvPlanet::init(int iX, int iY, PlanetTypes ePlanetType, int iPlanetSize, int iOrbitRing, bool bMoon, bool bRings)
 {
 	// Init saved data
-	reset(iX, iY, iPlanetType, iPlanetSize, iOrbitRing, bMoon, bRings, true);
+	reset(iX, iY, ePlanetType, iPlanetSize, iOrbitRing, bMoon, bRings, true);
 
 	// Init non-saved data
 
@@ -36,7 +36,7 @@ void CvPlanet::init(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbit
 	m_paiBuildingProduction = NULL;
 }
 
-void CvPlanet::reset(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbitRing, bool bMoon, bool bRings, bool bConstructorCall)
+void CvPlanet::reset(int iX, int iY, PlanetTypes ePlanetType, int iPlanetSize, int iOrbitRing, bool bMoon, bool bRings, bool bConstructorCall)
 {
 	int iI;
 
@@ -45,7 +45,7 @@ void CvPlanet::reset(int iX, int iY, int iPlanetType, int iPlanetSize, int iOrbi
 	m_iX = iX;
 	m_iY = iY;
 
-	m_iPlanetType = iPlanetType;
+	m_ePlanetType = ePlanetType;
 	m_iPlanetSize = iPlanetSize;
 	m_iOrbitRing = iOrbitRing;
 
@@ -80,7 +80,7 @@ void CvPlanet::write(FDataStreamBase* pStream)
 	pStream->Write(m_iX);
 	pStream->Write(m_iY);
 
-	pStream->Write(m_iPlanetType);
+	pStream->Write(m_ePlanetType);
 	pStream->Write(m_iPlanetSize);
 	pStream->Write(m_iOrbitRing);
 	pStream->Write(m_iPopulation);
@@ -103,7 +103,7 @@ void CvPlanet::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iX);
 	pStream->Read(&m_iY);
 
-	pStream->Read(&m_iPlanetType);
+	pStream->Read(&m_ePlanetType);
 	pStream->Read(&m_iPlanetSize);
 	pStream->Read(&m_iOrbitRing);
 	pStream->Read(&m_iPopulation);
@@ -129,9 +129,9 @@ int CvPlanet::getY()
 	return m_iY;
 }
 
-int CvPlanet::getPlanetType()
+PlanetTypes CvPlanet::getPlanetType()
 {
-	return m_iPlanetType;
+	return (PlanetTypes)m_ePlanetType;
 }
 
 int CvPlanet::getPlanetSize()
@@ -206,9 +206,9 @@ bool CvPlanet::isHasBuilding(BuildingTypes eBuildingType)
 }
 
 // And setters (and changers).
-void CvPlanet::setPlanetType(int iPlanetType)
+void CvPlanet::setPlanetType(PlanetTypes ePlanetType)
 {
-	m_iPlanetType = iPlanetType;
+	m_ePlanetType = ePlanetType;
 }
 
 void CvPlanet::setPlanetSize(int iPlanetSize)
