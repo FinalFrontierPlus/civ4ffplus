@@ -42,7 +42,7 @@ void CvSolarSystem::reset(int iX, int iY, bool bConstructorCall)
 	m_iY = iY;
 
 	m_iNumPlanets = 0;
-	m_iSunType = 0;
+	m_eSunType = 0;
 	m_iSelectedPlanet = 0;
 	m_iBuildingPlanetRing = 0;
 
@@ -72,7 +72,7 @@ void CvSolarSystem::write(FDataStreamBase* pStream)
 	pStream->Write(m_iX);
 	pStream->Write(m_iY);
 
-	pStream->Write(m_iSunType);
+	pStream->Write(m_eSunType);
 	pStream->Write(m_iSelectedPlanet);
 	pStream->Write(m_iBuildingPlanetRing);
 	pStream->Write(m_bNeedsUpdate);
@@ -162,6 +162,38 @@ CvPlanet* CvSolarSystem::getPlanet(int iRingID)
 	return pPlanet;
 }
 
+void CvSolarSystem::setBuildingPlanetRing(int iID)
+{
+	// I think we need to make a direct call to Python here to update the interface...
+}
+
+void CvSolarSystem::addPlanet(PlanetTypes ePlanetType, int iPlanetSize, int iOrbitRing, bool bMoon, bool bRings)
+{
+	bool bLoading = false;
+	CvPlanet* pPlanet;
+
+	if (ePlanetType != NO_PLANET)
+	{
+		bLoading = true;
+	}
+
+	if (getNumPlanets() < MAX_PLANETS || bLoading)
+	{
+		pPlanet = &m_apPlanets[iOrbitRing - 1];
+		// This may introduce an error of some sort. What if the planet isn't empty...?
+		// Turns out the Python doesn't even try to handle this. Checking if type != NO_PLANET should be sufficient
+		// I feel like this should not be a void function and should return an error code, since it has failure conditions...
+		if (pPlanet != NULL && pPlanet->getPlanetType() == NO_PLANET)
+		{
+			pPlanet->init(getX(), getY(), ePlanetType, iPlanetSize, iOrbitRing, bMoon, bRings);
+			if (getBuildingPlanetRing() == -1)
+				setBuildingPlanetRing(iOrbitRing);
+			if (bLoading)
+				m_iNumPlanets += 1;
+		}
+	}
+}
+
 int CvSolarSystem::getOwner()
 {
 	CvCity* pCity;
@@ -193,7 +225,7 @@ int CvSolarSystem::getPopulation()
 	int iPlanet;
 	CvPlanet* pPlanet;
 
-	for (iPlanet = 0; iPlanet < MAX_PLANETS; i++)
+	for (iPlanet = 0; iPlanet < MAX_PLANETS; iPlanet++)
 	{
 		pPlanet = getPlanetByIndex(iPlanet);
 		if (pPlanet != NULL)
@@ -214,7 +246,7 @@ int CvSolarSystem::getPopulationLimit(bool bFactorHappiness)
 	CvPlanet* pPlanet;
 
 	// Loop through all planets and get the sum of their pop limits
-	for (iPlanetLoop = 0; iPlanetLoop < MAX_PLANETS; i++)
+	for (iPlanetLoop = 0; iPlanetLoop < MAX_PLANETS; iPlanetLoop++)
 	{
 		pPlanet = getPlanetByIndex(iPlanetLoop);
 		if (pPlanet != NULL)
