@@ -14,6 +14,10 @@
 // Ints here and in CvSolarSystem should probably be the enum'd types, but I'm not a huge fan of those.
 // So this can be filed as a "fix later".
 
+// Things left to do: the getSizeYield*List and getYield*List functions
+// Single Building Ring locations
+// updateDisplay
+
 class CvSolarSystem
 {
 
@@ -50,8 +54,10 @@ public:
 
 	void addPlanet(PlanetTypes ePlanetType = NO_PLANET, int iPlanetSize = 0, int iOrbitRing = 0, bool bMoon = false, bool bRings = false);
 	void setBuildingPlanetRing(int iID);
-
+	void setSelectedPlanet(int iID);
 	void setSunType(SunTypes eNewValue);
+
+	void updateDisplay();
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

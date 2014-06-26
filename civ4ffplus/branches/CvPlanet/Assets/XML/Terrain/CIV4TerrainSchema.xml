@@ -537,6 +537,36 @@
 	</ElementType>
 	<ElementType name="Civ4SunInfos" content="eltOnly">
 		<element type="SunInfos" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	
+	<!-- CIV4PlanetSizeInfos.xml: define planet sizes and associated feature tags. -->
+	<ElementType name="GlowTag" content="textOnly"/>
+	<ElementType name="CloudsTag" content="textOnly"/>
+	<ElementType name="RingsTag" content="textOnly"/>
+	<ElementType name="MoonTag" content="textOnly"/>
+	<ElementType name="Population1Tag" content="textOnly"/>
+	<ElementType name="Population2Tag" content="textOnly"/>
+	<ElementType name="Population3Tag" content="textOnly"/>
+	<ElementType name="PlanetSelectionTag" content="textOnly"/>
+	<ElementType name="iDefaultPopulation" content="textOnly" dt:type="int"/>
+	<ElementType name="PlanetSizeInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="FeatureTag"/>
+		<element type="GlowTag"/>
+		<element type="CloudsTag"/>
+		<element type="RingsTag"/>
+		<element type="MoonTag"/>
+		<element type="Population1Tag"/>
+		<element type="Population2Tag"/>
+		<element type="Population3Tag"/>
+		<element type="PlanetSelectionTag"/>
+		<element type="iDefaultPopulation"/>
+	</ElementType>
+	<ElementType name="PlanetSizeInfos" content="eltOnly">
+		<element type="PlanetSizeInfo" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="Civ4PlanetSizeInfos" content="eltOnly">
+		<element type="PlanetSizeInfos" minOccurs="0" maxOccurs="*"/>
 	</ElementType>	
 	
 </Schema>

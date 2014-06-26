@@ -45,6 +45,8 @@ void CyGlobalContextPythonInterface1(python::class_<CyGlobalContext>& x)
 		// Added in FF+: expose getNum and get for planet and sun infos.
 		.def("getNumPlanetInfos", &CyGlobalContext::getNumPlanetInfos, "() - Total Planet Infos XML\\Terrain\\CIV4PlanetInfos.xml")
 		.def("getPlanetInfo", &CyGlobalContext::getPlanetInfo, python::return_value_policy<python::reference_existing_object>(), "(PlanetID) - CvInfo for PlanetID")
+		.def("getNumPlanetSizeInfos", &CyGlobalContext::getNumPlanetSizeInfos, "() - Total Planet Size Infos XML\\Terrain\\CIV4PlanetSizeInfos.xml")
+		.def("getPlanetSizeInfo", &CyGlobalContext::getPlanetSizeInfo, python::return_value_policy<python::reference_existing_object>(), "(PlanetSizeID) - CvInfo for PlanetSizeID")
 		.def("getNumSunInfos", &CyGlobalContext::getNumSunInfos, "() - Total Sun Infos XML\\Terrain\\CIV4SunInfos.xml")
 		.def("getSunInfo", &CyGlobalContext::getSunInfo, python::return_value_policy<python::reference_existing_object>(), "(SunID) - CvInfo for SunID")
 
