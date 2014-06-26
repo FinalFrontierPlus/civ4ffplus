@@ -877,6 +877,11 @@ enum PlanetTypes					// Exposed to Python
 	NO_PLANET = -1,
 };
 
+enum PlanetSizeTypes					// Exposed to Python
+{
+	NO_PLANET_SIZE = -1,
+};
+
 enum SunTypes					// Exposed to Python
 {
 	NO_SUN = -1,

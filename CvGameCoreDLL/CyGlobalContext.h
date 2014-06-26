@@ -44,6 +44,7 @@ public:
 	CvBonusInfo* getBonusInfo(int i) const;
 	CvFeatureInfo* getFeatureInfo(int i) const;
 	CvPlanetInfo* getPlanetInfo(int i) const;					// Added in FF+: get the number of planet infos.
+	CvPlanetSizeInfo* getPlanetSizeInfo(int i) const;					// Added in FF+: get the number of planet size(s) (infos).
 	CvSunInfo* getSunInfo(int i) const;						// Added in FF+: get the number of sun infos.
 	CvCivilizationInfo* getCivilizationInfo(int idx) const;
 	CvLeaderHeadInfo* getLeaderHeadInfo(int i) const;
@@ -168,6 +169,7 @@ public:
 	int getNumRouteInfos() const { return GC.getNumRouteInfos(); }
 	int getNumFeatureInfos() const { return GC.getNumFeatureInfos(); }
 	int getNumPlanetInfos() const { return GC.getNumPlanetInfos(); }			// Added in FF+: get the number of planet infos (planet types).
+	int getNumPlanetSizeInfos() const { return GC.getNumPlanetSizeInfos(); }			// Added in FF+: get the number of planet sizes (planet size types).
 	int getNumSunInfos() const { return GC.getNumSunInfos(); }					// Added in FF+: get the number of sun infos (sun types).
 	int getNumImprovementInfos() const { return GC.getNumImprovementInfos(); }
 	int getNumGoodyInfos() const { return GC.getNumGoodyInfos(); }

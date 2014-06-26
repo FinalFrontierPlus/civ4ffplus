@@ -799,4 +799,18 @@ void CyInfoPythonInterface3()
 		.def("getFeatureTag", &CvSunInfo::getFeatureTag, "string ()")
 		;
 
+	// Expose the CvPlanetSizeInfo stuff to Python.
+	python::class_<CvPlanetSizeInfo, python::bases<CvInfoBase> >("CvPlanetSizeInfo")
+		.def("getFeatureTag", &CvPlanetSizeInfo::getFeatureTag, "string ()")
+		.def("getGlowTag", &CvPlanetSizeInfo::getGlowTag, "string ()")
+		.def("getCloudsTag", &CvPlanetSizeInfo::getCloudsTag, "string ()")
+		.def("getRingsTag", &CvPlanetSizeInfo::getRingsTag, "string ()")
+		.def("getMoonTag", &CvPlanetSizeInfo::getMoonTag, "string ()")
+		.def("getPopulation1Tag", &CvPlanetSizeInfo::getPopulation1Tag, "string ()")
+		.def("getPopulation2Tag", &CvPlanetSizeInfo::getPopulation2Tag, "string ()")
+		.def("getPopulation3Tag", &CvPlanetSizeInfo::getPopulation3Tag, "string ()")
+		.def("getPlanetSelectionTag", &CvPlanetSizeInfo::getPlanetSelectionTag, "string ()")
+		.def("getDefaultPopulation", &CvPlanetSizeInfo::getDefaultPopulation, "int ()")
+		;
+
 }

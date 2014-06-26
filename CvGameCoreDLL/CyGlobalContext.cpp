@@ -137,6 +137,11 @@ CvPlanetInfo* CyGlobalContext::getPlanetInfo(int i) const
 	return (i>=0 && i<GC.getNumPlanetInfos()) ? &GC.getPlanetInfo((PlanetTypes) i) : NULL;
 }
 
+CvPlanetSizeInfo* CyGlobalContext::getPlanetSizeInfo(int i) const
+{
+	return (i>=0 && i<GC.getNumPlanetSizeInfos()) ? &GC.getPlanetSizeInfo((PlanetSizeTypes) i) : NULL;
+}
+
 CvSunInfo* CyGlobalContext::getSunInfo(int i) const
 {
 	return (i>=0 && i<GC.getNumSunInfos()) ? &GC.getSunInfo((SunTypes) i) : NULL;

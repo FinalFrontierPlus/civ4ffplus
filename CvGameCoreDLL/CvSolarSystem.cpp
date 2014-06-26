@@ -6,6 +6,8 @@
 #include "CvGlobals.h"
 #include "CvGameCoreUtils.h"
 
+#include "CvDLLInterfaceIFaceBase.h"
+
 #include "CvPlanet.h"
 #include "CvPlot.h"
 #include "CvSolarSystem.h"
@@ -162,9 +164,56 @@ CvPlanet* CvSolarSystem::getPlanet(int iRingID)
 	return pPlanet;
 }
 
+void CvSolarSystem::setSelectedPlanet(int iID)
+{
+	CvDLLInterfaceIFaceBase* pInterface = gDLL->getInterfaceIFace();
+
+	// ...this almost certainly needs to be error-checked...
+	m_iSelectedPlanet = iID;
+
+	// Use the interface iface to do the isCityScreenUp stuff
+	if (pInterface->isCityScreenUp())
+	{
+		pInterface->setDirty(CitizenButtons_DIRTY_BIT, true);
+	}
+}
+
 void CvSolarSystem::setBuildingPlanetRing(int iID)
 {
-	// I think we need to make a direct call to Python here to update the interface...
+	CvDLLInterfaceIFaceBase* pInterface = gDLL->getInterfaceIFace();	
+	int iOldBuildingPlanetRing = getBuildingPlanetRing();
+	int iNumBuildingTypes = GC.getNumBuildingInfos();
+	int iBuilding;
+	CvCity* pCity = getCity();
+	CvPlanet* pPlanet;
+
+	m_iBuildingPlanetRing = iID;
+	// In this case, we are doing map setup so none of the following stuff is relevant
+	if (pCity == NULL || iOldBuildingPlanetRing == -1)
+	{
+		return;
+	}
+
+	// Save and load planet building production
+	pPlanet = getPlanet(iOldBuildingPlanetRing);
+	for (iBuilding = 0; iBuilding < iNumBuildingTypes; iBuilding++)
+	{
+		pPlanet->setBuildingProduction((BuildingTypes)iBuilding, pCity->getBuildingProduction((BuildingTypes)iBuilding));
+	}
+
+	pPlanet = getPlanet(m_iBuildingPlanetRing);
+	for (iBuilding = 0; iBuilding < iNumBuildingTypes; iBuilding++)
+	{
+		pCity->setBuildingProduction((BuildingTypes)iBuilding, pPlanet->getBuildingProduction((BuildingTypes)iBuilding));
+	}
+
+
+	// Use the interface iface to do the isCityScreenUp stuff
+	if (pInterface->isCityScreenUp())
+	{
+		pInterface->setDirty(CitizenButtons_DIRTY_BIT, true);
+		pInterface->setDirty(InfoPane_DIRTY_BIT, true);
+	}
 }
 
 void CvSolarSystem::addPlanet(PlanetTypes ePlanetType, int iPlanetSize, int iOrbitRing, bool bMoon, bool bRings)
@@ -269,6 +318,8 @@ int CvSolarSystem::getPopulationLimit(bool bFactorHappiness)
 	return std::min(iPlanetPopLimit, iHappyPopLimit);
 }
 
+
+
 bool CvSolarSystem::isNeedsUpdate()
 {
 	return m_bNeedsUpdate;
@@ -277,4 +328,9 @@ bool CvSolarSystem::isNeedsUpdate()
 void CvSolarSystem::setNeedsUpdate(bool bValue)
 {
 	m_bNeedsUpdate = bValue;
+}
+
+void CvSolarSystem::updateDisplay()
+{
+	// We need to add other planet XML here first. 
 }
