@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- PlanetTypes -->
+<Civ4PlanetInfos xmlns="x-schema:CIV4TerrainSchema.xml">
+	<PlanetInfos>
+		<PlanetInfo>
+			<Type>BLUE_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_BLUE_PLANET</FeatureTag>
+			<Yields>
+				<iYield>0</iYield>
+				<iYield>2</iYield>
+				<iYield>5</iYield>
+			</Yields>
+		</PlanetInfo>
+		<PlanetInfo>
+			<Type>GRAY_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_GRAY_PLANET</FeatureTag>
+			<Yields>
+				<iYield>0</iYield>
+				<iYield>3</iYield>
+				<iYield>3</iYield>
+			</Yields>
+		</PlanetInfo>
+		<PlanetInfo>
+			<Type>GREEN_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_GREEN_PLANET</FeatureTag>
+			<Yields>
+				<iYield>3</iYield>
+				<iYield>1</iYield>
+				<iYield>2</iYield>
+			</Yields>
+		</PlanetInfo>
+		<PlanetInfo>
+			<Type>ORANGE_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_ORANGE_PLANET</FeatureTag>
+			<Yields>
+				<iYield>2</iYield>
+				<iYield>2</iYield>
+				<iYield>1</iYield>
+			</Yields>
+		</PlanetInfo>
+		<PlanetInfo>
+			<Type>RED_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_RED_PLANET</FeatureTag>
+			<Yields>
+				<iYield>1</iYield>
+				<iYield>2</iYield>
+				<iYield>3</iYield>
+			</Yields>
+		</PlanetInfo>
+		<PlanetInfo>
+			<Type>YELLOW_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_YELLOW_PLANET</FeatureTag>
+			<Yields>
+				<iYield>1</iYield>
+				<iYield>1</iYield>
+				<iYield>6</iYield>
+			</Yields>
+		</PlanetInfo>
+		<PlanetInfo>
+			<Type>WHITE_PLANET</Type>
+			<FeatureTag>FEATURE_TEXTURE_TAG_WHITE_PLANET</FeatureTag>
+			<Yields>
+				<iYield>2</iYield>
+				<iYield>0</iYield>
+				<iYield>3</iYield>
+			</Yields>
+		</PlanetInfo>
+	</PlanetInfos>
+</Civ4PlanetInfos>

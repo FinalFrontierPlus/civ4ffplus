@@ -1515,7 +1515,8 @@ class CvPlotDesc:
 				for iPlanetLoop in range(pSystem.getNumPlanets()):
 					pPlanet = pSystem.getPlanetByIndex(iPlanetLoop)
 					
-					szPlanetType = aszPlanetTypeNames[pPlanet.getPlanetType()]
+					#szPlanetType = aszPlanetTypeNames[pPlanet.getPlanetType()]
+					szPlanetType = gc.getPlanetInfo(pPlanet.getPlanetType()).getType()
 				
 #Changed in Final Frontier Worldbuilder: TC01
 					szPlanetType = szPlanetType.encode(fileencoding)

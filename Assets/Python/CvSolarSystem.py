@@ -628,7 +628,9 @@ class CvPlanet:
 		return self.getBaseYield(iYieldID) + self.getExtraYield(iOwner, iYieldID)
 		
 	def getBaseYield(self, iYieldID):
-		theYield = aaiPlanetYields[self.getPlanetType()][iYieldID]
+		#theYield = aaiPlanetYields[self.getPlanetType()][iYieldID]
+		# Moved this into the DLL to remove the hardcoding!
+		theYield = gc.getPlanetInfo(self.getPlanetType()).getYield(iYieldID)
 		if self.isBonus():
 			if (gc.getBonusInfo(self.getBonusType()).getHappiness() > 0) and (iYieldID == YieldTypes.YIELD_COMMERCE):
 				theYield += 1
@@ -787,11 +789,16 @@ def createRandomSystem(iX, iY, iPreferredYield, iPreferredPlanetQuantity):
 			for iYieldLoop in range(3):
 					
 				# Has yield, add to the total
-				if (aaiPlanetYields[iPlanetType][iYieldLoop] > 0):
-					aiTotalYield[iYieldLoop] += aaiPlanetYields[iPlanetType][iYieldLoop]
+				# Using CvPlanetInfo for this now.
+				#if (aaiPlanetYields[iPlanetType][iYieldLoop] > 0):
+				if gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop) > 0:
+					#aiTotalYield[iYieldLoop] += aaiPlanetYields[iPlanetType][iYieldLoop]
+					aiTotalYield[iYieldLoop] += gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop)
 					
-					if (aaiPlanetYields[iPlanetType][iYieldLoop] > aiMaxPlanetYield[iYieldLoop]):
-						aiMaxPlanetYield[iYieldLoop] = aaiPlanetYields[iPlanetType][iYieldLoop]
+					#if (aaiPlanetYields[iPlanetType][iYieldLoop] > aiMaxPlanetYield[iYieldLoop]):
+					#	aiMaxPlanetYield[iYieldLoop] = aaiPlanetYields[iPlanetType][iYieldLoop]
+					if gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop) > aiMaxPlanetYield[iYieldLoop]:
+						aiMaxPlanetYield[iYieldLoop] = gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop)
 			
 			# Level 1 Planets
 			if (iOrbitRing < g_iPlanetRange2):
@@ -802,11 +809,16 @@ def createRandomSystem(iX, iY, iPreferredYield, iPreferredPlanetQuantity):
 				for iYieldLoop in range(3):
 					
 					# Has Yield
-					if (aaiPlanetYields[iPlanetType][iYieldLoop] > 0):
-						aiTotalYieldLevel1[iYieldLoop] += aaiPlanetYields[iPlanetType][iYieldLoop]
+					#if (aaiPlanetYields[iPlanetType][iYieldLoop] > 0):
+					#	aiTotalYieldLevel1[iYieldLoop] += aaiPlanetYields[iPlanetType][iYieldLoop]
+					if gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop) > 0:
+						aiTotalYieldLevel1[iYieldLoop] += gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop)
 						
-						if (aaiPlanetYields[iPlanetType][iYieldLoop] > aiMaxPlanetYieldLevel1[iYieldLoop]):
-							aiMaxPlanetYieldLevel1[iYieldLoop] = aaiPlanetYields[iPlanetType][iYieldLoop]
+						if gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop) > aiMaxPlanetYieldLevel1[iYieldLoop]:
+							aiMaxPlanetYieldLevel1[iYieldLoop] = gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop)
+					
+						#if (aaiPlanetYields[iPlanetType][iYieldLoop] > aiMaxPlanetYieldLevel1[iYieldLoop]):
+						#	aiMaxPlanetYieldLevel1[iYieldLoop] = aaiPlanetYields[iPlanetType][iYieldLoop]
 			
 			# Level 2 Planets
 			if (iOrbitRing < g_iPlanetRange3):
@@ -817,11 +829,16 @@ def createRandomSystem(iX, iY, iPreferredYield, iPreferredPlanetQuantity):
 				for iYieldLoop in range(3):
 					
 					# Has Yield
-					if (aaiPlanetYields[iPlanetType][iYieldLoop] > 0):
-						aiTotalYieldLevel2[iYieldLoop] += aaiPlanetYields[iPlanetType][iYieldLoop]
+					#if (aaiPlanetYields[iPlanetType][iYieldLoop] > 0):
+					#	aiTotalYieldLevel2[iYieldLoop] += aaiPlanetYields[iPlanetType][iYieldLoop]
 						
-						if (aaiPlanetYields[iPlanetType][iYieldLoop] > aiMaxPlanetYieldLevel2[iYieldLoop]):
-							aiMaxPlanetYieldLevel2[iYieldLoop] = aaiPlanetYields[iPlanetType][iYieldLoop]
+					#	if (aaiPlanetYields[iPlanetType][iYieldLoop] > aiMaxPlanetYieldLevel2[iYieldLoop]):
+					#		aiMaxPlanetYieldLevel2[iYieldLoop] = aaiPlanetYields[iPlanetType][iYieldLoop]
+			
+					if gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop) > 0:
+						aiTotalYieldLevel2[iYieldLoop] += gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop)
+						if gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop) > aiMaxPlanetYieldLevel2[iYieldLoop]:
+							aiMaxPlanetYieldLevel2[iYieldLoop] = gc.getPlanetInfo(iPlanetType).getYield(iYieldLoop)
 			
 		# If it's someone's starting system then it needs to meet a few criteria
 		if (bHomeworld):
@@ -1124,13 +1141,15 @@ def getRandomPlanetType(iPreferredYield, iSize):
 	
 	# Determine total to roll from
 	iYieldTotal = 0
-	for iPlanetTypeLoop in range(iNumPlanetTypes):
+	for iPlanetTypeLoop in range(gc.getNumPlanetInfos()):
+	#for iPlanetTypeLoop in range(iNumPlanetTypes):
 		
 		# Cannot have a large green planet
 		if (iPlanetTypeLoop == iPlanetTypeGreen and iSize == iPlanetSizeLarge):
 			continue
 			
-		iYieldTotal += aaiPlanetYields[iPlanetTypeLoop][iChosenYield]
+		#iYieldTotal += aaiPlanetYields[iPlanetTypeLoop][iChosenYield]
+		iYieldTotal += gc.getPlanetInfo(iPlanetTypeLoop).getYield(iChosenYield)
 		
 	iYieldRand = CyGame().getSorenRandNum(iYieldTotal, "Determining type of planet from preferred yield")
 	
@@ -1148,7 +1167,8 @@ def getRandomPlanetType(iPreferredYield, iSize):
 			continue
 		
 		iTemp = iCurrentSum
-		iCurrentSum += aaiPlanetYields[iPlanetTypeLoop][iChosenYield]
+		#iCurrentSum += aaiPlanetYields[iPlanetTypeLoop][iChosenYield]
+		iCurrentSum += gc.getPlanetInfo(iPlanetTypeLoop).getYield(iChosenYield)
 		#printd("%d : iPlanetTypeLoop" %(iPlanetTypeLoop))
 		#printd("   iTemp: %d" %(iTemp))
 		#printd("   iCurrentSum: %d" %(iCurrentSum))
@@ -1321,30 +1341,33 @@ aszPlanetTypes= [	"FEATURE_TEXTURE_TAG_BLUE_PLANET",
 							"FEATURE_TEXTURE_TAG_WHITE_PLANET"
 						]
 
-aszPlanetTypeNames= [	"BLUE_PLANET",
-									"GRAY_PLANET",
-									"GREEN_PLANET",
-									"ORANGE_PLANET",
-									"RED_PLANET",
-									"YELLOW_PLANET",
-									"WHITE_PLANET"
-								]
+#aszPlanetTypeNames= [	"BLUE_PLANET",
+#									"GRAY_PLANET",
+#									"GREEN_PLANET",
+#									"ORANGE_PLANET",
+#									"RED_PLANET",
+#									"YELLOW_PLANET",
+#									"WHITE_PLANET"
+#								]
 
 def getPlanetIndexFromTag(szTag):
 	iIndex = 0
-	for szTagLoop in aszPlanetTypeNames:
-		if (szTag == szTagLoop):
-			return iIndex
-		iIndex += 1
-
-aaiPlanetYields = 		[	[0,2,5],
-								[0,3,3],
-								[3,1,2],
-								[2,2,1],
-								[1,2,3],
-								[1,1,6],
-								[2,0,3]
-							]
+	# There is now, niftily enough, a 1-1 correspondance between a planet info type and name
+	return gc.getInfoTypeForString(szTag)
+	#for szTagLoop in aszPlanetTypeNames:
+	#	if (szTag == szTagLoop):
+	#		return iIndex
+	#	iIndex += 1
+	
+# moved to the DLL!
+#aaiPlanetYields = 		[	[0,2,5],
+#								[0,3,3],
+#								[3,1,2],
+#								[2,2,1],
+#								[1,2,3],
+#								[1,1,6],
+#								[2,0,3]
+#							]
 
 aszPlanetSizes = [	"FEATURE_MODEL_TAG_SMALL_PLANET",
 							"FEATURE_MODEL_TAG_MEDIUM_PLANET",

@@ -610,6 +610,9 @@ bool CvXMLLoadUtility::LoadPreMenuGlobals()
 	LoadGlobalClassInfo(GC.getVoteSourceInfo(), "CIV4VoteSourceInfos", "GameInfo", "Civ4VoteSourceInfos/VoteSourceInfos/VoteSourceInfo", false);
 	LoadGlobalClassInfo(GC.getTechInfo(), "CIV4TechInfos", "Technologies", "Civ4TechInfos/TechInfos/TechInfo", true, &CvDLLUtilityIFaceBase::createTechInfoCacheObject);
 	LoadGlobalClassInfo(GC.getFeatureInfo(), "Civ4FeatureInfos", "Terrain", "Civ4FeatureInfos/FeatureInfos/FeatureInfo", true); //Kaspar: last boolean set to true - to enable readPass2
+	LoadGlobalClassInfo(GC.getPlanetInfo(), "CIV4PlanetInfos", "Terrain", "Civ4PlanetInfos/PlanetInfos/PlanetInfo", false);		// Load planet infos! -- TC01
+	LoadGlobalClassInfo(GC.getPlanetSizeInfo(), "CIV4PlanetSizeInfos", "Terrain", "Civ4PlanetSizeInfos/PlanetSizeInfos/PlanetSizeInfo", false);		// Load planet size infos! -- TC01
+	LoadGlobalClassInfo(GC.getSunInfo(), "CIV4SunInfos", "Terrain", "Civ4SunInfos/SunInfos/SunInfo", false);					// Load sun infos! -- TC01
 	LoadGlobalClassInfo(GC.getReligionInfo(), "CIV4ReligionInfo", "GameInfo", "Civ4ReligionInfo/ReligionInfos/ReligionInfo", false);
 	LoadGlobalClassInfo(GC.getAnimationCategoryInfo(), "CIV4AnimationInfos", "Units", "Civ4AnimationInfos/AnimationCategories/AnimationCategory", false);
 	LoadGlobalClassInfo(GC.getAnimationPathInfo(), "CIV4AnimationPathInfos", "Units", "Civ4AnimationPathInfos/AnimationPaths/AnimationPath", false);

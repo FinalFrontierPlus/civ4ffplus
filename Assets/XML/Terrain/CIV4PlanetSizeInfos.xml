@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Jon Shafer (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- PlanetSizeTypes -->
+<Civ4PlanetSizeInfos xmlns="x-schema:CIV4TerrainSchema.xml">
+	<PlanetSizeInfos>
+		<PlanetSizeInfo>
+			<Type>SMALL_PLANET</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_SMALL_PLANET</FeatureTag>
+			<GlowTag>FEATURE_MODEL_TAG_SMALL_PLANET_GLOW</GlowTag>
+			<CloudsTag>FEATURE_MODEL_TAG_SMALL_PLANET_CLOUDS</CloudsTag>
+			<RingsTag>FEATURE_MODEL_TAG_SMALL_PLANET_RINGS</RingsTag>
+			<MoonTag>FEATURE_MODEL_TAG_SMALL_PLANET_MOON</MoonTag>
+			<Population1Tag>FEATURE_MODEL_TAG_SMALL_PLANET_POPULATION_1</Population1Tag>
+			<Population2Tag>FEATURE_MODEL_TAG_SMALL_PLANET_POPULATION_2</Population2Tag>
+			<Population3Tag>FEATURE_MODEL_TAG_SMALL_PLANET_POPULATION_3</Population3Tag>
+			<PlanetSelectionTag>FEATURE_MODEL_TAG_SMALL_PLANET_SELECTION</PlanetSelectionTag>
+			<iDefaultPopulation>1</iDefaultPopulation>
+		</PlanetSizeInfo>
+		<PlanetSizeInfo>
+			<Type>MEDIUM_PLANET</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_MEDIUM_PLANET</FeatureTag>
+			<GlowTag>FEATURE_MODEL_TAG_MEDIUM_PLANET_GLOW</GlowTag>
+			<CloudsTag>FEATURE_MODEL_TAG_MEDIUM_PLANET_CLOUDS</CloudsTag>
+			<RingsTag>FEATURE_MODEL_TAG_MEDIUM_PLANET_RINGS</RingsTag>
+			<MoonTag>FEATURE_MODEL_TAG_MEDIUM_PLANET_MOON</MoonTag>
+			<Population1Tag>FEATURE_MODEL_TAG_MEDIUM_PLANET_POPULATION_1</Population1Tag>
+			<Population2Tag>FEATURE_MODEL_TAG_MEDIUM_PLANET_POPULATION_2</Population2Tag>
+			<Population3Tag>FEATURE_MODEL_TAG_MEDIUM_PLANET_POPULATION_3</Population3Tag>
+			<PlanetSelectionTag>FEATURE_MODEL_TAG_MEDIUM_PLANET_SELECTION</PlanetSelectionTag>
+			<iDefaultPopulation>1</iDefaultPopulation>
+		</PlanetSizeInfo>
+		<PlanetSizeInfo>
+			<Type>LARGE_PLANET</Type>
+			<FeatureTag>FEATURE_MODEL_TAG_LARGE_PLANET</FeatureTag>
+			<GlowTag>FEATURE_MODEL_TAG_LARGE_PLANET_GLOW</GlowTag>
+			<CloudsTag>FEATURE_MODEL_TAG_LARGE_PLANET_CLOUDS</CloudsTag>
+			<RingsTag>FEATURE_MODEL_TAG_LARGE_PLANET_RINGS</RingsTag>
+			<MoonTag>FEATURE_MODEL_TAG_LARGE_PLANET_MOON</MoonTag>
+			<Population1Tag>FEATURE_MODEL_TAG_LARGE_PLANET_POPULATION_1</Population1Tag>
+			<Population2Tag>FEATURE_MODEL_TAG_LARGE_PLANET_POPULATION_2</Population2Tag>
+			<Population3Tag>FEATURE_MODEL_TAG_LARGE_PLANET_POPULATION_3</Population3Tag>
+			<PlanetSelectionTag>FEATURE_MODEL_TAG_LARGE_PLANET_SELECTION</PlanetSelectionTag>
+			<iDefaultPopulation>1</iDefaultPopulation>
+		</PlanetSizeInfo>
+	</PlanetSizeInfos>
+</Civ4PlanetSizeInfos>

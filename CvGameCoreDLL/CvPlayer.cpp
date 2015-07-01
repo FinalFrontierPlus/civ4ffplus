@@ -5023,6 +5023,7 @@ int CvPlayer::goodyGetLeaderForCiv(CivilizationTypes eCiv) const
 			return i;
 		}
 	}
+	return -1;
 }
 //End of Final Frontier SDK
 

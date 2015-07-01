@@ -23773,3 +23773,304 @@ bool CvMainMenuInfo::read(CvXMLLoadUtility* pXML)
 	return true;
 }
 
+
+
+
+//======================================================================================================
+//					CvPlanetInfo
+//======================================================================================================
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   CvPlanetInfo()
+//
+//  PURPOSE :   Default constructor
+//
+//------------------------------------------------------------------------------------------------------
+CvPlanetInfo::CvPlanetInfo() :
+m_szFeatureTag(""),
+m_piYields(NULL)
+{
+}
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   ~CvPlanetInfo()
+//
+//  PURPOSE :   Default destructor
+//
+//------------------------------------------------------------------------------------------------------
+CvPlanetInfo::~CvPlanetInfo()
+{
+	SAFE_DELETE_ARRAY(m_piYields);
+}
+
+const TCHAR* CvPlanetInfo::getFeatureTag() const
+{
+	return m_szFeatureTag;
+}
+
+void CvPlanetInfo::setFeatureTag(const TCHAR* szNewTag)
+{
+	m_szFeatureTag = szNewTag;
+}
+
+int CvPlanetInfo::getYield(int i) const
+{
+	FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piYields ? m_piYields[i] : -1; 
+}
+
+bool CvPlanetInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	pXML->GetChildXmlValByName(szTextVal, "FeatureTag");
+	setFeatureTag(szTextVal);
+
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"Yields"))
+	{
+		pXML->SetYields(&m_piYields);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piYields, NUM_YIELD_TYPES);
+	}
+
+	return true;
+}
+
+//======================================================================================================
+//					CvPlanetSizeInfo
+//======================================================================================================
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   CvPlanetSizeInfo()
+//
+//  PURPOSE :   Default constructor
+//
+//------------------------------------------------------------------------------------------------------
+CvPlanetSizeInfo::CvPlanetSizeInfo() :
+m_szFeatureTag(""),
+m_szGlowTag(""),
+m_szCloudsTag(""),
+m_szRingsTag(""),
+m_szMoonTag(""),
+m_szPopulation1Tag(""),
+m_szPopulation2Tag(""),
+m_szPopulation3Tag(""),
+m_szPlanetSelectionTag(""),
+m_iDefaultPopulation(0)
+{
+}
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   ~CvPlanetSizeInfo()
+//
+//  PURPOSE :   Default destructor
+//
+//------------------------------------------------------------------------------------------------------
+CvPlanetSizeInfo::~CvPlanetSizeInfo()
+{
+
+}
+
+const TCHAR* CvPlanetSizeInfo::getFeatureTag() const
+{
+	return m_szFeatureTag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getGlowTag() const
+{
+	return m_szGlowTag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getCloudsTag() const
+{
+	return m_szCloudsTag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getRingsTag() const
+{
+	return m_szRingsTag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getMoonTag() const
+{
+	return m_szMoonTag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getPopulation1Tag() const
+{
+	return m_szPopulation1Tag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getPopulation2Tag() const
+{
+	return m_szPopulation2Tag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getPopulation3Tag() const
+{
+	return m_szPopulation3Tag;
+}
+
+const TCHAR* CvPlanetSizeInfo::getPlanetSelectionTag() const
+{
+	return m_szPlanetSelectionTag;
+}
+
+void CvPlanetSizeInfo::setFeatureTag(const TCHAR* szNewTag)
+{
+	m_szFeatureTag = szNewTag;
+}
+
+void CvPlanetSizeInfo::setGlowTag(const TCHAR* szNewTag)
+{
+	m_szGlowTag = szNewTag;
+}
+
+
+void CvPlanetSizeInfo::setCloudsTag(const TCHAR* szNewTag)
+{
+	m_szCloudsTag = szNewTag;
+}
+
+
+void CvPlanetSizeInfo::setRingsTag(const TCHAR* szNewTag)
+{
+	m_szRingsTag = szNewTag;
+}
+
+
+void CvPlanetSizeInfo::setMoonTag(const TCHAR* szNewTag)
+{
+	m_szMoonTag = szNewTag;
+}
+
+
+void CvPlanetSizeInfo::setPopulation1Tag(const TCHAR* szNewTag)
+{
+	m_szPopulation1Tag = szNewTag;
+}
+
+
+void CvPlanetSizeInfo::setPopulation2Tag(const TCHAR* szNewTag)
+{
+	m_szPopulation2Tag = szNewTag;
+}
+
+
+void CvPlanetSizeInfo::setPopulation3Tag(const TCHAR* szNewTag)
+{
+	m_szPopulation3Tag = szNewTag;
+}
+
+void CvPlanetSizeInfo::setPlanetSelectionTag(const TCHAR* szNewTag)
+{
+	m_szPlanetSelectionTag = szNewTag;
+}
+
+int CvPlanetSizeInfo::getDefaultPopulation() const
+{
+	return m_iDefaultPopulation;
+}
+
+bool CvPlanetSizeInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	pXML->GetChildXmlValByName(szTextVal, "FeatureTag");
+	setFeatureTag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "GlowTag");
+	setGlowTag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "CloudsTag");
+	setCloudsTag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "RingsTag");
+	setRingsTag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "MoonTag");
+	setMoonTag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "Population1Tag");
+	setPopulation1Tag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "Population2Tag");
+	setPopulation2Tag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "Population3Tag");
+	setPopulation3Tag(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "PlanetSelectionTag");
+	setPlanetSelectionTag(szTextVal);
+
+	pXML->GetChildXmlValByName(&m_iDefaultPopulation, "iDefaultPopulation");
+
+	return true;
+}
+
+//======================================================================================================
+//					CvSunInfo
+//======================================================================================================
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   CvSunInfo()
+//
+//  PURPOSE :   Default constructor
+//
+//------------------------------------------------------------------------------------------------------
+CvSunInfo::CvSunInfo() :
+m_szFeatureTag("")
+{
+}
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   ~CvSunInfo()
+//
+//  PURPOSE :   Default destructor
+//
+//------------------------------------------------------------------------------------------------------
+CvSunInfo::~CvSunInfo()
+{
+
+}
+
+const TCHAR* CvSunInfo::getFeatureTag() const
+{
+	return m_szFeatureTag;
+}
+
+void CvSunInfo::setFeatureTag(const TCHAR* szNewTag)
+{
+	m_szFeatureTag = szNewTag;
+}
+
+bool CvSunInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvInfoBase::read(pXML))
+	{
+		return false;
+	}
+
+	pXML->GetChildXmlValByName(szTextVal, "FeatureTag");
+	setFeatureTag(szTextVal);
+
+	return true;
+}

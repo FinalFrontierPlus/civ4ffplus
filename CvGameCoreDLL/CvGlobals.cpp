@@ -1165,6 +1165,62 @@ CvFeatureInfo& CvGlobals::getFeatureInfo(FeatureTypes eFeatureNum)
 	return *(m_paFeatureInfo[eFeatureNum]);
 }
 
+/* Add planet, planet size, and sun info functions, for Final Frontier Plus.
+ *  --TC01
+ */
+int CvGlobals::getNumPlanetInfos()
+{
+	return (int)m_paPlanetInfo.size();
+}
+
+std::vector<CvPlanetInfo*>& CvGlobals::getPlanetInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paPlanetInfo;
+}
+
+CvPlanetInfo& CvGlobals::getPlanetInfo(PlanetTypes ePlanetNum)
+{
+	FAssert(ePlanetNum > -1);
+	FAssert(ePlanetNum < GC.getNumPlanetInfos());
+	return *(m_paPlanetInfo[ePlanetNum]);
+}
+
+int CvGlobals::getNumPlanetSizeInfos()
+{
+	return (int)m_paPlanetSizeInfo.size();
+}
+
+std::vector<CvPlanetSizeInfo*>& CvGlobals::getPlanetSizeInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paPlanetSizeInfo;
+}
+
+CvPlanetSizeInfo& CvGlobals::getPlanetSizeInfo(PlanetSizeTypes ePlanetSizeNum)
+{
+	FAssert(ePlanetSizeNum > -1);
+	FAssert(ePlanetSizeNum < GC.getNumPlanetSizeInfos());
+	return *(m_paPlanetSizeInfo[ePlanetSizeNum]);
+}
+
+int CvGlobals::getNumSunInfos()
+{
+	return (int)m_paSunInfo.size();
+}
+
+std::vector<CvSunInfo*>& CvGlobals::getSunInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paSunInfo;
+}
+
+CvSunInfo& CvGlobals::getSunInfo(SunTypes eSunNum)
+{
+	FAssert(eSunNum > -1);
+	FAssert(eSunNum < GC.getNumSunInfos());
+	return *(m_paSunInfo[eSunNum]);
+}
+
+// End changes.
+
 int& CvGlobals::getNumPlayableCivilizationInfos()
 {
 	return m_iNumPlayableCivilizationInfos;
@@ -3468,6 +3524,9 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paYieldInfo);
 	deleteInfoArray(m_paTerrainInfo);
 	deleteInfoArray(m_paFeatureInfo);
+	deleteInfoArray(m_paPlanetInfo);		// Delete this here. -- TC01
+	deleteInfoArray(m_paSunInfo);		// Delete this here. -- TC01
+	deleteInfoArray(m_paPlanetSizeInfo);	// Delete this here. -- TC01 (Okay... so... better comments would be cool. :) )
 	deleteInfoArray(m_paBonusClassInfo);
 	deleteInfoArray(m_paBonusInfo);
 	deleteInfoArray(m_paLandscapeInfo);

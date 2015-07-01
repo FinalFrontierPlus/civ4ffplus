@@ -6542,4 +6542,132 @@ protected:
 	std::string m_szLoading;
 	std::string m_szLoadingSlideshow;
 };
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvPlanetInfo
+//  ADDED BY TC01: Final Frontier Plus
+//  DESC:   A class for planet types (note: *not* sizes.)
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvPlanetInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvPlanetInfo();
+	virtual ~CvPlanetInfo();
+
+	const TCHAR* getFeatureTag() const;
+	void setFeatureTag(const TCHAR* szNewTag);
+
+	int getYield(int i) const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	//bool readPass2(CvXMLLoadUtility* pXML);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+protected:
+
+	CvString m_szFeatureTag;
+
+	int* m_piYields;
+
+private:
+
+};
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvPlanetSizeInfo
+//  ADDED BY TC01: Final Frontier Plus
+//  DESC:   A class for planet size types (note: *not* planet types)
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvPlanetSizeInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvPlanetSizeInfo();
+	virtual ~CvPlanetSizeInfo();
+
+	const TCHAR* getFeatureTag() const;
+	const TCHAR* getGlowTag() const;
+	const TCHAR* getCloudsTag() const;
+	const TCHAR* getRingsTag() const;
+	const TCHAR* getMoonTag() const;
+	const TCHAR* getPopulation1Tag() const;
+	const TCHAR* getPopulation2Tag() const;
+	const TCHAR* getPopulation3Tag() const;
+	const TCHAR* getPlanetSelectionTag() const;
+
+	void setFeatureTag(const TCHAR* szNewTag);
+	void setGlowTag(const TCHAR* szNewTag);
+	void setCloudsTag(const TCHAR* szNewTag);
+	void setRingsTag(const TCHAR* szNewTag);
+	void setMoonTag(const TCHAR* szNewTag);
+	void setPopulation1Tag(const TCHAR* szNewTag);
+	void setPopulation2Tag(const TCHAR* szNewTag);
+	void setPopulation3Tag(const TCHAR* szNewTag);
+	void setPlanetSelectionTag(const TCHAR* szNewTag);
+
+	int getDefaultPopulation() const;
+
+	bool read(CvXMLLoadUtility* pXML);
+	//bool readPass2(CvXMLLoadUtility* pXML);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+protected:
+
+	CvString m_szFeatureTag;
+	CvString m_szGlowTag;
+	CvString m_szCloudsTag;
+	CvString m_szRingsTag;
+	CvString m_szMoonTag;
+	CvString m_szPopulation1Tag;
+	CvString m_szPopulation2Tag;
+	CvString m_szPopulation3Tag;
+	CvString m_szPlanetSelectionTag;
+
+	int m_iDefaultPopulation;
+
+private:
+
+};
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvSunInfo
+//  ADDED BY TC01: Final Frontier Plus
+//  DESC:   A class for sun types
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvSunInfo :
+	public CvInfoBase
+{
+	//---------------------------------------PUBLIC INTERFACE---------------------------------
+public:
+
+	CvSunInfo();
+	virtual ~CvSunInfo();
+
+	const TCHAR* getFeatureTag() const;
+	void setFeatureTag(const TCHAR* szNewTag);
+
+	bool read(CvXMLLoadUtility* pXML);
+	//bool readPass2(CvXMLLoadUtility* pXML);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+protected:
+
+	CvString m_szFeatureTag;
+
+private:
+
+};
+
 #endif
