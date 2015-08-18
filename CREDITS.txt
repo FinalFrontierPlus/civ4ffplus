@@ -22,6 +22,7 @@ Contributors (Code or Art):
 -UncutDragon (Lead from Behind modcomp)
 -TheLopez (Multiple Favorite Civics modcomp, Attack/Defense combat bonus mod)
 -denev (Multiple Production modcomp
+-DarkLunaPhantom (patch to enable PitBoss + BUG to work)
 
 Help and Suggestions:
 -davidlallen, Afforess, phungus420 (DLL help)

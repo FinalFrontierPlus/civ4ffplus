@@ -381,6 +381,7 @@ class AutoLogEvent(AbstractAutoLogEvent):
 	def onBeginPlayerTurn(self, argsList):
 		'Called at the beginning of a players turn'
 		iGameTurn, iPlayer = argsList
+		
 
 		if iPlayer == CyGame().getActivePlayer():
 			self.bHumanPlaying = False
@@ -1473,6 +1474,9 @@ class AutoLogEvent(AbstractAutoLogEvent):
 
 	def storeWhip(self):
 		# store the city whip counter
+		#DLP
+		if CyGame().isPitbossHost():
+			return
 		iPlayer = gc.getActivePlayer()
 		for i in range(0, iPlayer.getNumCities(), 1):
 			iCity = iPlayer.getCity(i)
