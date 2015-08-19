@@ -1398,10 +1398,16 @@ class PLE:
 		screen.enable(szString, bEnable)
 
 		# check if the units is selected
-		if (pLoopUnit.IsSelected()):
-			screen.setState(szString, True)
-		else:
+		# This can crash, apparently, if the unit vanishes while making a starbase.
+		try:
+			if (pLoopUnit.IsSelected()):
+				screen.setState(szString, True)
+			else:
+				raise RuntimeError
+		except RuntimeError:
+			bEnable = False
 			screen.setState(szString, False)
+
 		# set select state of the unit button
 		screen.show( szString )
 
