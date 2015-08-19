@@ -230,9 +230,9 @@ class CvSystem:
 			# Turns out that this code never checks to make sure there isn't already a planet in the ring.
 			# More to the point, if there is a planet in the ring, it doesn't get deleted from the array.
 			# For now, we'll just check to make sure getPlanet(iOrbitRing) == -1.
-			if self.getPlanet(iOrbitRing) != -1:
+			if len(self.apPlanets) < iOrbitRing and self.getPlanet(iOrbitRing) != -1:
 				return
-				
+			
 			self.apPlanets.append(CvPlanet(self.getX(), self.getY(), iPlanetType, iPlanetSize, iOrbitRing, bMoon, bRings))
 			if (self.getBuildingPlanetRing() == -1):
 				self.setBuildingPlanetRing(iOrbitRing)
