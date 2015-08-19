@@ -179,6 +179,11 @@ class CvAI:
 		printd("iPopulationToAssign = %d" %(iPopulationToAssign))
 		#printd(iPopulationToAssign)
 		
+		# AI change from God-Emperor; vary the surplus food cutoff with population. 
+		iFoodMin = 3 
+		if (pCity.getPopulation() < pSystem.getPopulationLimit() and pCity.angryPopulation(0) == 0):
+			iFoodMin += pCity.getPopulation() / 5
+		
 		# Place population 1 by 1
 		for iPopLoop in range(iPopulationToAssign):
 			
@@ -187,8 +192,8 @@ class CvAI:
 			
 			# Determine what the new most important yield is
 			
-			# Always need food to grow
-			if (iSurplusFood < 3):
+			# Always need food to grow; change from God-Emperor (check against foodMin)
+			if (iSurplusFood < iFoodMin):
 				iYieldNeededMost = 0
 			else:
 				iYieldNeededMost = 1

@@ -1374,6 +1374,13 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 			if (iSurplusFood < 0):
 				printd("updateHumanCityTurn: detected starvation in %s, net food = %d" % (pCity.getName(), iSurplusFood))
 				AI.doCityAIUpdate(pCity)
+			# Proposed AI change from God-Emperor; force regular reassignments of population.
+			elif (iSurplusFood == 0 and pCity.getPopulation() < pSystem.getPopulationLimit() and pCity.angryPopulation(0) == 0):
+				printd("updateHumanCityTurn: no food surplus when not at pop limit")
+				AI.doCityAIUpdate(pCity)
+			elif (CyGame().getGameTurn() % 15 == pCity.getOwner()):
+				printd("updateHumanCityTurn: periodic population reassignment")
+				AI.doCityAIUpdate(pCity)
 
 #############################################################################################
 #		Selecting Planets
