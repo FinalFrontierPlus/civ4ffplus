@@ -1368,7 +1368,10 @@ class CvInfoScreen:
 	def getHealthValue(self, pPlayer):
 		iGood = pPlayer.calculateTotalCityHealthiness()
 		iBad = pPlayer.calculateTotalCityUnhealthiness()
-		return (iGood * 100) / max(1, iGood + iBad)	 
+		# The existing "average lifespan" numbers thrown out by this algorithm don't seem quite "realistic" in the future.
+		# So let's fudge them a bit. --TC01
+		spaceFudgeFactor = 1.5
+		return int(iGood * 100 * spaceFudgeFactor) / max(1, iGood + iBad)	 
 		
 	def getRank(self, aiGroup):
 		aiGroup.sort()
