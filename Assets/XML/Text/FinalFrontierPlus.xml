@@ -691,4 +691,36 @@
 		<Italian>Space Controlled (Volume)</Italian>
 		<Spanish>Space Controlled (Volume)</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV_TEH_ALIENZ_DESC</Tag>
+		<English>The Aliens</English>
+		<French>The Aliens</French>
+		<German>The Aliens</German>
+		<Italian>The Aliens</Italian>
+		<Spanish>The Aliens</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV_TEH_ALIENZ_SHORT_DESC</Tag>
+		<English>Aliens</English>
+		<French>Aliens</French>
+		<German>Aliens</German>
+		<Italian>Aliens</Italian>
+		<Spanish>Aliens</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV_TEH_ALIENZ_ADJECTIVE</Tag>
+		<English>Alien</English>
+		<French>Alien</French>
+		<German>Alien</German>
+		<Italian>Alien</Italian>
+		<Spanish>Alien</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV_TEH_ALIENZ_PEDIA</Tag>
+		<English>The initial human colonization wave showed no signs of encountering any alien activity, or if it did, the PDE classified it so heavily that it was covered up and word never filtered down to the colonies themselves. But perhaps, somewhere, farther out in space, lurks the alien life predicted by human science fiction for the past few centuries?</English>
+		<French>The initial human colonization wave showed no signs of encountering any alien activity, or if it did, the PDE classified it so heavily that it was covered up and word never filtered down to the colonies themselves. But perhaps, somewhere, farther out in space, lurks the alien life predicted by human science fiction for the past few centuries?</French>
+		<German>The initial human colonization wave showed no signs of encountering any alien activity, or if it did, the PDE classified it so heavily that it was covered up and word never filtered down to the colonies themselves. But perhaps, somewhere, farther out in space, lurks the alien life predicted by human science fiction for the past few centuries?</German>
+		<Italian>The initial human colonization wave showed no signs of encountering any alien activity, or if it did, the PDE classified it so heavily that it was covered up and word never filtered down to the colonies themselves. But perhaps, somewhere, farther out in space, lurks the alien life predicted by human science fiction for the past few centuries?</Italian>
+		<Spanish>The initial human colonization wave showed no signs of encountering any alien activity, or if it did, the PDE classified it so heavily that it was covered up and word never filtered down to the colonies themselves. But perhaps, somewhere, farther out in space, lurks the alien life predicted by human science fiction for the past few centuries?</Spanish>
+	</TEXT>
 </Civ4GameText>
