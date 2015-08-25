@@ -10,7 +10,7 @@
 			<Type>HURRY_POPULATION</Type>
 			<Description>TXT_KEY_HURRY_POPULATION</Description>
 			<iGoldPerProduction>0</iGoldPerProduction>
-			<iProductionPerPopulation>40</iProductionPerPopulation>
+			<iProductionPerPopulation>50</iProductionPerPopulation>
 			<bAnger>1</bAnger>
 			<Button>Art/Interface/MainScreen/CityScreen/hurry_slavery.dds</Button>
 		</HurryInfo>
