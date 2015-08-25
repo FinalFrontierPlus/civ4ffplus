@@ -78,12 +78,28 @@
 		<Spanish>Well, if it isn't our favorite repeat customer! What business do you have with the [OUR_CIV_SHORT], [CT_NAME]?</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_FR_2</Tag>
+		<English>Ah, [CT_NAME], how are you doing? Anything you want? Money, power, planets, I know a guy who knows a guy who can make your dreams come true.</English>
+		<French>Ah, [CT_NAME], how are you doing? Anything you want? Money, power, planets, I know a guy who knows a guy who can make your dreams come true.</French>
+		<German>Ah, [CT_NAME], how are you doing? Anything you want? Money, power, planets, I know a guy who knows a guy who can make your dreams come true.</German>
+		<Italian>Ah, [CT_NAME], how are you doing? Anything you want? Money, power, planets, I know a guy who knows a guy who can make your dreams come true.</Italian>
+		<Spanish>Ah, [CT_NAME], how are you doing? Anything you want? Money, power, planets, I know a guy who knows a guy who can make your dreams come true.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_MAD_1</Tag>
 		<English>Your brash mannerisms do not make you very welcome here, [CT_NAME]. State your business.</English>
 		<French>Your brash mannerisms do not make you very welcome here, [CT_NAME]. State your business.</French>
 		<German>Your brash mannerisms do not make you very welcome here, [CT_NAME]. State your business.</German>
 		<Italian>Your brash mannerisms do not make you very welcome here, [CT_NAME]. State your business.</Italian>
 		<Spanish>Your brash mannerisms do not make you very welcome here, [CT_NAME]. State your business.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_MAD_2</Tag>
+		<English>The [OUR_CIV_SHORT] is more powerful than you think, [CT_NAME]. Careful you don't suffer an "accident".</English>
+		<French>The [OUR_CIV_SHORT] is more powerful than you think, [CT_NAME]. Careful you don't suffer an "accident".</French>
+		<German>The [OUR_CIV_SHORT] is more powerful than you think, [CT_NAME]. Careful you don't suffer an "accident".</German>
+		<Italian>The [OUR_CIV_SHORT] is more powerful than you think, [CT_NAME]. Careful you don't suffer an "accident".</Italian>
+		<Spanish>The [OUR_CIV_SHORT] is more powerful than you think, [CT_NAME]. Careful you don't suffer an "accident".</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>AI_DIPLO_REFUSE_TO_TALK_FFP_KOROVIN_1</Tag>
@@ -158,6 +174,14 @@
 		<Spanish>Welcome! How can [OUR_CIV_SHORT] help you in the fight against tyranny and the remains of the old order?</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_REUTHER_ATT_FR_2</Tag>
+		<English>How can our two collectives cooperate today?</English>
+		<French>How can our two collectives cooperate today?</French>
+		<German>How can our two collectives cooperate today?</German>
+		<Italian>How can our two collectives cooperate today?</Italian>
+		<Spanish>How can our two collectives cooperate today?</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>AI_DIPLO_GREETINGS_FFP_REUTHER_ATT_MAD_1</Tag>
 		<English>You've proven yourself nothing but a puppet of the old regime. What do you have to say for yourself, [CT_NAME]?</English>
 		<French>You've proven yourself nothing but a puppet of the old regime. What do you have to say for yourself, [CT_NAME]?</French>
@@ -182,12 +206,28 @@
 		<Spanish>Sic semper tyrannis!</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_TIANQU_ATT_FR_1</Tag>
+		<English>Good day to you, [CT_NAME]. Let us compare the results of our research!</English>
+		<French>Good day to you, [CT_NAME]. Let us compare the results of our research!</French>
+		<German>Good day to you, [CT_NAME]. Let us compare the results of our research!</German>
+		<Italian>Good day to you, [CT_NAME]. Let us compare the results of our research!</Italian>
+		<Spanish>Good day to you, [CT_NAME]. Let us compare the results of our research!</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>AI_DIPLO_GREETINGS_FFP_TIANQU_ATT_MAD_1</Tag>
 		<English>I'm in the middle of an important experiment, so make this quick.</English>
 		<French>I'm in the middle of an important experiment, so make this quick.</French>
 		<German>I'm in the middle of an important experiment, so make this quick.</German>
 		<Italian>I'm in the middle of an important experiment, so make this quick.</Italian>
 		<Spanish>I'm in the middle of an important experiment, so make this quick.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_TIANQU_ATT_MAD_2</Tag>
+		<English>What makes you think you can just barge in and disturb my work? You had better have some important knowledge to share.</English>
+		<French>What makes you think you can just barge in and disturb my work? You had better have some important knowledge to share.</French>
+		<German>What makes you think you can just barge in and disturb my work? You had better have some important knowledge to share.</German>
+		<Italian>What makes you think you can just barge in and disturb my work? You had better have some important knowledge to share.</Italian>
+		<Spanish>What makes you think you can just barge in and disturb my work? You had better have some important knowledge to share.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>AI_DIPLO_REFUSE_TO_TALK_TIANQU_1</Tag>
@@ -198,11 +238,43 @@
 		<Spanish>I have lab rats with more interesting things to say than you.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>AI_DIPLO_DECLARE_WAR_TIANQU_1</Tag>
+		<English>The [OUR_CIV_SHORT] have developed some fascinating new weaponry. I'm so glad you've volunteered as a test subject, [CT_NAME].</English>
+		<French>The [OUR_CIV_SHORT] have developed some fascinating new weaponry. I'm so glad you've volunteered as a test subject, [CT_NAME].</French>
+		<German>The [OUR_CIV_SHORT] have developed some fascinating new weaponry. I'm so glad you've volunteered as a test subject, [CT_NAME].</German>
+		<Italian>The [OUR_CIV_SHORT] have developed some fascinating new weaponry. I'm so glad you've volunteered as a test subject, [CT_NAME].</Italian>
+		<Spanish>The [OUR_CIV_SHORT] have developed some fascinating new weaponry. I'm so glad you've volunteered as a test subject, [CT_NAME].</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_FR_1</Tag>
+		<English>On the behalf of the proud people of [OUR_CIV_SHORT], welcome. What can we do for you?</English>
+		<French>On the behalf of the proud people of [OUR_CIV_SHORT], welcome. What can we do for you?</French>
+		<German>On the behalf of the proud people of [OUR_CIV_SHORT], welcome. What can we do for you?</German>
+		<Italian>On the behalf of the proud people of [OUR_CIV_SHORT], welcome. What can we do for you?</Italian>
+		<Spanish>On the behalf of the proud people of [OUR_CIV_SHORT], welcome. What can we do for you?</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_MAD_1</Tag>
 		<English>Every second I spend talking to you is a second wasted, so please hurry up.</English>
 		<French>Every second I spend talking to you is a second wasted, so please hurry up.</French>
 		<German>Every second I spend talking to you is a second wasted, so please hurry up.</German>
 		<Italian>Every second I spend talking to you is a second wasted, so please hurry up.</Italian>
 		<Spanish>Every second I spend talking to you is a second wasted, so please hurry up.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_MAD_2</Tag>
+		<English>Oh, it's you. Make it quick, I have a glorious nation to lead.</English>
+		<French>Oh, it's you. Make it quick, I have a glorious nation to lead.</French>
+		<German>Oh, it's you. Make it quick, I have a glorious nation to lead.</German>
+		<Italian>Oh, it's you. Make it quick, I have a glorious nation to lead.</Italian>
+		<Spanish>Oh, it's you. Make it quick, I have a glorious nation to lead.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DECLARE_WAR_FFP_TAKENO_1</Tag>
+		<English>Your subversive influence can no longer be tolerated by the people of [OUR_CIV_SHORT].</English>
+		<French>Your subversive influence can no longer be tolerated by the people of [OUR_CIV_SHORT].</French>
+		<German>Your subversive influence can no longer be tolerated by the people of [OUR_CIV_SHORT].</German>
+		<Italian>Your subversive influence can no longer be tolerated by the people of [OUR_CIV_SHORT].</Italian>
+		<Spanish>Your subversive influence can no longer be tolerated by the people of [OUR_CIV_SHORT].</Spanish>
 	</TEXT>
 </Civ4GameText>

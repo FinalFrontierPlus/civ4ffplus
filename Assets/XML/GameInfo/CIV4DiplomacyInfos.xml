@@ -67,6 +67,34 @@
 				</Response>
 				<Response>
 					<Civilizations/>
+					<Leaders>
+						<Leader>
+							<LeaderType>LEADER_LU_TIANQU</LeaderType>
+							<bLeaderType>1</bLeaderType>
+						</Leader>
+					</Leaders>
+					<Attitudes/>
+					<DiplomacyPowers/>
+					<DiplomacyText>
+						<Text>AI_DIPLO_DECLARE_WAR_FFP_TIANQU_1</Text>
+					</DiplomacyText>
+				</Response>
+				<Response>
+					<Civilizations/>
+					<Leaders>
+						<Leader>
+							<LeaderType>LEADER_KANJI_TAKENO</LeaderType>
+							<bLeaderType>1</bLeaderType>
+						</Leader>
+					</Leaders>
+					<Attitudes/>
+					<DiplomacyPowers/>
+					<DiplomacyText>
+						<Text>AI_DIPLO_DECLARE_WAR_FFP_TAKENO_1</Text>
+					</DiplomacyText>
+				</Response>
+				<Response>
+					<Civilizations/>
 					<Leaders/>
 					<Attitudes/>
 					<DiplomacyPowers/>
@@ -550,6 +578,7 @@
 					<DiplomacyPowers/>
 					<DiplomacyText>
 						<Text>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_FR_1</Text>
+						<Text>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_FR_2</Text>
 					</DiplomacyText>
 				</Response>
 				<Response>
@@ -573,6 +602,7 @@
 					<DiplomacyPowers/>
 					<DiplomacyText>
 						<Text>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_MAD_1</Text>
+						<Text>AI_DIPLO_GREETINGS_FFP_KOROVIN_ATT_MAD_2</Text>
 					</DiplomacyText>
 				</Response>
 				<Response>
@@ -674,6 +704,7 @@
 					<DiplomacyPowers/>
 					<DiplomacyText>
 						<Text>AI_DIPLO_GREETINGS_FFP_REUTHER_ATT_FR_1</Text>
+						<Text>AI_DIPLO_GREETINGS_FFP_REUTHER_ATT_FR_2</Text>
 					</DiplomacyText>
 				</Response>
 				<Response>
@@ -709,6 +740,33 @@
 					</Leaders>
 					<Attitudes>
 						<Attitude>
+							<AttitudeType>ATTITUDE_FRIENDLY</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+						<Attitude>
+							<AttitudeType>ATTITUDE_PLEASED</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+						<Attitude>
+							<AttitudeType>ATTITUDE_CAUTIOUS</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+					</Attitudes>
+					<DiplomacyPowers/>
+					<DiplomacyText>
+						<Text>AI_DIPLO_GREETINGS_FFP_TIANQU_ATT_FR_1</Text>
+					</DiplomacyText>
+				</Response>
+				<Response>
+					<Civilizations/>
+					<Leaders>
+						<Leader>
+							<LeaderType>LEADER_LU_TIANQU</LeaderType>
+							<bLeaderType>1</bLeaderType>
+						</Leader>
+					</Leaders>
+					<Attitudes>
+						<Attitude>
 							<AttitudeType>ATTITUDE_ANNOYED</AttitudeType>
 							<bAttitudeType>1</bAttitudeType>
 						</Attitude>
@@ -720,6 +778,34 @@
 					<DiplomacyPowers/>
 					<DiplomacyText>
 						<Text>AI_DIPLO_GREETINGS_FFP_TIANQU_ATT_MAD_1</Text>
+						<Text>AI_DIPLO_GREETINGS_FFP_TIANQU_ATT_MAD_2</Text>
+					</DiplomacyText>
+				</Response>
+				<Response>
+					<Civilizations/>
+					<Leaders>
+						<Leader>
+							<LeaderType>LEADER_KANJI_TAKENO</LeaderType>
+							<bLeaderType>1</bLeaderType>
+						</Leader>
+					</Leaders>
+					<Attitudes>
+						<Attitude>
+							<AttitudeType>ATTITUDE_FRIENDLY</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+						<Attitude>
+							<AttitudeType>ATTITUDE_PLEASED</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+						<Attitude>
+							<AttitudeType>ATTITUDE_CAUTIOUS</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+					</Attitudes>
+					<DiplomacyPowers/>
+					<DiplomacyText>
+						<Text>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_FR_1</Text>
 					</DiplomacyText>
 				</Response>
 				<Response>
@@ -743,6 +829,7 @@
 					<DiplomacyPowers/>
 					<DiplomacyText>
 						<Text>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_MAD_1</Text>
+						<Text>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_MAD_2</Text>
 					</DiplomacyText>
 				</Response>
 			</Responses>
