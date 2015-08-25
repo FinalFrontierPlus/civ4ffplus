@@ -38,6 +38,7 @@ Help and Suggestions:
 -renegadechicken (suggestions)
 -Imp Knoedel (many suggestions, leader text suggestions)
 -Manco Capac, Eclipse449, thegreekweegee, TezaPsyborg (leader text suggestions)
+-Strategist83, me_myrmidon (AI feedback)
 
 And of course:
 -Jon Shafer for creating Final Frontier, the scenario that this is based on

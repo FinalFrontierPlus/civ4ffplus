@@ -41,7 +41,28 @@ Changelog:
 Please see the CHANGELOG.txt file for full changelog history. The latest patch's
 changelog is reproduced here:
 
-v1.84 Changelog: (to be written)
+Note that changelogs, these days, are mostly derived from git commit history.
+https://github.com/FinalFrontierPlus/civ4ffplus/commits/master
+
+v1.84 Changelog:
+-Merged patch from DarkLunaPhantom to allow BUG to work in PitBoss mode.
+-Added some new unique diplomacy text to all leaders, based on suggestions 
+from the forums (http://forums.civfanatics.com/showthread.php?t=517635)
+-Improved the efficiency of rushing via Slave State from 30 hammers to 50.
+-Modified the AI to now forces a population reassignment every fifteen turns.
+-The target minimum food surplus for the AI has been changed to vary over
+the course of the game, as cities grow larger.
+-All AI leaders are now slightly more likely to build ships and plan war.
+-Fixed rare potential CTD that could happen if a unit withdrew off the map.
+-Fixed Wormholes bug that would stop Wormholes from working if their x *or*
+y coordinate happened to be the same.
+-Fixed potential minor Python bug involving adding a planet to a solar syste.m
+-Fixed PlotListEnhancements (BUG) crash when a starbase is built while the
+construction ship building it is selected.
+-Defined the TXT_KEYs for the (useless/hidden/ignored) Alien civilization
+to clean up the pedia.
+-Flavor change: adjusted land area computation to use lightyears as a unit.
+-Flavor change: slightly adjusted average lifespan in demographics upwards.
 
 Installing:
 -----------
