@@ -539,6 +539,11 @@ class CvAI:
 		iNumMissiles += pPlayer.getUnitClassCount( gc.getInfoTypeForString('UNITCLASS_MISSILE_III'))
 		iNumMissiles += pPlayer.getUnitClassCount( gc.getInfoTypeForString('UNITCLASS_MISSILE_Q'))
 		iNumMilUnits -= ( iNumMissiles / 2 )
+		# TC01 - starbases aren't military units, exactly. discount them.
+		iNumStarbases = pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_STARBASE_I'))
+		iNumStarbases += pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_STARBASE_II'))
+		iNumStarbases += pPlayer.getUnitClassCount(gc.getInfoTypeForString('UNITCLASS_STARBASE_III'))
+		iNumMilUnits -= iNumStarbases
 		# should not allow it to try to divide by zero...
 		if (iNumMilUnits < 1) :
 			iNumMilUnits = 1
