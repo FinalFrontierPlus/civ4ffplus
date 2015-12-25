@@ -12871,7 +12871,6 @@
 			<iHotKeyPriority>0</iHotKeyPriority>
 			<bOnePerSystem>1</bOnePerSystem>
 		</BuildingInfo>
-	</BuildingInfos>
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_INTELLIGENCE_CENTER</BuildingClass>
 			<Type>BUILDING_SECURITY_STATION</Type>
@@ -13046,5 +13045,6 @@
 			<iHotKeyPriority>0</iHotKeyPriority>
 			<iCostModIncrease>2</iCostModIncrease>
 		</BuildingInfo>
+	</BuildingInfos>
 </Civ4BuildingInfos>
 

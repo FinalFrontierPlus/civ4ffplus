@@ -769,7 +769,7 @@
 		</CivilizationInfo>
 		<CivilizationInfo>
 			<Type>CIVILIZATION_WATCHERS</Type>
-			<Description>TXT_KEY_CIV_WATCHERS_DESC</Description>
+			<Description>TXT_KEY_CIV_WATCHERS_SHORT_DESC</Description>
 			<ShortDescription>TXT_KEY_CIV_WATCHERS_SHORT_DESC</ShortDescription>
 			<Adjective>TXT_KEY_CIV_WATCHERS_ADJECTIVE</Adjective>
 			<Civilopedia>TXT_KEY_CIV_WATCHERS_PEDIA</Civilopedia>

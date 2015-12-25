@@ -84,6 +84,14 @@
 		<Spanish>Deploying Watcher field agents onto enemy worlds is a problem that the Research and Development divisions inside CAS turned a lot of attention to. They rejected traditional PDE designs for a stealth ship and created a far more expensive, heavily armored, and heavily armed model that nevertheless managed to maintain the same stealth profile as its competition. WRITE MORE.</Spanish>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_STRATEGY</Tag>
+		<English>TODO: decide why this is different than a Stealth Ship.</English>
+		<French>TODO: decide why this is different than a Stealth Ship.</French>
+		<German>TODO: decide why this is different than a Stealth Ship.</German>
+		<Italian>TODO: decide why this is different than a Stealth Ship.</Italian>
+		<Spanish>TODO: decide why this is different than a Stealth Ship.</Spanish>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SECURITY_STATION</Tag>
 		<English>Security Directorate</English>
 		<French>Security Directorate</French>

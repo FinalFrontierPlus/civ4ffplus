@@ -55,6 +55,12 @@
 			<bWhiteFlag>0</bWhiteFlag>
 		</CivilizationArtInfo>
 		<CivilizationArtInfo>
+			<Type>ART_DEF_CIVILIZATION_ENGLAND</Type>
+			<Button>,Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,4,2</Button>
+			<Path>Art/Interface/TeamColor/FlagDECAL_Brotherhood.dds</Path>
+			<bWhiteFlag>0</bWhiteFlag>
+		</CivilizationArtInfo>
+		<CivilizationArtInfo>
 			<Type>ART_DEF_CIVILIZATION_MINOR</Type>
 			<Button>,Art/Interface/Buttons/Civilizations/Minor.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,6</Button>
 			<Path>Art/Interface/TeamColor/FlagDECAL_X.dds</Path>

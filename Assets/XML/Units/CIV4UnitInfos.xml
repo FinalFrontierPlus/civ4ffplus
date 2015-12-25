@@ -15585,7 +15585,7 @@
 			<DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
 			<Invisible>INVISIBLE_STEALTH</Invisible>
 			<SeeInvisible>INVISIBLE_STEALTH</SeeInvisible>
-			<Description>TXT_KEY_UNIT_STEALTH_CRUISER_I_NEW</Description>
+			<Description>TXT_KEY_UNIT_STEALTH_CRUISER_I</Description>
 			<Civilopedia>TXT_KEY_UNIT_STEALTH_CRUISER_PEDIA_2</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_STEALTH_CRUISER_STRATEGY_3</Strategy>
 			<Help/>
@@ -15772,7 +15772,7 @@
 			<DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
 			<Invisible>INVISIBLE_STEALTH</Invisible>
 			<SeeInvisible>INVISIBLE_STEALTH</SeeInvisible>
-			<Description>TXT_KEY_UNIT_STEALTH_CRUISER_II_NEW</Description>
+			<Description>TXT_KEY_UNIT_STEALTH_CRUISER_II</Description>
 			<Civilopedia>TXT_KEY_UNIT_STEALTH_CRUISER_PEDIA_2</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_STEALTH_CRUISER_STRATEGY_3</Strategy>
 			<Help/>
