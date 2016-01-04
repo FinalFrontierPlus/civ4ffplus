@@ -70,7 +70,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_I</Tag>
 		<English>
-			<TEXT>Alpha Stealth Cruiser:Alpha Stealth Cruisers</TEXT>
+			<TEXT>Stealth Cruiser:Stealth Cruisers</TEXT>
 			<Gender>Male</Gender>
 			<Plural>0:1</Plural>
 		</English>
@@ -78,7 +78,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_II</Tag>
 		<English>
-			<TEXT>Beta Stealth Cruiser:Beta Stealth Cruisers</TEXT>
+			<TEXT>[ICON_GREATPEOPLE] Stealth Cruiser:[ICON_GREATPEOPLE] Stealth Cruisers</TEXT>
 			<Gender>Male</Gender>
 			<Plural>0:1</Plural>
 		</English>
@@ -101,11 +101,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_STRATEGY_3</Tag>
-		<English>TODO: decide why this is different than a Stealth Ship.</English>
-		<French>TODO: decide why this is different than a Stealth Ship.</French>
-		<German>TODO: decide why this is different than a Stealth Ship.</German>
-		<Italian>TODO: decide why this is different than a Stealth Ship.</Italian>
-		<Spanish>TODO: decide why this is different than a Stealth Ship.</Spanish>
+		<English>Stealth Cruisers are much more expensive, but also more survivable, than a normal Stealth Ship. They get a chance of first strikes (when fully upgraded, they have at least one guaranteed first strike) and a small chance to withdraw from combat.</English>
+		<French>Stealth Cruisers are much more expensive, but also more survivable, than a normal Stealth Ship. They get a chance of first strikes (when fully upgraded, they have at least one guaranteed first strike) and a small chance to withdraw from combat.</French>
+		<German>Stealth Cruisers are much more expensive, but also more survivable, than a normal Stealth Ship. They get a chance of first strikes (when fully upgraded, they have at least one guaranteed first strike) and a small chance to withdraw from combat.</German>
+		<Italian>Stealth Cruisers are much more expensive, but also more survivable, than a normal Stealth Ship. They get a chance of first strikes (when fully upgraded, they have at least one guaranteed first strike) and a small chance to withdraw from combat.</Italian>
+		<Spanish>Stealth Cruisers are much more expensive, but also more survivable, than a normal Stealth Ship. They get a chance of first strikes (when fully upgraded, they have at least one guaranteed first strike) and a small chance to withdraw from combat.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SECURITY_STATION</Tag>
@@ -117,11 +117,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SECURITY_STATION_STRATEGY</Tag>
-		<English>TODO: decide why this is different than a Stealth Ship.</English>
-		<French>TODO: decide why this is different than a Stealth Ship.</French>
-		<German>TODO: decide why this is different than a Stealth Ship.</German>
-		<Italian>TODO: decide why this is different than a Stealth Ship.</Italian>
-		<Spanish>TODO: decide why this is different than a Stealth Ship.</Spanish>
+		<English>Security Stations provide more Espionage than an Intelligence Center, but cost a few more hammers.</English>
+		<French>Security Stations provide more Espionage than an Intelligence Center, but cost a few more hammers.</French>
+		<German>Security Stations provide more Espionage than an Intelligence Center, but cost a few more hammers.</German>
+		<Italian>Security Stations provide more Espionage than an Intelligence Center, but cost a few more hammers.</Italian>
+		<Spanish>Security Stations provide more Espionage than an Intelligence Center, but cost a few more hammers.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SECURITY_STATION_PEDIA</Tag>
