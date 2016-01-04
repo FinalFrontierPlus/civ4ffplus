@@ -80,13 +80,7 @@
 		</LeaderheadArtInfo>
 		<LeaderheadArtInfo>
 			<Type>ART_DEF_LEADER_THE_WATCHERS</Type>
-			<Button>Art/LeaderHeads/MirandaLawson/Button_Miranda.dds</Button>
-			<!--
-			<NIF>art/LeaderHeads/catherine/catherine.nif</NIF>
-			<KFM>art/LeaderHeads/catherine/catherine.kfm</KFM>
-			<NoShaderNIF>art/LeaderHeads/catherine/catherine_noshader.nif</NoShaderNIF>
-			<BackgroundKFM>art/LeaderHeads/catherine/Catherine_BG.kfm</BackgroundKFM>
-			-->
+			<Button>Art/Interface/Buttons/Civilizations/CatherineShapiro.dds</Button>
 			<NIF>Art/LeaderHeads/MirandaLawson/peter.nif</NIF>
 			<KFM>Art/LeaderHeads/MirandaLawson/peter.kfm</KFM>
 			<NoShaderNIF>Art/LeaderHeads/MirandaLawson/peter_noshader.nif</NoShaderNIF>
