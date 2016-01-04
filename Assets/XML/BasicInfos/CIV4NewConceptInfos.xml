@@ -123,6 +123,11 @@
 			<Description>TXT_KEY_CIV_THE_FORGE_SHORT_DESC</Description>
 			<Civilopedia>TXT_KEY_TRAIT_THE_FORGE_PEDIA</Civilopedia>
 		</NewConceptInfo>
+		<NewConceptInfo>
+			<Type>CONCEPT_TRAIT_THE_WATCHERS</Type>
+			<Description>TXT_KEY_CIV_WATCHERS_SHORT_DESC</Description>
+			<Civilopedia>TXT_KEY_TRAIT_WATCHERS_PEDIA</Civilopedia>
+		</NewConceptInfo>
 		<!-- Shortcut Infos -->
 		<NewConceptInfo>
 			<Type>CONCEPT_SHORTCUTS_ADVISORS</Type>

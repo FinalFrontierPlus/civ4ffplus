@@ -25,7 +25,10 @@ def init():
 	global GENERIC_ICON
 	GENERIC_ICON = u"%c" % game.getSymbolID(FontSymbols.MAP_CHAR)
 	
+	# The fact that this is hardcoded makes me sad.
+	# *mutters something about being tempted to patch it*.
 	addTrait("NEW_EARTH", game.getSymbolID(FontSymbols.MAP_CHAR), ",Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,5,2")
+	addTrait("THE_WATCHERS", game.getSymbolID(FontSymbols.MAP_CHAR), ",Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,5,2")
 	addTrait("BROTHERHOOD", game.getSymbolID(FontSymbols.RELIGION_CHAR), ",Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,4,2")
 	addTrait("AVOWERS", gc.getCommerceInfo(CommerceTypes.COMMERCE_RESEARCH).getChar(), ",Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,1,2")
 	addTrait("THE_FORGE", gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getChar(), ",Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,8,2")
