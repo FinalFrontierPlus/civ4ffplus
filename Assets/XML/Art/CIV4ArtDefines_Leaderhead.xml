@@ -80,11 +80,17 @@
 		</LeaderheadArtInfo>
 		<LeaderheadArtInfo>
 			<Type>ART_DEF_LEADER_THE_WATCHERS</Type>
-			<Button>,Art/interface/LeaderHeads/Btn_LH_Mongol_Genghis.dds,Art/Interface/Buttons/FinalFrontier2_Atlas.dds,8,1</Button>
+			<Button>Art/LeaderHeads/MirandaLawson/Button_Miranda.dds</Button>
+			<!--
 			<NIF>art/LeaderHeads/catherine/catherine.nif</NIF>
 			<KFM>art/LeaderHeads/catherine/catherine.kfm</KFM>
 			<NoShaderNIF>art/LeaderHeads/catherine/catherine_noshader.nif</NoShaderNIF>
 			<BackgroundKFM>art/LeaderHeads/catherine/Catherine_BG.kfm</BackgroundKFM>
+			-->
+			<NIF>Art/LeaderHeads/MirandaLawson/peter.nif</NIF>
+			<KFM>Art/LeaderHeads/MirandaLawson/peter.kfm</KFM>
+			<NoShaderNIF>Art/LeaderHeads/MirandaLawson/peter_noshader.nif</NoShaderNIF>
+			<BackgroundKFM>Art/LeaderHeads/MirandaLawson/peter_bg.kfm</BackgroundKFM>
 		</LeaderheadArtInfo>
 	</LeaderheadArtInfos>
 </Civ4ArtDefines>

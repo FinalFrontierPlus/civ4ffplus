@@ -251,9 +251,9 @@
 		</TraitInfo>
 		<TraitInfo>
 			<Type>TRAIT_THE_WATCHERS</Type>
-			<Description>TXT_KEY_CIV_THE_WATCHERS_SHORT_DESC</Description>
-			<ShortDescription>TXT_KEY_CIV_THE_WATCHERS_SHORT_DESC</ShortDescription>
-			<Help>TXT_KEY_TRAIT_HELP_THE_WATCHERS</Help>
+			<Description>TXT_KEY_CIV_WATCHERS_SHORT_DESC</Description>
+			<ShortDescription>TXT_KEY_CIV_WATCHERS_SHORT_DESC</ShortDescription>
+			<Help/>
 			<iHealth>0</iHealth>
 			<iHappiness>2</iHappiness>
 			<iMaxAnarchy>-1</iMaxAnarchy>

@@ -25,6 +25,7 @@ Contributors (Code, Art, or Otherwise):
 -TheLopez (Multiple Favorite Civics modcomp, Attack/Defense combat bonus mod)
 -denev (Multiple Production modcomp
 -DarkLunaPhantom (patch to enable PitBoss + BUG to work)
+-sailbotlieh (Miranda Lawson leaderhead used for Catherine Shapiro)
 
 Help and Suggestions:
 -davidlallen, Afforess, phungus420 (DLL help)
@@ -43,3 +44,4 @@ Help and Suggestions:
 And of course:
 -Jon Shafer for creating Final Frontier, the scenario that this is based on
 -Firaxis/2K Games for making Civilization 4, the game for which this is a mod
+-Bioware, for the Miranda Lawson model used in sailbotlieh's leaderhead.
