@@ -3904,27 +3904,27 @@
 			<Civilopedia>TXT_KEY_LEADER_CATHERINE_SHAPIRO_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_THE_WATCHERS</ArtDefineTag>
 			<iWonderConstructRand>20</iWonderConstructRand>
-			<iBaseAttitude>-3</iBaseAttitude>
-			<iBasePeaceWeight>1</iBasePeaceWeight>
+			<iBaseAttitude>-2</iBaseAttitude>
+			<iBasePeaceWeight>3</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>2</iWarmongerRespect>
-			<iEspionageWeight>60</iEspionageWeight>
-			<iRefuseToTalkWarThreshold>10</iRefuseToTalkWarThreshold>
+			<iEspionageWeight>130</iEspionageWeight>
+			<iRefuseToTalkWarThreshold>8</iRefuseToTalkWarThreshold>
 			<iNoTechTradeThreshold>5</iNoTechTradeThreshold>
 			<iTechTradeKnownPercent>100</iTechTradeKnownPercent>
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
-			<iMaxWarRand>85</iMaxWarRand>
+			<iMaxWarRand>70</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>30</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>4</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>95</iLimitedWarRand>
+			<iLimitedWarRand>80</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>80</iDogpileWarRand>
-			<iMakePeaceRand>40</iMakePeaceRand>
+			<iDogpileWarRand>60</iDogpileWarRand>
+			<iMakePeaceRand>50</iMakePeaceRand>
 			<iDeclareWarTradeRand>12</iDeclareWarTradeRand>
-			<iDemandRebukedSneakProb>30</iDemandRebukedSneakProb>
-			<iDemandRebukedWarProb>13</iDemandRebukedWarProb>
+			<iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
+			<iDemandRebukedWarProb>8</iDemandRebukedWarProb>
 			<iRazeCityProb>25</iRazeCityProb>
 			<iBuildUnitProb>45</iBuildUnitProb>
 			<iBaseAttackOddsChange>0</iBaseAttackOddsChange>
@@ -3990,11 +3990,11 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>3</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_SCIENCE</FlavorType>
-					<iFlavor>5</iFlavor>
+					<iFlavor>3</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
