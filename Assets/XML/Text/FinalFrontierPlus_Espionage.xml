@@ -74,6 +74,26 @@
 			<Gender>Male</Gender>
 			<Plural>0:1</Plural>
 		</English>
+		<French>
+			<TEXT>Stealth Cruiser:Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</French>
+		<German>
+			<TEXT>Stealth Cruiser:Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</German>
+		<Italian>
+			<TEXT>Stealth Cruiser:Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Italian>
+		<Spanish>
+			<TEXT>Stealth Cruiser:Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_II</Tag>
@@ -82,6 +102,26 @@
 			<Gender>Male</Gender>
 			<Plural>0:1</Plural>
 		</English>
+		<French>
+			<TEXT>[ICON_GREATPEOPLE] Stealth Cruiser:[ICON_GREATPEOPLE] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</French>
+		<German>
+			<TEXT>[ICON_GREATPEOPLE] Stealth Cruiser:[ICON_GREATPEOPLE] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</German>
+		<Italian>
+			<TEXT>[ICON_GREATPEOPLE] Stealth Cruiser:[ICON_GREATPEOPLE] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Italian>
+		<Spanish>
+			<TEXT>[ICON_GREATPEOPLE] Stealth Cruiser:[ICON_GREATPEOPLE] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>		
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_III</Tag>
@@ -90,6 +130,26 @@
 			<Gender>Male</Gender>
 			<Plural>0:1</Plural>
 		</English>
+		<French>
+			<TEXT>[ICON_POWER] Stealth Cruiser:[ICON_POWER] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</French>
+		<German>
+			<TEXT>[ICON_POWER] Stealth Cruiser:[ICON_POWER] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</German>
+		<Italian>
+			<TEXT>[ICON_POWER] Stealth Cruiser:[ICON_POWER] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Italian>
+		<Spanish>
+			<TEXT>[ICON_POWER] Stealth Cruiser:[ICON_POWER] Stealth Cruisers</TEXT>
+			<Gender>Male</Gender>
+			<Plural>0:1</Plural>
+		</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_CRUISER_PEDIA_2</Tag>
@@ -291,5 +351,28 @@
 		<Italian>System 20</Italian>
 		<Spanish>System 20</Spanish>
 	</TEXT>
-
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_SHAPIRO_ATT_MAD_1</Tag>
+		<English>Your assassination will come soon enough, I promise you. Please go away.</English>
+		<French>Your assassination will come soon enough, I promise you. Please go away.</French>
+		<German>Your assassination will come soon enough, I promise you. Please go away.</German>
+		<Italian>Your assassination will come soon enough, I promise you. Please go away.</Italian>
+		<Spanish>Your assassination will come soon enough, I promise you. Please go away.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_FFP_SHAPIRO_ATT_MAD_2</Tag>
+		<English>If you don't stop meddling in my plans, [CT_NAME], it will go very badly for you.</English>
+		<French>If you don't stop meddling in my plans, [CT_NAME], it will go very badly for you.</French>
+		<German>If you don't stop meddling in my plans, [CT_NAME], it will go very badly for you.</German>
+		<Italian>If you don't stop meddling in my plans, [CT_NAME], it will go very badly for you.</Italian>
+		<Spanish>If you don't stop meddling in my plans, [CT_NAME], it will go very badly for you.</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_FIRST_CONTACT_LEADER_CATHERINE_SHAPIRO</Tag>
+		<English>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</English>
+		<French>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</French>
+		<German>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</German>
+		<Italian>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</Italian>
+		<Spanish>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</Spanish>
+	</TEXT>
 </Civ4GameText>

@@ -256,6 +256,20 @@
 						<Text>AI_DIPLO_FIRST_CONTACT_LEADER_RAUL_COLOMBO</Text>
 					</DiplomacyText>
 				</Response>
+				<Response>
+					<Civilizations/>
+					<Leaders>
+						<Leader>
+							<LeaderType>LEADER_CATHERINE_SHAPIRO</LeaderType>
+							<bLeaderType>1</bLeaderType>
+						</Leader>
+					</Leaders>
+					<Attitudes/>
+					<DiplomacyPowers/>
+					<DiplomacyText>
+						<Text>AI_DIPLO_FIRST_CONTACT_LEADER_CATHERINE_SHAPIRO</Text>
+					</DiplomacyText>
+				</Response>
 			</Responses>
 		</DiplomacyInfo>
 		<DiplomacyInfo>
@@ -830,6 +844,30 @@
 					<DiplomacyText>
 						<Text>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_MAD_1</Text>
 						<Text>AI_DIPLO_GREETINGS_FFP_TAKENO_ATT_MAD_2</Text>
+					</DiplomacyText>
+				</Response>
+				<Response>
+					<Civilizations/>
+					<Leaders>
+						<Leader>
+							<LeaderType>LEADER_CATHERINE_SHAPIRO</LeaderType>
+							<bLeaderType>1</bLeaderType>
+						</Leader>
+					</Leaders>
+					<Attitudes>
+						<Attitude>
+							<AttitudeType>ATTITUDE_ANNOYED</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+						<Attitude>
+							<AttitudeType>ATTITUDE_FURIOUS</AttitudeType>
+							<bAttitudeType>1</bAttitudeType>
+						</Attitude>
+					</Attitudes>
+					<DiplomacyPowers/>
+					<DiplomacyText>
+						<Text>AI_DIPLO_GREETINGS_FFP_SHAPIRO_ATT_MAD_1</Text>
+						<Text>AI_DIPLO_GREETINGS_FFP_SHAPIRO_ATT_MAD_2</Text>
 					</DiplomacyText>
 				</Response>
 			</Responses>
