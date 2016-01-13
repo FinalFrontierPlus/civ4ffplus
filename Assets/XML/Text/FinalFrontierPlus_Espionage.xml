@@ -407,4 +407,28 @@
 		<Italian>Galactic Infiltration</Italian>
 		<Spanish>Galactic Infiltration</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SPY_SHIP</Tag>
+		<English>Spy Ship</English>
+		<French>Spy Ship</French>
+		<German>Spy Ship</German>
+		<Italian>Spy Ship</Italian>
+		<Spanish>Spy Ship</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SPY_SHIP_PEDIA</Tag>
+		<English>Spy Ship</English>
+		<French>Spy Ship</French>
+		<German>Spy Ship</German>
+		<Italian>Spy Ship</Italian>
+		<Spanish>Spy Ship</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SPY_SHIP_STRATEGY</Tag>
+		<English>Spy Ship</English>
+		<French>Spy Ship</French>
+		<German>Spy Ship</German>
+		<Italian>Spy Ship</Italian>
+		<Spanish>Spy Ship</Spanish>
+	</TEXT>
 </Civ4GameText>
