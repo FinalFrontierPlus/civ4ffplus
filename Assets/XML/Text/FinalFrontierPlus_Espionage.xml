@@ -375,4 +375,36 @@
 		<Italian>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</Italian>
 		<Spanish>[CT_NAME]! A pleasure to meet you at last. I am the director of [OUR_EMPIRE], and I've heard so much about you and your people. I trust you take my meaning.</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ESPIONAGE_0</Tag>
+		<English>Galactic Infiltration</English>
+		<French>Galactic Infiltration</French>
+		<German>Galactic Infiltration</German>
+		<Italian>Galactic Infiltration</Italian>
+		<Spanish>Galactic Infiltration</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ESPIONAGE_0_PEDIA</Tag>
+		<English>Galactic Infiltration</English>
+		<French>Galactic Infiltration</French>
+		<German>Galactic Infiltration</German>
+		<Italian>Galactic Infiltration</Italian>
+		<Spanish>Galactic Infiltration</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ESPIONAGE_0_STRATEGY</Tag>
+		<English>Galactic Infiltration</English>
+		<French>Galactic Infiltration</French>
+		<German>Galactic Infiltration</German>
+		<Italian>Galactic Infiltration</Italian>
+		<Spanish>Galactic Infiltration</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_QUOTE_ESPIONAGE_0</Tag>
+		<English>Galactic Infiltration</English>
+		<French>Galactic Infiltration</French>
+		<German>Galactic Infiltration</German>
+		<Italian>Galactic Infiltration</Italian>
+		<Spanish>Galactic Infiltration</Spanish>
+	</TEXT>
 </Civ4GameText>
