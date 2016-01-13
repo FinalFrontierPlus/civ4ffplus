@@ -739,6 +739,7 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_MULTIPLE_PRODUCTION,				//Multiple Production: Added by Denev 07/10/2009
 	GAMEOPTION_PRODUCTIVE_PIRATE_CITIES,
 	GAMEOPTION_REDUCED_PIRATES,			// FFP for v1.8
+	GAMEOPTION_NO_SPIES,				// FF+ for 1.9; if set, don't let bSpy units be built.
 //End of Final Frontier SDK
 
 #ifdef _USRDLL

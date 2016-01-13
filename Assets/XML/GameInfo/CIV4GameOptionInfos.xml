@@ -172,7 +172,7 @@
 			<Description>TXT_KEY_GAME_OPTION_NO_ESPIONAGE</Description>
 			<Help>TXT_KEY_GAME_OPTION_NO_ESPIONAGE_HELP</Help>
 			<bDefault>0</bDefault>
-			<bVisible>0</bVisible>
+			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
 			<Type>GAMEOPTION_DELAYED_WORMHOLES</Type>
@@ -241,6 +241,13 @@
 			<Type>GAMEOPTION_REDUCED_PIRATES</Type>
 			<Description>TXT_KEY_GAME_OPTION_REDUCED_PIRATES</Description>
 			<Help>TXT_KEY_GAME_OPTION_REDUCED_PIRATES_HELP</Help>
+			<bDefault>0</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
+		<GameOptionInfo>
+			<Type>GAMEOPTION_NO_SPIES</Type>
+			<Description>TXT_KEY_GAME_OPTION_NO_SPIES</Description>
+			<Help>TXT_KEY_GAME_OPTION_NO_SPIES_HELP</Help>
 			<bDefault>0</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>

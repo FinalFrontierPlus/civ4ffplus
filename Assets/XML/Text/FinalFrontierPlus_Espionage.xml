@@ -431,4 +431,20 @@
 		<Italian>Spy Ship</Italian>
 		<Spanish>Spy Ship</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_SPIES</Tag>
+		<English>No Spies</English>
+		<French>No Spies</French>
+		<German>No Spies</German>
+		<Italian>No Spies</Italian>
+		<Spanish>No Spies</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAME_OPTION_NO_SPIES_HELP</Tag>
+		<English>Allow espionage to be produced, but do not allow any units capable of conducting spy missions to be built.</English>
+		<French>Allow espionage to be produced, but do not allow any units capable of conducting spy missions to be built.</French>
+		<German>Allow espionage to be produced, but do not allow any units capable of conducting spy missions to be built.</German>
+		<Italian>Allow espionage to be produced, but do not allow any units capable of conducting spy missions to be built.</Italian>
+		<Spanish>Allow espionage to be produced, but do not allow any units capable of conducting spy missions to be built.</Spanish>
+	</TEXT>
 </Civ4GameText>

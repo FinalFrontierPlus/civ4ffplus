@@ -5353,7 +5353,10 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 		}
 	}
 
-	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE))
+	// Changed in Final Frontier Plus v1.9: Espionage. (By TC01).
+	// The No Espionage gameoption is kind of overkill (it also disables production of Espionage entirely!)
+	// so add a gameoption that simply bans spies from being trained.
+	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE) || GC.getGameINLINE().isOption(GAMEOPTION_NO_SPIES))
 	{
 		if (GC.getUnitInfo(eUnit).isSpy() || GC.getUnitInfo(eUnit).getEspionagePoints() > 0)
 		{
