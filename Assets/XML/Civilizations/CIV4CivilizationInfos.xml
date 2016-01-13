@@ -812,11 +812,11 @@
 					<UnitType>UNIT_STEALTH_CRUISER_I</UnitType>
 				</Unit>
 				<Unit>
-					<UnitClassType>UNITCLASS_BATTLESHIP_II</UnitClassType>
+					<UnitClassType>UNITCLASS_STEALTH_SHIP_II</UnitClassType>
 					<UnitType>UNIT_STEALTH_CRUISER_II</UnitType>
 				</Unit>
 				<Unit>
-					<UnitClassType>UNITCLASS_BATTLESHIP_III</UnitClassType>
+					<UnitClassType>UNITCLASS_STEALTH_SHIP_III</UnitClassType>
 					<UnitType>UNIT_STEALTH_CRUISER_III</UnitType>
 				</Unit>
 			</Units>
