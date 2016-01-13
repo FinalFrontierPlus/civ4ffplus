@@ -1772,5 +1772,35 @@
 			<SelectionSound>AS3D_UN_SPACESHIP_FORTIFY</SelectionSound>
 			<ActionSound>AS3D_UN_SPACESHIP_FORTIFY</ActionSound>
 		</UnitArtInfo>
+		<UnitArtInfo>
+			<Type>ART_DEF_UNIT_SPY_SHIP</Type>
+			<Button>,Art/Interface/Buttons/Units/Transport.dds,Art/Interface/Buttons/FinalFrontier1_Atlas.dds,6,3</Button>
+			<fScale>0.50</fScale>
+			<fInterfaceScale>0.6</fInterfaceScale>
+			<bActAsLand>0</bActAsLand>
+			<bActAsAir>1</bActAsAir>
+			<NIF>Art/Units/FinalFrontier_StealthShip/StealthShip.nif</NIF>
+			<KFM>Art/Units/FinalFrontier_StealthShip/StealthShip.kfm</KFM>
+			<SHADERNIF>Art/Units/FinalFrontier_StealthShip/StealthShip_FX.nif</SHADERNIF>
+			<ShadowDef>
+				<ShadowNIF>Art/Units/01_UnitShadows/BattleshipShadow.nif</ShadowNIF>
+				<ShadowAttachNode>BIP Pelvis</ShadowAttachNode>
+				<fShadowScale>0</fShadowScale>
+			</ShadowDef>
+			<iDamageStates>4</iDamageStates>
+			<fBattleDistance>0.55</fBattleDistance>
+			<fRangedDeathTime>0.31</fRangedDeathTime>
+			<bSmoothMove>1</bSmoothMove>
+			<fAngleInterpRate>720.0</fAngleInterpRate>
+			<fBankRate>0.2</fBankRate>
+			<bActAsRanged>1</bActAsRanged>
+			<TrainSound>AS2D_UNIT_BUILD_UNIT</TrainSound>
+			<AudioRunSounds>
+				<AudioRunTypeLoop/>
+				<AudioRunTypeEnd/>
+			</AudioRunSounds>
+			<SelectionSound>AS3D_UN_SPACESHIP_FORTIFY</SelectionSound>
+			<ActionSound>AS3D_UN_SPACESHIP_FORTIFY</ActionSound>
+		</UnitArtInfo>
 	</UnitArtInfos>
 </Civ4ArtDefines>

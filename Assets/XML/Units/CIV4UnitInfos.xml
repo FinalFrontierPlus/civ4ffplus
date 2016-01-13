@@ -16290,7 +16290,7 @@
 				<iRangedWaveSize>0</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_STEALTH_SHIP_I</EarlyArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_SPY_SHIP</EarlyArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_MACHINE</FormationType>
