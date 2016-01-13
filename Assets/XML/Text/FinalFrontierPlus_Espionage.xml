@@ -385,27 +385,27 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ESPIONAGE_0_PEDIA</Tag>
-		<English>Galactic Infiltration</English>
-		<French>Galactic Infiltration</French>
-		<German>Galactic Infiltration</German>
-		<Italian>Galactic Infiltration</Italian>
-		<Spanish>Galactic Infiltration</Spanish>
+		<English>"Galactic Infiltration" refers to the doctrine adopted by Interstellar Intelligence field agents in order to infiltrate, maintain surveillence on, and conduct black ops missions across the known galaxy. Once understood by the other human colonies, it was later adapted by all the survivors as their conflicts found a new sphere in which to express themselves: the world of the spy.</English>
+		<French>"Galactic Infiltration" refers to the doctrine adopted by Interstellar Intelligence field agents in order to infiltrate, maintain surveillence on, and conduct black ops missions across the known galaxy. Once understood by the other human colonies, it was later adapted by all the survivors as their conflicts found a new sphere in which to express themselves: the world of the spy.</French>
+		<German>"Galactic Infiltration" refers to the doctrine adopted by Interstellar Intelligence field agents in order to infiltrate, maintain surveillence on, and conduct black ops missions across the known galaxy. Once understood by the other human colonies, it was later adapted by all the survivors as their conflicts found a new sphere in which to express themselves: the world of the spy.</German>
+		<Italian>"Galactic Infiltration" refers to the doctrine adopted by Interstellar Intelligence field agents in order to infiltrate, maintain surveillence on, and conduct black ops missions across the known galaxy. Once understood by the other human colonies, it was later adapted by all the survivors as their conflicts found a new sphere in which to express themselves: the world of the spy.</Italian>
+		<Spanish>"Galactic Infiltration" refers to the doctrine adopted by Interstellar Intelligence field agents in order to infiltrate, maintain surveillence on, and conduct black ops missions across the known galaxy. Once understood by the other human colonies, it was later adapted by all the survivors as their conflicts found a new sphere in which to express themselves: the world of the spy.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ESPIONAGE_0_STRATEGY</Tag>
-		<English>Galactic Infiltration</English>
-		<French>Galactic Infiltration</French>
-		<German>Galactic Infiltration</German>
-		<Italian>Galactic Infiltration</Italian>
-		<Spanish>Galactic Infiltration</Spanish>
+		<English>[COLOR_TECH_TEXT]Galactic Infiltration[COLOR_REVERT] allows the construction of the [COLOR_UNIT_TEXT]Spy Ship[COLOR_REVERT] unit, which is capable of conducting espionage missions much like the Spy from vanilla Beyond the Sword.</English>
+		<French>[COLOR_TECH_TEXT]Galactic Infiltration[COLOR_REVERT] allows the construction of the [COLOR_UNIT_TEXT]Spy Ship[COLOR_REVERT] unit, which is capable of conducting espionage missions much like the Spy from vanilla Beyond the Sword.</French>
+		<German>[COLOR_TECH_TEXT]Galactic Infiltration[COLOR_REVERT] allows the construction of the [COLOR_UNIT_TEXT]Spy Ship[COLOR_REVERT] unit, which is capable of conducting espionage missions much like the Spy from vanilla Beyond the Sword.</German>
+		<Italian>[COLOR_TECH_TEXT]Galactic Infiltration[COLOR_REVERT] allows the construction of the [COLOR_UNIT_TEXT]Spy Ship[COLOR_REVERT] unit, which is capable of conducting espionage missions much like the Spy from vanilla Beyond the Sword.</Italian>
+		<Spanish>[COLOR_TECH_TEXT]Galactic Infiltration[COLOR_REVERT] allows the construction of the [COLOR_UNIT_TEXT]Spy Ship[COLOR_REVERT] unit, which is capable of conducting espionage missions much like the Spy from vanilla Beyond the Sword.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_QUOTE_ESPIONAGE_0</Tag>
-		<English>Galactic Infiltration</English>
-		<French>Galactic Infiltration</French>
-		<German>Galactic Infiltration</German>
-		<Italian>Galactic Infiltration</Italian>
-		<Spanish>Galactic Infiltration</Spanish>
+		<English>[TAB]"Yes, deploying an agent onto a distant planet may be easy, but maintaining contact with them is not. Communications between star systems must be trunked and centralized at some point; this is simply a technological necessity at present. The obvious assumption is that any adversary will be carefully monitoring the communications relays on their planet. Thus maintaining contact with a field agent through any conventional channels without alerting local authorities will be nearly impossible. Solving this problem is currently a top priority for the Center for Interstellar Intelligence and has involved both technological work and changes to standard PDE espionage doctrine."[NEWLINE][NEWLINE][TAB]- Director Catherine Shapiro, February 2296, Inaugural Report to Center for Interstellar Intelligence Oversight Committee.</English>
+		<French>[TAB]"Yes, deploying an agent onto a distant planet may be easy, but maintaining contact with them is not. Communications between star systems must be trunked and centralized at some point; this is simply a technological necessity at present. The obvious assumption is that any adversary will be carefully monitoring the communications relays on their planet. Thus maintaining contact with a field agent through any conventional channels without alerting local authorities will be nearly impossible. Solving this problem is currently a top priority for the Center for Interstellar Intelligence and has involved both technological work and changes to standard PDE espionage doctrine."[NEWLINE][NEWLINE][TAB]- Director Catherine Shapiro, February 2296, Inaugural Report to Center for Interstellar Intelligence Oversight Committee.</French>
+		<German>[TAB]"Yes, deploying an agent onto a distant planet may be easy, but maintaining contact with them is not. Communications between star systems must be trunked and centralized at some point; this is simply a technological necessity at present. The obvious assumption is that any adversary will be carefully monitoring the communications relays on their planet. Thus maintaining contact with a field agent through any conventional channels without alerting local authorities will be nearly impossible. Solving this problem is currently a top priority for the Center for Interstellar Intelligence and has involved both technological work and changes to standard PDE espionage doctrine."[NEWLINE][NEWLINE][TAB]- Director Catherine Shapiro, February 2296, Inaugural Report to Center for Interstellar Intelligence Oversight Committee.</German>
+		<Italian>[TAB]"Yes, deploying an agent onto a distant planet may be easy, but maintaining contact with them is not. Communications between star systems must be trunked and centralized at some point; this is simply a technological necessity at present. The obvious assumption is that any adversary will be carefully monitoring the communications relays on their planet. Thus maintaining contact with a field agent through any conventional channels without alerting local authorities will be nearly impossible. Solving this problem is currently a top priority for the Center for Interstellar Intelligence and has involved both technological work and changes to standard PDE espionage doctrine."[NEWLINE][NEWLINE][TAB]- Director Catherine Shapiro, February 2296, Inaugural Report to Center for Interstellar Intelligence Oversight Committee.</Italian>
+		<Spanish>[TAB]"Yes, deploying an agent onto a distant planet may be easy, but maintaining contact with them is not. Communications between star systems must be trunked and centralized at some point; this is simply a technological necessity at present. The obvious assumption is that any adversary will be carefully monitoring the communications relays on their planet. Thus maintaining contact with a field agent through any conventional channels without alerting local authorities will be nearly impossible. Solving this problem is currently a top priority for the Center for Interstellar Intelligence and has involved both technological work and changes to standard PDE espionage doctrine."[NEWLINE][NEWLINE][TAB]- Director Catherine Shapiro, February 2296, Inaugural Report to Center for Interstellar Intelligence Oversight Committee.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SPY_SHIP</Tag>
@@ -417,19 +417,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SPY_SHIP_PEDIA</Tag>
-		<English>Spy Ship</English>
-		<French>Spy Ship</French>
-		<German>Spy Ship</German>
-		<Italian>Spy Ship</Italian>
-		<Spanish>Spy Ship</Spanish>
+		<English>Deploying a spy and the hardware they need to accomplish their mission into a hostile star system is harder than it sounds. While space is big, sensor technology is very good, and most incoming civilian ships will be routinely searched by security forces in even the most peaceful and democratic interstellar civilizations. To compensate, Interstellar Intelligence planners designed the Spy Ship, a version of the traditional stealth ship but with most of the offensive capability stripped out and replaced with better espionage and stealth hardware. The design was later adopted by the rest of the galaxy.</English>
+		<French>Deploying a spy and the hardware they need to accomplish their mission into a hostile star system is harder than it sounds. While space is big, sensor technology is very good, and most incoming civilian ships will be routinely searched by security forces in even the most peaceful and democratic interstellar civilizations. To compensate, Interstellar Intelligence planners designed the Spy Ship, a version of the traditional stealth ship but with most of the offensive capability stripped out and replaced with better espionage and stealth hardware. The design was later adopted by the rest of the galaxy.</French>
+		<German>Deploying a spy and the hardware they need to accomplish their mission into a hostile star system is harder than it sounds. While space is big, sensor technology is very good, and most incoming civilian ships will be routinely searched by security forces in even the most peaceful and democratic interstellar civilizations. To compensate, Interstellar Intelligence planners designed the Spy Ship, a version of the traditional stealth ship but with most of the offensive capability stripped out and replaced with better espionage and stealth hardware. The design was later adopted by the rest of the galaxy.</German>
+		<Italian>Deploying a spy and the hardware they need to accomplish their mission into a hostile star system is harder than it sounds. While space is big, sensor technology is very good, and most incoming civilian ships will be routinely searched by security forces in even the most peaceful and democratic interstellar civilizations. To compensate, Interstellar Intelligence planners designed the Spy Ship, a version of the traditional stealth ship but with most of the offensive capability stripped out and replaced with better espionage and stealth hardware. The design was later adopted by the rest of the galaxy.</Italian>
+		<Spanish>Deploying a spy and the hardware they need to accomplish their mission into a hostile star system is harder than it sounds. While space is big, sensor technology is very good, and most incoming civilian ships will be routinely searched by security forces in even the most peaceful and democratic interstellar civilizations. To compensate, Interstellar Intelligence planners designed the Spy Ship, a version of the traditional stealth ship but with most of the offensive capability stripped out and replaced with better espionage and stealth hardware. The design was later adopted by the rest of the galaxy.</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SPY_SHIP_STRATEGY</Tag>
-		<English>Spy Ship</English>
-		<French>Spy Ship</French>
-		<German>Spy Ship</German>
-		<Italian>Spy Ship</Italian>
-		<Spanish>Spy Ship</Spanish>
+		<English>Unlike spies in Beyond the Sword, the Spy Ship is not invisible to all units. Its invisibility is only as good as that of the Stealth Ship, meaning that an opposing civilization has a chance to detect and stop a Spy Ship from being deployed into their territory. To compensate, Spy Ships have been given the ability to defend themselves (but not attack).</English>
+		<French>Unlike spies in Beyond the Sword, the Spy Ship is not invisible to all units. Its invisibility is only as good as that of the Stealth Ship, meaning that an opposing civilization has a chance to detect and stop a Spy Ship from being deployed into their territory. To compensate, Spy Ships have been given the ability to defend themselves (but not attack).</French>
+		<German>Unlike spies in Beyond the Sword, the Spy Ship is not invisible to all units. Its invisibility is only as good as that of the Stealth Ship, meaning that an opposing civilization has a chance to detect and stop a Spy Ship from being deployed into their territory. To compensate, Spy Ships have been given the ability to defend themselves (but not attack).</German>
+		<Italian>Unlike spies in Beyond the Sword, the Spy Ship is not invisible to all units. Its invisibility is only as good as that of the Stealth Ship, meaning that an opposing civilization has a chance to detect and stop a Spy Ship from being deployed into their territory. To compensate, Spy Ships have been given the ability to defend themselves (but not attack).</Italian>
+		<Spanish>Unlike spies in Beyond the Sword, the Spy Ship is not invisible to all units. Its invisibility is only as good as that of the Stealth Ship, meaning that an opposing civilization has a chance to detect and stop a Spy Ship from being deployed into their territory. To compensate, Spy Ships have been given the ability to defend themselves (but not attack).</Spanish>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GAME_OPTION_NO_SPIES</Tag>
