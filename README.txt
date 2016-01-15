@@ -1,5 +1,5 @@
-Final Frontier Plus v1.84 by TC01 and God-Emperor
-------------------------------------------------
+Final Frontier Plus v1.9 Beta 1 by TC01 and God-Emperor
+-------------------------------------------------------
 
 Final Frontier Plus is, as the name suggests, a modmod of Jon Shafer's Final 
 Frontier mod/scenario included with Beyond the Sword. Unlike most of the 
@@ -44,25 +44,25 @@ changelog is reproduced here:
 Note that changelogs, these days, are mostly derived from git commit history.
 https://github.com/FinalFrontierPlus/civ4ffplus/commits/master
 
-v1.84 Changelog:
--Merged patch from DarkLunaPhantom to allow BUG to work in PitBoss mode.
--Added some new unique diplomacy text to all leaders, based on suggestions 
-from the forums (http://forums.civfanatics.com/showthread.php?t=517635)
--Improved the efficiency of rushing via Slave State from 30 hammers to 50.
--Modified the AI to now forces a population reassignment every fifteen turns.
--The target minimum food surplus for the AI has been changed to vary over
-the course of the game, as cities grow larger.
--All AI leaders are now slightly more likely to build ships and plan war.
--Fixed rare potential CTD that could happen if a unit withdrew off the map.
--Fixed Wormholes bug that would stop Wormholes from working if their x *or*
-y coordinate happened to be the same.
--Fixed potential minor Python bug involving adding a planet to a solar syste.m
--Fixed PlotListEnhancements (BUG) crash when a starbase is built while the
-construction ship building it is selected.
--Defined the TXT_KEYs for the (useless/hidden/ignored) Alien civilization
-to clean up the pedia.
--Flavor change: adjusted land area computation to use lightyears as a unit.
--Flavor change: slightly adjusted average lifespan in demographics upwards.
+v1.9b1 Changelog:
+-Added a ninth human colony, Interstellar Intelligence, an espionage-focused
+faction, aka "the Watchers", based off a suggestion by Imp Knoedel. Trait
+grants Improved Stealth to all Light Ships and a bonus to espionage production,
+at a cost to upkeep.
+-Imported sailbotlieh's Miranda Lawson (imported from Mass Effect 2) leaderhead
+for Catherine Shapiro, the leader of the Watchers. Favorite civic is Police State.
+-Added Stealth Cruiser UU for the Watchers; a more expensive Stealth Ship
+that gets first strikes.
+-Added Security Directorate UB for the Watchers; an Intelligence Center that
+produces more Espionage.
+-Added Galactic Infiltration technology to the beginning of the Expansion Era.
+-Galactic Infiltration allows the training of the new Spy Ship unit, a spy
+that can perform Spy Missions but is not 100% invisible; it is only "invisible
+to most units" ala a Stealth Ship.
+-Re-enabled the No Espionage gameoption (that prevents the building of Spies and
+turns all Espionage into other commerces).
+-Added No Spies gameoption that prevents the building of spies, but still
+lets buildings produce Espionage culture.
 
 Installing:
 -----------
@@ -72,10 +72,16 @@ There are *three* ways to install Final Frontier Plus. If the first two options
 on the Steam version of Civ 4-- we recommend trying option 3, which is just
 a zipfile of the mod's contents.
 
+If you are installing the mod onto the Steam copy of Beyond the Sword, it should
+work, but the installer does not currently detect the right place to install
+the mod. You will want to install into a path that looks like the following:
+
+  SteamApps/Sid Meier's Civilization IV Beyond the Sword/Beyond the Sword/Mods/
+
 Please see http://forums.civfanatics.com/showthread.php?t=365908 this thread
 on our forums for more information and download links.
 
-Installations into your *user* My Games folder is *not recommended*. This
+Note: installations into your *user* My Games folder is *not recommended*. This
 causes problems for lots of mods.
 
 Running:
@@ -128,7 +134,9 @@ License:
 Final Frontier Plus is as "open source" as a mod of a proprietary video game
 can get. In a nutshell that means you are welcome to use any assets (code,
 art, etc.) created by Final Frontier Plus contributors in other Civilization
-IV mods (or elsewhere, should you really want to).
+IV mods (or elsewhere, should you really want to). But we cannot, of course,
+relicense any of the proprietary Final Frontier content shipped with
+Civilization IV, or Civilization IV itself.
 
 Firaxis and 2K own Civilization 4.
 

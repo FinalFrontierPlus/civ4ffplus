@@ -1,5 +1,29 @@
 Final Frontier Plus Changelog History:
 
+Changelogs for 1.9 beta releases:
+
+v1.9b1 Changelog:
+-Added a ninth human colony, Interstellar Intelligence, an espionage-focused
+faction, aka "the Watchers", based off a suggestion by Imp Knoedel. Trait
+grants Improved Stealth to all Light Ships and a bonus to espionage production,
+at a cost to upkeep.
+-Imported sailbotlieh's Miranda Lawson (imported from Mass Effect 2) leaderhead
+for Catherine Shapiro, the leader of the Watchers. Favorite civic is Police State.
+-Added Stealth Cruiser UU for the Watchers; a more expensive Stealth Ship
+that gets first strikes.
+-Added Security Directorate UB for the Watchers; an Intelligence Center that
+produces more Espionage.
+-Added Galactic Infiltration technology to the beginning of the Expansion Era.
+-Galactic Infiltration allows the training of the new Spy Ship unit, a spy
+that can perform Spy Missions but is not 100% invisible; it is only "invisible
+to most units" ala a Stealth Ship.
+-Re-enabled the No Espionage gameoption (that prevents the building of Spies and
+turns all Espionage into other commerces).
+-Added No Spies gameoption that prevents the building of spies, but still
+lets buildings produce Espionage culture.
+
+--
+
 v1.84 Patch:
 -Merged patch from DarkLunaPhantom to allow BUG to work in PitBoss mode.
 -Added some new unique diplomacy text to all leaders, based on suggestions 
