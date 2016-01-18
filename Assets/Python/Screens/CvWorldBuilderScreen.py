@@ -895,7 +895,16 @@ class CvWorldBuilderScreen:
 		elif ((self.m_bNormalMap) and (self.m_normalMapTabCtrl.getActiveTab() == self.m_iTerrainTabID)):
 			if (self.m_iNormalMapCurrentList[self.m_normalMapTabCtrl.getActiveTab()] == self.m_iTerrainListID):
 				iTerrainType = self.m_iNormalMapCurrentIndexes[self.m_normalMapTabCtrl.getActiveTab()]
-				self.m_pCurrentPlot.setTerrainType(iTerrainType, True, True)
+				# FF Worldbuilder change; terrain can be graphicalOnly too, use code for improvements here.
+				iIndex = -1
+				iCounter = -1
+				while ((iIndex < iTerrainType) and (iCounter < gc.getNumTerrainInfos())):
+					iCounter = iCounter + 1
+					if (not gc.getImprovementInfo(iCounter).isGraphicalOnly()):
+						iIndex = iIndex + 1
+				if (iIndex > -1):
+					self.m_pCurrentPlot.setTerrainType(iCounter, True, True)
+				# End FF Worldbuilder change.
 			elif (self.m_iNormalMapCurrentList[self.m_normalMapTabCtrl.getActiveTab()] == self.m_iFeatureListID):
 				iButtonIndex = self.m_iNormalMapCurrentIndexes[self.m_normalMapTabCtrl.getActiveTab()]
 				iCount = -1
