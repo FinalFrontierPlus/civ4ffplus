@@ -1864,16 +1864,31 @@ CvWString CvPlayer::getNewCityName() const
 		}
 	}
 
+	// PB Mod begin
+	/* OOS-Fix: Role dice regardless if szName is empty or not. The emptyness of the string depends on the language!
+	 */
 	if (szName.empty())
 	{
 		getCivilizationCityName(szName, getCivilizationType());
+	}else{
+		if (isBarbarian() || isMinorCiv())
+		{
+			GC.getGameINLINE().getSorenRandNum(GC.getCivilizationInfo(getCivilizationType()).getNumCityNames(), "getNewCityName 1 (Player)");
+		}
 	}
 
+	/* OOS-Fix: The following code free's the number of getSorenRandNum calls from the emptyness-condition of szName, too.
+	 * Thus, it will be languange independent.
+	 * numCityNameCalls defines the (maximal) number of getCivilizationCityName calls and exact number of getSorenRandNum
+	 * calls (in the isBarbarian() case).
+	 */
+	int numCityNameCalls = std::min(5, GC.getNumCivilizationInfos());
+
+	int iRandOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumCivilizationInfos(), "getNewCityName 2 (Player)");
 	if (szName.empty())
 	{
 		// Pick a name from another random civ
-		int iRandOffset = GC.getGameINLINE().getSorenRandNum(GC.getNumCivilizationInfos(), "Place Units (Player)");
-		for (iI = 0; iI < GC.getNumCivilizationInfos(); iI++)
+		for (iI = 0; iI < numCityNameCalls; iI++)
 		{
 			int iLoopName = ((iI + iRandOffset) % GC.getNumCivilizationInfos());
 
@@ -1881,10 +1896,25 @@ CvWString CvPlayer::getNewCityName() const
 
 			if (!szName.empty())
 			{
+				++iI;
 				break;
 			}
 		}
+		for (iI; iI < numCityNameCalls; iI++){
+			if(isBarbarian() || isMinorCiv()){
+				int iLoopName = ((iI + iRandOffset) % GC.getNumCivilizationInfos());
+				GC.getGameINLINE().getSorenRandNum(GC.getCivilizationInfo(((CivilizationTypes)iLoopName)).getNumCityNames(), "getNewCityName 3A (Player)");
+			}
+		}
+	}else{
+		for (iI = 0; iI < numCityNameCalls; iI++){
+			if(isBarbarian() || isMinorCiv()){
+				int iLoopName = ((iI + iRandOffset) % GC.getNumCivilizationInfos());
+				GC.getGameINLINE().getSorenRandNum(GC.getCivilizationInfo(((CivilizationTypes)iLoopName)).getNumCityNames(), "getNewCityName 3B (Player)");
+			}
+		}
 	}
+	// PB Mod end
 
 	if (szName.empty())
 	{
@@ -2348,6 +2378,13 @@ const wchar* CvPlayer::getName(uint uiForm) const
 	}
 }
 
+
+// PB Mod begin
+void CvPlayer::setName(const wchar* szNewValue)
+{
+	GC.getInitCore().setLeaderName(getID(), szNewValue);
+}
+// PB Mod end
 
 const wchar* CvPlayer::getNameKey() const
 {
@@ -3127,6 +3164,34 @@ int CvPlayer::calculateScore(bool bFinal, bool bVictory)
 
 	return ((int)lScore);
 }
+
+
+// DarkLunaPhantom begin
+int CvPlayer::calculateTechScore(bool bFinal, bool bVictory) const
+{
+	PROFILE_FUNC();
+
+	if (!isAlive())
+	{
+		return 0;
+	}
+
+	if (GET_TEAM(getTeam()).getNumMembers() == 0)
+	{
+		return 0;
+	}
+
+	long lScore = 0;
+
+	CyArgsList argsList;
+	argsList.add((int) getID());
+	argsList.add(bFinal);
+	argsList.add(bVictory);
+	gDLL->getPythonIFace()->callFunction(PYGameModule, "calculateTechScore", argsList.makeFunctionArgs(), &lScore);
+
+	return ((int)lScore);
+}
+//DarkLunaPhantom end
 
 
 int CvPlayer::findBestFoundValue() const
@@ -10479,6 +10544,16 @@ int CvPlayer::getPlayerTextColorA() const
 	return ((int)(GC.getColorInfo((ColorTypes) GC.getPlayerColorInfo(getPlayerColor()).getTextColorType()).getColor().a * 255));
 }
 
+
+// PB Mod begin
+void CvPlayer::setPlayerColor(PlayerColorTypes eColor)
+{
+	FAssertMsg(eColor != NO_PLAYERCOLOR, "getPlayerColor() is not expected to be equal with NO_PLAYERCOLOR");
+	if( eColor < GC.getNumPlayerColorInfos() ){
+		GC.getInitCore().setColor(getID(), eColor);
+	}
+}
+// PB Mod end
 
 int CvPlayer::getSeaPlotYield(YieldTypes eIndex) const
 {
