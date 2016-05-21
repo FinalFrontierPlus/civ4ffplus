@@ -402,6 +402,16 @@ class FFGameUtils:
 		
 		return iTotalScore
 
+	# begin DarkLunaPhantom
+	def calculateTechScore(self,argsList):
+		ePlayer = argsList[0]
+		bFinal = argsList[1]
+		bVictory = argsList[2]
+		
+		iTechScore = CvUtil.getScoreComponent(gc.getPlayer(ePlayer).getTechScore(), gc.getGame().getInitTech(), gc.getGame().getMaxTech(), gc.getDefineINT("SCORE_TECH_FACTOR"), True, bFinal, bVictory)
+		return int(iTechScore)	
+	# end DarkLunaPhantom
+
 	def doHolyCity(self):
 		return False
 
@@ -762,6 +772,11 @@ class FFGameUtils:
 		eWidgetType, iData1, iData2, bOption = argsList
 		
 		printd("eWidgetType %d, iData1 %d, iData2 %d, bOption %d" % (eWidgetType, iData1, iData2, bOption))
+		
+		#PB Mod begin
+		if (iData1 == 302016):
+			return localText.getText("TXT_KEY_MOD_UNPAUSE_DESC", ())
+		#PB Mod end
 		
 		szHelpText = u""
 		

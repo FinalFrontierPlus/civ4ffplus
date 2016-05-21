@@ -83,6 +83,9 @@ public:
 	DllExport bool isBarbarian() const;																																					// Exposed to Python
 
 	DllExport const wchar* getName(uint uiForm = 0) const;																											// Exposed to Python
+	// PB Mod begin
+	void setName(const wchar* szNewValue);		// Exposed to Python
+	// PB Mod end
 	DllExport const wchar* getNameKey() const;																																	// Exposed to Python
 	DllExport const wchar* getCivilizationDescription(uint uiForm = 0) const;																		// Exposed to Python
 	DllExport const wchar* getCivilizationDescriptionKey() const;																								// Exposed to Python
@@ -134,6 +137,9 @@ public:
 	DllExport void chooseTech(int iDiscover = 0, CvWString szText = "", bool bFront = false);				// Exposed to Python
 
 	int calculateScore(bool bFinal = false, bool bVictory = false);
+	// DarkLunaPhantom begin
+	int calculateTechScore(bool bFinal = false, bool bVictory = false) const;
+	// DarkLunaPhantom end
 
 	int findBestFoundValue() const;																																				// Exposed to Python
 
@@ -664,6 +670,10 @@ public:
 	DllExport int getPlayerTextColorG() const;																												// Exposed to Python
 	DllExport int getPlayerTextColorB() const;																												// Exposed to Python
 	DllExport int getPlayerTextColorA() const;																												// Exposed to Python
+	
+	// PB Mod begin
+	void setPlayerColor(PlayerColorTypes color);
+	// PB Mod end
 
 	int getSeaPlotYield(YieldTypes eIndex) const;																											// Exposed to Python
 	void changeSeaPlotYield(YieldTypes eIndex, int iChange);

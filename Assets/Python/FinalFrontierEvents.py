@@ -37,6 +37,10 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 	
 	def __init__(self, eventManager):
 		
+		# PB Mod begin
+		self.bGameTurnProcessing = False
+		# PB Mod end
+		
 		self.parentClass = CvEventManager.CvEventManager
 		self.parentClass.__init__(self)
 		
@@ -238,6 +242,10 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 				
 		# Update appearance of all Star Systems & Planets
 		self.bUpdateDisplay = true
+		
+		# PB Mod begin
+		self.bGameTurnProcessing = True
+		# PB Mod end
 
 	def onBeginPlayerTurn(self, argsList):
 		'Called at the beginning of each players turn'
@@ -277,6 +285,10 @@ class FinalFrontierEvents(CvEventManager.CvEventManager):
 							szBody = localText.getText("TXT_KEY_FF_TUTORIAL_SPACE_PIRATES", ())
 							popupInfo.setText(szBody)
 							popupInfo.addPopup(iPlayer)
+		
+		# PB Mod begin
+		self.bGameTurnProcessing = False
+		# PB Mod end
 		
 #############################################################################################
 #		Multiplayer Functionality

@@ -2494,7 +2494,11 @@ bool CvUnit::willRevealByMove(const CvPlot* pPlot) const
 
 bool CvUnit::canMoveInto(const CvPlot* pPlot, bool bAttack, bool bDeclareWar, bool bIgnoreLoad) const
 {
-	FAssertMsg(pPlot != NULL, "Plot is not assigned a valid value");
+//	FAssertMsg(pPlot != NULL, "Plot is not assigned a valid value");
+	// Implement God-Emperor fix to prevent CTD.
+	if (pPlot == NULL) { // Post 1.83 - it turns out a unit can try to withdraw off the map if it doesn't wrap
+		return false;
+	}
 
 	if (atPlot(pPlot))
 	{
@@ -6393,6 +6397,10 @@ bool CvUnit::espionage(EspionageMissionTypes eMission, int iData)
 	{
 		FAssert(GET_PLAYER(getOwnerINLINE()).isHuman());
 		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_DOESPIONAGE);
+		// PB Mod begin
+		//For espionage popup bugfix: Store turn slice
+		pInfo->setFlags(GC.getGameINLINE().getTurnSlice());
+		// PB Mod end
 		if (NULL != pInfo)
 		{
 			gDLL->getInterfaceIFace()->addPopup(pInfo, getOwnerINLINE(), true);
@@ -6402,6 +6410,10 @@ bool CvUnit::espionage(EspionageMissionTypes eMission, int iData)
 	{
 		FAssert(GET_PLAYER(getOwnerINLINE()).isHuman());
 		CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_DOESPIONAGE_TARGET);
+		// PB Mod begin
+		//For espionage popup bugfix: Store turn slice
+		pInfo->setFlags(GC.getGameINLINE().getTurnSlice());
+		// PB Mod end
 		if (NULL != pInfo)
 		{
 			pInfo->setData1(eMission);
@@ -13450,6 +13462,9 @@ void CvUnit::doGravityField()
 	}
 }
 
+// As written, doWormhole selects the first wormhole it finds on the map.
+// FIXME: rewrite this to build a list of random wormholes and choose one.
+// That way we'd have support for more complicated gate structures.
 void CvUnit::doWormhole()
 {
 	int iX = plot()->getX();
@@ -13461,8 +13476,10 @@ void CvUnit::doWormhole()
 		if (pPlot != NULL)
 		{
 			if (pPlot->getFeatureType() != NO_FEATURE)
+			{
 				if (pPlot->getFeatureType() == GC.getFeatureInfo(plot()->getFeatureType()).getTargetWormholeType())
-					if (pPlot->getX() != iX && pPlot->getY() != iY)
+				{
+					if (!(pPlot->getX() == iX && pPlot->getY() == iY))
 					{
 						int WormholeX = pPlot->getX();
 						int WormholeY = pPlot->getY();
@@ -13471,6 +13488,8 @@ void CvUnit::doWormhole()
 						gDLL->getInterfaceIFace()->addMessage(getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szText, "AS2D_AIR_ATTACKED", MESSAGE_TYPE_MINOR_EVENT, getButton(),(ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX(), getY(), true, true);
 						finishMoves();
 					}
+				}
+			}
 		}
 	}
 }
