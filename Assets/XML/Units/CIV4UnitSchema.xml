@@ -546,6 +546,7 @@
 	<ElementType name="FeatureDamageModifiers" content="eltOnly">
 		<element type="FeatureDamageModifier" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="iSeeInvisibleTier" content="textOnly" dt:type="int"/>
 	<ElementType name="UnitInfo" content="eltOnly">
 		<element type="Class"/>
 		<element type="Type"/>
@@ -717,6 +718,7 @@
 		<element type="UnitCombatAttackMods" minOccurs="0"/>
 		<element type="UnitCombatDefenseMods" minOccurs="0"/>
 		<element type="FeatureDamageModifiers" minOccurs="0"/>
+		<element type="iSeeInvisibleTier" minOccurs="0"/>
 	</ElementType>
 	<ElementType name="UnitInfos" content="eltOnly">
 		<element type="UnitInfo" maxOccurs="*"/>
